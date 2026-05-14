@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#a1c9ff",
+                        "surface-tint": "#1261a3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-background": "#191c1e",
+                        "tertiary": "#3b4248",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "primary-container": "#005a9c",
+                        "secondary-fixed": "#d3e4fe",
+                        "secondary-container": "#d0e1fb",
+                        "on-tertiary-fixed": "#161c22",
+                        "background": "#f7f9fb",
+                        "primary": "#004275",
+                        "primary-fixed": "#d2e4ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#a1c9ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary-container": "#52595f",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#414750",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-container": "#c9cfd7",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-container": "#afd1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c7d2",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#dde3eb",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-fixed-variant": "#00487f",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "on-primary-fixed": "#001c37",
+                        "outline": "#727781",
+                        "surface-container": "#eceef0",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary": "#505f76",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+                MouroSub
+            </div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200" href="#">Services</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200" href="#">About Us</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200" href="#">News</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="px-gutter py-stack-sm bg-primary text-on-primary font-label-md text-label-md rounded hover:bg-primary-container transition-colors duration-200 active:scale-95">
+                    Login
+                </button>
+</div>
+</nav>
+</header>
+<main class="flex-grow">
+<!-- Hero Section / Title -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto text-center">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-stack-sm">Contacto</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                ¿Listo para sumergirte? Estamos aquí para responder a tus preguntas sobre cursos, inmersiones y equipamiento.
+            </p>
+</section>
+<!-- Bento Layout for Content -->
+<section class="px-margin-mobile md:px-margin-desktop pb-stack-lg max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Form Section -->
+<div class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm">
+<h2 class="font-headline-md text-headline-md mb-stack-lg">Envíanos un mensaje</h2>
+<form class="space-y-stack-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Nombre completo</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded p-stack-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="Tu nombre" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Correo electrónico</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded p-stack-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="ejemplo@correo.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Interés de servicio</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded p-stack-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all appearance-none">
+<option>Curso Open Water</option>
+<option>Inmersiones guiadas</option>
+<option>Bautismo de buceo</option>
+<option>Alquiler de equipo</option>
+<option>Otros</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Mensaje</label>
+<textarea class="bg-surface-container-lowest border border-outline-variant rounded p-stack-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline resize-none" placeholder="Cuéntanos cómo podemos ayudarte..." rows="5"></textarea>
+</div>
+<button class="w-full md:w-auto px-10 py-stack-md bg-primary text-on-primary font-label-md text-label-md rounded hover:opacity-90 transition-opacity active:scale-95" type="submit">
+                        Enviar mensaje
+                    </button>
+</form>
+</div>
+<!-- Sidebar Info Section -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Details Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex flex-col gap-stack-md">
+<h3 class="font-headline-md text-headline-md mb-stack-sm">Información de contacto</h3>
+<div class="flex items-start gap-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div>
+<p class="font-label-md text-label-md">Nuestra Dirección</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Calle del Mar 42, 39001 Santander, Cantabria, España</p>
+</div>
+</div>
+<div class="flex items-start gap-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+<div>
+<p class="font-label-md text-label-md">Teléfono</p>
+<p class="font-body-md text-body-md text-on-surface-variant">+34 942 00 00 00</p>
+</div>
+</div>
+<div class="flex items-start gap-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<div>
+<p class="font-label-md text-label-md">Email</p>
+<p class="font-body-md text-body-md text-on-surface-variant">hola@mourosub.com</p>
+</div>
+</div>
+<hr class="border-outline-variant my-stack-sm"/>
+<div>
+<p class="font-label-md text-label-md mb-stack-sm">Horario de Oficina</p>
+<ul class="space-y-1">
+<li class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Lunes - Viernes</span>
+<span class="font-label-md">09:00 - 19:00</span>
+</li>
+<li class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Sábados</span>
+<span class="font-label-md">08:00 - 14:00</span>
+</li>
+<li class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Domingos</span>
+<span class="font-label-md">Cerrado</span>
+</li>
+</ul>
+</div>
+<div class="flex gap-stack-md mt-stack-sm">
+<a class="p-2 border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</a>
+<a class="p-2 border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+</a>
+</div>
+</div>
+<!-- Interactive Map Placeholder -->
+<div class="h-64 md:h-full min-h-[300px] bg-surface-container-high border border-outline-variant rounded-xl overflow-hidden relative group">
+<div class="absolute inset-0 grayscale opacity-40 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80')] bg-cover bg-center" data-alt="A detailed cartographic representation of a coastal city map focused on a marina district. The aesthetic is clean and professional, using a light mode theme with subtle gray lines and minimal blue accents for water bodies. High-fidelity architectural lines define the streets and docks, reflecting a technical wireframe style. Soft, even lighting permeates the scene, suggesting a calm, analytical atmosphere.">
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-primary text-on-primary p-stack-sm rounded shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md">Ubicación MouroSub</span>
+</div>
+</div>
+<div class="absolute bottom-stack-md right-stack-md">
+<button class="bg-surface-container-lowest border border-outline-variant px-stack-sm py-1 rounded shadow-sm font-label-md text-label-md hover:bg-surface-container-low transition-colors" data-location="Santander, Spain">
+                            Abrir en Google Maps
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Secondary CTA -->
+<section class="bg-secondary-container py-stack-lg mt-stack-lg">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-gutter">
+<div class="text-center md:text-left">
+<h2 class="font-headline-md text-headline-md text-on-secondary-container">Mantente informado</h2>
+<p class="font-body-md text-body-md text-on-secondary-container">Recibe noticias sobre las mejores inmersiones y ofertas exclusivas.</p>
+</div>
+<div class="flex w-full md:w-auto gap-stack-sm">
+<input class="flex-grow md:w-64 bg-surface-container-lowest border border-outline-variant rounded p-stack-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Tu email" type="email"/>
+<button class="bg-primary text-on-primary px-gutter py-stack-sm rounded font-label-md hover:bg-primary-container transition-colors">Unirme</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md w-full px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="flex flex-col gap-2">
+<div class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface">MouroSub</div>
+<p class="font-caption text-caption text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant max-w-xs">
+                    Escuela de buceo profesional dedicada a la exploración y conservación del entorno marino.
+                </p>
+</div>
+<div class="flex flex-wrap gap-gutter">
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary" href="#">FAQ</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary" href="#">Cookie Settings</a>
+</div>
+<div class="font-caption text-caption text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant">
+                © 2024 MouroSub Diving School. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

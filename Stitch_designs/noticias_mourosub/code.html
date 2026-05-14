@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Noticias | MouroSub Diving School</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#a1c9ff",
+                        "surface-tint": "#1261a3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-background": "#191c1e",
+                        "tertiary": "#3b4248",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "primary-container": "#005a9c",
+                        "secondary-fixed": "#d3e4fe",
+                        "secondary-container": "#d0e1fb",
+                        "on-tertiary-fixed": "#161c22",
+                        "background": "#f7f9fb",
+                        "primary": "#004275",
+                        "primary-fixed": "#d2e4ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#a1c9ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary-container": "#52595f",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#414750",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-container": "#c9cfd7",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-container": "#afd1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c7d2",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#dde3eb",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-fixed-variant": "#00487f",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "on-primary-fixed": "#001c37",
+                        "outline": "#727781",
+                        "surface-container": "#eceef0",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary": "#505f76",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">MouroSub</a>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Services</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">About Us</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1" href="#">News</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="md:hidden p-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<button class="hidden md:block bg-primary text-on-primary px-stack-lg py-2 rounded font-label-md hover:bg-primary-container transition-colors duration-200 active:scale-95">Login</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Page Title -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Noticias y Actualidad</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-stack-sm">Sigue nuestras últimas expediciones, consejos de buceo profesional y actualizaciones del centro de buceo MouroSub.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Area -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Featured Article (Bento-style large card) -->
+<section class="group relative overflow-hidden bg-surface-container-lowest border border-outline-variant rounded-xl transition-shadow hover:shadow-md">
+<div class="aspect-[16/9] bg-surface-container-high overflow-hidden">
+<img alt="Artículo Destacado" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A wide angle high fidelity underwater shot of professional divers exploring a deep blue sea cavern with light rays piercing through the surface. The scene is captured in a crisp, technical documentary style with Diving Blue color accents, emphasizing structural clarity and the serene, authoritative atmosphere of the MouroSub diving school identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZikLd_XTkM2C9POrlw8suXABWa832GJEn-ApF6BqOxaGIszSWCKaLxzxi9f_2MIuvM02-lakS6nr14YVrEooirdOVSuU4kYjQLDvykg0k25YhRtJZ9iuk6nu3bG5ghW3fhbIGfIejv97cJqDns1TFMp1qfuyYJfdX410hvu6awRP1QxcH_njIwv2nHTLuJRtekp5DsgufCRryzQz3cVWnbIEkwgXI02qPMhsQFQ0zTZXSDyuN7Zi0Af6oPyCxRFxwlC7D8-1leEN3"/>
+</div>
+<div class="p-stack-lg">
+<div class="flex gap-2 mb-stack-sm">
+<span class="bg-primary-fixed text-on-primary-fixed text-caption font-label-md px-2 py-0.5 rounded">EXPEDICIÓN</span>
+<span class="text-on-surface-variant text-caption flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span> 14 Mayo, 2024
+                            </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm group-hover:text-primary transition-colors">Nueva Ruta de Cuevas en la Costa del Cantábrico</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md line-clamp-3">
+                            Nuestro equipo de instructores ha mapeado recientemente un sistema de cuevas submarinas de difícil acceso que pronto estará abierto para buceadores técnicos certificados. Descubre los detalles técnicos de esta nueva aventura y los requisitos de seguridad necesarios para participar.
+                        </p>
+<button class="bg-primary text-on-primary px-stack-lg py-2.5 rounded font-label-md hover:bg-primary-container transition-colors inline-flex items-center gap-2">
+                            Leer artículo completo <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- News Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Article Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all">
+<div class="aspect-video bg-surface-container-high">
+<img alt="Equipo de buceo" class="w-full h-full object-cover" data-alt="A macro photograph of professional scuba diving equipment including a high-tech regulator and pressure gauge, laid out on a clean white technical workbench. The lighting is soft and clinical, highlighting the metallic textures and precision of the gear in a light-mode aesthetic, aligned with the MouroSub high-fidelity wireframe brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIEnMJhm3NmbgsEQBipFvSehbjYb49cS2Ez_8r472VM-kHesYTz9lgIO4BLHufbN_3qmbVKWCrKOW5UX3gl2S-WynMt4RPYLQVoNbwGTfnagspx4eA9FfXFxQvjiOmWE0VUSVxgBUl-3rGjJriBDK8OVlBz8VfMQEQjJGU6EYG_NskQZhGD6wtBpRhj8oReOxa36M66kqJY2g_ShLZMRkpr5cnVS0gyWu-ChJ7P5DLydBmu9hQA7G9gYoXufOTQgRNPLJXFjpMQzTq"/>
+</div>
+<div class="p-stack-md">
+<span class="text-primary font-label-md text-caption uppercase tracking-wider mb-2 block">Equipo</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Mantenimiento de Reguladores: Guía Pro</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Aprende los protocolos críticos para mantener tu equipo de soporte vital en condiciones óptimas durante la temporada.</p>
+<a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#">
+                                Continuar leyendo <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</article>
+<!-- Article Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all">
+<div class="aspect-video bg-surface-container-high">
+<img alt="Formación" class="w-full h-full object-cover" data-alt="A group of diverse diving students in wetsuits listening intently to a senior instructor on a sun-drenched boat deck. The composition is clean and focused, using high-key lighting and a professional documentary aesthetic to represent the educational excellence of MouroSub diving school in a light-mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvMV78U5zrgIAEjn0gv5N6z1sDVJq8Jpm3M71L1a0yNRg2mSenxcKy0ot_3rQwGpDfZeUj7Sf_AS-_tM0W9Uy2L7_95bRcddYCIjJbkZajv4WtFG1kxN15Dwl3F7J2BHzu8g33pNR5oGqTqTD1El8ymWQO7GxSToj2KfO1KAzo7K_X-0VKl6_4_J3SfZWuxM7thDgsEPBdil3AeRxxUHZnGE9vifBdFmOr4gL-h6Z6R7LFXr-fyICMmgO51f-0JV1ePfPB4IULjX9k"/>
+</div>
+<div class="p-stack-md">
+<span class="text-primary font-label-md text-caption uppercase tracking-wider mb-2 block">Formación</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Próxima Convocatoria: PADI Divemaster</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Inicia tu carrera profesional en el mundo submarino. Abrimos inscripciones para el curso de liderazgo de Junio.</p>
+<a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#">
+                                Continuar leyendo <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</article>
+<!-- Article Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all">
+<div class="aspect-video bg-surface-container-high">
+<img alt="Ecología" class="w-full h-full object-cover" data-alt="A serene underwater shot of a vibrant coral reef with clear blue water and sunlight shimmering through the surface. The image highlights environmental conservation with technical clarity, featuring a minimalist composition that fits the high-fidelity wireframe style of the MouroSub brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDieWDGG0IPn31LFNN3FYS88xBB7q00G8AX550EpzKQn75fuHyvxq4sR0rB9MhLO1ENN738g5ijceYKcuI1VV88vfH0h-v1ST1AVFe5j6eSybt5v_mjjevREz0jCwtFavQ-g8g-yRIGIYtEP2YMzFRG4JR5JHKidSKLqKOdxyLN1YiZaHchOsxQvG_NswCpDAlSAv_wCDqNCUIqsMcKu6r3O5E3Rg3RZIjNAEzzfCmrYYNlIrCfg6vJPLpbgUGpwj77dSImzUeMnO59"/>
+</div>
+<div class="p-stack-md">
+<span class="text-primary font-label-md text-caption uppercase tracking-wider mb-2 block">Ecosistema</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Proyecto de Limpieza de Fondos 2024</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Únete a nuestra iniciativa anual para retirar plásticos y redes fantasma de las reservas locales de buceo.</p>
+<a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#">
+                                Continuar leyendo <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</article>
+<!-- Article Card 4 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-md transition-all">
+<div class="aspect-video bg-surface-container-high">
+<img alt="Tecnología" class="w-full h-full object-cover" data-alt="Technical underwater photography showing a professional diver checking a high-resolution dive computer mounted on their wrist. The scene is bright and technical, emphasizing precision data and safety, set against a backdrop of deep blue water with high-fidelity wireframe styling and Diving Blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpw-d9VVIVTwlId3LTYoDkrc2XABfhZs7jFQhQHCwTJAZMz40e6y5CngOEgo3bcTIMDS0DUC1OsAX2yus0Oqu2FE322iTbsYR8I8wdmIy4Z3Ls0gVTDW_Q-Im4LM6AX6PcrJ6Kutu7IrJQ77sO6qG4wQCU9TWrmH1r2RoQ4W8wksvEUelVMTXE_2d5BILhFvw6xfsQesjTP2VsTPcJC7xl4D0qbd9TBdxmm6beH-gX3DiN5b6JWRMfl8AdrD_v32znu4-_jOjE7sfj"/>
+</div>
+<div class="p-stack-md">
+<span class="text-primary font-label-md text-caption uppercase tracking-wider mb-2 block">Tecnología</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Review: Nuevas Computadoras Shearwater</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Analizamos a fondo los últimos modelos para buceo recreativo y técnico. ¿Vale la pena el upgrade?</p>
+<a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#">
+                                Continuar leyendo <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 pt-stack-lg">
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded font-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded font-label-md hover:bg-surface-container-low">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded font-label-md hover:bg-surface-container-low">3</button>
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Sidebar -->
+<aside class="lg:col-span-4 space-y-stack-lg">
+<!-- Search -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl">
+<h4 class="font-label-md text-on-surface mb-stack-sm">Buscar Noticias</h4>
+<div class="relative">
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline" placeholder="¿Qué estás buscando?" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+</div>
+</div>
+<!-- Categories -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl">
+<h4 class="font-label-md text-on-surface mb-stack-sm border-b border-outline-variant pb-2">Categorías</h4>
+<ul class="space-y-1 mt-stack-sm">
+<li>
+<a class="flex justify-between items-center py-2 text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span>Expediciones</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-caption">12</span>
+</a>
+</li>
+<li>
+<a class="flex justify-between items-center py-2 text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span>Técnica y Equipo</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-caption">08</span>
+</a>
+</li>
+<li>
+<a class="flex justify-between items-center py-2 text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span>Formación y Cursos</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-caption">15</span>
+</a>
+</li>
+<li>
+<a class="flex justify-between items-center py-2 text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span>Medio Ambiente</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-caption">06</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Newsletter Signup -->
+<div class="bg-primary text-on-primary p-stack-lg rounded-xl">
+<span class="material-symbols-outlined text-[32px] mb-2">mail</span>
+<h4 class="font-headline-md text-headline-md mb-2">Boletín Submarino</h4>
+<p class="font-body-md text-body-md opacity-90 mb-stack-md">Suscríbete para recibir alertas de nuevas rutas y ofertas exclusivas de temporada.</p>
+<form class="space-y-stack-sm">
+<input class="w-full px-4 py-2 bg-white text-on-surface border-none rounded outline-none focus:ring-2 focus:ring-primary-fixed-dim" placeholder="tu@email.com" type="email"/>
+<button class="w-full bg-on-primary text-primary py-2 rounded font-label-md hover:bg-primary-fixed transition-colors" type="submit">Suscribirse</button>
+</form>
+<p class="font-caption text-caption opacity-70 mt-4">Sin spam. Solo buceo puro.</p>
+</div>
+<!-- Popular Tags -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl">
+<h4 class="font-label-md text-on-surface mb-stack-md">Etiquetas Populares</h4>
+<div class="flex flex-wrap gap-2">
+<a class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-caption rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" href="#">#Cantabrico</a>
+<a class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-caption rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" href="#">#BuceoTecnico</a>
+<a class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-caption rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" href="#">#PADI</a>
+<a class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-caption rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" href="#">#Mantenimiento</a>
+<a class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-caption rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" href="#">#Ecologia</a>
+<a class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-caption rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" href="#">#Seguridad</a>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline mt-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md w-full px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface">MouroSub</span>
+<p class="font-caption text-caption text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant max-w-xs">
+                    Escuela de buceo profesional comprometida con la excelencia técnica y la seguridad en el Cantábrico.
+                </p>
+</div>
+<div class="flex flex-wrap gap-stack-lg mt-stack-md md:mt-0">
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none ring-primary" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none ring-primary" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none ring-primary" href="#">FAQ</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors focus:outline-none ring-primary" href="#">Cookie Settings</a>
+</div>
+<div class="w-full md:w-auto pt-stack-md md:pt-0 border-t md:border-t-0 border-outline-variant">
+<p class="font-caption text-caption text-on-secondary-fixed-variant dark:text-on-secondary-fixed-variant">
+                    © 2024 MouroSub Diving School. All rights reserved.
+                </p>
+</div>
+</div>
+</footer>
+</body></html>

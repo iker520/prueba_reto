@@ -1,0 +1,472 @@
+/* ================================================================
+   MOUROSUB — Hoja de Estilos Principal
+   Paleta: Blueprint de Stitch / MouroSub Design System
+   Framework: Bootstrap 5 + Custom Variables
+   ================================================================ */
+
+/* --- Variables CSS / Design Tokens --- */
+:root {
+  --ms-primary:            #004275;
+  --ms-primary-container:  #005A9C;
+  --ms-on-primary:         #ffffff;
+  --ms-on-primary-cont:    #afd1ff;
+  --ms-primary-fixed:      #d2e4ff;
+  --ms-primary-fixed-dim:  #a1c9ff;
+
+  --ms-secondary:          #505f76;
+  --ms-secondary-container:#d0e1fb;
+  --ms-on-secondary:       #ffffff;
+
+  --ms-background:         #f7f9fb;
+  --ms-surface:            #f7f9fb;
+  --ms-surface-low:        #f2f4f6;
+  --ms-surface-high:       #e6e8ea;
+  --ms-surface-highest:    #e0e3e5;
+  --ms-surface-white:      #ffffff;
+
+  --ms-on-surface:         #191c1e;
+  --ms-on-surface-var:     #414750;
+  --ms-outline:            #727781;
+  --ms-outline-variant:    #c1c7d2;
+
+  --ms-error:              #ba1a1a;
+
+  /* Override Bootstrap primary */
+  --bs-primary:            var(--ms-primary);
+  --bs-primary-rgb:        0, 66, 117;
+  --bs-body-bg:            var(--ms-background);
+  --bs-body-color:         var(--ms-on-surface);
+  --bs-border-color:       var(--ms-outline-variant);
+  --bs-border-radius:      0.25rem;
+  --bs-border-radius-lg:   0.5rem;
+  --bs-font-sans-serif:    'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* --- Reset y Base --- */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--ms-background);
+  color: var(--ms-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Navbar --- */
+.ms-navbar {
+  background-color: var(--ms-surface-white) !important;
+  border-bottom: 1px solid var(--ms-outline-variant);
+  height: 80px;
+}
+.ms-navbar .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ms-primary) !important;
+  letter-spacing: -0.02em;
+}
+.ms-navbar .nav-link {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ms-secondary) !important;
+  transition: color 0.2s ease;
+  padding: 0.25rem 0;
+}
+.ms-navbar .nav-link:hover,
+.ms-navbar .nav-link.active {
+  color: var(--ms-primary) !important;
+}
+.ms-navbar .nav-link.active {
+  font-weight: 700;
+  border-bottom: 2px solid var(--ms-primary);
+}
+
+/* --- Botones --- */
+.btn-ms-primary {
+  background-color: var(--ms-primary);
+  color: var(--ms-on-primary);
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: all 0.15s ease;
+}
+.btn-ms-primary:hover {
+  background-color: var(--ms-primary-container);
+  color: var(--ms-on-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 66, 117, 0.25);
+}
+.btn-ms-primary:active { transform: scale(0.97); }
+
+.btn-ms-outline {
+  background-color: transparent;
+  color: var(--ms-primary);
+  border: 1px solid var(--ms-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+}
+.btn-ms-outline:hover {
+  background-color: var(--ms-primary-fixed);
+  color: var(--ms-primary);
+}
+
+/* --- Hero Section --- */
+.ms-hero {
+  position: relative;
+  min-height: 520px;
+  background-color: var(--ms-primary-container);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.ms-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+.ms-hero-content {
+  position: relative;
+  z-index: 1;
+}
+.ms-hero h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ms-on-primary);
+}
+.ms-hero p {
+  font-size: 1.125rem;
+  color: var(--ms-on-primary-cont);
+  line-height: 1.6;
+}
+
+/* --- Cards --- */
+.ms-card {
+  background-color: var(--ms-surface-white);
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.ms-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+.ms-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: var(--ms-surface-high);
+}
+.ms-card-img-tall { height: 260px; }
+.ms-card-body { padding: 1.5rem; }
+
+/* --- Sección con fondo alternativo --- */
+.ms-section-alt {
+  background-color: var(--ms-surface-low);
+}
+.ms-section-dark {
+  background-color: var(--ms-primary);
+  color: var(--ms-on-primary);
+}
+
+/* --- Badges de tipo/categoría --- */
+.ms-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  background-color: var(--ms-primary);
+  color: var(--ms-on-primary);
+}
+.ms-badge-outline {
+  background-color: transparent;
+  border: 1px solid var(--ms-primary);
+  color: var(--ms-primary);
+}
+
+/* --- Stats Grid --- */
+.ms-stat-box {
+  background-color: var(--ms-surface-highest);
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+.ms-stat-box .stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+}
+.ms-stat-box .stat-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ms-on-surface-var);
+}
+
+/* --- Noticias --- */
+.ms-news-card { overflow: hidden; }
+.ms-news-card .news-img-wrapper {
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+  height: 200px;
+}
+.ms-news-card .news-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.ms-news-card:hover .news-img-wrapper img { transform: scale(1.05); }
+.ms-news-card .news-cat {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ms-secondary);
+}
+.ms-news-card .news-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ms-on-surface);
+  transition: color 0.2s;
+}
+.ms-news-card:hover .news-title { color: var(--ms-primary); }
+
+/* --- Footer --- */
+.ms-footer {
+  background-color: var(--ms-surface-highest);
+  border-top: 1px solid var(--ms-outline-variant);
+}
+.ms-footer .footer-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ms-on-surface);
+}
+.ms-footer a {
+  color: var(--ms-on-surface-var);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.ms-footer a:hover { color: var(--ms-primary); }
+
+/* --- Formularios --- */
+.ms-form-control {
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.25rem;
+  background-color: var(--ms-surface-white);
+  color: var(--ms-on-surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ms-form-control:focus {
+  border-color: var(--ms-primary);
+  box-shadow: 0 0 0 3px rgba(0, 66, 117, 0.12);
+  outline: none;
+}
+.ms-form-control::placeholder { color: var(--ms-outline); }
+
+/* --- Navbar main container --- */
+.container-ms { max-width: 1280px; width: 100%; margin: 0 auto; padding: 0 1.5rem; }
+@media (max-width: 768px) { .container-ms { padding: 0 1rem; } }
+
+/* --- Instructor cards hover effect (grayscale) --- */
+.ms-instructor-card .instructor-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.3s ease;
+}
+.ms-instructor-card:hover .instructor-img { filter: grayscale(0); }
+.ms-instructor-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+/* --- Admin Panel Sidebar --- */
+.ms-admin-sidebar {
+  min-height: 100vh;
+  width: 260px;
+  background-color: var(--ms-primary);
+  color: var(--ms-on-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 100;
+}
+.ms-admin-sidebar .sidebar-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ms-on-primary);
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  display: block;
+  text-decoration: none;
+}
+.ms-admin-sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.25rem;
+  margin: 0.125rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.ms-admin-sidebar .nav-link:hover,
+.ms-admin-sidebar .nav-link.active {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.ms-admin-sidebar .nav-link i { width: 18px; }
+
+.ms-admin-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  background-color: var(--ms-background);
+}
+.ms-admin-topbar {
+  background-color: var(--ms-surface-white);
+  border-bottom: 1px solid var(--ms-outline-variant);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Admin KPI Cards --- */
+.ms-kpi-card {
+  background: var(--ms-surface-white);
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.ms-kpi-card .kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ms-primary-fixed);
+  color: var(--ms-primary);
+  font-size: 1.5rem;
+}
+.ms-kpi-card .kpi-number { font-size: 1.75rem; font-weight: 700; color: var(--ms-primary); }
+.ms-kpi-card .kpi-label { font-size: 0.8rem; color: var(--ms-on-surface-var); }
+
+/* --- TipTap editor container --- */
+#tiptap-editor {
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.25rem;
+  min-height: 300px;
+  padding: 1rem;
+  background: var(--ms-surface-white);
+  cursor: text;
+}
+#tiptap-editor:focus-within {
+  border-color: var(--ms-primary);
+  box-shadow: 0 0 0 3px rgba(0, 66, 117, 0.12);
+}
+.tiptap-toolbar {
+  border: 1px solid var(--ms-outline-variant);
+  border-bottom: none;
+  border-radius: 0.25rem 0.25rem 0 0;
+  padding: 0.5rem;
+  background: var(--ms-surface-low);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.tiptap-toolbar button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--ms-outline-variant);
+  background: var(--ms-surface-white);
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tiptap-toolbar button:hover,
+.tiptap-toolbar button.is-active {
+  background-color: var(--ms-primary);
+  color: white;
+  border-color: var(--ms-primary);
+}
+
+/* --- Contenido HTML renderizado (th:utext) --- */
+.ms-rich-content h1,
+.ms-rich-content h2,
+.ms-rich-content h3 { color: var(--ms-primary); margin-top: 1.5rem; }
+.ms-rich-content p { line-height: 1.7; color: var(--ms-on-surface); }
+.ms-rich-content a { color: var(--ms-primary); }
+.ms-rich-content ul, .ms-rich-content ol { padding-left: 1.5rem; }
+.ms-rich-content blockquote {
+  border-left: 3px solid var(--ms-primary-container);
+  padding-left: 1rem;
+  color: var(--ms-on-surface-var);
+  font-style: italic;
+}
+
+/* --- Animaciones suaves --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ms-animate { animation: fadeInUp 0.5s ease both; }
+.ms-animate-delay-1 { animation-delay: 0.1s; }
+.ms-animate-delay-2 { animation-delay: 0.2s; }
+.ms-animate-delay-3 { animation-delay: 0.3s; }
+
+/* --- Responsive admin --- */
+@media (max-width: 992px) {
+  .ms-admin-sidebar { display: none; }
+  .ms-admin-content { margin-left: 0; }
+}
+
+/* --- Tabla admin --- */
+.ms-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+.ms-table th {
+  background-color: var(--ms-surface-low);
+  color: var(--ms-on-surface-var);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ms-outline-variant);
+}
+.ms-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--ms-surface-high);
+  vertical-align: middle;
+}
+.ms-table tr:hover td { background-color: var(--ms-surface-low); }
+
+/* --- Estado badges --- */
+.badge-pendiente  { background-color: #f59e0b; color: white; }
+.badge-confirmada { background-color: #22c55e; color: white; }
+.badge-cancelada  { background-color: var(--ms-error); color: white; }
+.badge-completada { background-color: var(--ms-primary); color: white; }

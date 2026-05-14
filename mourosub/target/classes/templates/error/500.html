@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>500 — Error de descompresión | MouroSub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" th:href="@{/css/mourosub.css}"/>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a0a0a 0%, #3b1414 50%, #1a0a0a 100%);
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+    .warning-pulse {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(186, 26, 26, 0.08);
+      animation: pulse-out 3s infinite ease-out;
+    }
+    .warning-pulse:nth-child(1) { width:300px; height:300px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:0s; }
+    .warning-pulse:nth-child(2) { width:500px; height:500px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:1s; }
+    .warning-pulse:nth-child(3) { width:700px; height:700px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:2s; }
+    @keyframes pulse-out {
+      0%   { opacity: 0.6; transform: translate(-50%,-50%) scale(0.8); }
+      100% { opacity: 0;   transform: translate(-50%,-50%) scale(1.2); }
+    }
+    .error-card {
+      background: rgba(30,10,10,0.7);
+      border: 1px solid rgba(186,26,26,0.4);
+      border-radius: 1rem;
+      backdrop-filter: blur(12px);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      color: white;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+    }
+    .error-code {
+      font-size: 7rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: rgba(186,26,26,0.3);
+      margin-bottom: -1rem;
+    }
+    .error-icon { font-size: 4rem; color: #ff6b6b; }
+    .error-title { font-size: 1.6rem; font-weight: 700; margin-top: 0.5rem; }
+    .error-msg { color: rgba(255,255,255,0.65); line-height: 1.7; font-size: 1rem; margin-top: 0.75rem; }
+    .gauge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(186,26,26,0.15); border: 1px solid rgba(186,26,26,0.3);
+      border-radius: 2rem; padding: 0.4rem 1rem; margin: 0.5rem;
+      font-size: 0.8rem; color: #ff9999;
+    }
+    .btn-surface {
+      background: white; color: #7b1010; font-weight: 700;
+      border: none; padding: 0.75rem 2rem; border-radius: 0.5rem;
+      transition: all 0.2s; text-decoration: none; display: inline-block;
+    }
+    .btn-surface:hover { background: #ffdad6; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="warning-pulse"></div>
+  <div class="warning-pulse"></div>
+  <div class="warning-pulse"></div>
+
+  <div class="error-card">
+    <div class="error-code">500</div>
+    <div class="error-icon mt-2"><i class="bi bi-exclamation-triangle-fill"></i></div>
+    <h1 class="error-title">¡Alerta de descompresión!</h1>
+    <p class="error-msg">
+      Se ha producido un error crítico en la sala de máquinas del servidor. Nuestro equipo
+      de técnicos ya está revisando los manómetros. Sube despacio y vuelve a intentarlo.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center mt-3">
+      <span class="gauge"><i class="bi bi-speedometer2"></i>Presión: CRÍTICA</span>
+      <span class="gauge"><i class="bi bi-thermometer-high"></i>Temp: ELEVADA</span>
+      <span class="gauge"><i class="bi bi-wifi-off"></i>Señal: PERDIDA</span>
+    </div>
+    <div class="mt-4 d-flex flex-column flex-sm-row gap-3 justify-content-center">
+      <a th:href="@{/}" href="/" class="btn-surface">
+        <i class="bi bi-arrow-up-circle-fill me-2"></i>Subir a Superficie
+      </a>
+    </div>
+    <p class="mt-4" style="font-size:0.75rem; color:rgba(255,255,255,0.3);">
+      MouroSub Diving School &mdash; Error 500 &mdash; Protocolo de emergencia activo
+    </p>
+    <!-- Info técnica (solo visible en desarrollo) -->
+    <div th:if="${message != null}" class="mt-3 p-3 text-start"
+         style="background:rgba(0,0,0,0.3); border-radius:0.5rem; font-size:0.75rem; color:rgba(255,100,100,0.8); font-family:monospace;">
+      <strong>Error:</strong> <span th:text="${message}">—</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

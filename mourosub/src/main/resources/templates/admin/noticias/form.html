@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/admin-base :: adminHead(${pageTitle})}"></head>
+<body style="background:var(--ms-background);">
+<nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
+<div class="ms-admin-content">
+  <div th:replace="~{layout/admin-base :: adminTopbar(${pageTitle})}"></div>
+  <div class="p-4" style="max-width:900px;">
+    <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
+    <a th:href="@{/admin/noticias}" class="btn btn-ms-outline btn-sm px-3 rounded mb-4">
+      <i class="bi bi-arrow-left me-1"></i>Volver
+    </a>
+    <div class="ms-card p-4">
+      <form th:action="@{/admin/noticias/guardar}" method="post" th:object="${noticia}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <input type="hidden" th:field="*{idNoticia}"/>
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">
+              Título <span class="text-danger">*</span>
+            </label>
+            <input type="text" th:field="*{titulo}" class="form-control ms-form-control" required/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Categoría</label>
+            <select th:field="*{categoria}" class="form-select ms-form-control">
+              <option value="">— Selecciona —</option>
+              <option th:each="cat : ${categorias}" th:value="${cat}" th:text="${cat}">CAT</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Fecha de publicación</label>
+            <input type="date" th:field="*{fechaPublicacion}" class="form-control ms-form-control"/>
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">URL de imagen de portada</label>
+            <input type="url" th:field="*{imagenUrl}" class="form-control ms-form-control" placeholder="https://..."/>
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Resumen (extracto)</label>
+            <textarea th:field="*{resumen}" class="form-control ms-form-control" rows="3"
+                      placeholder="Breve descripción que aparece en el listado de noticias..."></textarea>
+          </div>
+
+          <!-- TipTap: Cuerpo HTML completo de la noticia -->
+          <div class="col-12">
+            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">
+              Cuerpo de la noticia (HTML)
+              <span class="ms-badge ms-badge-outline" style="font-size:0.65rem;">TipTap</span>
+            </label>
+            <input type="hidden" id="cuerpoHtmlField" th:field="*{cuerpoHtml}"/>
+            <div data-tiptap-target="cuerpoHtmlField">
+              <div class="tiptap-toolbar">
+                <button type="button" data-action="bold"><b>B</b></button>
+                <button type="button" data-action="italic"><i>I</i></button>
+                <button type="button" data-action="h2">H2</button>
+                <button type="button" data-action="h3">H3</button>
+                <button type="button" data-action="bullet"><i class="bi bi-list-ul"></i></button>
+                <button type="button" data-action="ordered"><i class="bi bi-list-ol"></i></button>
+                <button type="button" data-action="blockquote">&ldquo;</button>
+                <button type="button" data-action="undo"><i class="bi bi-arrow-counterclockwise"></i></button>
+                <button type="button" data-action="redo"><i class="bi bi-arrow-clockwise"></i></button>
+              </div>
+              <div id="tiptap-editor" class="tiptap-editor-area"></div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" th:field="*{publicada}" id="publicada"/>
+              <label class="form-check-label" style="font-size:0.875rem;" for="publicada">
+                Publicar noticia (visible en la web)
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex gap-3 pt-2">
+            <button type="submit" class="btn btn-ms-primary px-5 py-2 rounded fw-semibold">
+              <i class="bi bi-save me-2"></i><span th:text="${accion}">Guardar</span>
+            </button>
+            <a th:href="@{/admin/noticias}" class="btn btn-ms-outline px-4 py-2 rounded">Cancelar</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div th:replace="~{layout/admin-base :: adminScripts}"></div>
+<script src="https://cdn.jsdelivr.net/npm/@tiptap/core@2.4.0/dist/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tiptap/starter-kit@2.4.0/dist/index.umd.min.js"></script>
+<script th:src="@{/js/admin-tiptap.js}"></script>
+<script>
+  window.tiptap = { Editor: tiptap.Editor };
+  window.StarterKit = StarterKit;
+</script>
+</body>
+</html>
