@@ -41,7 +41,8 @@ public class SecurityConfig {
                     "/", "/servicios/**", "/conocenos",
                     "/noticias/**", "/contacto", "/login",
                     "/css/**", "/js/**", "/images/**",
-                    "/webjars/**", "/favicon.ico"
+                    "/webjars/**", "/favicon.ico",
+                    "/error/**", "/403"
                 ).permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

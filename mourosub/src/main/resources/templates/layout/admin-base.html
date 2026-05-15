@@ -31,13 +31,13 @@
     <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); padding:0 0.75rem; margin-bottom:0.5rem;">General</p>
 
     <a th:href="@{/admin}"
-       th:classappend="${#httpServletRequest.requestURI == '/admin' or #httpServletRequest.requestURI == '/admin/'} ? 'active' : ''"
+       th:classappend="${currentUri == '/admin' or currentUri == '/admin/'} ? 'active' : ''"
        class="nav-link">
       <i class="bi bi-speedometer2"></i> Dashboard
     </a>
 
     <a th:href="@{/admin/reservas}"
-       th:classappend="${#httpServletRequest.requestURI.startsWith('/admin/reservas')} ? 'active' : ''"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/reservas')} ? 'active' : ''"
        class="nav-link">
       <i class="bi bi-calendar-check"></i> Reservas
     </a>
@@ -45,13 +45,13 @@
     <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); padding:0 0.75rem; margin:1rem 0 0.5rem;">Contenido</p>
 
     <a th:href="@{/admin/actividades}"
-       th:classappend="${#httpServletRequest.requestURI.startsWith('/admin/actividades')} ? 'active' : ''"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/actividades')} ? 'active' : ''"
        class="nav-link">
       <i class="bi bi-grid-3x3-gap"></i> Actividades
     </a>
 
     <a th:href="@{/admin/noticias}"
-       th:classappend="${#httpServletRequest.requestURI.startsWith('/admin/noticias')} ? 'active' : ''"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/noticias')} ? 'active' : ''"
        class="nav-link">
       <i class="bi bi-newspaper"></i> Noticias
     </a>
@@ -59,13 +59,13 @@
     <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); padding:0 0.75rem; margin:1rem 0 0.5rem;">Personas</p>
 
     <a th:href="@{/admin/instructores}"
-       th:classappend="${#httpServletRequest.requestURI.startsWith('/admin/instructores')} ? 'active' : ''"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/instructores')} ? 'active' : ''"
        class="nav-link">
       <i class="bi bi-person-badge"></i> Instructores
     </a>
 
     <a th:href="@{/admin/usuarios}"
-       th:classappend="${#httpServletRequest.requestURI.startsWith('/admin/usuarios')} ? 'active' : ''"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/usuarios')} ? 'active' : ''"
        class="nav-link">
       <i class="bi bi-people"></i> Usuarios
     </a>
