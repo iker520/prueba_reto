@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ACTIVIDADES")
@@ -24,15 +25,10 @@ public class Actividad {
     @Column(name = "descripcion", columnDefinition = "TEXT")
     private String descripcion;
 
-    /**
-     * Descripción larga en HTML generada por TipTap.
-     * Se renderiza con th:utext en las vistas públicas.
-     */
-    @Column(name = "descripcion_html", columnDefinition = "LONGTEXT")
-    private String descripcionHtml;
 
-    @Column(name = "precio", precision = 10, scale = 2)
-    private BigDecimal precio;
+
+    @Column(name = "precio")
+    private Double precio;
 
     /**
      * Tipo de actividad como String: CURSO, INMERSION, ACTIVIDAD, OFERTA
@@ -50,8 +46,7 @@ public class Actividad {
     @Column(name = "plazas_maximas")
     private Integer plazasMaximas;
 
-    @Column(name = "imagen_url", length = 500)
-    private String imagenUrl;
+
 
     @Column(name = "destacada")
     private Boolean destacada = false;
@@ -59,8 +54,24 @@ public class Actividad {
     @Column(name = "activa")
     private Boolean activa = true;
 
-    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ActividadUbicacion> ubicaciones;
+    @Column(name = "descripcion_html", columnDefinition = "LONGTEXT")
+    private String descripcionHtml;
+
+    @Column(name = "imagen_url", length = 500)
+    private String imagenUrl;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "actividades_ubicaciones",
+            joinColumns = @JoinColumn(name = "id_actividad"),
+            inverseJoinColumns = @JoinColumn(name = "id_ubicacion"),
+            uniqueConstraints = @UniqueConstraint(
+                    name = "uk_actividades_ubicaciones",
+                    columnNames = {"id_actividad", "id_ubicacion"}
+            )
+    )
+    private Set<Ubicacion> ubicaciones;
 
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ActividadReserva> reservas;

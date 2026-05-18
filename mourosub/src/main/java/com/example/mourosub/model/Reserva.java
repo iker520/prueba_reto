@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Reserva {
     private Long idReserva;
 
     @Column(name = "fecha_reserva", nullable = false)
-    private LocalDate fechaReserva;
+    private LocalDateTime fechaReserva;
 
     /**
      * Estado de la reserva (String): PENDIENTE, CONFIRMADA, CANCELADA, COMPLETADA
@@ -28,8 +29,8 @@ public class Reserva {
     @Column(name = "estado", length = 50)
     private String estado = "PENDIENTE";
 
-    @Column(name = "total", precision = 10, scale = 2)
-    private BigDecimal total;
+    @Column(name = "total")
+    private Double total;
 
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UsuarioReserva> usuarios;

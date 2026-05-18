@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "USUARIOS_RESERVAS")
@@ -30,10 +31,10 @@ public class UsuarioReserva {
     private Usuario usuario;
 
     @Column(name = "fecha_inicio")
-    private LocalDate fechaInicio;
+    private LocalDateTime fechaInicio;
 
     @Column(name = "fecha_fin")
-    private LocalDate fechaFin;
+    private LocalDateTime fechaFin;
 
     @Column(name = "cantidad")
     private Integer cantidad = 1;

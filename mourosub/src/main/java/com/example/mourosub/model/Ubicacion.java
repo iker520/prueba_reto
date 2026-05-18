@@ -29,6 +29,5 @@ public class Ubicacion {
     @Column(name = "nivel_buceo", length = 100)
     private String nivelBuceo;
 
-    @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ActividadUbicacion> actividades;
+
 }

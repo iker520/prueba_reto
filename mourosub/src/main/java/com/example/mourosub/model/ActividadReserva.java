@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ACTIVIDADES_RESERVAS")
@@ -31,12 +32,12 @@ public class ActividadReserva {
     private Actividad actividad;
 
     /** Precio en el momento de la reserva */
-    @Column(name = "precio", precision = 10, scale = 2)
-    private BigDecimal precio;
+    @Column(name = "precio")
+    private Double precio;
 
     @Column(name = "fecha_inicio")
-    private LocalDate fechaInicio;
+    private LocalDateTime fechaInicio;
 
     @Column(name = "fecha_fin")
-    private LocalDate fechaFin;
+    private LocalDateTime fechaFin;
 }

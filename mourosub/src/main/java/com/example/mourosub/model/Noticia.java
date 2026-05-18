@@ -23,10 +23,9 @@ public class Noticia {
     @Column(name = "resumen", columnDefinition = "TEXT")
     private String resumen;
 
-    /**
-     * Cuerpo completo de la noticia en HTML (generado por TipTap).
-     * Se renderiza con th:utext en las vistas públicas.
-     */
+    @Column(name = "imagen_url", length = 500)
+    private String imagenUrl;
+
     @Column(name = "cuerpo_html", columnDefinition = "LONGTEXT")
     private String cuerpoHtml;
 
@@ -36,8 +35,7 @@ public class Noticia {
     @Column(name = "categoria", length = 100)
     private String categoria;
 
-    @Column(name = "imagen_url", length = 500)
-    private String imagenUrl;
+
 
     @Column(name = "fecha_publicacion")
     private LocalDate fechaPublicacion;

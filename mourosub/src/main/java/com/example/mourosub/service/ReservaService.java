@@ -33,7 +33,7 @@ public class ReservaService {
 
     public Reserva save(Reserva reserva) {
         if (reserva.getFechaReserva() == null) {
-            reserva.setFechaReserva(LocalDate.now());
+            reserva.setFechaReserva(LocalDate.now().atStartOfDay());
         }
         return reservaRepository.save(reserva);
     }

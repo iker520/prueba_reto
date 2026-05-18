@@ -45,11 +45,12 @@ public class Instructor {
     @Column(name = "especialidad", length = 200)
     private String especialidad;
 
-    @Column(name = "foto_url", length = 500)
-    private String fotoUrl;
 
     @Column(name = "activo")
     private Boolean activo = true;
+
+    @Column(name = "foto_url", length = 500)
+    private String fotoUrl;
 
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<InstructorReserva> reservas;

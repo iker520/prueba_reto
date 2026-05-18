@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -60,7 +61,7 @@ public class Usuario {
     private Boolean notifWhatsapp = false;
 
     @Column(name = "fecha_registro")
-    private LocalDate fechaRegistro;
+    private LocalDateTime fechaRegistro;
 
     @Column(name = "nivel_buceo", length = 100)
     private String nivelBuceo;

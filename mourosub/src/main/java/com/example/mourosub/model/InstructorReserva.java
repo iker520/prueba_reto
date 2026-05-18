@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "INSTRUCTORES_RESERVAS")
@@ -30,8 +31,8 @@ public class InstructorReserva {
     private Instructor instructor;
 
     @Column(name = "fecha_inicio")
-    private LocalDate fechaInicio;
+    private LocalDateTime fechaInicio;
 
     @Column(name = "fecha_fin")
-    private LocalDate fechaFin;
+    private LocalDateTime fechaFin;
 }

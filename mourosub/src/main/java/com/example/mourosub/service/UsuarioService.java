@@ -48,14 +48,14 @@ public class UsuarioService implements UserDetailsService {
 
     public Usuario save(Usuario usuario) {
         if (usuario.getFechaRegistro() == null) {
-            usuario.setFechaRegistro(LocalDate.now());
+            usuario.setFechaRegistro(LocalDate.now().atStartOfDay());
         }
         return usuarioRepository.save(usuario);
     }
 
     public Usuario create(Usuario usuario, String rawPassword) {
         usuario.setPassword(passwordEncoder.encode(rawPassword));
-        usuario.setFechaRegistro(LocalDate.now());
+        usuario.setFechaRegistro(LocalDate.now().atStartOfDay());
         return usuarioRepository.save(usuario);
     }
 
