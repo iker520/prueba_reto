@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/base :: head(${pageTitle})}"></head>
-<body style="padding-top:80px;">
+<body class="page-body">
 
 <nav th:replace="~{layout/base :: navbar}"></nav>
 
 <main>
   <!-- ===== HERO ===== -->
-  <section class="ms-section-alt py-4 border-bottom" style="border-color:var(--ms-outline-variant)!important;">
-    <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem;">
-      <h1 style="font-size:2.5rem; font-weight:700; color:var(--ms-primary); letter-spacing:-0.02em;">
+  <section class="ms-section-alt py-4 ms-section-border-bottom">
+    <div class="ms-content-wrapper">
+      <h1 class="ms-page-title">
         MouroSub: Excelencia y pasión por el gran azul
       </h1>
-      <p class="mt-2" style="font-size:1.125rem; color:var(--ms-on-surface-var); max-width:560px; line-height:1.6;">
+      <p class="mt-2 ms-page-subtitle-sm">
         Desde 1998, formamos a buceadores con los más altos estándares de seguridad y respeto por el ecosistema marino.
       </p>
     </div>
   </section>
 
   <!-- ===== HISTORIA ===== -->
-  <section style="max-width:1280px; margin:0 auto; padding:3rem 1.5rem;">
+  <section class="ms-content-wrapper py-5">
     <div class="row align-items-center g-5">
       <div class="col-12 col-md-7">
-        <div class="d-flex align-items-center gap-2 mb-2" style="color:var(--ms-primary);">
+        <div class="d-flex align-items-center gap-2 mb-2 ms-section-tag">
           <i class="bi bi-clock-history"></i>
-          <span style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">Nuestra Historia</span>
+          <span>Nuestra Historia</span>
         </div>
-        <h2 style="font-size:1.8rem; font-weight:700; color:var(--ms-on-surface);">Más de dos décadas sumergiéndonos</h2>
-        <p class="mt-3" style="color:var(--ms-on-surface-var); line-height:1.7;">
+        <h2 class="ms-section-title-md">Más de dos décadas sumergiéndonos</h2>
+        <p class="mt-3 ms-section-text">
           MouroSub nació de la visión de un grupo de biólogos marinos y buceadores profesionales que buscaban
           democratizar el acceso al mar de forma responsable. Lo que comenzó como un pequeño centro a pie de playa
           se ha convertido en la escuela de referencia en el Cantábrico.
         </p>
-        <p class="mt-2" style="color:var(--ms-on-surface-var); line-height:1.7;">
+        <p class="mt-2 ms-section-text">
           Nuestra misión no ha cambiado: proporcionar una educación técnica rigurosa mientras fomentamos el amor
           por la biodiversidad marina. Con más de 5.000 certificaciones emitidas, seguimos creyendo que cada
           inmersión es una oportunidad de aprendizaje única.
         </p>
       </div>
       <div class="col-12 col-md-5">
-        <div class="ms-card overflow-hidden" style="aspect-ratio:4/3;">
+        <div class="ms-card ms-history-img-wrap">
           <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800&q=80"
                alt="Historia de MouroSub"
-               class="img-fluid w-100 h-100" style="object-fit:cover; filter:grayscale(1) contrast(1.1);"/>
+               class="ms-history-img"/>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== INSTALACIONES ===== -->
-  <section class="py-5" style="background:var(--ms-surface-white); border-top:1px solid var(--ms-outline-variant); border-bottom:1px solid var(--ms-outline-variant);">
-    <div style="max-width:1280px; margin:0 auto; padding:0 1.5rem;">
-      <h2 class="mb-1" style="font-size:1.8rem; font-weight:700;">Instalaciones de Vanguardia</h2>
-      <p style="color:var(--ms-on-surface-var);">Equipamiento técnico y espacios diseñados para la comodidad del buceador.</p>
+  <section class="py-5 border-top border-bottom ms-section-border-top ms-section-border-bottom ms-surface-white-bg">
+    <div class="ms-content-wrapper">
+      <h2 class="mb-1 ms-section-title-md">Instalaciones de Vanguardia</h2>
+      <p class="ms-section-text">Equipamiento técnico y espacios diseñados para la comodidad del buceador.</p>
       <div class="row g-3 mt-3">
         <div class="col-12 col-md-6">
           <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-display" style="font-size:1.75rem; color:var(--ms-primary); flex-shrink:0;"></i>
+            <i class="bi bi-display ms-facility-icon"></i>
             <div>
-              <h4 style="font-size:1rem; font-weight:600;">Aula de Formación Multimedia</h4>
-              <p style="font-size:0.875rem; color:var(--ms-on-surface-var); margin:0;">
+              <h4 class="ms-facility-title">Aula de Formación Multimedia</h4>
+              <p class="ms-facility-desc">
                 Espacio climatizado con tecnología para sesiones teóricas dinámicas y seminarios avanzados.
               </p>
             </div>
@@ -67,10 +67,10 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-water" style="font-size:1.75rem; color:var(--ms-primary); flex-shrink:0;"></i>
+            <i class="bi bi-water ms-facility-icon"></i>
             <div>
-              <h4 style="font-size:1rem; font-weight:600;">Piscina de Prácticas</h4>
-              <p style="font-size:0.875rem; color:var(--ms-on-surface-var); margin:0;">
+              <h4 class="ms-facility-title">Piscina de Prácticas</h4>
+              <p class="ms-facility-desc">
                 Inmersiones en aguas confinadas antes de salir al mar abierto.
               </p>
             </div>
@@ -78,10 +78,10 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-box-seam" style="font-size:1.75rem; color:var(--ms-primary); flex-shrink:0;"></i>
+            <i class="bi bi-box-seam ms-facility-icon"></i>
             <div>
-              <h4 style="font-size:1rem; font-weight:600;">Almacén Técnico</h4>
-              <p style="font-size:0.875rem; color:var(--ms-on-surface-var); margin:0;">
+              <h4 class="ms-facility-title">Almacén Técnico</h4>
+              <p class="ms-facility-desc">
                 Mantenimiento riguroso de todo el material bajo estándares técnicos.
               </p>
             </div>
@@ -89,10 +89,10 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-wind" style="font-size:1.75rem; color:var(--ms-primary); flex-shrink:0;"></i>
+            <i class="bi bi-wind ms-facility-icon"></i>
             <div>
-              <h4 style="font-size:1rem; font-weight:600;">Estación de Aire y Nitrox</h4>
-              <p style="font-size:0.875rem; color:var(--ms-on-surface-var); margin:0;">
+              <h4 class="ms-facility-title">Estación de Aire y Nitrox</h4>
+              <p class="ms-facility-desc">
                 Compresores de última generación con filtrado certificado.
               </p>
             </div>
@@ -103,28 +103,27 @@
   </section>
 
   <!-- ===== INSTRUCTORES ===== -->
-  <section style="max-width:1280px; margin:0 auto; padding:3rem 1.5rem;">
+  <section class="ms-content-wrapper py-5">
     <div class="text-center mb-4">
-      <h2 style="font-size:1.8rem; font-weight:700;">Nuestros Instructores</h2>
-      <p style="color:var(--ms-on-surface-var);">Liderazgo, experiencia y seguridad garantizada.</p>
+      <h2 class="ms-section-title-md">Nuestros Instructores</h2>
+      <p class="ms-section-text">Liderazgo, experiencia y seguridad garantizada.</p>
     </div>
 
     <div class="row g-4">
       <div th:each="inst : ${instructores}" class="col-12 col-sm-6 col-lg-3">
         <div class="ms-card ms-instructor-card overflow-hidden h-100">
-          <div class="position-relative overflow-hidden" style="aspect-ratio:3/4;">
+          <div class="ms-instructor-img-wrap">
             <img th:src="${inst.fotoUrl != null ? inst.fotoUrl : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=60'}"
                  th:alt="${inst.getNombreCompleto()}"
                  class="instructor-img"/>
             <span th:if="${inst.tituloPadi != null}"
                   class="ms-badge ms-instructor-badge" th:text="${inst.tituloPadi}">Título</span>
           </div>
-          <div class="ms-card-body" style="border-top:1px solid var(--ms-outline-variant);">
-            <h3 style="font-size:0.95rem; font-weight:700; margin:0;" th:text="${inst.getNombreCompleto()}">Nombre</h3>
-            <p th:if="${inst.especialidad != null}" style="font-size:0.8rem; color:var(--ms-secondary); margin:0.25rem 0 0;"
+          <div class="ms-card-body ms-instructor-card-body">
+            <h3 class="ms-instructor-name" th:text="${inst.getNombreCompleto()}">Nombre</h3>
+            <p th:if="${inst.especialidad != null}" class="ms-instructor-specialty"
                th:text="${inst.especialidad}">Especialidad</p>
-            <p th:if="${inst.experiencia != null}" class="mt-2"
-               style="font-size:0.875rem; color:var(--ms-on-surface-var); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;"
+            <p th:if="${inst.experiencia != null}" class="mt-2 ms-instructor-bio"
                th:text="${inst.experiencia}">Experiencia</p>
           </div>
         </div>
@@ -132,23 +131,22 @@
 
       <!-- Fallback -->
       <div th:if="${#lists.isEmpty(instructores)}" class="col-12 text-center py-5">
-        <i class="bi bi-person-badge" style="font-size:3rem; color:var(--ms-outline);"></i>
-        <p class="mt-3" style="color:var(--ms-on-surface-var);">Próximamente presentaremos a nuestro equipo de instructores.</p>
+        <i class="bi bi-person-badge ms-empty-icon"></i>
+        <p class="mt-3 ms-section-text">Próximamente presentaremos a nuestro equipo de instructores.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== CTA ===== -->
-  <section style="background:var(--ms-primary-container); padding:4rem 1.5rem;">
-    <div class="text-center" style="max-width:560px; margin:0 auto; color:var(--ms-on-primary);">
-      <h2 style="font-size:1.8rem; font-weight:700;">¿Listo para comenzar tu aventura?</h2>
-      <p class="mt-2" style="color:var(--ms-on-primary-cont); line-height:1.7; opacity:0.9;">
+  <section class="ms-cta-section-bg">
+    <div class="text-center ms-content-wrapper-md ms-cta-section-color">
+      <h2 class="ms-cta-section-title">¿Listo para comenzar tu aventura?</h2>
+      <p class="mt-2 ms-cta-section-text">
         Únete a nuestra próxima promoción y descubre un mundo nuevo bajo la superficie.
       </p>
       <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4">
         <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">Ver Cursos</a>
-        <a th:href="@{/contacto}" class="btn btn-ms-outline px-4 py-3 rounded"
-           style="border-color:var(--ms-on-primary); color:var(--ms-on-primary);">Contactar</a>
+        <a th:href="@{/contacto}" class="btn ms-btn-outline-primary-light px-4 py-3 rounded">Contactar</a>
       </div>
     </div>
   </section>

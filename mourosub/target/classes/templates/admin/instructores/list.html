@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead('Instructores')}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Instructores')}"></div>
@@ -20,10 +20,10 @@
           </tr></thead>
           <tbody>
           <tr th:each="inst : ${instructores}">
-            <td style="font-size:0.8rem; color:var(--ms-on-surface-var);" th:text="${inst.dniInstructor}">—</td>
+            <td class="ms-table-cell-xs" th:text="${inst.dniInstructor}">—</td>
             <td class="fw-semibold" th:text="${inst.getNombreCompleto()}">—</td>
             <td><span class="ms-badge" th:if="${inst.tituloPadi != null}" th:text="${inst.tituloPadi}">—</span></td>
-            <td style="font-size:0.875rem;" th:text="${inst.email}">—</td>
+            <td class="ms-table-cell-sm" th:text="${inst.email}">—</td>
             <td>
               <i class="bi" th:classappend="${inst.activo} ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"></i>
             </td>
@@ -40,8 +40,8 @@
             </td>
           </tr>
           <tr th:if="${#lists.isEmpty(instructores)}">
-            <td colspan="6" class="text-center py-5" style="color:var(--ms-on-surface-var);">
-              No hay instructores. <a th:href="@{/admin/instructores/nuevo}" style="color:var(--ms-primary);">Añade el primero</a>
+            <td colspan="6" class="text-center py-5 ms-table-empty">
+              No hay instructores. <a th:href="@{/admin/instructores/nuevo}" class="ms-table-link">Añade el primero</a>
             </td>
           </tr>
           </tbody>

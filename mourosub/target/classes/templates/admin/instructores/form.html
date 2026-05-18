@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead(${pageTitle})}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar(${pageTitle})}"></div>
-  <div class="p-4" style="max-width:860px;">
+  <div class="p-4 ms-admin-form-wrapper">
     <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
     <a th:href="@{/admin/instructores}" class="btn btn-ms-outline btn-sm px-3 rounded mb-4">
       <i class="bi bi-arrow-left me-1"></i>Volver
@@ -15,58 +15,58 @@
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="row g-3">
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">DNI <span class="text-danger">*</span></label>
+            <label class="form-label fw-semibold ms-form-label">DNI <span class="text-danger">*</span></label>
             <input type="text" th:field="*{dniInstructor}" class="form-control ms-form-control" required
                    th:readonly="${instructor.dniInstructor != null and !#strings.isEmpty(instructor.dniInstructor)}"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Nombre <span class="text-danger">*</span></label>
+            <label class="form-label fw-semibold ms-form-label">Nombre <span class="text-danger">*</span></label>
             <input type="text" th:field="*{nombre}" class="form-control ms-form-control" required/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Primer apellido</label>
+            <label class="form-label fw-semibold ms-form-label">Primer apellido</label>
             <input type="text" th:field="*{apellido1}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Segundo apellido</label>
+            <label class="form-label fw-semibold ms-form-label">Segundo apellido</label>
             <input type="text" th:field="*{apellido2}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Fecha nacimiento</label>
+            <label class="form-label fw-semibold ms-form-label">Fecha nacimiento</label>
             <input type="date" th:field="*{fechaNac}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Teléfono</label>
+            <label class="form-label fw-semibold ms-form-label">Teléfono</label>
             <input type="tel" th:field="*{telefono}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Email</label>
+            <label class="form-label fw-semibold ms-form-label">Email</label>
             <input type="email" th:field="*{email}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Título PADI</label>
+            <label class="form-label fw-semibold ms-form-label">Título PADI</label>
             <select th:field="*{tituloPadi}" class="form-select ms-form-control">
               <option value="">— Sin título —</option>
               <option th:each="t : ${titulos}" th:value="${t}" th:text="${t}">TÍTULO</option>
             </select>
           </div>
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Especialidad</label>
+            <label class="form-label fw-semibold ms-form-label">Especialidad</label>
             <input type="text" th:field="*{especialidad}" class="form-control ms-form-control" placeholder="Ej: Buceo técnico, fotografía..."/>
           </div>
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">URL Foto</label>
+            <label class="form-label fw-semibold ms-form-label">URL Foto</label>
             <input type="url" th:field="*{fotoUrl}" class="form-control ms-form-control" placeholder="https://..."/>
           </div>
           <div class="col-12">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Experiencia / Bio</label>
+            <label class="form-label fw-semibold ms-form-label">Experiencia / Bio</label>
             <textarea th:field="*{experiencia}" class="form-control ms-form-control" rows="4"
                       placeholder="Describe la experiencia del instructor..."></textarea>
           </div>
           <div class="col-12">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{activo}" id="activo"/>
-              <label class="form-check-label" style="font-size:0.875rem;" for="activo">Instructor activo (aparece en Conócenos)</label>
+              <label class="form-check-label ms-check-label" for="activo">Instructor activo (aparece en Conócenos)</label>
             </div>
           </div>
           <div class="col-12 d-flex gap-3 pt-2">

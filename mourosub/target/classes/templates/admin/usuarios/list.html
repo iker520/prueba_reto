@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead('Usuarios')}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Usuarios')}"></div>
@@ -20,9 +20,9 @@
           </tr></thead>
           <tbody>
           <tr th:each="u : ${usuarios}">
-            <td style="font-size:0.8rem; color:var(--ms-on-surface-var);" th:text="${u.dniUsuario}">—</td>
+            <td class="ms-table-cell-xs" th:text="${u.dniUsuario}">—</td>
             <td class="fw-semibold" th:text="${u.nombre + ' ' + (u.apellido1 != null ? u.apellido1 : '')}">—</td>
-            <td style="font-size:0.875rem;" th:text="${u.email}">—</td>
+            <td class="ms-table-cell-sm" th:text="${u.email}">—</td>
             <td>
               <span th:if="${u.nivelBuceo != null}" class="ms-badge ms-badge-outline" th:text="${u.nivelBuceo}">—</span>
             </td>
@@ -31,7 +31,7 @@
                     th:classappend="${u.rol == 'ROLE_ADMIN'} ? 'badge-confirmada' : 'badge-completada'"
                     th:text="${u.rol == 'ROLE_ADMIN'} ? 'ADMIN' : 'USER'">—</span>
             </td>
-            <td style="font-size:0.8rem;" th:text="${u.fechaRegistro != null ? #temporals.format(u.fechaRegistro,'dd/MM/yyyy') : '—'}">—</td>
+            <td class="ms-table-cell-xs" th:text="${u.fechaRegistro != null ? #temporals.format(u.fechaRegistro,'dd/MM/yyyy') : '—'}">—</td>
             <td>
               <div class="d-flex gap-2">
                 <a th:href="@{/admin/usuarios/editar/{dni}(dni=${u.dniUsuario})}"
@@ -45,7 +45,7 @@
             </td>
           </tr>
           <tr th:if="${#lists.isEmpty(usuarios)}">
-            <td colspan="7" class="text-center py-5" style="color:var(--ms-on-surface-var);">
+            <td colspan="7" class="text-center py-5 ms-table-empty">
               No hay usuarios registrados.
             </td>
           </tr>

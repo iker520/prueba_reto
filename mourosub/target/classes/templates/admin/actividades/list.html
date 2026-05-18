@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead('Actividades')}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Actividades')}"></div>
   <div class="p-4">
     <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <p class="mb-0" style="color:var(--ms-on-surface-var); font-size:0.9rem;">
+      <p class="mb-0 ms-admin-list-count">
         Total: <strong th:text="${#lists.size(actividades)}">0</strong> actividades registradas
       </p>
       <a th:href="@{/admin/actividades/nueva}" class="btn btn-ms-primary px-4 py-2 rounded">
@@ -23,7 +23,7 @@
           </tr></thead>
           <tbody>
           <tr th:each="act : ${actividades}">
-            <td class="fw-semibold" style="color:var(--ms-primary);" th:text="${act.idActividad}">—</td>
+            <td class="fw-semibold ms-table-id" th:text="${act.idActividad}">—</td>
             <td class="fw-semibold" th:text="${act.nombre}">—</td>
             <td><span class="ms-badge" th:text="${act.tipo}">TIPO</span></td>
             <td th:text="${act.nivel != null ? act.nivel : '—'}">—</td>
@@ -48,8 +48,8 @@
             </td>
           </tr>
           <tr th:if="${#lists.isEmpty(actividades)}">
-            <td colspan="7" class="text-center py-5" style="color:var(--ms-on-surface-var);">
-              No hay actividades. <a th:href="@{/admin/actividades/nueva}" style="color:var(--ms-primary);">Crea la primera</a>
+            <td colspan="7" class="text-center py-5 ms-table-empty">
+              No hay actividades. <a th:href="@{/admin/actividades/nueva}" class="ms-table-link">Crea la primera</a>
             </td>
           </tr>
           </tbody>

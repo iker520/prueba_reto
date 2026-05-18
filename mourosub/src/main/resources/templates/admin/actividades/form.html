@@ -6,11 +6,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@tiptap/core@2.4.0/dist/index.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tiptap/starter-kit@2.4.0/dist/index.umd.min.js"></script>
 </head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar(${pageTitle})}" ></div>
-  <div class="p-4" style="max-width:900px;">
+  <div class="p-4 ms-admin-form-wrapper">
     <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
     <a th:href="@{/admin/actividades}" class="btn btn-ms-outline btn-sm px-3 rounded mb-4">
       <i class="bi bi-arrow-left me-1"></i>Volver
@@ -24,7 +24,7 @@
         <div class="row g-3">
           <!-- Nombre -->
           <div class="col-12">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">
+            <label class="form-label fw-semibold ms-form-label">
               Nombre <span class="text-danger">*</span>
             </label>
             <input type="text" th:field="*{nombre}" class="form-control ms-form-control" required/>
@@ -32,14 +32,14 @@
 
           <!-- Tipo + Nivel -->
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Tipo</label>
+            <label class="form-label fw-semibold ms-form-label">Tipo</label>
             <select th:field="*{tipo}" class="form-select ms-form-control">
               <option value="">— Selecciona tipo —</option>
               <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}">TIPO</option>
             </select>
           </div>
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Nivel requerido</label>
+            <label class="form-label fw-semibold ms-form-label">Nivel requerido</label>
             <select th:field="*{nivel}" class="form-select ms-form-control">
               <option value="">— Selecciona nivel —</option>
               <option th:each="n : ${niveles}" th:value="${n}" th:text="${n}">NIVEL</option>
@@ -48,36 +48,36 @@
 
           <!-- Precio + Duración + Plazas -->
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Precio (€)</label>
+            <label class="form-label fw-semibold ms-form-label">Precio (€)</label>
             <input type="number" step="0.01" th:field="*{precio}" class="form-control ms-form-control" placeholder="0.00"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Duración</label>
+            <label class="form-label fw-semibold ms-form-label">Duración</label>
             <input type="text" th:field="*{duracion}" class="form-control ms-form-control" placeholder="Ej: 3 días"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Plazas máximas</label>
+            <label class="form-label fw-semibold ms-form-label">Plazas máximas</label>
             <input type="number" th:field="*{plazasMaximas}" class="form-control ms-form-control"/>
           </div>
 
           <!-- URL imagen -->
           <div class="col-12">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">URL de imagen</label>
+            <label class="form-label fw-semibold ms-form-label">URL de imagen</label>
             <input type="url" th:field="*{imagenUrl}" class="form-control ms-form-control" placeholder="https://..."/>
           </div>
 
           <!-- Descripción corta -->
           <div class="col-12">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Descripción corta</label>
+            <label class="form-label fw-semibold ms-form-label">Descripción corta</label>
             <textarea th:field="*{descripcion}" class="form-control ms-form-control" rows="3"
                       placeholder="Descripción breve que aparece en las tarjetas del listado..."></textarea>
           </div>
 
           <!-- TipTap: Descripción completa HTML -->
           <div class="col-12">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">
+            <label class="form-label fw-semibold ms-form-label">
               Descripción completa (HTML)
-              <span class="ms-badge ms-badge-outline ms-1" style="font-size:0.65rem;">TipTap</span>
+              <span class="ms-badge ms-badge-outline ms-1 ms-badge-tiptap">TipTap</span>
             </label>
             <!-- Campo oculto donde se almacena el HTML -->
             <input type="hidden" id="descripcionHtmlField" th:field="*{descripcionHtml}"/>
@@ -102,11 +102,11 @@
           <div class="col-12 d-flex gap-4">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{activa}" id="activa"/>
-              <label class="form-check-label" style="font-size:0.875rem;" for="activa">Actividad activa (visible en la web)</label>
+              <label class="form-check-label ms-check-label" for="activa">Actividad activa (visible en la web)</label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{destacada}" id="destacada"/>
-              <label class="form-check-label" style="font-size:0.875rem;" for="destacada">Destacar en inicio</label>
+              <label class="form-check-label ms-check-label" for="destacada">Destacar en inicio</label>
             </div>
           </div>
 

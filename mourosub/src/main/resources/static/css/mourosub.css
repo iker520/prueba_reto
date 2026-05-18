@@ -470,3 +470,892 @@ body {
 .badge-confirmada { background-color: #22c55e; color: white; }
 .badge-cancelada  { background-color: var(--ms-error); color: white; }
 .badge-completada { background-color: var(--ms-primary); color: white; }
+
+/* ================================================================
+   CLASES UTILITARIAS — reemplazan estilos inline del HTML
+   ================================================================ */
+
+/* --- Fondo blanco de superficie --- */
+.ms-surface-white-bg {
+  background: var(--ms-surface-white);
+}
+
+/* --- Ícono mediano (fallback cards) --- */
+.ms-icon-lg {
+  font-size: 2rem;
+  color: var(--ms-primary);
+}
+
+/* --- Body con offset de navbar fija --- */
+.page-body {
+  padding-top: 80px;
+}
+.page-body-login {
+  background: var(--ms-background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Contenedor de ancho máximo centrado --- */
+.ms-content-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.ms-content-wrapper-sm {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.ms-content-wrapper-md {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Cabeceras de página (hero-lite) --- */
+.ms-page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+  letter-spacing: -0.02em;
+}
+.ms-page-subtitle {
+  font-size: 1.125rem;
+  color: var(--ms-on-surface-var);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* --- Barra de tabs sticky --- */
+.ms-sticky-tabs {
+  position: sticky;
+  top: 80px;
+  z-index: 40;
+  background: var(--ms-background);
+  padding: 1rem 0;
+}
+
+/* --- Sección con borde inferior de color outline --- */
+.ms-section-border-bottom {
+  border-bottom: 1px solid var(--ms-outline-variant) !important;
+}
+.ms-section-border-top {
+  border-top: 1px solid var(--ms-outline-variant) !important;
+}
+
+/* --- Grid de contenido principal con padding bottom --- */
+.ms-grid-section {
+  padding: 1rem 0 4rem;
+}
+
+/* --- Imagen de fondo en card (altura fija) --- */
+.ms-card-img-container {
+  height: 220px;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.ms-badge-floating {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+}
+
+/* --- Placeholder sin imagen en card --- */
+.ms-card-img-placeholder {
+  height: 120px;
+  background: var(--ms-surface-high);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.ms-icon-placeholder {
+  font-size: 2.5rem;
+  color: var(--ms-primary);
+  opacity: 0.5;
+}
+
+/* --- Títulos y textos en tarjetas --- */
+.ms-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ms-primary);
+}
+.ms-card-desc {
+  color: var(--ms-on-surface-var);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+.ms-card-footer-border {
+  border-top: 1px solid var(--ms-outline-variant);
+}
+
+/* --- Precios y duraciones --- */
+.ms-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.ms-duration {
+  font-size: 0.75rem;
+}
+.ms-price-lg {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+}
+
+/* --- Estado vacío --- */
+.ms-empty-icon {
+  font-size: 3rem;
+  color: var(--ms-outline);
+}
+.ms-empty-text {
+  color: var(--ms-on-surface-var);
+}
+
+/* --- CTA sections --- */
+.ms-cta-title {
+  font-weight: 700;
+  color: var(--ms-primary);
+}
+.ms-cta-text {
+  color: var(--ms-on-surface-var);
+}
+.ms-cta-dark-text {
+  color: var(--ms-on-primary-cont);
+  line-height: 1.7;
+}
+
+/* --- Botones especiales (fondo oscuro) --- */
+.ms-hero-btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+}
+.ms-hero-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.ms-btn-white {
+  background: white;
+  color: var(--ms-primary);
+  font-weight: 600;
+}
+.ms-btn-white:hover {
+  background: var(--ms-primary-fixed);
+  color: var(--ms-primary);
+}
+.ms-btn-outline-light {
+  background-color: transparent;
+  color: var(--ms-on-primary-cont);
+  border: 1px solid var(--ms-on-primary-cont);
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.ms-btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.ms-btn-outline-primary-light {
+  background-color: transparent;
+  color: var(--ms-on-primary);
+  border: 1px solid var(--ms-on-primary);
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.ms-btn-outline-primary-light:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+/* --- Sección SOBRE NOSOTROS / HISTORIA --- */
+.ms-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+  letter-spacing: -0.01em;
+}
+.ms-section-title-dark {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ms-on-surface);
+  letter-spacing: -0.01em;
+}
+.ms-section-title-md {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.ms-section-text {
+  color: var(--ms-on-surface-var);
+  line-height: 1.7;
+}
+.ms-section-link {
+  color: var(--ms-primary);
+  text-decoration: none;
+}
+.ms-section-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Label de sección (tag pequeño) --- */
+.ms-section-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ms-primary);
+}
+
+/* --- Imagen de historia (grayscale) --- */
+.ms-history-img {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+  width: 100%;
+  height: 100%;
+}
+.ms-history-img-wrap {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+/* --- Instalaciones: ícono, título, descripción --- */
+.ms-facility-icon {
+  font-size: 1.75rem;
+  color: var(--ms-primary);
+  flex-shrink: 0;
+}
+.ms-facility-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.ms-facility-desc {
+  font-size: 0.875rem;
+  color: var(--ms-on-surface-var);
+  margin: 0;
+}
+
+/* --- Instructores --- */
+.ms-instructor-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+.ms-instructor-specialty {
+  font-size: 0.8rem;
+  color: var(--ms-secondary);
+  margin: 0.25rem 0 0;
+}
+.ms-instructor-bio {
+  font-size: 0.875rem;
+  color: var(--ms-on-surface-var);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ms-instructor-card-body {
+  border-top: 1px solid var(--ms-outline-variant);
+}
+.ms-instructor-img-wrap {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- CTA de conocenos (fondo primary-container) --- */
+.ms-cta-section-bg {
+  background: var(--ms-primary-container);
+  padding: 4rem 1.5rem;
+}
+.ms-cta-section-color {
+  color: var(--ms-on-primary);
+}
+.ms-cta-section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.ms-cta-section-text {
+  color: var(--ms-on-primary-cont);
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* --- Formulario de contacto --- */
+.ms-form-label {
+  font-size: 0.85rem;
+  color: var(--ms-on-surface-var);
+}
+.ms-contact-info-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.ms-contact-icon {
+  color: var(--ms-primary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.ms-contact-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.ms-contact-text {
+  font-size: 0.875rem;
+  color: var(--ms-on-surface-var);
+  margin: 0;
+}
+.ms-schedule-row {
+  font-size: 0.875rem;
+  color: var(--ms-on-surface-var);
+}
+.ms-form-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Mapa placeholder --- */
+.ms-map-placeholder {
+  min-height: 220px;
+  position: relative;
+}
+.ms-map-inner {
+  position: absolute;
+  inset: 0;
+  background: var(--ms-surface-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ms-map-icon {
+  font-size: 2.5rem;
+  color: var(--ms-primary);
+}
+.ms-map-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ms-primary);
+}
+
+/* --- Noticias: sidebar newsletter --- */
+.ms-newsletter-card {
+  background: var(--ms-primary);
+  color: var(--ms-on-primary);
+}
+.ms-newsletter-icon {
+  font-size: 2rem;
+}
+.ms-newsletter-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.ms-newsletter-text {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+.ms-newsletter-input {
+  border: none;
+  border-radius: 0.25rem;
+}
+.ms-newsletter-btn {
+  background: white;
+  color: var(--ms-primary);
+  font-weight: 600;
+}
+.ms-newsletter-btn:hover {
+  background: var(--ms-primary-fixed);
+  color: var(--ms-primary);
+}
+.ms-newsletter-fine {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-top: 0.75rem;
+}
+
+/* --- Sidebar noticias --- */
+.ms-sidebar-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--ms-outline-variant);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.ms-sidebar-tags-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.ms-category-item {
+  border-bottom: 1px solid var(--ms-surface-high) !important;
+}
+.ms-category-link {
+  color: var(--ms-on-surface-var);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  display: block;
+  padding: 0.5rem 0;
+}
+.ms-category-link:hover {
+  color: var(--ms-primary);
+}
+
+/* --- Noticias: artículo destacado --- */
+.ms-featured-img-wrapper {
+  height: 280px;
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.ms-featured-title {
+  font-size: 1.4rem;
+}
+.ms-featured-date {
+  font-size: 0.75rem;
+  color: var(--ms-on-surface-var);
+}
+.ms-featured-summary {
+  color: var(--ms-on-surface-var);
+  line-height: 1.6;
+}
+.ms-news-link {
+  color: var(--ms-primary);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.ms-news-link:hover {
+  text-decoration: underline;
+}
+.ms-news-date {
+  font-size: 0.75rem;
+}
+
+/* --- Noticia detalle y servicio detalle: breadcrumb --- */
+.ms-breadcrumb-link {
+  color: var(--ms-primary);
+}
+.ms-breadcrumb {
+  font-size: 0.85rem;
+}
+
+/* --- Artículo detalle --- */
+.ms-article-img {
+  height: 360px;
+  object-fit: cover;
+}
+.ms-article-date {
+  font-size: 0.8rem;
+  color: var(--ms-on-surface-var);
+}
+.ms-article-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.ms-article-summary {
+  font-size: 1.1rem;
+  color: var(--ms-on-surface-var);
+  border-left: 3px solid var(--ms-primary);
+  padding-left: 1rem;
+}
+.ms-article-divider {
+  border-color: var(--ms-outline-variant);
+  margin: 2rem 0;
+}
+
+/* --- Aside sticky --- */
+.ms-aside-sticky {
+  position: sticky;
+  top: 96px;
+}
+.ms-aside-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.ms-aside-item {
+  border-bottom: 1px solid var(--ms-surface-high);
+}
+.ms-aside-item-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0.25rem 0 0;
+}
+.ms-aside-link {
+  text-decoration: none;
+  color: inherit;
+}
+.ms-aside-link:hover {
+  color: var(--ms-primary);
+}
+
+/* --- Detalle de servicio: ficha técnica --- */
+.ms-detail-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+.ms-detail-placeholder {
+  height: 420px;
+  background: var(--ms-surface-high);
+}
+.ms-detail-placeholder-icon {
+  font-size: 5rem;
+  color: var(--ms-primary);
+  opacity: 0.4;
+}
+.ms-detail-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+}
+.ms-detail-desc {
+  color: var(--ms-on-surface-var);
+  line-height: 1.7;
+}
+.ms-detail-divider {
+  border-color: var(--ms-outline-variant);
+}
+.ms-detail-table {
+  font-size: 0.9rem;
+}
+.ms-detail-td-label {
+  color: var(--ms-on-surface-var);
+  width: 40%;
+}
+.ms-detail-icon {
+  color: var(--ms-primary);
+}
+
+/* --- Login --- */
+.ms-login-wrapper {
+  width: 100%;
+  max-width: 440px;
+  padding: 0 1rem;
+}
+.ms-login-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: var(--ms-primary-container);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.ms-login-icon {
+  font-size: 1.8rem;
+  color: var(--ms-on-primary-cont);
+}
+.ms-login-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+}
+.ms-login-subtitle {
+  color: var(--ms-on-surface-var);
+  font-size: 0.9rem;
+}
+.ms-input-addon {
+  background: var(--ms-surface-low);
+  border-color: var(--ms-outline-variant);
+}
+.ms-input-addon-icon {
+  color: var(--ms-outline);
+}
+.ms-forgot-link {
+  font-size: 0.8rem;
+  color: var(--ms-primary);
+  text-decoration: none;
+}
+.ms-forgot-link:hover {
+  text-decoration: underline;
+}
+.ms-check-label {
+  font-size: 0.875rem;
+  color: var(--ms-on-surface-var);
+}
+.ms-login-divider {
+  border-color: var(--ms-outline-variant);
+  margin: 1.5rem 0;
+}
+.ms-login-footer-text {
+  font-size: 0.875rem;
+  color: var(--ms-on-surface-var);
+}
+.ms-login-footer-link {
+  color: var(--ms-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+.ms-login-footer-link:hover {
+  text-decoration: underline;
+}
+.ms-back-link {
+  color: var(--ms-on-surface-var);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.ms-back-link:hover {
+  color: var(--ms-primary);
+}
+
+/* --- Footer --- */
+.ms-footer-text {
+  font-size: 0.8rem;
+  color: var(--ms-on-surface-var);
+}
+
+/* --- Index: hero content max-width --- */
+.ms-hero-content-wrap {
+  max-width: 600px;
+}
+
+/* --- Index: sección de noticias --- */
+.ms-news-header-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ms-primary);
+  letter-spacing: -0.01em;
+}
+.ms-news-header-text {
+  color: var(--ms-on-surface-var);
+}
+.ms-news-all-link {
+  color: var(--ms-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.ms-news-all-link:hover {
+  text-decoration: underline;
+}
+.ms-fallback-text {
+  color: var(--ms-on-surface-var);
+}
+
+/* --- Index: card actividad h3 y precio --- */
+.ms-act-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.ms-act-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* --- Index: CTA final texto --- */
+.ms-cta-final-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* --- ms-page-subtitle variante con max-width 560px --- */
+.ms-page-subtitle-sm {
+  font-size: 1.125rem;
+  color: var(--ms-on-surface-var);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* --- Noticias: título pequeño en sub-grid --- */
+.ms-news-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ms-on-surface);
+  transition: color 0.2s;
+}
+.ms-news-card:hover .ms-news-card-title { color: var(--ms-primary); }
+
+/* --- Admin sidebar: label de sección --- */
+.ms-admin-section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0 0.75rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.ms-admin-section-label-mt {
+  margin-top: 1rem;
+}
+
+/* --- Admin sidebar: brand subtitle --- */
+.ms-admin-brand-sub {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+/* --- Admin sidebar: footer links --- */
+.ms-admin-sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1rem 1.25rem;
+}
+.ms-admin-sidebar-link {
+  font-size: 0.8rem;
+}
+
+/* --- Admin topbar: page title y user --- */
+.ms-topbar-title {
+  color: var(--ms-on-surface);
+}
+.ms-topbar-user {
+  font-size: 0.85rem;
+  color: var(--ms-on-surface-var);
+}
+
+/* --- Admin: body background --- */
+.ms-admin-body {
+  background: var(--ms-background);
+}
+
+/* --- Admin: form content wrapper --- */
+.ms-admin-form-wrapper {
+  max-width: 900px;
+}
+
+/* --- Admin: sección "Acciones Rápidas" label --- */
+.ms-admin-section-header {
+  color: var(--ms-on-surface-var);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Admin: tabla: celda ID (color primary) --- */
+.ms-table-id {
+  color: var(--ms-primary);
+}
+
+/* --- Admin: tabla: celda secundaria pequeña --- */
+.ms-table-cell-sm {
+  font-size: 0.875rem;
+}
+.ms-table-cell-xs {
+  font-size: 0.8rem;
+  color: var(--ms-on-surface-var);
+}
+
+/* --- Admin: tabla: fila vacía --- */
+.ms-table-empty {
+  color: var(--ms-on-surface-var);
+}
+
+/* --- Admin: enlace inline en tabla --- */
+.ms-table-link {
+  color: var(--ms-primary);
+  text-decoration: none;
+}
+.ms-table-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Admin: KPI variante secondary --- */
+.ms-kpi-secondary-icon {
+  background: var(--ms-secondary-container);
+  color: var(--ms-secondary);
+}
+.ms-kpi-secondary-number {
+  color: var(--ms-secondary);
+}
+
+/* --- Admin: cabecera de card (dashboard última reservas) --- */
+.ms-admin-card-header {
+  border-color: var(--ms-outline-variant) !important;
+}
+.ms-admin-card-header-title {
+  font-size: 0.95rem;
+}
+.ms-admin-card-header-link {
+  color: var(--ms-primary);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.ms-admin-card-header-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Admin: badge TipTap --- */
+.ms-badge-tiptap {
+  font-size: 0.65rem;
+}
+
+/* --- Admin: hint de contraseña en form --- */
+.ms-form-hint {
+  font-weight: 400;
+  color: var(--ms-outline);
+}
+
+/* --- Admin: max-width contenedor formulario usuario --- */
+.ms-admin-user-wrapper {
+  max-width: 960px;
+}
+
+/* --- Admin: sección de formulario (título de grupo) --- */
+.ms-admin-form-section-title {
+  color: var(--ms-primary);
+  border-bottom: 1px solid var(--ms-outline-variant);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Admin: count de total en listing --- */
+.ms-admin-list-count {
+  color: var(--ms-on-surface-var);
+  font-size: 0.9rem;
+}
+
+/* --- Error pages: inline style remnants --- */
+.error-page-h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+.error-page-p {
+  color: var(--ms-on-surface-var, #414750);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+.error-page-footer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+.error-page-footer-light {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+.error-btn-outline-glass {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.error-btn-outline-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.error-debug-block {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 100, 100, 0.8);
+  font-family: monospace;
+}

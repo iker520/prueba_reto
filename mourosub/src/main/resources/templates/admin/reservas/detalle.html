@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead(${pageTitle})}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar(${pageTitle})}"></div>
-  <div class="p-4" style="max-width:860px;">
+  <div class="p-4 ms-admin-form-wrapper">
     <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
     <a th:href="@{/admin/reservas}" class="btn btn-ms-outline btn-sm px-3 rounded mb-4">
       <i class="bi bi-arrow-left me-1"></i>Volver
@@ -16,17 +16,17 @@
       <div class="col-12 col-md-6">
         <div class="ms-card p-4">
           <h5 class="fw-semibold mb-3">Reserva <span th:text="'#' + ${reserva.idReserva}">#0</span></h5>
-          <table class="table table-borderless" style="font-size:0.9rem;">
+          <table class="table table-borderless ms-detail-table">
             <tr>
-              <td style="color:var(--ms-on-surface-var);">Fecha</td>
+              <td class="ms-detail-td-label">Fecha</td>
               <td class="fw-semibold" th:text="${#temporals.format(reserva.fechaReserva,'dd MMMM yyyy')}">—</td>
             </tr>
             <tr>
-              <td style="color:var(--ms-on-surface-var);">Total</td>
+              <td class="ms-detail-td-label">Total</td>
               <td class="fw-semibold" th:text="${reserva.total != null ? reserva.total + '€' : 'N/A'}">—</td>
             </tr>
             <tr>
-              <td style="color:var(--ms-on-surface-var);">Estado</td>
+              <td class="ms-detail-td-label">Estado</td>
               <td>
                 <span class="badge rounded-pill px-3 py-1"
                       th:classappend="${reserva.estado == 'PENDIENTE'} ? 'badge-pendiente' :

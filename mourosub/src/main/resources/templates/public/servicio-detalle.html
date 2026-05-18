@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/base :: head(${pageTitle})}"></head>
-<body style="padding-top:80px;">
+<body class="page-body">
 
 <nav th:replace="~{layout/base :: navbar}"></nav>
 
 <main>
   <!-- ===== BREADCRUMB ===== -->
-  <div style="max-width:1280px; margin:0 auto; padding:1rem 1.5rem;">
+  <div class="ms-content-wrapper pt-3">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb" style="font-size:0.85rem;">
-        <li class="breadcrumb-item"><a th:href="@{/}" style="color:var(--ms-primary);">Inicio</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/servicios}" style="color:var(--ms-primary);">Servicios</a></li>
+      <ol class="breadcrumb ms-breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}" class="ms-breadcrumb-link">Inicio</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/servicios}" class="ms-breadcrumb-link">Servicios</a></li>
         <li class="breadcrumb-item active" th:text="${actividad.nombre}">Actividad</li>
       </ol>
     </nav>
   </div>
 
   <!-- ===== DETALLE ACTIVIDAD ===== -->
-  <section style="max-width:1280px; margin:0 auto; padding:0 1.5rem 4rem;">
+  <section class="ms-content-wrapper ms-grid-section">
     <div class="row g-5">
       <!-- Imagen principal -->
       <div class="col-12 col-md-7">
         <div th:if="${actividad.imagenUrl != null}">
           <img th:src="${actividad.imagenUrl}" th:alt="${actividad.nombre}"
-               class="img-fluid rounded" style="width:100%; height:420px; object-fit:cover;"/>
+               class="img-fluid rounded ms-detail-img"/>
         </div>
         <div th:unless="${actividad.imagenUrl != null}"
-             class="rounded d-flex align-items-center justify-content-center"
-             style="height:420px; background:var(--ms-surface-high);">
-          <i class="bi bi-water" style="font-size:5rem; color:var(--ms-primary); opacity:0.4;"></i>
+             class="rounded d-flex align-items-center justify-content-center ms-detail-placeholder">
+          <i class="bi bi-water ms-detail-placeholder-icon"></i>
         </div>
 
         <!-- Contenido HTML (TipTap) -->
@@ -43,39 +42,39 @@
       <div class="col-12 col-md-5">
         <div class="ms-card p-4">
           <span class="ms-badge" th:text="${actividad.tipo}">TIPO</span>
-          <h1 class="mt-3" style="font-size:1.8rem; font-weight:700; color:var(--ms-primary);"
+          <h1 class="mt-3 ms-detail-title"
               th:text="${actividad.nombre}">Nombre</h1>
-          <p class="mt-2" style="color:var(--ms-on-surface-var); line-height:1.7;"
+          <p class="mt-2 ms-detail-desc"
              th:text="${actividad.descripcion}">Descripción</p>
 
-          <hr style="border-color:var(--ms-outline-variant);"/>
+          <hr class="ms-detail-divider"/>
 
           <!-- Detalles técnicos -->
-          <table class="table table-borderless" style="font-size:0.9rem;">
+          <table class="table table-borderless ms-detail-table">
             <tbody>
               <tr th:if="${actividad.nivel != null}">
-                <td style="color:var(--ms-on-surface-var); width:40%;">
-                  <i class="bi bi-bar-chart-fill me-2" style="color:var(--ms-primary);"></i>Nivel
+                <td class="ms-detail-td-label">
+                  <i class="bi bi-bar-chart-fill me-2 ms-detail-icon"></i>Nivel
                 </td>
                 <td class="fw-semibold" th:text="${actividad.nivel}">—</td>
               </tr>
               <tr th:if="${actividad.duracion != null}">
-                <td style="color:var(--ms-on-surface-var);">
-                  <i class="bi bi-clock me-2" style="color:var(--ms-primary);"></i>Duración
+                <td class="ms-detail-td-label">
+                  <i class="bi bi-clock me-2 ms-detail-icon"></i>Duración
                 </td>
                 <td class="fw-semibold" th:text="${actividad.duracion}">—</td>
               </tr>
               <tr th:if="${actividad.plazasMaximas != null}">
-                <td style="color:var(--ms-on-surface-var);">
-                  <i class="bi bi-people me-2" style="color:var(--ms-primary);"></i>Plazas
+                <td class="ms-detail-td-label">
+                  <i class="bi bi-people me-2 ms-detail-icon"></i>Plazas
                 </td>
                 <td class="fw-semibold" th:text="${actividad.plazasMaximas}">—</td>
               </tr>
               <tr th:if="${actividad.precio != null}">
-                <td style="color:var(--ms-on-surface-var);">
-                  <i class="bi bi-tag me-2" style="color:var(--ms-primary);"></i>Precio
+                <td class="ms-detail-td-label">
+                  <i class="bi bi-tag me-2 ms-detail-icon"></i>Precio
                 </td>
-                <td style="font-size:1.5rem; font-weight:700; color:var(--ms-primary);"
+                <td class="ms-price-lg"
                     th:text="${#numbers.formatDecimal(actividad.precio,1,2) + '€'}">—</td>
               </tr>
             </tbody>

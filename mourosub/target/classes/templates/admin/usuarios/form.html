@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead(${pageTitle})}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar(${pageTitle})}"></div>
-  <div class="p-4" style="max-width:960px;">
+  <div class="p-4 ms-admin-user-wrapper">
     <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
     <a th:href="@{/admin/usuarios}" class="btn btn-ms-outline btn-sm px-3 rounded mb-4">
       <i class="bi bi-arrow-left me-1"></i>Volver
@@ -15,109 +15,109 @@
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
         <!-- Sección: Datos Personales -->
-        <h6 class="fw-bold mb-3 pb-2" style="color:var(--ms-primary); border-bottom:1px solid var(--ms-outline-variant); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">
+        <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
           Datos Personales
         </h6>
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">DNI <span class="text-danger">*</span></label>
+            <label class="form-label fw-semibold ms-form-label">DNI <span class="text-danger">*</span></label>
             <input type="text" th:field="*{dniUsuario}" class="form-control ms-form-control" required
                    th:readonly="${usuario.dniUsuario != null and !#strings.isEmpty(usuario.dniUsuario)}"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Nombre <span class="text-danger">*</span></label>
+            <label class="form-label fw-semibold ms-form-label">Nombre <span class="text-danger">*</span></label>
             <input type="text" th:field="*{nombre}" class="form-control ms-form-control" required/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Primer apellido</label>
+            <label class="form-label fw-semibold ms-form-label">Primer apellido</label>
             <input type="text" th:field="*{apellido1}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Segundo apellido</label>
+            <label class="form-label fw-semibold ms-form-label">Segundo apellido</label>
             <input type="text" th:field="*{apellido2}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Fecha nacimiento</label>
+            <label class="form-label fw-semibold ms-form-label">Fecha nacimiento</label>
             <input type="date" th:field="*{fechaNac}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Teléfono SOS</label>
+            <label class="form-label fw-semibold ms-form-label">Teléfono SOS</label>
             <input type="tel" th:field="*{tfnoSos}" class="form-control ms-form-control" placeholder="Contacto de emergencia"/>
           </div>
         </div>
 
         <!-- Sección: Contacto -->
-        <h6 class="fw-bold mb-3 pb-2" style="color:var(--ms-primary); border-bottom:1px solid var(--ms-outline-variant); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">
+        <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
           Contacto y Dirección
         </h6>
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Email <span class="text-danger">*</span></label>
+            <label class="form-label fw-semibold ms-form-label">Email <span class="text-danger">*</span></label>
             <input type="email" th:field="*{email}" class="form-control ms-form-control" required/>
           </div>
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Teléfono</label>
+            <label class="form-label fw-semibold ms-form-label">Teléfono</label>
             <input type="tel" th:field="*{telefono}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Dirección</label>
+            <label class="form-label fw-semibold ms-form-label">Dirección</label>
             <input type="text" th:field="*{direccion}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Ciudad</label>
+            <label class="form-label fw-semibold ms-form-label">Ciudad</label>
             <input type="text" th:field="*{ciudad}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Provincia</label>
+            <label class="form-label fw-semibold ms-form-label">Provincia</label>
             <input type="text" th:field="*{provincia}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-2">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">C.P.</label>
+            <label class="form-label fw-semibold ms-form-label">C.P.</label>
             <input type="text" th:field="*{codigoPostal}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-2">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">País</label>
+            <label class="form-label fw-semibold ms-form-label">País</label>
             <input type="text" th:field="*{pais}" class="form-control ms-form-control" placeholder="España"/>
           </div>
         </div>
 
         <!-- Sección: Datos de Buceo -->
-        <h6 class="fw-bold mb-3 pb-2" style="color:var(--ms-primary); border-bottom:1px solid var(--ms-outline-variant); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">
+        <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
           Perfil de Buceo
         </h6>
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Nivel de buceo</label>
+            <label class="form-label fw-semibold ms-form-label">Nivel de buceo</label>
             <select th:field="*{nivelBuceo}" class="form-select ms-form-control">
               <option value="">— Sin nivel —</option>
               <option th:each="n : ${niveles}" th:value="${n}" th:text="${n}">NIVEL</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Nº inmersiones</label>
+            <label class="form-label fw-semibold ms-form-label">Nº inmersiones</label>
             <input type="number" th:field="*{numInmersiones}" class="form-control ms-form-control" min="0"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Última inmersión</label>
+            <label class="form-label fw-semibold ms-form-label">Última inmersión</label>
             <input type="date" th:field="*{fechaUltimaInmersion}" class="form-control ms-form-control"/>
           </div>
         </div>
 
         <!-- Sección: Seguro -->
-        <h6 class="fw-bold mb-3 pb-2" style="color:var(--ms-primary); border-bottom:1px solid var(--ms-outline-variant); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">
+        <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
           Seguro y Cuenta
         </h6>
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Compañía de seguros</label>
+            <label class="form-label fw-semibold ms-form-label">Compañía de seguros</label>
             <input type="text" th:field="*{companiaSeguros}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Vencimiento seguro</label>
+            <label class="form-label fw-semibold ms-form-label">Vencimiento seguro</label>
             <input type="date" th:field="*{fechaVto}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">Rol de acceso</label>
+            <label class="form-label fw-semibold ms-form-label">Rol de acceso</label>
             <select th:field="*{rol}" class="form-select ms-form-control">
               <option th:each="r : ${roles}" th:value="${r}"
                       th:text="${r == 'ROLE_ADMIN'} ? 'Administrador' : 'Usuario'"
@@ -126,8 +126,8 @@
           </div>
           <!-- Contraseña (solo en creación o cambio explícito) -->
           <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold" style="font-size:0.85rem; color:var(--ms-on-surface-var);">
-              Contraseña <span style="font-weight:400; color:var(--ms-outline);">(dejar vacío para no cambiar)</span>
+            <label class="form-label fw-semibold ms-form-label">
+              Contraseña <span class="ms-form-hint">(dejar vacío para no cambiar)</span>
             </label>
             <input type="password" name="rawPassword" class="form-control ms-form-control"
                    placeholder="Nueva contraseña..."/>
@@ -135,15 +135,15 @@
           <div class="col-12 d-flex gap-3 flex-wrap">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{seguroAccidentes}" id="seguroAcc"/>
-              <label class="form-check-label" style="font-size:0.875rem;" for="seguroAcc">Seguro de accidentes</label>
+              <label class="form-check-label ms-check-label" for="seguroAcc">Seguro de accidentes</label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{notifEmails}" id="notifEmails"/>
-              <label class="form-check-label" style="font-size:0.875rem;" for="notifEmails">Notificaciones email</label>
+              <label class="form-check-label ms-check-label" for="notifEmails">Notificaciones email</label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{notifWhatsapp}" id="notifWa"/>
-              <label class="form-check-label" style="font-size:0.875rem;" for="notifWa">Notificaciones WhatsApp</label>
+              <label class="form-check-label ms-check-label" for="notifWa">Notificaciones WhatsApp</label>
             </div>
           </div>
         </div>

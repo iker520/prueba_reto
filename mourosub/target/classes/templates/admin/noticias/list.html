@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead('Noticias')}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Noticias')}"></div>
@@ -20,10 +20,10 @@
           </tr></thead>
           <tbody>
           <tr th:each="n : ${noticias}">
-            <td class="fw-semibold" style="color:var(--ms-primary);" th:text="${n.idNoticia}">—</td>
+            <td class="fw-semibold ms-table-id" th:text="${n.idNoticia}">—</td>
             <td class="fw-semibold" th:text="${n.titulo}">—</td>
             <td><span class="ms-badge" th:text="${n.categoria}">—</span></td>
-            <td style="font-size:0.875rem;" th:text="${n.fechaPublicacion != null ? #temporals.format(n.fechaPublicacion,'dd/MM/yyyy') : '—'}">—</td>
+            <td class="ms-table-cell-sm" th:text="${n.fechaPublicacion != null ? #temporals.format(n.fechaPublicacion,'dd/MM/yyyy') : '—'}">—</td>
             <td>
               <i class="bi" th:classappend="${n.publicada} ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"></i>
             </td>
@@ -44,8 +44,8 @@
             </td>
           </tr>
           <tr th:if="${#lists.isEmpty(noticias)}">
-            <td colspan="6" class="text-center py-5" style="color:var(--ms-on-surface-var);">
-              No hay noticias. <a th:href="@{/admin/noticias/nueva}" style="color:var(--ms-primary);">Crea la primera</a>
+            <td colspan="6" class="text-center py-5 ms-table-empty">
+              No hay noticias. <a th:href="@{/admin/noticias/nueva}" class="ms-table-link">Crea la primera</a>
             </td>
           </tr>
           </tbody>

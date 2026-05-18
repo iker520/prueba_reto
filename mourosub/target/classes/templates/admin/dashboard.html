@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 <head th:replace="~{layout/admin-base :: adminHead('Dashboard')}"></head>
-<body style="background:var(--ms-background);">
+<body class="ms-admin-body">
 <nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
 <div class="ms-admin-content">
   <div th:replace="~{layout/admin-base :: adminTopbar('Dashboard')}"></div>
@@ -49,11 +49,11 @@
       </div>
       <div class="col-6 col-md-4 col-xl-2">
         <div class="ms-kpi-card">
-          <div class="kpi-icon" style="background:var(--ms-secondary-container); color:var(--ms-secondary);">
+          <div class="kpi-icon ms-kpi-secondary-icon">
             <i class="bi bi-hourglass-split"></i>
           </div>
           <div>
-            <div class="kpi-number" style="color:var(--ms-secondary);" th:text="${reservasPendientes}">0</div>
+            <div class="kpi-number ms-kpi-secondary-number" th:text="${reservasPendientes}">0</div>
             <div class="kpi-label">Pendientes</div>
           </div>
         </div>
@@ -72,7 +72,7 @@
     <!-- Accesos rápidos -->
     <div class="row g-3 mb-4">
       <div class="col-12">
-        <h5 class="fw-semibold mb-3" style="color:var(--ms-on-surface-var); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em;">
+        <h5 class="fw-semibold mb-3 ms-admin-section-header">
           Acciones Rápidas
         </h5>
         <div class="d-flex flex-wrap gap-2">
@@ -94,10 +94,9 @@
 
     <!-- Últimas reservas -->
     <div class="ms-card p-0">
-      <div class="p-3 border-bottom d-flex justify-content-between align-items-center"
-           style="border-color:var(--ms-outline-variant)!important;">
-        <h5 class="mb-0 fw-semibold" style="font-size:0.95rem;">Últimas Reservas</h5>
-        <a th:href="@{/admin/reservas}" style="color:var(--ms-primary); font-size:0.85rem; text-decoration:none;">Ver todas</a>
+      <div class="p-3 border-bottom d-flex justify-content-between align-items-center ms-admin-card-header">
+        <h5 class="mb-0 fw-semibold ms-admin-card-header-title">Últimas Reservas</h5>
+        <a th:href="@{/admin/reservas}" class="ms-admin-card-header-link">Ver todas</a>
       </div>
       <div class="table-responsive">
         <table class="ms-table">
@@ -122,7 +121,7 @@
             </td>
           </tr>
           <tr th:if="${#lists.isEmpty(ultimasReservas)}">
-            <td colspan="5" class="text-center py-4" style="color:var(--ms-on-surface-var);">
+            <td colspan="5" class="text-center py-4 ms-table-empty">
               No hay reservas registradas.
             </td>
           </tr>
