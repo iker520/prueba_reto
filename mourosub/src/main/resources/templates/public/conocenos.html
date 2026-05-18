@@ -6,19 +6,57 @@
 <nav th:replace="~{layout/base :: navbar}"></nav>
 
 <main>
+
   <!-- ===== HERO ===== -->
-  <section class="ms-section-alt py-4 ms-section-border-bottom">
+  <section class="ms-section-alt py-5 ms-section-border-bottom">
     <div class="ms-content-wrapper">
+      <div class="d-flex align-items-center gap-2 mb-3 ms-section-tag">
+        <i class="bi bi-water"></i>
+        <span>Conócenos</span>
+      </div>
       <h1 class="ms-page-title">
-        MouroSub: Excelencia y pasión por el gran azul
+        MouroSub: más de 25 años<br>en el gran azul del Cantábrico
       </h1>
-      <p class="mt-2 ms-page-subtitle-sm">
-        Desde 1998, formamos a buceadores con los más altos estándares de seguridad y respeto por el ecosistema marino.
+      <p class="mt-3 ms-page-subtitle-sm" style="max-width: 620px;">
+        Centro Oficial SSI · MARES · Servicio Técnico Mares Lab Expert.<br>
+        Formamos buceadores con los estándares más exigentes, desde el primer bautismo hasta el buceo técnico avanzado.
       </p>
     </div>
   </section>
 
-  <!-- ===== HISTORIA ===== -->
+  <!-- ===== ESTADÍSTICAS ===== -->
+  <section class="ms-surface-white-bg ms-section-border-bottom">
+    <div class="ms-content-wrapper py-4">
+      <div class="row g-3 text-center">
+        <div class="col-6 col-md-3">
+          <div class="ms-card p-3">
+            <div class="ms-stat-number">+25</div>
+            <div class="ms-stat-label">Años de experiencia</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="ms-card p-3">
+            <div class="ms-stat-number">+5.000</div>
+            <div class="ms-stat-label">Certificaciones emitidas</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="ms-card p-3">
+            <div class="ms-stat-number">14</div>
+            <div class="ms-stat-label">Instructores titulados</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="ms-card p-3">
+            <div class="ms-stat-number">+200 m²</div>
+            <div class="ms-stat-label">De instalaciones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIÉNES SOMOS ===== -->
   <section class="ms-content-wrapper py-5">
     <div class="row align-items-center g-5">
       <div class="col-12 col-md-7">
@@ -26,21 +64,22 @@
           <i class="bi bi-clock-history"></i>
           <span>Nuestra Historia</span>
         </div>
-        <h2 class="ms-section-title-md">Más de dos décadas sumergiéndonos</h2>
+        <h2 class="ms-section-title-md">Quiénes somos</h2>
         <p class="mt-3 ms-section-text">
-          MouroSub nació de la visión de un grupo de biólogos marinos y buceadores profesionales que buscaban
-          democratizar el acceso al mar de forma responsable. Lo que comenzó como un pequeño centro a pie de playa
-          se ha convertido en la escuela de referencia en el Cantábrico.
+          Llevamos más de 25 años dedicándonos íntegramente a todo lo relacionado con el buceo deportivo, profesional y técnico. Lo que empezó como una pequeña escuela a pie de agua se ha convertido en el centro de referencia del norte de España, ubicado en el Puerto Deportivo Marina del Cantábrico, a apenas cinco minutos de Santander.
         </p>
         <p class="mt-2 ms-section-text">
-          Nuestra misión no ha cambiado: proporcionar una educación técnica rigurosa mientras fomentamos el amor
-          por la biodiversidad marina. Con más de 5.000 certificaciones emitidas, seguimos creyendo que cada
-          inmersión es una oportunidad de aprendizaje única.
+          Nos apasiona el mar y su entorno. Nuestra preocupación por el Medio Ambiente y el Patrimonio Sumergido nos impulsa a participar en proyectos de investigación y en actividades de educación ambiental en la Reserva Marina de la Isla de Mouro y su entorno.
+        </p>
+        <p class="mt-2 ms-section-text">
+          Nuestros cursos están avalados por las organizaciones más reconocidas a nivel internacional:
+          <strong>SSI · PADI · ESA · FEDAS · CMAS · EFR · DAN</strong>,
+          que certifican a más del 90 % de los buceadores en todo el mundo.
         </p>
       </div>
       <div class="col-12 col-md-5">
         <div class="ms-card ms-history-img-wrap">
-          <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800&q=80"
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80"
                alt="Historia de MouroSub"
                class="ms-history-img"/>
         </div>
@@ -48,53 +87,227 @@
     </div>
   </section>
 
-  <!-- ===== INSTALACIONES ===== -->
-  <section class="py-5 border-top border-bottom ms-section-border-top ms-section-border-bottom ms-surface-white-bg">
+  <!-- ===== QUÉ HACEMOS ===== -->
+  <section class="py-5 ms-section-border-top ms-section-border-bottom ms-surface-white-bg">
     <div class="ms-content-wrapper">
-      <h2 class="mb-1 ms-section-title-md">Instalaciones de Vanguardia</h2>
-      <p class="ms-section-text">Equipamiento técnico y espacios diseñados para la comodidad del buceador.</p>
-      <div class="row g-3 mt-3">
-        <div class="col-12 col-md-6">
-          <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-display ms-facility-icon"></i>
-            <div>
-              <h4 class="ms-facility-title">Aula de Formación Multimedia</h4>
-              <p class="ms-facility-desc">
-                Espacio climatizado con tecnología para sesiones teóricas dinámicas y seminarios avanzados.
-              </p>
-            </div>
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-md-5 order-md-2">
+          <div class="ms-card ms-history-img-wrap">
+            <img src="https://images.unsplash.com/photo-1601019051271-f3f82f6f9ffa?w=800&q=80"
+                 alt="Qué hacemos en MouroSub"
+                 class="ms-history-img"/>
           </div>
         </div>
-        <div class="col-12 col-md-6">
-          <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-water ms-facility-icon"></i>
-            <div>
-              <h4 class="ms-facility-title">Piscina de Prácticas</h4>
-              <p class="ms-facility-desc">
-                Inmersiones en aguas confinadas antes de salir al mar abierto.
-              </p>
-            </div>
+        <div class="col-12 col-md-7 order-md-1">
+          <div class="d-flex align-items-center gap-2 mb-2 ms-section-tag">
+            <i class="bi bi-award"></i>
+            <span>Qué hacemos</span>
+          </div>
+          <h2 class="ms-section-title-md">Centro Oficial SSI, MARES y Mares Lab Expert</h2>
+          <p class="mt-3 ms-section-text">
+            Somos Centro Oficial SSI y MARES, y contamos con la certificación <strong>Servicio Técnico Mares Lab Expert</strong>, el nivel más alto de reparación y mantenimiento de equipos de buceo. Tu seguridad está siempre garantizada.
+          </p>
+          <p class="mt-2 ms-section-text">
+            Nuestro catálogo abarca desde el primer <strong>Bautismo de Buceo</strong> hasta los cursos de <strong>Buceo Técnico XR</strong> con mezclas Nitrox y Trimix. También formamos Instructores y Asistentes bajo las normas europeas UNE e ISO, y organizamos salidas medioambientales, talleres técnicos y charlas especializadas.
+          </p>
+          <p class="mt-2 ms-section-text">
+            Todo nuestro equipo cumple los más altos estándares de Calidad y Seguridad, respaldados por años de dedicación profesional a las actividades subacuáticas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INSTALACIONES ===== -->
+  <section class="ms-content-wrapper py-5">
+    <div class="text-center mb-4">
+      <div class="d-flex align-items-center justify-content-center gap-2 mb-2 ms-section-tag">
+        <i class="bi bi-building"></i>
+        <span>Dónde estamos</span>
+      </div>
+      <h2 class="ms-section-title-md">Instalaciones de Vanguardia</h2>
+      <p class="ms-section-text">Más de 200 m² en el Puerto Deportivo Marina del Cantábrico, Camargo — a 5 minutos de Santander.</p>
+    </div>
+
+    <div class="row g-3">
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-shop ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Tienda y Recepción</h4>
+            <p class="ms-facility-desc">
+              Centro neurálgico del club. Inscripciones, información y tienda con las primeras marcas: MARES, AQUALUNG, SCUBAPRO, SUUNTO, PADI, DAN, GOPRO y muchas más. También disponible en tienda online.
+            </p>
           </div>
         </div>
-        <div class="col-12 col-md-6">
-          <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-box-seam ms-facility-icon"></i>
-            <div>
-              <h4 class="ms-facility-title">Almacén Técnico</h4>
-              <p class="ms-facility-desc">
-                Mantenimiento riguroso de todo el material bajo estándares técnicos.
-              </p>
-            </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-display ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Aula Multimedia y Zona Social</h4>
+            <p class="ms-facility-desc">
+              Espacio climatizado con WiFi gratuito para sesiones teóricas dinámicas, talleres y seminarios avanzados. Biblioteca especializada, documentales y revistas de buceo para compartir con otros buceadores.
+            </p>
           </div>
         </div>
-        <div class="col-12 col-md-6">
-          <div class="ms-card p-3 d-flex gap-3 align-items-start">
-            <i class="bi bi-wind ms-facility-icon"></i>
-            <div>
-              <h4 class="ms-facility-title">Estación de Aire y Nitrox</h4>
-              <p class="ms-facility-desc">
-                Compresores de última generación con filtrado certificado.
-              </p>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-wrench-adjustable ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Taller Mares Lab Expert</h4>
+            <p class="ms-facility-desc">
+              Certificación de máximo nivel para mantenimiento y reparación de equipos. También gestionamos la inspección visual anual y el contraste trienal de tus botellas, de obligado cumplimiento legal.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-wind ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Zona de Carga y Almacén de Gases</h4>
+            <p class="ms-facility-desc">
+              Dos compresores de aspiración abierta con capacidad para 70 botellas. Disponemos de mezclas Helio, Oxígeno, Nitrox, Trimix y Argón para traje seco. Servicio disponible para clientes externos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-droplet ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Vestuarios y Duchas</h4>
+            <p class="ms-facility-desc">
+              Seis duchas con agua caliente, secadores y amplios vestuarios con taquillas para tus efectos personales. Un pasillo con fotografías de la vida marina te acompañará entre las instalaciones.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-box-seam ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Secaderos, Jaulas y Zona de Endulzado</h4>
+            <p class="ms-facility-desc">
+              Jaulas para almacenar tu equipo entre sesiones de buceo: siempre seco y organizado. Zona de endulzado con baldes de agua dulce y tendederos protegidos del sol para un mantenimiento óptimo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-cup-hot ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Terraza con Vistas al Puerto</h4>
+            <p class="ms-facility-desc">
+              Espacio social para disfrutar antes y después de las inmersiones, con las impresionantes vistas del Puerto Deportivo Marina del Cantábrico. El lugar ideal para compartir experiencias con tus compañeros.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="ms-card p-3 d-flex gap-3 align-items-start h-100">
+          <i class="bi bi-anchor ms-facility-icon"></i>
+          <div>
+            <h4 class="ms-facility-title">Atraques a 50 metros</h4>
+            <p class="ms-facility-desc">
+              Pantalanes propios a apenas 50 m del centro. Nosotros llevamos botellas y lastre: tú solo cuida tu equipo personal. Tres embarcaciones VALIANT semirrígidas equipadas para buceo deportivo, profesional y técnico.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== EMBARCACIONES ===== -->
+  <section class="py-5 ms-section-border-top ms-section-border-bottom ms-surface-white-bg">
+    <div class="ms-content-wrapper">
+      <div class="d-flex align-items-center gap-2 mb-2 ms-section-tag">
+        <i class="bi bi-send"></i>
+        <span>Flota</span>
+      </div>
+      <h2 class="ms-section-title-md mb-1">Nuestras Embarcaciones</h2>
+      <p class="ms-section-text mb-4">Flota propia preparada para el buceo y actividades en la Bahía de Santander.</p>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <div class="ms-card p-3 h-100">
+            <h4 class="ms-facility-title"><i class="bi bi-speedometer2 me-2 ms-facility-icon" style="font-size:1rem;"></i>VALIANT 750 DR × 2</h4>
+            <p class="ms-facility-desc mt-2">Semirígidas con motores de 225 CV, sistemas de navegación modernos y todos los elementos de seguridad. Gran espacio en cubierta para buceo deportivo, profesional y técnico.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="ms-card p-3 h-100">
+            <h4 class="ms-facility-title"><i class="bi bi-speedometer me-2 ms-facility-icon" style="font-size:1rem;"></i>VALIANT 650 PT</h4>
+            <p class="ms-facility-desc mt-2">Motor Yamaha 200 CV equipada con sonda de barrido lateral y sistema de navegación. Idónea para inmersiones especializadas e investigación subacuática.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="ms-card p-3 h-100">
+            <h4 class="ms-facility-title"><i class="bi bi-life-preserver me-2 ms-facility-icon" style="font-size:1rem;"></i>Lancha de Apoyo 520</h4>
+            <p class="ms-facility-desc mt-2">Motor Yamaha 85 CV. Apoyo en inmersiones y cursos, y embarcación de seguridad en eventos y actividades especiales.</p>
+          </div>
+        </div>
+      </div>
+      <p class="ms-section-text mt-3">
+        <i class="bi bi-info-circle me-1"></i>
+        Las embarcaciones también están disponibles para fotografía submarina, observación de aves y flora marina, rutas por la Bahía y trabajos profesionales.
+        <a th:href="@{/contacto}" class="ms-link-underline">Consulta disponibilidad →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== EQUIPOS ===== -->
+  <section class="ms-content-wrapper py-5">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-2 ms-section-tag">
+          <i class="bi bi-box2-heart"></i>
+          <span>Material</span>
+        </div>
+        <h2 class="ms-section-title-md">Equipamiento MARES de última generación</h2>
+        <p class="mt-3 ms-section-text">
+          La escuela dispone de <strong>30 equipos completos MARES</strong> disponibles tanto para cursos como para alquiler. Si necesitas material, nosotros lo tenemos.
+        </p>
+        <p class="mt-2 ms-section-text">
+          Contamos con <strong>70 botellas</strong> de simple y doble grifería (de 10 a 18 litros), bibotellas y etapas S40 y S80 para buceo técnico y profesional.
+        </p>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="ms-card p-3 text-center">
+              <div class="ms-stat-number" style="font-size:2rem;">30</div>
+              <div class="ms-stat-label">Equipos completos MARES</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ms-card p-3 text-center">
+              <div class="ms-stat-number" style="font-size:2rem;">70</div>
+              <div class="ms-stat-label">Botellas (10–18 L)</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ms-card p-3 text-center">
+              <div class="ms-stat-number" style="font-size:2rem;">3</div>
+              <div class="ms-stat-label">Embarcaciones propias</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ms-card p-3 text-center">
+              <div class="ms-stat-number" style="font-size:2rem;">7</div>
+              <div class="ms-stat-label">Organismos certificadores</div>
             </div>
           </div>
         </div>
@@ -103,56 +316,319 @@
   </section>
 
   <!-- ===== INSTRUCTORES ===== -->
-  <section class="ms-content-wrapper py-5">
-    <div class="text-center mb-4">
-      <h2 class="ms-section-title-md">Nuestros Instructores</h2>
-      <p class="ms-section-text">Liderazgo, experiencia y seguridad garantizada.</p>
-    </div>
+  <section class="py-5 ms-section-border-top ms-section-border-bottom ms-surface-white-bg">
+    <div class="ms-content-wrapper">
+      <div class="text-center mb-4">
+        <div class="d-flex align-items-center justify-content-center gap-2 mb-2 ms-section-tag">
+          <i class="bi bi-person-badge"></i>
+          <span>Nuestro Staff</span>
+        </div>
+        <h2 class="ms-section-title-md">Instructores y Equipo</h2>
+        <p class="ms-section-text">Liderazgo, experiencia y seguridad garantizada. Un equipo de 14 profesionales titulados.</p>
+      </div>
 
-    <div class="row g-4">
-      <div th:each="inst : ${instructores}" class="col-12 col-sm-6 col-lg-3">
-        <div class="ms-card ms-instructor-card overflow-hidden h-100">
-          <div class="ms-instructor-img-wrap">
-            <img th:src="${inst.fotoUrl != null ? inst.fotoUrl : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=60'}"
-                 th:alt="${inst.getNombreCompleto()}"
-                 class="instructor-img"/>
-            <span th:if="${inst.tituloPadi != null}"
-                  class="ms-badge ms-instructor-badge" th:text="${inst.tituloPadi}">Título</span>
-          </div>
-          <div class="ms-card-body ms-instructor-card-body">
-            <h3 class="ms-instructor-name" th:text="${inst.getNombreCompleto()}">Nombre</h3>
-            <p th:if="${inst.especialidad != null}" class="ms-instructor-specialty"
-               th:text="${inst.especialidad}">Especialidad</p>
-            <p th:if="${inst.experiencia != null}" class="mt-2 ms-instructor-bio"
-               th:text="${inst.experiencia}">Experiencia</p>
+      <!-- DINÁMICA (desde BBDD) -->
+      <div class="row g-4" th:if="${hayInstructores}">
+        <div th:each="inst : ${instructores}"
+             class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img th:src="${inst.fotoUrl != null ? inst.fotoUrl :
+                           'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=60'}"
+                   th:alt="${inst.getNombreCompleto()}"
+                   class="instructor-img"/>
+              <span th:if="${inst.tituloPadi != null}"
+                    class="ms-badge ms-instructor-badge"
+                    th:text="${inst.tituloPadi}">
+              </span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name" th:text="${inst.getNombreCompleto()}"></h3>
+              <p th:if="${inst.especialidad}"
+                 class="ms-instructor-specialty"
+                 th:text="${inst.especialidad}">
+              </p>
+              <p th:if="${inst.experiencia}"
+                 class="mt-2 ms-instructor-bio"
+                 th:text="${inst.experiencia}">
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Fallback -->
-      <div th:if="${#lists.isEmpty(instructores)}" class="col-12 text-center py-5">
-        <i class="bi bi-person-badge ms-empty-icon"></i>
-        <p class="mt-3 ms-section-text">Próximamente presentaremos a nuestro equipo de instructores.</p>
+      <!-- FALLBACK ESTÁTICO — añadir th:if="${!hayInstructores}" cuando la BBDD esté lista -->
+      <div class="row g-4">
+
+        <!-- Leo del Rincón -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=70"
+                   alt="Leo del Rincón" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor Trainer SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Leo del Rincón</h3>
+              <p class="ms-instructor-specialty">Buceo Técnico XR · Rebreather</p>
+              <p class="mt-2 ms-instructor-bio">SSI / ESA / FEDAS / CMAS · PADI / DAN / EFR · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carmen Ruiz -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=70"
+                   alt="Carmen Ruiz" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Master Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Carmen Ruiz</h3>
+              <p class="ms-instructor-specialty">Formación y Técnico de Equipos</p>
+              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS / DAN · Técnico Reparación · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Juanjo Azcuenaga -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=70"
+                   alt="Juanjo Azcuenaga" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Juanjo Azcuenaga</h3>
+              <p class="ms-instructor-specialty">Inmersiones Deportivas</p>
+              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oscar Fuentes -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=70"
+                   alt="Oscar Fuentes" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Oscar Fuentes</h3>
+              <p class="ms-instructor-specialty">Seguridad y Rescate</p>
+              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS / DAN · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Luis Rodriguez -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=70"
+                   alt="Luis Rodriguez" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Luis Rodriguez</h3>
+              <p class="ms-instructor-specialty">Cursos de Iniciación</p>
+              <p class="mt-2 ms-instructor-bio">Instructor SSI · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alejandro Gerez -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=70"
+                   alt="Alejandro Gerez" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Alejandro Gerez</h3>
+              <p class="ms-instructor-specialty">Técnico de Equipos</p>
+              <p class="mt-2 ms-instructor-bio">SSI / DAN · Técnico Reparación · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jose Reven -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=70"
+                   alt="Jose Reven" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Jose Reven</h3>
+              <p class="ms-instructor-specialty">Formación Deportiva</p>
+              <p class="mt-2 ms-instructor-bio">Instructor SSI · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meritxell Balbas -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=70"
+                   alt="Meritxell Balbas" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Meritxell Balbas</h3>
+              <p class="ms-instructor-specialty">Buceo Deportivo</p>
+              <p class="mt-2 ms-instructor-bio">Instructor SSI · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jose Luis Sáinz -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=70"
+                   alt="Jose Luis Sáinz" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Jose Luis Sáinz</h3>
+              <p class="ms-instructor-specialty">Especialidades y Técnico</p>
+              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS / DAN · Técnico Reparación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Miguel Arnáiz -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=400&q=70"
+                   alt="Miguel Arnáiz" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Miguel Arnáiz</h3>
+              <p class="ms-instructor-specialty">Cursos Avanzados</p>
+              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vicky Alonso -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=70"
+                   alt="Vicky Alonso" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Vicky Alonso</h3>
+              <p class="ms-instructor-specialty">Formación Deportiva</p>
+              <p class="mt-2 ms-instructor-bio">Instructor SSI · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Santiago Galán -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=400&q=70"
+                   alt="Santiago Galán" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Instructor Freediving</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Santiago Galán</h3>
+              <p class="ms-instructor-specialty">Apnea y Freediving</p>
+              <p class="mt-2 ms-instructor-bio">Instructor SSI Freediving · Patrón de Embarcación · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alberto Puente -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&q=70"
+                   alt="Alberto Puente" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Dive Master SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Alberto Puente</h3>
+              <p class="ms-instructor-specialty">Guía de Inmersiones</p>
+              <p class="mt-2 ms-instructor-bio">Dive Master SSI · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jose Luis Gasco -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="ms-card ms-instructor-card h-100">
+            <div class="ms-instructor-img-wrap">
+              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&q=70"
+                   alt="Jose Luis Gasco" class="instructor-img"/>
+              <span class="ms-badge ms-instructor-badge">Dive Master SSI</span>
+            </div>
+            <div class="ms-card-body ms-instructor-card-body">
+              <h3 class="ms-instructor-name">Jose Luis Gasco</h3>
+              <p class="ms-instructor-specialty">Guía de Inmersiones</p>
+              <p class="mt-2 ms-instructor-bio">Dive Master SSI · Técnico Deportivo</p>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICACIONES / PARTNERS ===== -->
+  <section class="ms-content-wrapper py-5">
+    <div class="text-center mb-3">
+      <h2 class="ms-section-title-md">Avales y Certificaciones</h2>
+      <p class="ms-section-text">Formación reconocida en más de 100 países.</p>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
+      <span class="ms-badge ms-cert-badge px-3 py-2">SSI</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">PADI</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">ESA</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">FEDAS</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">CMAS</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">EFR</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">DAN</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">MARES Lab Expert</span>
+      <span class="ms-badge ms-cert-badge px-3 py-2">UNE / ISO</span>
     </div>
   </section>
 
   <!-- ===== CTA ===== -->
   <section class="ms-cta-section-bg">
     <div class="text-center ms-content-wrapper-md ms-cta-section-color">
-      <h2 class="ms-cta-section-title">¿Listo para comenzar tu aventura?</h2>
+      <h2 class="ms-cta-section-title">¿Listo para sumergirte?</h2>
       <p class="mt-2 ms-cta-section-text">
-        Únete a nuestra próxima promoción y descubre un mundo nuevo bajo la superficie.
+        Desde el primer bautismo hasta el buceo técnico avanzado. Estamos en el Puerto Deportivo Marina del Cantábrico, a 5 minutos de Santander.
       </p>
       <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4">
         <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">Ver Cursos</a>
         <a th:href="@{/contacto}" class="btn ms-btn-outline-primary-light px-4 py-3 rounded">Contactar</a>
       </div>
+      <p class="mt-3" style="font-size:0.85rem; opacity:0.8;">
+        <i class="bi bi-telephone me-1"></i>621 330 839 &nbsp;·&nbsp;
+        <i class="bi bi-geo-alt me-1"></i>Avda. de la Tornada, s/n — Maliaño, Cantabria
+      </p>
     </div>
   </section>
+
 </main>
 
 <footer th:replace="~{layout/base :: footer}"></footer>
 <div th:replace="~{layout/base :: scripts}"></div>
+
 </body>
 </html>
