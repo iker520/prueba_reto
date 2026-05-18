@@ -163,6 +163,8 @@ body {
   border: 1px solid var(--ms-outline-variant);
   border-radius: 0.5rem;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 .ms-card:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -576,6 +578,12 @@ body {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
+}
+/* Tarjeta destacada (más grande en desktop) */
+@media (min-width: 768px) {
+  .featured-card .ms-card-img-container {
+    height: 320px;
+  }
 }
 
 /* --- Placeholder sin imagen en card --- */
