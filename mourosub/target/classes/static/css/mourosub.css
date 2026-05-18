@@ -1359,3 +1359,27 @@ body {
   color: rgba(255, 100, 100, 0.8);
   font-family: monospace;
 }
+
+/* --- Footer: botones de redes sociales --- */
+.ms-footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ms-on-surface-var);
+  text-decoration: none;
+  background: var(--ms-surface-white);
+  transition: all 0.2s ease;
+}
+.ms-footer-social-btn:hover {
+  border-color: var(--ms-primary);
+  color: var(--ms-primary);
+  background: var(--ms-primary-fixed);
+}
+.ms-footer-social-btn i {
+  font-size: 1rem;
+}
