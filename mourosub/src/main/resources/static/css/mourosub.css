@@ -54,7 +54,9 @@ body {
 .ms-navbar {
   background-color: var(--ms-surface-white) !important;
   border-bottom: 1px solid var(--ms-outline-variant);
-  height: 80px;
+  min-height: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .ms-navbar .navbar-brand {
   font-size: 1.5rem;
@@ -76,6 +78,18 @@ body {
 .ms-navbar .nav-link.active {
   font-weight: 700;
   border-bottom: 2px solid var(--ms-primary);
+}
+/* Menú desplegado en móvil: separador visual */
+@media (max-width: 991.98px) {
+  .ms-navbar .navbar-collapse {
+    border-top: 1px solid var(--ms-outline-variant);
+    padding-top: 0.5rem;
+    padding-bottom: 0.75rem;
+    background-color: var(--ms-surface-white);
+  }
+  .ms-navbar .nav-link {
+    padding: 0.5rem 0;
+  }
 }
 
 /* --- Botones --- */
