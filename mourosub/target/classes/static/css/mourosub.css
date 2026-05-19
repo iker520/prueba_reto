@@ -1405,3 +1405,18 @@ body {
 .ms-footer-social-btn i {
   font-size: 1rem;
 }
+
+/* --- Utilidades extra extraídas de atributos style --- */
+.ms-opacity-90 { opacity: 0.9; }
+.ms-opacity-80 { opacity: 0.8; }
+.ms-icon-box-md { width: 52px; height: 52px; background-color: var(--ms-primary-fixed); }
+.ms-icon-box-lg { width: 64px; height: 64px; background-color: var(--ms-primary-fixed); }
+.ms-max-w-560 { max-width: 560px; }
+.ms-max-w-620 { max-width: 620px; }
+.ms-font-size-sm { font-size: 0.85rem; }
+.ms-border-radius-12 { border-radius: 12px; }
+.ms-badge-glass {
+  border-color: rgba(255,255,255,0.5) !important;
+  color: rgba(255,255,255,0.85) !important;
+  background: transparent !important;
+}
