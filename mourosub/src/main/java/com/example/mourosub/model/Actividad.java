@@ -35,6 +35,12 @@ public class Actividad {
     @Column(name = "tipo", length = 50)
     private String tipo;
 
+    /**
+     * Subtipo para categorizar dentro de un tipo (ej. "Apnea", "Formación" para CURSO u OFERTA)
+     */
+    @Column(name = "subtipo", length = 100)
+    private String subtipo;
+
     // Campos extra para el frontend
     @Column(name = "nivel", length = 100)
     private String nivel;

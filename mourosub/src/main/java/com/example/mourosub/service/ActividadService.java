@@ -38,6 +38,14 @@ public class ActividadService {
         return actividadRepository.findByDestacadaTrueAndActivaTrue();
     }
 
+    public List<Actividad> findByTipoAndSubtipo(String tipo, String subtipo) {
+        return actividadRepository.findByTipoAndSubtipoAndActivaTrue(tipo, subtipo);
+    }
+
+    public List<Actividad> findByTipoAndUbicacion(String tipo, String ubicacionNombre) {
+        return actividadRepository.findByTipoAndUbicaciones_NombreAndActivaTrue(tipo, ubicacionNombre);
+    }
+
     public Optional<Actividad> findById(Long id) {
         return actividadRepository.findById(id);
     }
