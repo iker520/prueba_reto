@@ -29,27 +29,27 @@
     <div class="ms-content-wrapper py-4">
       <div class="row g-3 text-center">
         <div class="col-6 col-md-3">
-          <div class="ms-card p-3">
-            <div class="ms-stat-number">+25</div>
-            <div class="ms-stat-label">Años de experiencia</div>
+          <div class="ms-stat-box">
+            <div class="stat-number">+25</div>
+            <div class="stat-label">Años de experiencia</div>
           </div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="ms-card p-3">
-            <div class="ms-stat-number">+5.000</div>
-            <div class="ms-stat-label">Certificaciones emitidas</div>
+          <div class="ms-stat-box">
+            <div class="stat-number">+5.000</div>
+            <div class="stat-label">Certificaciones emitidas</div>
           </div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="ms-card p-3">
-            <div class="ms-stat-number">14</div>
-            <div class="ms-stat-label">Instructores titulados</div>
+          <div class="ms-stat-box">
+            <div class="stat-number">14</div>
+            <div class="stat-label">Instructores titulados</div>
           </div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="ms-card p-3">
-            <div class="ms-stat-number">+200 m²</div>
-            <div class="ms-stat-label">De instalaciones</div>
+          <div class="ms-stat-box">
+            <div class="stat-number">+200 m²</div>
+            <div class="stat-label">De instalaciones</div>
           </div>
         </div>
       </div>
@@ -263,7 +263,7 @@
       <p class="ms-section-text mt-3">
         <i class="bi bi-info-circle me-1"></i>
         Las embarcaciones también están disponibles para fotografía submarina, observación de aves y flora marina, rutas por la Bahía y trabajos profesionales.
-        <a th:href="@{/contacto}" class="ms-link-underline">Consulta disponibilidad →</a>
+        <a th:href="@{/contacto}" class="link-primary">Consulta disponibilidad →</a>
       </p>
     </div>
   </section>
@@ -287,27 +287,27 @@
       <div class="col-12 col-md-6">
         <div class="row g-2">
           <div class="col-6">
-            <div class="ms-card p-3 text-center">
-              <div class="ms-stat-number fs-2">30</div>
-              <div class="ms-stat-label">Equipos completos MARES</div>
+            <div class="ms-stat-box">
+              <div class="stat-number">30</div>
+              <div class="stat-label">Equipos completos MARES</div>
             </div>
           </div>
           <div class="col-6">
-            <div class="ms-card p-3 text-center">
-              <div class="ms-stat-number fs-2">70</div>
-              <div class="ms-stat-label">Botellas (10–18 L)</div>
+            <div class="ms-stat-box">
+              <div class="stat-number">70</div>
+              <div class="stat-label">Botellas (10–18 L)</div>
             </div>
           </div>
           <div class="col-6">
-            <div class="ms-card p-3 text-center">
-              <div class="ms-stat-number fs-2">3</div>
-              <div class="ms-stat-label">Embarcaciones propias</div>
+            <div class="ms-stat-box">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Embarcaciones propias</div>
             </div>
           </div>
           <div class="col-6">
-            <div class="ms-card p-3 text-center">
-              <div class="ms-stat-number fs-2">7</div>
-              <div class="ms-stat-label">Organismos certificadores</div>
+            <div class="ms-stat-box">
+              <div class="stat-number">7</div>
+              <div class="stat-label">Organismos certificadores</div>
             </div>
           </div>
         </div>
@@ -595,15 +595,15 @@
       <p class="ms-section-text">Formación reconocida en más de 100 países.</p>
     </div>
     <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
-      <span class="ms-badge ms-cert-badge px-3 py-2">SSI</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">PADI</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">ESA</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">FEDAS</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">CMAS</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">EFR</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">DAN</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">MARES Lab Expert</span>
-      <span class="ms-badge ms-cert-badge px-3 py-2">UNE / ISO</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">SSI</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">PADI</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">ESA</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">FEDAS</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">CMAS</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">EFR</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">DAN</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">MARES Lab Expert</span>
+      <span class="ms-badge ms-badge-outline px-3 py-2">UNE / ISO</span>
     </div>
   </section>
 
@@ -662,40 +662,48 @@
             Estamos dentro de las instalaciones del Puerto Deportivo Marina del Cantábrico, en el Municipio de Camargo. Todas las infraestructuras se encuentran en la misma ubicación, incluidos los atraques. Nuestra preocupación es ofrecerte la mayor comodidad y el mejor servicio con la máxima seguridad, lo que nos convierte en uno de los centros de referencia de la zona Norte.
           </p>
 
-          <div class="row g-2 mt-4">
+          <div class="row g-3 mt-4">
             <div class="col-12 col-sm-6">
-              <div class="ms-card p-3 d-flex gap-2 align-items-center">
-                <i class="bi bi-telephone-fill ms-facility-icon flex-shrink-0 fs-6"></i>
+              <div class="ms-kpi-card h-100">
+                <div class="kpi-icon ms-icon-box-md d-flex align-items-center justify-content-center rounded flex-shrink-0">
+                  <i class="bi bi-telephone-fill ms-facility-icon"></i>
+                </div>
                 <div>
-                  <div class="ms-facility-title ms-font-size-sm">Teléfono</div>
-                  <div class="ms-facility-desc">621 330 839</div>
+                  <div class="kpi-label">Teléfono</div>
+                  <div class="ms-facility-title">621 330 839</div>
                 </div>
               </div>
             </div>
             <div class="col-12 col-sm-6">
-              <div class="ms-card p-3 d-flex gap-2 align-items-center">
-                <i class="bi bi-clock-fill ms-facility-icon flex-shrink-0 fs-6"></i>
+              <div class="ms-kpi-card h-100">
+                <div class="kpi-icon ms-icon-box-md d-flex align-items-center justify-content-center rounded flex-shrink-0">
+                  <i class="bi bi-clock-fill ms-facility-icon"></i>
+                </div>
                 <div>
-                  <div class="ms-facility-title ms-font-size-sm">Horario</div>
-                  <div class="ms-facility-desc">Lun–Vie 10:00–20:00 · Sáb 10:00–14:00</div>
+                  <div class="kpi-label">Horario</div>
+                  <div class="ms-facility-title">Lun–Vie 10:00–20:00<br>Sáb 10:00–14:00</div>
                 </div>
               </div>
             </div>
             <div class="col-12 col-sm-6">
-              <div class="ms-card p-3 d-flex gap-2 align-items-center">
-                <i class="bi bi-envelope-fill ms-facility-icon flex-shrink-0 fs-6"></i>
+              <div class="ms-kpi-card h-100">
+                <div class="kpi-icon ms-icon-box-md d-flex align-items-center justify-content-center rounded flex-shrink-0">
+                  <i class="bi bi-envelope-fill ms-facility-icon"></i>
+                </div>
                 <div>
-                  <div class="ms-facility-title ms-font-size-sm">Email</div>
-                  <div class="ms-facility-desc">info@mourosub.com</div>
+                  <div class="kpi-label">Email</div>
+                  <div class="ms-facility-title">info@mourosub.com</div>
                 </div>
               </div>
             </div>
             <div class="col-12 col-sm-6">
-              <div class="ms-card p-3 d-flex gap-2 align-items-center">
-                <i class="bi bi-star-fill ms-facility-icon flex-shrink-0 fs-6"></i>
+              <div class="ms-kpi-card h-100">
+                <div class="kpi-icon ms-icon-box-md d-flex align-items-center justify-content-center rounded flex-shrink-0">
+                  <i class="bi bi-star-fill ms-facility-icon"></i>
+                </div>
                 <div>
-                  <div class="ms-facility-title ms-font-size-sm">Valoración Google</div>
-                  <div class="ms-facility-desc">4,9 ⭐ · 141 reseñas</div>
+                  <div class="kpi-label">Valoración Google</div>
+                  <div class="ms-facility-title">4,9 ⭐ · 141 reseñas</div>
                 </div>
               </div>
             </div>
@@ -723,7 +731,7 @@
         <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">Ver Cursos</a>
         <a th:href="@{/contacto}" class="btn ms-btn-outline-primary-light px-4 py-3 rounded">Contactar</a>
       </div>
-      <p class="mt-3 ms-font-size-sm ms-opacity-80">
+      <p class="mt-3 ms-opacity-80">
         <i class="bi bi-telephone me-1"></i>621 330 839 &nbsp;·&nbsp;
         <i class="bi bi-geo-alt me-1"></i>Avda. de la Tornada, s/n — Maliaño, Cantabria
       </p>
