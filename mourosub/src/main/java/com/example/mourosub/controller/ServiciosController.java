@@ -19,13 +19,21 @@ public class ServiciosController {
     }
 
     @GetMapping
-    public String servicios(@RequestParam(required = false) String tipo, Model model) {
-        if (tipo != null && !tipo.isBlank()) {
+    public String servicios(@RequestParam(required = false) String tipo,
+                            @RequestParam(required = false) String q,
+                            Model model) {
+        if (q != null && !q.isBlank()) {
+            model.addAttribute("actividades", actividadService.searchActivas(q));
+            model.addAttribute("tipoSeleccionado", "");
+            model.addAttribute("searchQuery", q);
+        } else if (tipo != null && !tipo.isBlank()) {
             model.addAttribute("actividades", actividadService.findByTipo(tipo.toUpperCase()));
             model.addAttribute("tipoSeleccionado", tipo.toUpperCase());
+            model.addAttribute("searchQuery", "");
         } else {
             model.addAttribute("actividades", actividadService.findAllActivas());
             model.addAttribute("tipoSeleccionado", "");
+            model.addAttribute("searchQuery", "");
         }
         model.addAttribute("cursos",      actividadService.findByTipo("CURSO"));
         model.addAttribute("inmersiones", actividadService.findByTipo("INMERSION"));

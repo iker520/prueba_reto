@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/base :: head('Aviso Legal')}"></head>
+<body class="page-body">
+<nav th:replace="~{layout/base :: navbar}"></nav>
+
+<main>
+    <section class="py-4 ms-section-alt">
+        <div class="ms-content-wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a th:href="@{/}" class="ms-footer-contact-link">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Aviso Legal</li>
+                </ol>
+            </nav>
+            <h1 class="ms-section-title">Aviso Legal</h1>
+            <p class="ms-section-text mt-1">Última actualización: enero 2025</p>
+        </div>
+    </section>
+
+    <section class="ms-content-wrapper py-5">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">1. Datos del titular</h2>
+                    <ul class="list-unstyled ms-section-text d-flex flex-column gap-1 mb-0">
+                        <li><strong>Razón social:</strong> MouroSub Diving School</li>
+                        <li><strong>Domicilio:</strong> Bajos Edificio Capitanía, Avda. de la Tornada s/n, 39600 Maliaño, Cantabria</li>
+                        <li><strong>Teléfono:</strong> <a href="tel:+34621330839" class="ms-footer-contact-link">621 330 839</a></li>
+                        <li><strong>Email:</strong> <a href="mailto:info@mourosub.com" class="ms-footer-contact-link">info@mourosub.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">2. Objeto y ámbito de aplicación</h2>
+                    <p class="ms-section-text">
+                        El presente Aviso Legal regula el acceso y uso del sitio web <strong>mourosub.com</strong>
+                        (en adelante, "el Sitio"), cuya titularidad corresponde a MouroSub Diving School.
+                        El acceso al Sitio implica la aceptación plena y sin reservas de las presentes condiciones.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">3. Propiedad intelectual e industrial</h2>
+                    <p class="ms-section-text">
+                        Todos los contenidos del Sitio —textos, imágenes, logotipos, iconos, archivos de audio y vídeo,
+                        diseño gráfico y código fuente— son propiedad de MouroSub o de terceros que han autorizado su uso,
+                        y están protegidos por la legislación española e internacional sobre propiedad intelectual e industrial.
+                        Queda expresamente prohibida su reproducción, distribución o comunicación pública sin autorización escrita.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">4. Responsabilidad</h2>
+                    <p class="ms-section-text">
+                        MouroSub no se hace responsable de los daños derivados del uso del Sitio ni de posibles errores
+                        en los contenidos publicados. Nos reservamos el derecho a modificar, suspender o retirar el acceso
+                        al Sitio en cualquier momento y sin previo aviso.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">5. Cookies</h2>
+                    <p class="ms-section-text">
+                        Este Sitio utiliza cookies propias y de terceros para mejorar la experiencia de navegación y
+                        analizar el tráfico web. Al continuar navegando, aceptas su uso conforme a nuestra
+                        <a th:href="@{/politica-privacidad}" class="ms-footer-contact-link fw-semibold">Política de privacidad</a>.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">6. Legislación y jurisdicción aplicable</h2>
+                    <p class="ms-section-text">
+                        Este Aviso Legal se rige por la legislación española. Para cualquier controversia relativa
+                        a la interpretación o aplicación del mismo, las partes renuncian a su fuero propio y se
+                        someten a los Juzgados y Tribunales de Santander (Cantabria).
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                <div class="ms-card p-4 ms-aside-sticky">
+                    <h3 class="ms-aside-title">Documentos legales</h3>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        <li class="ms-aside-item pb-2">
+                            <a th:href="@{/condiciones-venta}" class="ms-aside-link d-flex align-items-center gap-2">
+                                <i class="bi bi-file-text"></i> Condiciones de venta
+                            </a>
+                        </li>
+                        <li class="ms-aside-item py-2">
+                            <a th:href="@{/devoluciones}" class="ms-aside-link d-flex align-items-center gap-2">
+                                <i class="bi bi-arrow-return-left"></i> Devoluciones
+                            </a>
+                        </li>
+                        <li class="ms-aside-item py-2">
+                            <a th:href="@{/aviso-legal}" class="ms-aside-link d-flex align-items-center gap-2 fw-semibold" style="color:var(--ms-primary)">
+                                <i class="bi bi-shield-check"></i> Aviso Legal
+                            </a>
+                        </li>
+                        <li class="pt-2">
+                            <a th:href="@{/politica-privacidad}" class="ms-aside-link d-flex align-items-center gap-2">
+                                <i class="bi bi-lock"></i> Política de privacidad
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="my-3">
+                    <p class="ms-footer-text mb-1"><i class="bi bi-envelope me-1"></i> info@mourosub.com</p>
+                    <p class="ms-footer-text mb-0"><i class="bi bi-telephone me-1"></i> 621 330 839</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:replace="~{layout/base :: footer}"></footer>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

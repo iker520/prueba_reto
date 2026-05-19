@@ -163,6 +163,8 @@ body {
   border: 1px solid var(--ms-outline-variant);
   border-radius: 0.5rem;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 .ms-card:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -576,6 +578,12 @@ body {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
+}
+/* Tarjeta destacada (más grande en desktop) */
+@media (min-width: 768px) {
+  .featured-card .ms-card-img-container {
+    height: 320px;
+  }
 }
 
 /* --- Placeholder sin imagen en card --- */
@@ -1372,4 +1380,28 @@ body {
   font-size: 0.75rem;
   color: rgba(255, 100, 100, 0.8);
   font-family: monospace;
+}
+
+/* --- Footer: botones de redes sociales --- */
+.ms-footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ms-on-surface-var);
+  text-decoration: none;
+  background: var(--ms-surface-white);
+  transition: all 0.2s ease;
+}
+.ms-footer-social-btn:hover {
+  border-color: var(--ms-primary);
+  color: var(--ms-primary);
+  background: var(--ms-primary-fixed);
+}
+.ms-footer-social-btn i {
+  font-size: 1rem;
 }

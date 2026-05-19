@@ -26,6 +26,10 @@ public class ActividadService {
         return actividadRepository.findByActivaTrue();
     }
 
+    public List<Actividad> searchActivas(String keyword) {
+        return actividadRepository.findByNombreContainingIgnoreCaseAndActivaTrue(keyword);
+    }
+
     public List<Actividad> findByTipo(String tipo) {
         return actividadRepository.findByTipoAndActivaTrue(tipo);
     }

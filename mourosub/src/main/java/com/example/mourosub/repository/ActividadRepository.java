@@ -12,4 +12,5 @@ public interface ActividadRepository extends JpaRepository<Actividad, Long> {
     List<Actividad> findByTipoAndActivaTrue(String tipo);
     List<Actividad> findByDestacadaTrueAndActivaTrue();
     List<Actividad> findByNombreContainingIgnoreCase(String nombre);
+    List<Actividad> findByNombreContainingIgnoreCaseAndActivaTrue(String nombre);
 }

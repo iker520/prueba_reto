@@ -6,201 +6,336 @@
 <nav th:replace="~{layout/base :: navbar}"></nav>
 
 <main>
-  <!-- ===== HERO SECTION ===== -->
-  <section class="ms-hero">
-    <img class="ms-hero-img"
-         src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&q=80"
-         alt="Buceador explorando el fondo marino"/>
-    <div class="container-ms w-100 ms-content-wrapper">
-      <div class="ms-hero-content ms-animate ms-hero-content-wrap">
-        <div class="ms-badge mb-3">Escuela de Buceo Profesional</div>
-        <h1>Explora lo invisible con MouroSub</h1>
-        <p class="mt-3 mb-4">
-          Escuela de buceo profesional en Santander. Desde bautismos hasta certificaciones
-          técnicas, sumérgete con seguridad y precisión en el Cantábrico.
-        </p>
-        <div class="d-flex flex-wrap gap-3">
-          <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">
-            Empieza tu aventura
-          </a>
-          <a th:href="@{/servicios(tipo=CURSO)}" class="btn ms-hero-btn-secondary px-4 py-3 rounded">
-            Ver Cursos
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== BENTO GRID: SERVICIOS DESTACADOS ===== -->
-  <section class="py-5 ms-content-wrapper">
-    <h2 class="mb-4 ms-section-title">
-      Nuestros Servicios
-    </h2>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="ms-hero">
+        <img class="ms-hero-img"
+             src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&q=80"
+             alt="Buceador explorando el fondo marino"/>
+        <div class="container-ms w-100 ms-content-wrapper">
+            <div class="ms-hero-content ms-animate ms-hero-content-wrap">
 
-    <!-- Actividades dinámicas desde BD -->
-    <div th:if="${not #lists.isEmpty(actividadesDestacadas)}" class="row g-3">
-      <div th:each="act, iterStat : ${actividadesDestacadas}"
-           th:classappend="${iterStat.index == 0} ? 'col-12 col-md-8' : 'col-12 col-md-4'"
-           class="col">
-        <div class="ms-card h-100 p-4 d-flex flex-column justify-content-between">
-          <div>
-            <span class="ms-badge mb-2" th:text="${act.tipo}">CURSO</span>
-            <h3 class="mt-2 ms-act-title" th:text="${act.nombre}">Actividad</h3>
-            <p class="ms-section-text" th:text="${act.descripcion}">Descripción</p>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-3">
-            <span th:if="${act.precio != null}" class="ms-act-price" th:text="${act.precio + '€'}">—</span>
-            <a th:href="@{/servicios/{id}(id=${act.idActividad})}"
-               class="btn btn-ms-outline px-3 py-2 rounded">Saber más</a>
-          </div>
-        </div>
-      </div>
-    </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="ms-badge">Escuela de Buceo Profesional</span>
+                    <span class="ms-badge ms-badge-outline text-white border-white" style="border-color:rgba(255,255,255,0.5)!important;color:rgba(255,255,255,0.85)!important;background:transparent">
+            PADI Certificada
+          </span>
+                </div>
 
-    <!-- Fallback si no hay actividades -->
-    <div th:if="${#lists.isEmpty(actividadesDestacadas)}" class="row g-3">
-      <div class="col-12 col-md-8">
-        <div class="ms-card p-4 h-100">
-          <i class="bi bi-mortarboard ms-icon-lg"></i>
-          <h3 class="mt-2">Cursos de Buceo</h3>
-          <p class="ms-section-text">
-            Obtén tu certificación internacional PADI. Desde Open Water hasta niveles profesionales.
-          </p>
-          <a th:href="@{/servicios(tipo=CURSO)}" class="btn btn-ms-primary px-4 py-2 rounded mt-3">
-            Explorar certificaciones <i class="bi bi-arrow-right ms-2"></i>
-          </a>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="ms-card p-4 h-100">
-          <i class="bi bi-water ms-icon-lg"></i>
-          <h3 class="mt-2">Inmersiones Diarias</h3>
-          <p class="ms-section-text">Salidas programadas a los mejores puntos de la costa cántabra.</p>
-          <a th:href="@{/servicios(tipo=INMERSION)}" class="btn btn-ms-outline px-3 py-2 rounded mt-3">Ver salidas</a>
-        </div>
-      </div>
-    </div>
+                <h1 class="ms-animate ms-animate-delay-1">
+                    Explora lo invisible<br>con MouroSub
+                </h1>
 
-    <div class="text-center mt-4">
-      <a th:href="@{/servicios}" class="btn btn-ms-outline px-5 py-2 rounded">
-        Ver todos los servicios
-      </a>
-    </div>
-  </section>
+                <p class="mt-3 mb-4 ms-animate ms-animate-delay-2">
+                    Escuela de buceo profesional en Santander. Desde bautismos hasta certificaciones
+                    técnicas, sumérgete con seguridad y precisión en el Cantábrico.
+                </p>
 
-  <!-- ===== SOBRE NOSOTROS TEASER ===== -->
-  <section class="ms-section-alt py-5">
-    <div class="ms-content-wrapper">
-      <div class="row align-items-center gy-4">
-        <div class="col-12 col-md-6">
-          <h2 class="ms-section-title">
-            Pasión por el Cantábrico
-          </h2>
-          <p class="ms-section-text mt-3">
-            MouroSub nació con la misión de compartir los secretos del mundo submarino bajo una
-            premisa innegociable: la seguridad. Con más de 15 años de experiencia, somos el referente
-            en formación de buceo en el norte.
-          </p>
-          <p class="ms-section-text mt-2">
-            Nuestro equipo de instructores certificados te acompañará en cada aleteo, asegurando que
-            tu única preocupación sea disfrutar de la ingravidez.
-          </p>
-          <a th:href="@{/conocenos}" class="d-inline-flex align-items-center gap-2 mt-3 fw-bold ms-section-link">
-            Conoce a nuestro equipo <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="row g-3">
-            <div class="col-6">
-              <div class="ms-stat-box">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Años Experiencia</div>
-              </div>
+                <div class="d-flex flex-wrap gap-3 ms-animate ms-animate-delay-3">
+                    <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">
+                        <i class="bi bi-compass me-2"></i>Empieza tu aventura
+                    </a>
+                    <a th:href="@{/servicios(tipo=CURSO)}" class="btn ms-hero-btn-secondary px-4 py-3 rounded">
+                        <i class="bi bi-mortarboard me-2"></i>Ver Cursos
+                    </a>
+                </div>
+
+                <!-- Mini stats en el hero -->
+                <div class="d-flex flex-wrap gap-4 mt-5 ms-animate ms-animate-delay-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-people-fill text-white opacity-75"></i>
+                        <span class="text-white fw-semibold" style="opacity:0.9">2.000+ alumnos</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-award-fill text-white opacity-75"></i>
+                        <span class="text-white fw-semibold" style="opacity:0.9">Centro PADI oficial</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-geo-alt-fill text-white opacity-75"></i>
+                        <span class="text-white fw-semibold" style="opacity:0.9">Santander, Cantabria</span>
+                    </div>
+                </div>
+
             </div>
-            <div class="col-6">
-              <div class="ms-stat-box">
-                <div class="stat-number">2k+</div>
-                <div class="stat-label">Alumnos Certificados</div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="ms-stat-box">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Zonas de Buceo</div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="ms-stat-box">
-                <div class="stat-number">PADI</div>
-                <div class="stat-label">Centro Certificado</div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== ÚLTIMAS NOTICIAS ===== -->
-  <section class="py-5 ms-content-wrapper">
-    <div class="d-flex justify-content-between align-items-end mb-4">
-      <div>
-        <h2 class="ms-news-header-title">
-          Últimas Noticias
-        </h2>
-        <p class="ms-news-header-text">Actualidad, eventos y consejos de buceo.</p>
-      </div>
-      <a th:href="@{/noticias}" class="fw-semibold d-none d-md-block ms-news-all-link">
-        Ver todo el blog <i class="bi bi-arrow-right"></i>
-      </a>
-    </div>
 
-    <div class="row g-4">
-      <div th:each="noticia : ${ultimasNoticias}" class="col-12 col-md-4">
-        <div class="ms-card ms-news-card h-100">
-          <div class="news-img-wrapper">
-            <img th:src="${noticia.imagenUrl != null ? noticia.imagenUrl : 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=60'}"
-                 th:alt="${noticia.titulo}"
-                 class="img-fluid"/>
-          </div>
-          <div class="ms-card-body">
-            <span class="news-cat" th:text="${noticia.categoria}">CATEGORÍA</span>
-            <p class="text-muted mt-1 ms-news-date" th:text="${#temporals.format(noticia.fechaPublicacion, 'dd MMM, yyyy')}">Fecha</p>
-            <h4 class="news-title mt-1" th:text="${noticia.titulo}">Título</h4>
-            <a th:href="@{/noticias/{id}(id=${noticia.idNoticia})}"
-               class="d-inline-flex align-items-center gap-1 mt-2 fw-semibold ms-news-link">
-              Leer más <i class="bi bi-chevron-right"></i>
+    <!-- ===== BENTO GRID: SERVICIOS DESTACADOS ===== -->
+    <section class="py-5 ms-content-wrapper">
+
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <h2 class="ms-section-title mb-1">Nuestros Servicios</h2>
+                <p class="mb-0 ms-section-text">Todo lo que necesitas para bucear con seguridad.</p>
+            </div>
+            <a th:href="@{/servicios}" class="btn btn-ms-outline px-4 py-2 rounded d-none d-md-inline-flex align-items-center gap-2">
+                Ver todos <i class="bi bi-arrow-right"></i>
             </a>
-          </div>
         </div>
-      </div>
-      <!-- Fallback -->
-      <div th:if="${#lists.isEmpty(ultimasNoticias)}" class="col-12">
-        <div class="text-center py-5 ms-fallback-text">
-          <i class="bi bi-newspaper ms-empty-icon"></i>
-          <p class="mt-3">Próximamente publicaremos noticias y artículos.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== CTA FINAL ===== -->
-  <section class="ms-section-dark py-5 text-center">
-    <div class="ms-content-wrapper-sm">
-      <h2 class="ms-cta-final-title">¿Listo para sumergirte?</h2>
-      <p class="mt-3 ms-cta-dark-text">
-        Contáctanos hoy mismo y reserva tu plaza. No pierdas la oportunidad de descubrir un mundo nuevo.
-      </p>
-      <div class="d-flex flex-column flex-md-row gap-3 justify-content-center mt-4">
-        <a th:href="@{/contacto}" class="btn ms-btn-white px-5 py-3 rounded fw-semibold">
-          Solicitar Información
-        </a>
-        <a href="tel:+34942000000" class="btn ms-btn-outline-light px-5 py-3 rounded">
-          <i class="bi bi-telephone me-2"></i>Llamar ahora
-        </a>
-      </div>
-    </div>
-  </section>
+        <!-- Actividades dinámicas desde BD -->
+        <div th:if="${not #lists.isEmpty(actividadesDestacadas)}" class="row g-3">
+            <div th:each="act, iterStat : ${actividadesDestacadas}"
+                 th:classappend="${iterStat.index == 0} ? 'col-12 col-md-8' : 'col-12 col-md-4'"
+                 class="col">
+                <div class="ms-card h-100 p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="ms-badge" th:text="${act.tipo}">CURSO</span>
+                        </div>
+                        <h3 class="mt-2 ms-act-title" th:text="${act.nombre}">Actividad</h3>
+                        <p class="ms-section-text mt-2" th:text="${act.descripcion}">Descripción</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                        <span th:if="${act.precio != null}" class="ms-act-price" th:text="${act.precio + '€'}">—</span>
+                        <span th:if="${act.precio == null}" class="ms-act-price">Consultar</span>
+                        <a th:href="@{/servicios/{id}(id=${act.idActividad})}"
+                           class="btn btn-ms-outline px-3 py-2 rounded d-inline-flex align-items-center gap-2">
+                            Saber más <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fallback si no hay actividades -->
+        <div th:if="${#lists.isEmpty(actividadesDestacadas)}" class="row g-3">
+            <div class="col-12 col-md-8">
+                <div class="ms-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-inline-flex align-items-center justify-content-center rounded mb-3"
+                             style="width:52px;height:52px;background:var(--ms-primary-fixed)">
+                            <i class="bi bi-mortarboard fs-4" style="color:var(--ms-primary)"></i>
+                        </div>
+                        <h3 class="ms-act-title">Cursos de Buceo</h3>
+                        <p class="ms-section-text mt-2">
+                            Obtén tu certificación internacional PADI. Desde Open Water hasta niveles profesionales.
+                            Formación personalizada con instructores certificados.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-top">
+                        <a th:href="@{/servicios(tipo=CURSO)}" class="btn btn-ms-primary px-4 py-2 rounded d-inline-flex align-items-center gap-2">
+                            Explorar certificaciones <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="ms-card p-4 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-inline-flex align-items-center justify-content-center rounded mb-3"
+                             style="width:52px;height:52px;background:var(--ms-primary-fixed)">
+                            <i class="bi bi-water fs-4" style="color:var(--ms-primary)"></i>
+                        </div>
+                        <h3 class="ms-act-title">Inmersiones Diarias</h3>
+                        <p class="ms-section-text mt-2">Salidas programadas a los mejores puntos de la costa cántabra.</p>
+                    </div>
+                    <div class="pt-3 border-top">
+                        <a th:href="@{/servicios(tipo=INMERSION)}" class="btn btn-ms-outline px-3 py-2 rounded d-inline-flex align-items-center gap-2">
+                            Ver salidas <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ver todos - mobile -->
+        <div class="text-center mt-4 d-md-none">
+            <a th:href="@{/servicios}" class="btn btn-ms-outline px-5 py-2 rounded">
+                Ver todos los servicios
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ===== SOBRE NOSOTROS TEASER ===== -->
+    <section class="ms-section-alt py-5">
+        <div class="ms-content-wrapper">
+            <div class="row align-items-center gy-5">
+
+                <div class="col-12 col-md-6">
+                    <span class="ms-badge ms-badge-outline mb-3 d-inline-block">Quiénes somos</span>
+                    <h2 class="ms-section-title">
+                        Pasión por el Cantábrico
+                    </h2>
+                    <p class="ms-section-text mt-3">
+                        MouroSub nació con la misión de compartir los secretos del mundo submarino bajo una
+                        premisa innegociable: la seguridad. Con más de 15 años de experiencia, somos el referente
+                        en formación de buceo en el norte.
+                    </p>
+                    <p class="ms-section-text mt-2">
+                        Nuestro equipo de instructores certificados te acompañará en cada aleteo, asegurando que
+                        tu única preocupación sea disfrutar de la ingravidez.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a th:href="@{/conocenos}" class="btn btn-ms-primary px-4 py-2 rounded d-inline-flex align-items-center gap-2">
+                            Conoce a nuestro equipo <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a th:href="@{/contacto}" class="btn btn-ms-outline px-4 py-2 rounded">
+                            Contáctanos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="ms-stat-box">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Años de Experiencia</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="ms-stat-box">
+                                <div class="stat-number">2k+</div>
+                                <div class="stat-label">Alumnos Certificados</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="ms-stat-box">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Zonas de Buceo</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="ms-stat-box">
+                                <div class="stat-number">PADI</div>
+                                <div class="stat-label">Centro Certificado</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== POR QUÉ ELEGIRNOS ===== -->
+    <section class="py-5 ms-content-wrapper">
+        <div class="text-center mb-5">
+            <h2 class="ms-section-title">¿Por qué elegir MouroSub?</h2>
+            <p class="ms-section-text mx-auto" style="max-width:560px">
+                Más de 15 años formando buceadores con los más altos estándares de seguridad y profesionalidad.
+            </p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <div class="ms-card p-4 h-100 text-center">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                         style="width:64px;height:64px;background:var(--ms-primary-fixed)">
+                        <i class="bi bi-shield-check fs-3" style="color:var(--ms-primary)"></i>
+                    </div>
+                    <h4 class="fw-semibold mb-2">Seguridad Ante Todo</h4>
+                    <p class="ms-section-text">Protocolos rigurosos y equipamiento de última generación para que bucees con total tranquilidad.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="ms-card p-4 h-100 text-center">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                         style="width:64px;height:64px;background:var(--ms-primary-fixed)">
+                        <i class="bi bi-person-badge fs-3" style="color:var(--ms-primary)"></i>
+                    </div>
+                    <h4 class="fw-semibold mb-2">Instructores Certificados</h4>
+                    <p class="ms-section-text">Todo nuestro equipo cuenta con certificaciones PADI y años de experiencia en el Cantábrico.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="ms-card p-4 h-100 text-center">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                         style="width:64px;height:64px;background:var(--ms-primary-fixed)">
+                        <i class="bi bi-map fs-3" style="color:var(--ms-primary)"></i>
+                    </div>
+                    <h4 class="fw-semibold mb-2">Los Mejores Spots</h4>
+                    <p class="ms-section-text">Acceso a más de 50 puntos de buceo exclusivos a lo largo de toda la costa cántabra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== ÚLTIMAS NOTICIAS ===== -->
+    <section class="ms-section-alt py-5">
+        <div class="ms-content-wrapper">
+
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <span class="ms-badge ms-badge-outline mb-2 d-inline-block">Blog</span>
+                    <h2 class="ms-news-header-title">
+                        Últimas Noticias
+                    </h2>
+                    <p class="ms-news-header-text">Actualidad, eventos y consejos de buceo.</p>
+                </div>
+                <a th:href="@{/noticias}" class="fw-semibold d-none d-md-flex align-items-center gap-2 ms-news-all-link">
+                    Ver todo el blog <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="row g-4">
+                <div th:each="noticia : ${ultimasNoticias}" class="col-12 col-md-4">
+                    <div class="ms-card ms-news-card h-100">
+                        <div class="news-img-wrapper">
+                            <img th:src="${noticia.imagenUrl != null ? noticia.imagenUrl : 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=60'}"
+                                 th:alt="${noticia.titulo}"
+                                 class="img-fluid"/>
+                        </div>
+                        <div class="ms-card-body">
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="news-cat" th:text="${noticia.categoria}">CATEGORÍA</span>
+                                <span class="text-muted ms-news-date" th:text="${#temporals.format(noticia.fechaPublicacion, 'dd MMM, yyyy')}">Fecha</span>
+                            </div>
+                            <h4 class="news-title mt-2" th:text="${noticia.titulo}">Título</h4>
+                            <a th:href="@{/noticias/{id}(id=${noticia.idNoticia})}"
+                               class="d-inline-flex align-items-center gap-1 mt-3 fw-semibold ms-news-link">
+                                Leer más <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fallback -->
+                <div th:if="${#lists.isEmpty(ultimasNoticias)}" class="col-12">
+                    <div class="text-center py-5 ms-fallback-text">
+                        <i class="bi bi-newspaper ms-empty-icon"></i>
+                        <p class="mt-3">Próximamente publicaremos noticias y artículos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ver todo - mobile -->
+            <div class="text-center mt-4 d-md-none">
+                <a th:href="@{/noticias}" class="btn btn-ms-outline px-5 py-2 rounded">
+                    Ver todo el blog
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="ms-section-dark py-5 text-center">
+        <div class="ms-content-wrapper-sm">
+
+            <i class="bi bi-water display-4 text-white opacity-50 mb-3 d-block"></i>
+            <h2 class="ms-cta-final-title text-white">¿Listo para sumergirte?</h2>
+            <p class="mt-3 ms-cta-dark-text">
+                Contáctanos hoy mismo y reserva tu plaza. No pierdas la oportunidad de descubrir un mundo nuevo
+                bajo las aguas del Cantábrico.
+            </p>
+
+            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center mt-4">
+                <a th:href="@{/contacto}" class="btn ms-btn-white px-5 py-3 rounded fw-semibold d-inline-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-envelope"></i>Solicitar Información
+                </a>
+                <a href="tel:+34942000000" class="btn ms-btn-outline-light px-5 py-3 rounded d-inline-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-telephone"></i>Llamar ahora
+                </a>
+            </div>
+
+        </div>
+    </section>
+
 </main>
 
 <footer th:replace="~{layout/base :: footer}"></footer>
