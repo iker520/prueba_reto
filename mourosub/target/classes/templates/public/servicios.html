@@ -11,13 +11,48 @@
     <!-- ===== CABECERA ===== -->
     <section class="ms-section-alt py-4 ms-section-border-bottom">
       <div class="ms-content-wrapper">
-        <h1 class="ms-page-title">
-          Servicios de Buceo Profesionales
-        </h1>
-        <p class="mt-2 ms-page-subtitle">
-          Explora el mundo submarino con MouroSub. Formación certificada, inmersiones guiadas
-          y actividades especiales para todos los niveles.
-        </p>
+        <div th:switch="${tipoSeleccionado}">
+          <!-- TODOS -->
+          <th:block th:case="''">
+            <h1 class="ms-page-title">Servicios de Buceo Profesionales</h1>
+            <p class="mt-2 ms-page-subtitle">
+              Explora el mundo submarino con MouroSub. Formación certificada, inmersiones guiadas
+              y actividades especiales para todos los niveles.
+            </p>
+          </th:block>
+
+          <!-- CURSOS -->
+          <th:block th:case="'CURSO'">
+            <h1 class="ms-page-title">Cursos de Buceo PADI y SSI</h1>
+            <p class="mt-2 ms-page-subtitle">
+              Iníciate o avanza en tu formación como buceador con nuestros instructores certificados. Desde tu primer bautismo hasta nivel técnico.
+            </p>
+          </th:block>
+
+          <!-- INMERSIONES -->
+          <th:block th:case="'INMERSION'">
+            <h1 class="ms-page-title">Inmersiones Guiadas</h1>
+            <p class="mt-2 ms-page-subtitle">
+              Descubre los mejores puntos de buceo del Cantábrico con nuestros guías experimentados. Conoce nuestros spots y fondos marinos.
+            </p>
+          </th:block>
+
+          <!-- ACTIVIDADES -->
+          <th:block th:case="'ACTIVIDAD'">
+            <h1 class="ms-page-title">Bautismos y Actividades Especiales</h1>
+            <p class="mt-2 ms-page-subtitle">
+              Primeras experiencias bajo el agua, rutas de snorkel y mucho más para disfrutar del mar con toda seguridad.
+            </p>
+          </th:block>
+
+          <!-- OFERTAS -->
+          <th:block th:case="'OFERTA'">
+            <h1 class="ms-page-title">Ofertas y Packs</h1>
+            <p class="mt-2 ms-page-subtitle">
+              Aprovecha nuestras promociones exclusivas en formación, salidas guiadas y equipamiento de buceo de primeras marcas.
+            </p>
+          </th:block>
+        </div>
       </div>
     </section>
 
