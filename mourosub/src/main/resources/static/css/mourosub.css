@@ -1420,3 +1420,16 @@ body {
   color: rgba(255,255,255,0.85) !important;
   background: transparent !important;
 }
+
+.ms-footer-bottom {
+  background-color: var(--ms-outline-variant);
+  padding: 0.85rem 0;
+}
+.ms-footer-bottom p,
+.ms-footer-bottom a {
+  font-size: 0.8rem;
+  color: var(--ms-on-surface);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ms-footer-bottom a:hover { color: var(--ms-primary); }
