@@ -30,7 +30,7 @@ public class Actividad {
     private Double precio;
 
     /**
-     * Tipo de actividad como String: CURSO, INMERSION, ACTIVIDAD, OFERTA
+     * Tipo de actividad como String: Curso, Inmersion, Actividad, Oferta
      */
     @Column(name = "tipo", length = 50)
     private String tipo;
@@ -80,4 +80,11 @@ public class Actividad {
 
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ActividadReserva> reservas;
+
+    @PrePersist
+    @PreUpdate
+    public void normalizarCampos() {
+        if (this.tipo != null) this.tipo = this.tipo.toLowerCase();
+    }
+
 }
