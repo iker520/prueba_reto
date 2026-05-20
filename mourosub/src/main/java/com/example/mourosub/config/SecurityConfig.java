@@ -17,58 +17,52 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider(UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(usuarioService);
-        provider.setPasswordEncoder(passwordEncoder);
-        return provider;
-    }
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider(UsuarioService usuarioService,BCryptPasswordEncoder passwordEncoder) {
+                DaoAuthenticationProvider provider = new DaoAuthenticationProvider(usuarioService);
+                provider.setPasswordEncoder(passwordEncoder);
+                return provider;
+        }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) throws Exception {
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http, UsuarioService usuarioService,BCryptPasswordEncoder passwordEncoder) throws Exception {
 
-        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
-        requestHandler.setCsrfRequestAttributeName(null);
+                CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+                requestHandler.setCsrfRequestAttributeName(null);
 
-        http
-                .authenticationProvider(authenticationProvider(usuarioService, passwordEncoder))
-                .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRequestHandler(requestHandler)
-                )
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/", "/servicios/**", "/conocenos",
-                                "/noticias/**", "/contacto", "/login",
-                                "/css/**", "/js/**", "/images/**",
-                                "/webjars/**", "/favicon.ico",
-                                "/error/**", "/403",
-                                "/condiciones-venta", "/devoluciones",
-                                "/aviso-legal", "/politica-privacidad",
-                                "/newsletter/**"
-                        ).permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/admin", true)
-                        .failureUrl("/login?error=true")
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/?logout=true")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll()
-                )
-                .exceptionHandling(ex -> ex
-                        .accessDeniedPage("/403")
-                );
+                http
+                                .authenticationProvider(authenticationProvider(usuarioService, passwordEncoder))
+                                .csrf(csrf -> csrf
+                                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                                                .csrfTokenRequestHandler(requestHandler))
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers(
+                                                                "/", "/servicios/**", "/conocenos",
+                                                                "/noticias/**", "/contacto", "/login",
+                                                                "/css/**", "/js/**", "/images/**",
+                                                                "/webjars/**", "/favicon.ico",
+                                                                "/error/**", "/403",
+                                                                "/condiciones-venta", "/devoluciones",
+                                                                "/aviso-legal", "/politica-privacidad",
+                                                                "/newsletter/**")
+                                                .permitAll()
+                                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                                .anyRequest().authenticated())
+                                .formLogin(form -> form
+                                                .loginPage("/login")
+                                                .loginProcessingUrl("/login")
+                                                .defaultSuccessUrl("/admin", true)
+                                                .failureUrl("/login?error=true")
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/?logout=true")
+                                                .invalidateHttpSession(true)
+                                                .deleteCookies("JSESSIONID")
+                                                .permitAll())
+                                .exceptionHandling(ex -> ex
+                                                .accessDeniedPage("/403"));
 
-        return http.build();
-    }
+                return http.build();
+        }
 }
