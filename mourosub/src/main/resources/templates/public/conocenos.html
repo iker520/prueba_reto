@@ -349,7 +349,7 @@
                  th:text="${inst.especialidad}">
               </p>
               <p th:if="${inst.experiencia}"
-                 class="mt-2 ms-instructor-bio"
+                 class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;"
                  th:text="${inst.experiencia}">
               </p>
             </div>
@@ -358,6 +358,8 @@
       </div>
 
       <!-- FALLBACK ESTÁTICO — añadir th:if="${!hayInstructores}" cuando la BBDD esté lista -->
+
+      <!-- PRIMERAS 4 — siempre visibles -->
       <div class="row g-4">
 
         <!-- Leo del Rincón -->
@@ -371,7 +373,7 @@
             <div class="ms-card-body ms-instructor-card-body">
               <h3 class="ms-instructor-name">Leo del Rincón</h3>
               <p class="ms-instructor-specialty">Buceo Técnico XR · Rebreather</p>
-              <p class="mt-2 ms-instructor-bio">SSI / ESA / FEDAS / CMAS · PADI / DAN / EFR · Patrón de Embarcación · Técnico Deportivo</p>
+              <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / ESA / FEDAS / CMAS · PADI / DAN / EFR · Patrón de Embarcación · Técnico Deportivo</p>
             </div>
           </div>
         </div>
@@ -387,7 +389,7 @@
             <div class="ms-card-body ms-instructor-card-body">
               <h3 class="ms-instructor-name">Carmen Ruiz</h3>
               <p class="ms-instructor-specialty">Formación y Técnico de Equipos</p>
-              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS / DAN · Técnico Reparación · Patrón de Embarcación · Técnico Deportivo</p>
+              <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / ESA / CMAS / DAN · Técnico Reparación · Patrón de Embarcación · Técnico Deportivo</p>
             </div>
           </div>
         </div>
@@ -403,7 +405,7 @@
             <div class="ms-card-body ms-instructor-card-body">
               <h3 class="ms-instructor-name">Juanjo Azcuenaga</h3>
               <p class="ms-instructor-specialty">Inmersiones Deportivas</p>
-              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS · Patrón de Embarcación · Técnico Deportivo</p>
+              <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / ESA / CMAS · Patrón de Embarcación · Técnico Deportivo</p>
             </div>
           </div>
         </div>
@@ -419,172 +421,208 @@
             <div class="ms-card-body ms-instructor-card-body">
               <h3 class="ms-instructor-name">Oscar Fuentes</h3>
               <p class="ms-instructor-specialty">Seguridad y Rescate</p>
-              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS / DAN · Patrón de Embarcación · Técnico Deportivo</p>
+              <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / ESA / CMAS / DAN · Patrón de Embarcación · Técnico Deportivo</p>
             </div>
           </div>
         </div>
 
-        <!-- Luis Rodriguez -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=70"
-                   alt="Luis Rodriguez" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Luis Rodriguez</h3>
-              <p class="ms-instructor-specialty">Cursos de Iniciación</p>
-              <p class="mt-2 ms-instructor-bio">Instructor SSI · Patrón de Embarcación · Técnico Deportivo</p>
+      </div><!-- /primeras 4 -->
+
+      <!-- RESTO — oculto hasta pulsar "Ver más" -->
+      <div class="collapse" id="masInstructores">
+        <div class="row g-4 mt-0">
+
+          <!-- Luis Rodriguez -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=70"
+                     alt="Luis Rodriguez" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Luis Rodriguez</h3>
+                <p class="ms-instructor-specialty">Cursos de Iniciación</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Instructor SSI · Patrón de Embarcación · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Alejandro Gerez -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=70"
-                   alt="Alejandro Gerez" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Alejandro Gerez</h3>
-              <p class="ms-instructor-specialty">Técnico de Equipos</p>
-              <p class="mt-2 ms-instructor-bio">SSI / DAN · Técnico Reparación · Patrón de Embarcación · Técnico Deportivo</p>
+          <!-- Alejandro Gerez -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=70"
+                     alt="Alejandro Gerez" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Alejandro Gerez</h3>
+                <p class="ms-instructor-specialty">Técnico de Equipos</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / DAN · Técnico Reparación · Patrón de Embarcación · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Jose Reven -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=70"
-                   alt="Jose Reven" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Jose Reven</h3>
-              <p class="ms-instructor-specialty">Formación Deportiva</p>
-              <p class="mt-2 ms-instructor-bio">Instructor SSI · Técnico Deportivo</p>
+          <!-- Jose Reven -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=70"
+                     alt="Jose Reven" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Jose Reven</h3>
+                <p class="ms-instructor-specialty">Formación Deportiva</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Instructor SSI · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Meritxell Balbas -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=70"
-                   alt="Meritxell Balbas" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Meritxell Balbas</h3>
-              <p class="ms-instructor-specialty">Buceo Deportivo</p>
-              <p class="mt-2 ms-instructor-bio">Instructor SSI · Patrón de Embarcación · Técnico Deportivo</p>
+          <!-- Meritxell Balbas -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=70"
+                     alt="Meritxell Balbas" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Meritxell Balbas</h3>
+                <p class="ms-instructor-specialty">Buceo Deportivo</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Instructor SSI · Patrón de Embarcación · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Jose Luis Sáinz -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=70"
-                   alt="Jose Luis Sáinz" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Jose Luis Sáinz</h3>
-              <p class="ms-instructor-specialty">Especialidades y Técnico</p>
-              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS / DAN · Técnico Reparación · Técnico Deportivo</p>
+          <!-- Jose Luis Sáinz -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=70"
+                     alt="Jose Luis Sáinz" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI / DAN</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Jose Luis Sáinz</h3>
+                <p class="ms-instructor-specialty">Especialidades y Técnico</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / ESA / CMAS / DAN · Técnico Reparación · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Miguel Arnáiz -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=400&q=70"
-                   alt="Miguel Arnáiz" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Miguel Arnáiz</h3>
-              <p class="ms-instructor-specialty">Cursos Avanzados</p>
-              <p class="mt-2 ms-instructor-bio">SSI / ESA / CMAS · Patrón de Embarcación · Técnico Deportivo</p>
+          <!-- Miguel Arnáiz -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=400&q=70"
+                     alt="Miguel Arnáiz" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Miguel Arnáiz</h3>
+                <p class="ms-instructor-specialty">Cursos Avanzados</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">SSI / ESA / CMAS · Patrón de Embarcación · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Vicky Alonso -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=70"
-                   alt="Vicky Alonso" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Vicky Alonso</h3>
-              <p class="ms-instructor-specialty">Formación Deportiva</p>
-              <p class="mt-2 ms-instructor-bio">Instructor SSI · Técnico Deportivo</p>
+          <!-- Vicky Alonso -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=70"
+                     alt="Vicky Alonso" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Vicky Alonso</h3>
+                <p class="ms-instructor-specialty">Formación Deportiva</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Instructor SSI · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Santiago Galán -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=400&q=70"
-                   alt="Santiago Galán" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Instructor Freediving</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Santiago Galán</h3>
-              <p class="ms-instructor-specialty">Apnea y Freediving</p>
-              <p class="mt-2 ms-instructor-bio">Instructor SSI Freediving · Patrón de Embarcación · Técnico Deportivo</p>
+          <!-- Santiago Galán -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=400&q=70"
+                     alt="Santiago Galán" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Instructor Freediving</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Santiago Galán</h3>
+                <p class="ms-instructor-specialty">Apnea y Freediving</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Instructor SSI Freediving · Patrón de Embarcación · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Alberto Puente -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&q=70"
-                   alt="Alberto Puente" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Dive Master SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Alberto Puente</h3>
-              <p class="ms-instructor-specialty">Guía de Inmersiones</p>
-              <p class="mt-2 ms-instructor-bio">Dive Master SSI · Técnico Deportivo</p>
+          <!-- Alberto Puente -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&q=70"
+                     alt="Alberto Puente" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Dive Master SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Alberto Puente</h3>
+                <p class="ms-instructor-specialty">Guía de Inmersiones</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Dive Master SSI · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Jose Luis Gasco -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="ms-card ms-instructor-card h-100">
-            <div class="ms-instructor-img-wrap">
-              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&q=70"
-                   alt="Jose Luis Gasco" class="instructor-img"/>
-              <span class="ms-badge ms-instructor-badge">Dive Master SSI</span>
-            </div>
-            <div class="ms-card-body ms-instructor-card-body">
-              <h3 class="ms-instructor-name">Jose Luis Gasco</h3>
-              <p class="ms-instructor-specialty">Guía de Inmersiones</p>
-              <p class="mt-2 ms-instructor-bio">Dive Master SSI · Técnico Deportivo</p>
+          <!-- Jose Luis Gasco -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="ms-card ms-instructor-card h-100">
+              <div class="ms-instructor-img-wrap">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&q=70"
+                     alt="Jose Luis Gasco" class="instructor-img"/>
+                <span class="ms-badge ms-instructor-badge">Dive Master SSI</span>
+              </div>
+              <div class="ms-card-body ms-instructor-card-body">
+                <h3 class="ms-instructor-name">Jose Luis Gasco</h3>
+                <p class="ms-instructor-specialty">Guía de Inmersiones</p>
+                <p class="mt-2 ms-instructor-bio" style="-webkit-line-clamp:unset;overflow:visible;">Dive Master SSI · Técnico Deportivo</p>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+      </div><!-- /collapse -->
+
+      <!-- BOTÓN VER MÁS / VER MENOS -->
+      <div class="text-center mt-4">
+        <button class="btn btn-ms-primary px-4 py-2 rounded"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#masInstructores"
+                aria-expanded="false"
+                aria-controls="masInstructores"
+                id="btnVerMasInstructores">
+          <i class="bi bi-people me-2"></i>
+          <span id="btnVerMasTexto">Ver los 10 instructores restantes</span>
+        </button>
       </div>
+
+      <script>
+        (function () {
+          var el = document.getElementById('masInstructores');
+          var btn = document.getElementById('btnVerMasTexto');
+          if (el && btn) {
+            el.addEventListener('show.bs.collapse', function () {
+              btn.textContent = 'Ver menos';
+            });
+            el.addEventListener('hide.bs.collapse', function () {
+              btn.textContent = 'Ver los 10 instructores restantes';
+            });
+          }
+        })();
+      </script>
     </div>
   </section>
 
