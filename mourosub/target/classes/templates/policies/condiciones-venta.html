@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/base :: head('Condiciones de Venta')}"></head>
+<body class="page-body">
+<nav th:replace="~{layout/base :: navbar}"></nav>
+
+<main>
+    <section class="py-4 ms-section-alt">
+        <div class="ms-content-wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a th:href="@{/}" class="ms-footer-contact-link">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Condiciones de venta</li>
+                </ol>
+            </nav>
+            <h1 class="ms-section-title">Condiciones de Venta</h1>
+            <p class="ms-section-text mt-1">Última actualización: mayo 2026</p>
+        </div>
+    </section>
+
+    <section class="ms-content-wrapper py-5">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">1. Identificación del vendedor</h2>
+                    <p class="ms-section-text">
+                        <strong>MouroSub Diving School</strong>, con domicilio en Bajos Edificio Capitanía, Avda. de la Tornada s/n,
+                        39600 Maliaño, Cantabria (España), es la empresa responsable de la comercialización de los cursos,
+                        actividades e inmersiones ofertados en este sitio web.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">2. Proceso de reserva y pago</h2>
+                    <p class="ms-section-text mb-2">
+                        Para formalizar la reserva de cualquier curso o actividad el cliente deberá:
+                    </p>
+                    <ol class="ms-section-text ps-3">
+                        <li class="mb-1">Seleccionar la actividad o curso deseado en la sección <strong>Servicios</strong>.</li>
+                        <li class="mb-1">Completar el formulario de reserva con sus datos personales.</li>
+                        <li class="mb-1">Abonar el importe indicado mediante los métodos de pago disponibles (tarjeta bancaria o transferencia).</li>
+                        <li>Recibir la confirmación de reserva por correo electrónico en un plazo máximo de 24 horas.</li>
+                    </ol>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">3. Precios e impuestos</h2>
+                    <p class="ms-section-text">
+                        Todos los precios publicados en la web incluyen el IVA aplicable según la normativa vigente.
+                        MouroSub se reserva el derecho a modificar los precios sin previo aviso, siendo siempre de aplicación
+                        el precio vigente en el momento de la reserva.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">4. Cancelaciones y devoluciones</h2>
+                    <p class="ms-section-text mb-2">
+                        La política de cancelación varía según el tipo de actividad:
+                    </p>
+                    <ul class="ms-section-text ps-3">
+                        <li class="mb-1"><strong>Más de 15 días de antelación:</strong> reembolso completo del importe abonado.</li>
+                        <li class="mb-1"><strong>Entre 7 y 14 días:</strong> reembolso del 50 % del importe.</li>
+                        <li><strong>Menos de 7 días:</strong> no se realizará devolución, salvo causa de fuerza mayor debidamente acreditada.</li>
+                    </ul>
+                    <p class="ms-section-text mt-2">
+                        Para solicitar una cancelación, contacta con nosotros en
+                        <a href="mailto:info@mourosub.com" class="ms-footer-contact-link fw-semibold">info@mourosub.com</a>
+                        o llama al <a href="tel:+34621330839" class="ms-footer-contact-link fw-semibold">621 330 839</a>.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4 mb-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">5. Requisitos de salud y seguridad</h2>
+                    <p class="ms-section-text">
+                        El cliente declara encontrarse en buen estado de salud y apto para la práctica del buceo.
+                        MouroSub podrá exigir la presentación de un certificado médico cuando lo estime oportuno,
+                        especialmente para actividades de nivel avanzado o técnico.
+                    </p>
+                </div>
+
+                <div class="ms-card p-4">
+                    <h2 class="ms-detail-title fs-5 mb-3">6. Legislación aplicable</h2>
+                    <p class="ms-section-text">
+                        Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada
+                        de la interpretación o aplicación de estas condiciones, las partes se someten a los Juzgados y
+                        Tribunales de Santander (Cantabria).
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                <div class="ms-card p-4 ms-aside-sticky">
+                    <h3 class="ms-aside-title">Documentos legales</h3>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        <li class="ms-aside-item pb-2">
+                            <a th:href="@{/condiciones-venta}" class="ms-aside-link d-flex align-items-center gap-2 fw-semibold text-primary">
+                                <i class="bi bi-file-text"></i> Condiciones de venta
+                            </a>
+                        </li>
+                        <li class="ms-aside-item py-2">
+                            <a th:href="@{/devoluciones}" class="ms-aside-link d-flex align-items-center gap-2">
+                                <i class="bi bi-arrow-return-left"></i> Devoluciones
+                            </a>
+                        </li>
+                        <li class="ms-aside-item py-2">
+                            <a th:href="@{/aviso-legal}" class="ms-aside-link d-flex align-items-center gap-2">
+                                <i class="bi bi-shield-check"></i> Aviso Legal
+                            </a>
+                        </li>
+                        <li class="pt-2">
+                            <a th:href="@{/politica-privacidad}" class="ms-aside-link d-flex align-items-center gap-2">
+                                <i class="bi bi-lock"></i> Política de privacidad
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="my-3">
+                    <p class="ms-footer-text mb-1"><i class="bi bi-envelope me-1"></i> info@mourosub.com</p>
+                    <p class="ms-footer-text mb-0"><i class="bi bi-telephone me-1"></i> 621 330 839</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:replace="~{layout/base :: footer}"></footer>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

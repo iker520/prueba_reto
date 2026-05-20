@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="~{layout/admin-base :: adminHead('Dashboard')}"></head>
+<body class="ms-admin-body">
+<nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
+<div class="ms-admin-content">
+  <div th:replace="~{layout/admin-base :: adminTopbar('Dashboard')}"></div>
+  <div class="p-4">
+    <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
+
+    <!-- KPI Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="ms-kpi-card">
+          <div class="kpi-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+          <div>
+            <div class="kpi-number" th:text="${totalActividades}">0</div>
+            <div class="kpi-label">Actividades</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="ms-kpi-card">
+          <div class="kpi-icon"><i class="bi bi-person-badge"></i></div>
+          <div>
+            <div class="kpi-number" th:text="${totalInstructores}">0</div>
+            <div class="kpi-label">Instructores</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="ms-kpi-card">
+          <div class="kpi-icon"><i class="bi bi-newspaper"></i></div>
+          <div>
+            <div class="kpi-number" th:text="${totalNoticias}">0</div>
+            <div class="kpi-label">Noticias</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="ms-kpi-card">
+          <div class="kpi-icon"><i class="bi bi-calendar-check"></i></div>
+          <div>
+            <div class="kpi-number" th:text="${totalReservas}">0</div>
+            <div class="kpi-label">Reservas</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="ms-kpi-card">
+          <div class="kpi-icon ms-kpi-secondary-icon">
+            <i class="bi bi-hourglass-split"></i>
+          </div>
+          <div>
+            <div class="kpi-number ms-kpi-secondary-number" th:text="${reservasPendientes}">0</div>
+            <div class="kpi-label">Pendientes</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="ms-kpi-card">
+          <div class="kpi-icon"><i class="bi bi-people"></i></div>
+          <div>
+            <div class="kpi-number" th:text="${totalUsuarios}">0</div>
+            <div class="kpi-label">Usuarios</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accesos rápidos -->
+    <div class="row g-3 mb-4">
+      <div class="col-12">
+        <h5 class="fw-semibold mb-3 ms-admin-section-header">
+          Acciones Rápidas
+        </h5>
+        <div class="d-flex flex-wrap gap-2">
+          <a th:href="@{/admin/actividades/nueva}" class="btn btn-ms-primary px-4 py-2 rounded">
+            <i class="bi bi-plus-circle me-2"></i>Nueva Actividad
+          </a>
+          <a th:href="@{/admin/noticias/nueva}" class="btn btn-ms-primary px-4 py-2 rounded">
+            <i class="bi bi-plus-circle me-2"></i>Nueva Noticia
+          </a>
+          <a th:href="@{/admin/instructores/nuevo}" class="btn btn-ms-outline px-4 py-2 rounded">
+            <i class="bi bi-person-plus me-2"></i>Nuevo Instructor
+          </a>
+          <a th:href="@{/admin/reservas}" class="btn btn-ms-outline px-4 py-2 rounded">
+            <i class="bi bi-calendar-check me-2"></i>Ver Reservas
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Últimas reservas -->
+    <div class="ms-card p-0">
+      <div class="p-3 border-bottom d-flex justify-content-between align-items-center ms-admin-card-header">
+        <h5 class="mb-0 fw-semibold ms-admin-card-header-title">Últimas Reservas</h5>
+        <a th:href="@{/admin/reservas}" class="ms-admin-card-header-link">Ver todas</a>
+      </div>
+      <div class="table-responsive">
+        <table class="ms-table">
+          <thead><tr>
+            <th>ID</th><th>Fecha</th><th>Estado</th><th>Total</th><th>Acción</th>
+          </tr></thead>
+          <tbody>
+          <tr th:each="r : ${ultimasReservas}">
+            <td class="fw-semibold" th:text="'#' + ${r.idReserva}">—</td>
+            <td th:text="${#temporals.format(r.fechaReserva,'dd/MM/yyyy')}">—</td>
+            <td>
+              <span class="badge rounded-pill px-3 py-1"
+                    th:classappend="${r.estado == 'PENDIENTE'} ? 'badge-pendiente' :
+                                   (${r.estado == 'CONFIRMADA'} ? 'badge-confirmada' :
+                                   (${r.estado == 'CANCELADA'} ? 'badge-cancelada' : 'badge-completada'))"
+                    th:text="${r.estado}">Estado</span>
+            </td>
+            <td th:text="${r.total != null ? r.total + '€' : '—'}">—</td>
+            <td>
+              <a th:href="@{/admin/reservas/{id}(id=${r.idReserva})}"
+                 class="btn btn-sm btn-ms-outline px-3 rounded">Ver</a>
+            </td>
+          </tr>
+          <tr th:if="${#lists.isEmpty(ultimasReservas)}">
+            <td colspan="5" class="text-center py-4 ms-table-empty">
+              No hay reservas registradas.
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="~{layout/admin-base :: adminScripts}"></div>
+</body>
+</html>

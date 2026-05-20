@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/admin-base :: adminHead('Reservas')}"></head>
+<body class="ms-admin-body">
+<nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
+<div class="ms-admin-content">
+  <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Reservas')}"></div>
+  <div class="p-4">
+    <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
+    <!-- Filtro por estado -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <a th:href="@{/admin/reservas}" class="btn btn-sm rounded-pill px-3"
+         th:classappend="${estadoFiltro == ''} ? 'btn-ms-primary' : 'btn-ms-outline'">Todas</a>
+      <a th:each="estado : ${estados}"
+         th:href="@{/admin/reservas(estado=${estado})}"
+         th:text="${estado}"
+         class="btn btn-sm rounded-pill px-3"
+         th:classappend="${estadoFiltro == estado} ? 'btn-ms-primary' : 'btn-ms-outline'">EST</a>
+    </div>
+    <div class="ms-card p-0">
+      <div class="table-responsive">
+        <table class="ms-table">
+          <thead><tr>
+            <th>ID</th><th>Fecha</th><th>Estado</th><th>Total</th><th>Acciones</th>
+          </tr></thead>
+          <tbody>
+          <tr th:each="r : ${reservas}">
+            <td class="fw-semibold ms-table-id" th:text="'#' + ${r.idReserva}">—</td>
+            <td th:text="${#temporals.format(r.fechaReserva,'dd/MM/yyyy')}">—</td>
+            <td>
+              <span class="badge rounded-pill px-3 py-1 fw-semibold"
+                    th:classappend="${r.estado == 'PENDIENTE'} ? 'badge-pendiente' :
+                                   (${r.estado == 'CONFIRMADA'} ? 'badge-confirmada' :
+                                   (${r.estado == 'CANCELADA'} ? 'badge-cancelada' : 'badge-completada'))"
+                    th:text="${r.estado}">Estado</span>
+            </td>
+            <td th:text="${r.total != null ? r.total + '€' : '—'}">—</td>
+            <td>
+              <div class="d-flex gap-2">
+                <a th:href="@{/admin/reservas/{id}(id=${r.idReserva})}"
+                   class="btn btn-sm btn-ms-outline px-3 rounded">
+                  <i class="bi bi-eye me-1"></i>Ver
+                </a>
+                <form th:action="@{/admin/reservas/eliminar/{id}(id=${r.idReserva})}" method="post"
+                      onsubmit="return confirm('¿Eliminar reserva?')">
+                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                  <button type="submit" class="btn btn-sm btn-danger px-3 rounded">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <tr th:if="${#lists.isEmpty(reservas)}">
+            <td colspan="5" class="text-center py-5 ms-table-empty">No hay reservas.</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="~{layout/admin-base :: adminScripts}"></div>
+</body>
+</html>

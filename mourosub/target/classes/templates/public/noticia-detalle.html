@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body class="page-body">
+<nav th:replace="~{layout/base :: navbar}"></nav>
+<main>
+  <!-- Breadcrumb -->
+  <div class="ms-content-wrapper pt-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ms-breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}" class="ms-breadcrumb-link">Inicio</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/noticias}" class="ms-breadcrumb-link">Noticias</a></li>
+        <li class="breadcrumb-item active" th:text="${noticia.titulo}">Artículo</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="ms-content-wrapper ms-grid-section">
+    <div class="row g-5">
+      <article class="col-12 col-lg-8">
+        <img th:if="${noticia.imagenUrl != null}" th:src="${noticia.imagenUrl}" th:alt="${noticia.titulo}"
+             class="img-fluid rounded w-100 mb-4 ms-article-img"/>
+        <div class="d-flex gap-3 mb-3">
+          <span class="ms-badge" th:text="${noticia.categoria}">CAT</span>
+          <span class="ms-article-date">
+            <i class="bi bi-calendar3 me-1"></i>
+            <span th:text="${#temporals.format(noticia.fechaPublicacion,'dd MMMM, yyyy')}">Fecha</span>
+          </span>
+        </div>
+        <h1 class="ms-article-title" th:text="${noticia.titulo}">Título</h1>
+        <p th:if="${noticia.resumen != null}" class="mt-3 ms-article-summary"
+           th:text="${noticia.resumen}">Resumen</p>
+        <hr class="ms-article-divider"/>
+        <div class="ms-rich-content" th:utext="${noticia.cuerpoHtml}">Contenido...</div>
+        <hr class="ms-article-divider"/>
+        <a th:href="@{/noticias}" class="btn btn-ms-outline px-4 py-2 rounded">
+          <i class="bi bi-arrow-left me-2"></i>Volver a Noticias
+        </a>
+      </article>
+      <aside class="col-12 col-lg-4">
+        <div class="ms-card p-4 ms-aside-sticky">
+          <h4 class="ms-aside-title">Artículos Recientes</h4>
+          <div th:each="reciente : ${ultimasNoticias}" class="mb-3 pb-3 ms-aside-item">
+            <a th:href="@{/noticias/{id}(id=${reciente.idNoticia})}" class="ms-aside-link">
+              <span class="news-cat" th:text="${reciente.categoria}">CAT</span>
+              <p class="ms-aside-item-title"
+                 th:text="${reciente.titulo}">Título</p>
+            </a>
+          </div>
+          <a th:href="@{/noticias}" class="btn btn-ms-outline w-100 py-2 rounded mt-2">Ver todas</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+<footer th:replace="~{layout/base :: footer}"></footer>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

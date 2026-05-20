@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/admin-base :: adminHead('Instructores')}"></head>
+<body class="ms-admin-body">
+<nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
+<div class="ms-admin-content">
+  <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Instructores')}"></div>
+  <div class="p-4">
+    <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
+    <div class="d-flex justify-content-end mb-4">
+      <a th:href="@{/admin/instructores/nuevo}" class="btn btn-ms-primary px-4 py-2 rounded">
+        <i class="bi bi-person-plus me-2"></i>Nuevo Instructor
+      </a>
+    </div>
+    <div class="ms-card p-0">
+      <div class="table-responsive">
+        <table class="ms-table">
+          <thead><tr>
+            <th>DNI</th><th>Nombre</th><th>Título</th><th>Email</th><th>Activo</th><th>Acciones</th>
+          </tr></thead>
+          <tbody>
+          <tr th:each="inst : ${instructores}">
+            <td class="ms-table-cell-xs" th:text="${inst.dniInstructor}">—</td>
+            <td class="fw-semibold" th:text="${inst.getNombreCompleto()}">—</td>
+            <td><span class="ms-badge" th:if="${inst.tituloPadi != null}" th:text="${inst.tituloPadi}">—</span></td>
+            <td class="ms-table-cell-sm" th:text="${inst.email}">—</td>
+            <td>
+              <i class="bi" th:classappend="${inst.activo} ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"></i>
+            </td>
+            <td>
+              <div class="d-flex gap-2">
+                <a th:href="@{/admin/instructores/editar/{dni}(dni=${inst.dniInstructor})}"
+                   class="btn btn-sm btn-ms-outline px-3 rounded"><i class="bi bi-pencil"></i></a>
+                <form th:action="@{/admin/instructores/eliminar/{dni}(dni=${inst.dniInstructor})}" method="post"
+                      onsubmit="return confirm('¿Eliminar este instructor?')">
+                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                  <button type="submit" class="btn btn-sm btn-danger px-3 rounded"><i class="bi bi-trash"></i></button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <tr th:if="${#lists.isEmpty(instructores)}">
+            <td colspan="6" class="text-center py-5 ms-table-empty">
+              No hay instructores. <a th:href="@{/admin/instructores/nuevo}" class="ms-table-link">Añade el primero</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="~{layout/admin-base :: adminScripts}"></div>
+</body>
+</html>

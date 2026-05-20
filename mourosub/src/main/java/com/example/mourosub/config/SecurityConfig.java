@@ -17,17 +17,8 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final UsuarioService usuarioService;
-    private final BCryptPasswordEncoder passwordEncoder;
-
-    public SecurityConfig(UsuarioService usuarioService,
-                          BCryptPasswordEncoder passwordEncoder) {
-        this.usuarioService    = usuarioService;
-        this.passwordEncoder   = passwordEncoder;
-    }
-
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider authenticationProvider(UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(usuarioService);
         provider.setPasswordEncoder(passwordEncoder);
@@ -35,13 +26,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) throws Exception {
 
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName(null);
 
         http
-                .authenticationProvider(authenticationProvider())
+                .authenticationProvider(authenticationProvider(usuarioService, passwordEncoder))
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(requestHandler)
