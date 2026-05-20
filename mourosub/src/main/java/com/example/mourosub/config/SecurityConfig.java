@@ -1,20 +1,51 @@
 package com.example.mourosub.config;
 
+import com.example.mourosub.service.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    private final UsuarioService usuarioService;
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public SecurityConfig(UsuarioService usuarioService,
+                          BCryptPasswordEncoder passwordEncoder) {
+        this.usuarioService    = usuarioService;
+        this.passwordEncoder   = passwordEncoder;
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(usuarioService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName(null);
+
         http
+                .authenticationProvider(authenticationProvider())
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRequestHandler(requestHandler)
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/", "/servicios/**", "/conocenos",
@@ -23,7 +54,8 @@ public class SecurityConfig {
                                 "/webjars/**", "/favicon.ico",
                                 "/error/**", "/403",
                                 "/condiciones-venta", "/devoluciones",
-                                "/aviso-legal", "/politica-privacidad"
+                                "/aviso-legal", "/politica-privacidad",
+                                "/newsletter/**"
                         ).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
@@ -45,6 +77,7 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .accessDeniedPage("/403")
                 );
+
         return http.build();
     }
 }
