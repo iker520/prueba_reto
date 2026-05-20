@@ -2,112 +2,235 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head th:replace="~{layout/base :: head(${pageTitle})}"></head>
 <body class="page-body">
-
 <nav th:replace="~{layout/base :: navbar}"></nav>
-
 <main>
+
     <!-- ===== HERO SECTION ===== -->
     <section class="ms-hero">
-        <img class="ms-hero-img"
-             src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&q=80"
-             alt="Buceador explorando el fondo marino"/>
+        <video class="ms-hero-img"
+               autoplay muted loop playsinline
+               poster="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&q=80">
+            <source src="https://www.pexels.com/es-es/download/video/34375356/" type="video/mp4"/>
+        </video>
         <div class="container-ms w-100 ms-content-wrapper">
             <div class="ms-hero-content ms-animate ms-hero-content-wrap">
-                <div class="ms-badge mb-3">Escuela de Buceo Profesional</div>
-                <h1>Explora lo invisible con MouroSub</h1>
-                <p class="mt-3 mb-4">
+
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="ms-badge">Escuela de Buceo Profesional</span>
+                    <span class="ms-badge ms-badge-outline ms-badge-glass text-white border-white">
+            PADI Certificada
+          </span>
+                </div>
+
+                <h1 class="ms-animate ms-animate-delay-1">
+                    Explora lo invisible
+                    con MouroSub
+                </h1>
+
+                <p class="mt-3 mb-4 ms-animate ms-animate-delay-2">
                     Escuela de buceo profesional en Santander. Desde bautismos hasta certificaciones
                     técnicas, sumérgete con seguridad y precisión en el Cantábrico.
                 </p>
-                <div class="d-flex flex-wrap gap-3">
+
+                <div class="d-flex flex-wrap gap-3 ms-animate ms-animate-delay-3">
                     <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">
-                        Empieza tu aventura
+                        <i class="bi bi-compass me-2"></i>Empieza tu aventura
                     </a>
                     <a th:href="@{/servicios(tipo=CURSO)}" class="btn ms-hero-btn-secondary px-4 py-3 rounded">
-                        Ver Cursos
+                        <i class="bi bi-mortarboard me-2"></i>Ver Cursos
                     </a>
                 </div>
+
+                <!-- Mini stats en el hero -->
+                <div class="d-flex flex-wrap gap-4 mt-5 ms-animate ms-animate-delay-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-people-fill text-white opacity-75"></i>
+                        <span class="text-white fw-semibold ms-opacity-90">2.000+ alumnos</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-award-fill text-white opacity-75"></i>
+                        <span class="text-white fw-semibold ms-opacity-90">Centro PADI oficial</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-geo-alt-fill text-white opacity-75"></i>
+                        <span class="text-white fw-semibold ms-opacity-90">Santander, Cantabria</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- ===== SERVICIOS DESTACADOS ===== -->
-    <section class="py-5 ms-content-wrapper">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="ms-section-title mb-0">Nuestros Servicios</h2>
-            <a th:href="@{/servicios}" class="btn btn-ms-outline px-4 py-2 rounded d-none d-md-inline-flex align-items-center gap-2">
-                Ver todos <i class="bi bi-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Actividades dinámicas desde BD -->
-        <div th:if="${not #lists.isEmpty(actividadesDestacadas)}" class="ms-idx-servicios-grid">
-            <div th:each="act, iterStat : ${actividadesDestacadas}"
-                 th:class="${iterStat.index == 0} ? 'ms-idx-card ms-idx-card--main' : 'ms-idx-card'">
-                <!-- Imagen -->
-                <div class="ms-idx-img-wrap">
-                    <img th:if="${act.imagenUrl != null}"
-                         th:src="${act.imagenUrl}" th:alt="${act.nombre}" class="ms-idx-img"/>
-                    <!-- Fallback por tipo cuando no hay imagenUrl -->
-                    <img th:if="${act.imagenUrl == null and act.tipo != null and act.tipo.name() == 'ACTIVIDAD'}"
-                         src="https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=800&q=75"
-                         th:alt="${act.nombre}" class="ms-idx-img"/>
-                    <img th:if="${act.imagenUrl == null and act.tipo != null and act.tipo.name() == 'CURSO'}"
-                         src="https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=800&q=75"
-                         th:alt="${act.nombre}" class="ms-idx-img"/>
-                    <img th:if="${act.imagenUrl == null and act.tipo != null and act.tipo.name() == 'INMERSION'}"
-                         src="https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=800&q=75"
-                         th:alt="${act.nombre}" class="ms-idx-img"/>
-                    <img th:if="${act.imagenUrl == null and act.tipo == null}"
-                         src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=75"
-                         th:alt="${act.nombre}" class="ms-idx-img"/>
-                    <span class="ms-badge ms-idx-badge" th:text="${act.tipo}">CURSO</span>
+    <!-- ===== CARRUSEL INFINITO DE SERVICIOS ===== -->
+    <section class="ms-carousel-section py-5">
+        <div class="ms-content-wrapper mb-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="ms-section-title mb-1">Nuestros Servicios</h2>
+                    <p class="ms-section-text mb-0">Todo lo que necesitas para bucear con seguridad y pasión</p>
                 </div>
-                <!-- Texto -->
-                <div class="ms-idx-body">
-                    <h3 class="ms-idx-title" th:text="${act.nombre}">Actividad</h3>
-                    <p class="ms-idx-desc" th:text="${act.descripcion}">Descripción</p>
-                    <a th:href="@{/servicios/{id}(id=${act.idActividad})}"
-                       class="btn btn-ms-outline px-3 py-2 rounded ms-idx-btn">Saber más &rarr;</a>
-                </div>
+                <a th:href="@{/servicios}" class="btn btn-ms-outline px-4 py-2 rounded d-none d-md-inline-flex align-items-center gap-2">
+                    Ver todos <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
         </div>
 
-        <!-- Fallback si no hay actividades -->
-        <div th:if="${#lists.isEmpty(actividadesDestacadas)}" class="ms-idx-servicios-grid">
-            <div class="ms-idx-card ms-idx-card--main">
-                <div class="ms-idx-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=900&q=80" alt="Cursos de Buceo" class="ms-idx-img"/>
-                    <span class="ms-badge ms-idx-badge">CURSO</span>
+        <!-- ── Carrusel dinámico: TODOS los servicios activos de la BD ── -->
+        <div class="ms-carousel-wrapper" th:if="${not #lists.isEmpty(actividadesCarrusel)}">
+            <div class="ms-carousel-track" id="carouselTrack">
+                <!-- Conjunto original -->
+                <div th:each="act : ${actividadesCarrusel}" class="ms-carousel-card" th:data-tipo="${act.tipo}">
+                    <div class="ms-carousel-img-wrap">
+                        <img th:src="${act.imagenUrl != null ? act.imagenUrl :
+                                       (act.tipo == 'ACTIVIDAD' ? 'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75' :
+                                       (act.tipo == 'CURSO'     ? 'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75' :
+                                       (act.tipo == 'INMERSION' ? 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75' :
+                                                                   'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75')))}"
+                             th:alt="${act.nombre}"
+                             class="ms-carousel-img"
+                             onerror="this.onerror=null;var t=this.closest('.ms-carousel-card').dataset.tipo;this.src=t==='ACTIVIDAD'?'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75':t==='CURSO'?'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75':t==='INMERSION'?'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75':'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75';"/>
+                        <div class="ms-carousel-overlay">
+                            <span class="ms-badge ms-carousel-badge" th:text="${act.tipo}">TIPO</span>
+                        </div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title" th:text="${act.nombre}">Actividad</h3>
+                        <p class="ms-carousel-desc" th:text="${act.descripcion}">Descripción</p>
+                        <a th:href="@{/servicios/{id}(id=${act.idActividad})}"
+                           class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
                 </div>
-                <div class="ms-idx-body">
-                    <h3 class="ms-idx-title">Cursos de Buceo</h3>
-                    <p class="ms-idx-desc">Obtén tu certificación internacional PADI. Desde Open Water hasta niveles profesionales.</p>
-                    <a th:href="@{/servicios(tipo=CURSO)}" class="btn btn-ms-outline px-3 py-2 rounded ms-idx-btn">Saber más &rarr;</a>
+                <!-- Clon para el bucle infinito -->
+                <div th:each="act : ${actividadesCarrusel}" class="ms-carousel-card" aria-hidden="true" th:data-tipo="${act.tipo}">
+                    <div class="ms-carousel-img-wrap">
+                        <img th:src="${act.imagenUrl != null ? act.imagenUrl :
+                                       (act.tipo == 'ACTIVIDAD' ? 'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75' :
+                                       (act.tipo == 'CURSO'     ? 'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75' :
+                                       (act.tipo == 'INMERSION' ? 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75' :
+                                                                   'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75')))}"
+                             th:alt="${act.nombre}"
+                             class="ms-carousel-img"
+                             onerror="this.onerror=null;var t=this.closest('.ms-carousel-card').dataset.tipo;this.src=t==='ACTIVIDAD'?'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75':t==='CURSO'?'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75':t==='INMERSION'?'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75':'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75';"/>
+                        <div class="ms-carousel-overlay">
+                            <span class="ms-badge ms-carousel-badge" th:text="${act.tipo}">TIPO</span>
+                        </div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title" th:text="${act.nombre}">Actividad</h3>
+                        <p class="ms-carousel-desc" th:text="${act.descripcion}">Descripción</p>
+                        <a th:href="@{/servicios/{id}(id=${act.idActividad})}"
+                           class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="ms-idx-card">
-                <div class="ms-idx-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=700&q=80" alt="Inmersiones" class="ms-idx-img"/>
-                    <span class="ms-badge ms-idx-badge">INMERSIÓN</span>
+            <!-- Controles -->
+            <button class="ms-carousel-btn ms-carousel-btn--prev" id="carouselPrev" aria-label="Anterior">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="ms-carousel-btn ms-carousel-btn--next" id="carouselNext" aria-label="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Fallback estático si no hay actividades en BD -->
+        <div class="ms-carousel-wrapper" th:if="${#lists.isEmpty(actividadesCarrusel)}">
+            <div class="ms-carousel-track" id="carouselTrackFallback">
+                <div class="ms-carousel-card">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75" alt="Bautismo de Buceo" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">ACTIVIDAD</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Bautismo de Buceo</h3>
+                        <p class="ms-carousel-desc">Tu primera inmersión guiada en aguas confinadas. La puerta de entrada al mundo submarino.</p>
+                        <a th:href="@{/servicios(tipo=ACTIVIDAD)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
                 </div>
-                <div class="ms-idx-body">
-                    <h3 class="ms-idx-title">Inmersiones Diarias</h3>
-                    <p class="ms-idx-desc">Salidas programadas a los mejores puntos de la costa cántabra.</p>
-                    <a th:href="@{/servicios(tipo=INMERSION)}" class="btn btn-ms-outline px-3 py-2 rounded ms-idx-btn">Saber más &rarr;</a>
+                <div class="ms-carousel-card">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75" alt="Open Water" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">CURSO</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Curso Open Water Diver</h3>
+                        <p class="ms-carousel-desc">La certificación internacional PADI más reconocida. Aprende a bucear hasta 18 metros.</p>
+                        <a th:href="@{/servicios(tipo=CURSO)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+                <div class="ms-carousel-card">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75" alt="Inmersión" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">INMERSIÓN</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Inmersión en la Isla de Mouro</h3>
+                        <p class="ms-carousel-desc">Una de las joyas del Cantábrico. Paredes verticales cubiertas de anémonas y meros.</p>
+                        <a th:href="@{/servicios(tipo=INMERSION)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+                <div class="ms-carousel-card">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75" alt="Advanced" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">CURSO</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Advanced Open Water</h3>
+                        <p class="ms-carousel-desc">Da el salto al siguiente nivel. Inmersiones de aventura, navegación subacuática y más.</p>
+                        <a th:href="@{/servicios(tipo=CURSO)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+                <!-- Clones fallback -->
+                <div class="ms-carousel-card" aria-hidden="true">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">ACTIVIDAD</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Bautismo de Buceo</h3>
+                        <p class="ms-carousel-desc">Tu primera inmersión guiada en aguas confinadas.</p>
+                        <a th:href="@{/servicios(tipo=ACTIVIDAD)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+                <div class="ms-carousel-card" aria-hidden="true">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">CURSO</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Curso Open Water Diver</h3>
+                        <p class="ms-carousel-desc">La certificación internacional PADI más reconocida.</p>
+                        <a th:href="@{/servicios(tipo=CURSO)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+                <div class="ms-carousel-card" aria-hidden="true">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">INMERSIÓN</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Inmersión en la Isla de Mouro</h3>
+                        <p class="ms-carousel-desc">Una de las joyas del Cantábrico.</p>
+                        <a th:href="@{/servicios(tipo=INMERSION)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+                <div class="ms-carousel-card" aria-hidden="true">
+                    <div class="ms-carousel-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">CURSO</span></div>
+                    </div>
+                    <div class="ms-carousel-body">
+                        <h3 class="ms-carousel-title">Advanced Open Water</h3>
+                        <p class="ms-carousel-desc">Da el salto al siguiente nivel.</p>
+                        <a th:href="@{/servicios(tipo=CURSO)}" class="ms-carousel-link">Saber más <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="ms-idx-card">
-                <div class="ms-idx-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=700&q=80" alt="Bautismo de Buceo" class="ms-idx-img"/>
-                    <span class="ms-badge ms-idx-badge">ACTIVIDAD</span>
-                </div>
-                <div class="ms-idx-body">
-                    <h3 class="ms-idx-title">Bautismo de Buceo</h3>
-                    <p class="ms-idx-desc">Tu primera inmersión guiada en aguas confinadas. La puerta de entrada al mundo submarino.</p>
-                    <a th:href="@{/servicios(tipo=ACTIVIDAD)}" class="btn btn-ms-outline px-3 py-2 rounded ms-idx-btn">Saber más &rarr;</a>
-                </div>
-            </div>
+            <button class="ms-carousel-btn ms-carousel-btn--prev" id="carouselPrevFallback" aria-label="Anterior">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="ms-carousel-btn ms-carousel-btn--next" id="carouselNextFallback" aria-label="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+            </button>
         </div>
 
         <div class="text-center mt-4 d-md-none">
@@ -115,58 +238,76 @@
         </div>
     </section>
 
-    <!-- ===== SOBRE NOSOTROS TEASER ===== -->
-    <section class="ms-section-alt py-5">
+    <section class="ms-section-dark py-5" id="ms-stats-section">
         <div class="ms-content-wrapper">
             <div class="row align-items-center gy-4">
+
                 <div class="col-12 col-md-6">
-                    <h2 class="ms-section-title">
+
+                    <h2 class="ms-section-title-white">
                         Pasión por el Cantábrico
                     </h2>
-                    <p class="ms-section-text mt-3">
+
+                    <p class="ms-cta-dark-text mt-3">
                         MouroSub nació con la misión de compartir los secretos del mundo submarino bajo una
                         premisa innegociable: la seguridad. Con más de 15 años de experiencia, somos el referente
                         en formación de buceo en el norte.
                     </p>
-                    <p class="ms-section-text mt-2">
+
+                    <p class="ms-cta-dark-text mt-2">
                         Nuestro equipo de instructores certificados te acompañará en cada aleteo, asegurando que
                         tu única preocupación sea disfrutar de la ingravidez.
                     </p>
-                    <a th:href="@{/conocenos}" class="d-inline-flex align-items-center gap-2 mt-3 fw-bold ms-section-link">
+
+                    <a th:href="@{/conocenos}" class="ms-section-link text-white fw-bold d-inline-flex align-items-center gap-2">
                         Conoce a nuestro equipo <i class="bi bi-arrow-right"></i>
                     </a>
+
                 </div>
+
                 <div class="col-12 col-md-6">
                     <div class="row g-3">
+
                         <div class="col-6">
                             <div class="ms-stat-box">
-                                <div class="stat-number">15+</div>
+                                <div class="stat-number ms-counter" data-target="15"></div>
                                 <div class="stat-label">Años Experiencia</div>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="ms-stat-box">
-                                <div class="stat-number">2k+</div>
+                                <div class="stat-number ms-counter" data-target="2000"></div>
                                 <div class="stat-label">Alumnos Certificados</div>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="ms-stat-box">
-                                <div class="stat-number">50+</div>
+                                <div class="stat-number ms-counter" data-target="50"></div>
                                 <div class="stat-label">Zonas de Buceo</div>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="ms-stat-box">
-                                <div class="stat-number">PADI</div>
+                                <div class="stat-number ms-counter" data-label="PADI"></div>
                                 <div class="stat-label">Centro Certificado</div>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+
+
+
+
+
+
 
     <!-- ===== ÚLTIMAS NOTICIAS ===== -->
     <section class="py-5 ms-content-wrapper">
@@ -233,7 +374,194 @@
 <footer th:replace="~{layout/base :: footer}"></footer>
 <div th:replace="~{layout/base :: scripts}"></div>
 
+<script>
+    (function () {
+        /**
+         * Carrusel infinito con animación CSS (marquee-style).
+         * - Auto-scroll suave vía @keyframes: velocidad proporcional al nº de tarjetas.
+         * - Pausa al hacer hover y al pulsar los botones manuales.
+         * - Botones prev/next: desplazan una tarjeta y reanudan el auto-scroll.
+         * - Touch swipe compatible.
+         */
+        function initCarousel(trackId, prevId, nextId) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
 
+            const CARD_W = 320;   // debe coincidir con el CSS
+            const GAP    = 24;
+            const STEP   = CARD_W + GAP;
+
+            // Mitad del total de tarjetas = conjunto original
+            const totalCards = track.children.length;
+            const half       = totalCards / 2;
+
+            if (half < 1) return;
+
+            // ── Animación CSS automática ──────────────────────────────────────
+            // Velocidad: ~4 s por tarjeta, con un mínimo razonable
+            const duration = Math.max(half * 4, 16);   // segundos
+            const halfPx   = half * STEP;               // px que recorre un ciclo
+
+            // Inyectamos el @keyframes dinámicamente (valor exacto en px)
+            const styleId = 'ms-carousel-kf-' + trackId;
+            if (!document.getElementById(styleId)) {
+                const s = document.createElement('style');
+                s.id = styleId;
+                s.textContent =
+                    '@keyframes ms-scroll-' + trackId + '{' +
+                    '  from { transform: translateX(0); }' +
+                    '  to   { transform: translateX(-' + halfPx + 'px); }' +
+                    '}';
+                document.head.appendChild(s);
+            }
+
+            // Aplicamos la animación
+            function startCssAnim() {
+                track.style.transition = 'none';
+                track.style.animation  =
+                    'ms-scroll-' + trackId + ' ' + duration + 's linear infinite';
+            }
+
+            function pauseCssAnim()  { track.style.animationPlayState = 'paused'; }
+            function resumeCssAnim() { track.style.animationPlayState = 'running'; }
+
+            startCssAnim();
+
+            // ── Pausa al hover ────────────────────────────────────────────────
+            const wrapper = track.closest('.ms-carousel-wrapper');
+            wrapper.addEventListener('mouseenter', pauseCssAnim);
+            wrapper.addEventListener('mouseleave', resumeCssAnim);
+
+            // ── Botones manuales ──────────────────────────────────────────────
+            // Al pulsar un botón, capturamos la posición actual, desactivamos la
+            // animación CSS, hacemos el desplazamiento manual con transition y
+            // luego reanudamos la animación CSS desde esa posición.
+            function getCurrentX() {
+                const mat = getComputedStyle(track).transform;
+                if (!mat || mat === 'none') return 0;
+                const m = new DOMMatrix(mat);
+                return m.m41;   // translateX actual
+            }
+
+            function jumpBy(delta) {
+                pauseCssAnim();
+
+                const cur = getCurrentX();
+                // Detenemos la anim CSS y fijamos posición actual
+                track.style.animation  = 'none';
+                track.style.transform  = 'translateX(' + cur + 'px)';
+
+                // Forzamos reflow para que la transition arranque
+                void track.offsetWidth;
+
+                let target = cur - delta;
+                // Wrap: si salimos del rango [-halfPx, 0] reubicamos
+                if (target > 0)          target -= halfPx;
+                if (target < -halfPx)    target += halfPx;
+
+                track.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)';
+                track.style.transform  = 'translateX(' + target + 'px)';
+
+                // Tras la transición, reanudamos la animación CSS desde el punto correcto
+                track.addEventListener('transitionend', function resume() {
+                    track.removeEventListener('transitionend', resume);
+                    // Calcular el porcentaje de progreso para que la animación
+                    // no salte: delay negativo equivale a "ya lleva X segundos"
+                    const pct      = Math.abs(target) / halfPx;   // 0-1
+                    const delay    = -(pct * duration);
+                    track.style.transition = 'none';
+                    track.style.transform  = '';
+                    track.style.animation  =
+                        'ms-scroll-' + trackId + ' ' + duration + 's linear ' + delay + 's infinite';
+                    track.style.animationPlayState = 'running';
+                }, { once: true });
+            }
+
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            if (nextBtn) nextBtn.addEventListener('click', function () { jumpBy(STEP); });
+            if (prevBtn) prevBtn.addEventListener('click', function () { jumpBy(-STEP); });
+
+            // ── Touch swipe ───────────────────────────────────────────────────
+            let touchStartX = 0;
+            track.addEventListener('touchstart', function (e) {
+                touchStartX = e.touches[0].clientX;
+                pauseCssAnim();
+            }, { passive: true });
+            track.addEventListener('touchend', function (e) {
+                const dx = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(dx) > 50) {
+                    jumpBy(dx > 0 ? STEP : -STEP);
+                } else {
+                    resumeCssAnim();
+                }
+            }, { passive: true });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initCarousel('carouselTrack',         'carouselPrev',         'carouselNext');
+            initCarousel('carouselTrackFallback', 'carouselPrevFallback', 'carouselNextFallback');
+        });
+    })();
+    document.addEventListener("DOMContentLoaded", () => {
+
+    const counters = document.querySelectorAll(".ms-counter");
+    let activated = false;
+
+    // Formato con sufijos
+    const formatNumber = (value, target) => {
+        if (target >= 1000) {
+            return Math.round(value / 100) / 10 + "k+";
+        }
+        return value + "+";
+    };
+
+    // Velocidad SUPER lenta
+    const getSpeed = (target) => {
+        if (target <= 20) return 0.2;     // 15 → extremadamente lento
+        if (target <= 100) return 0.8;    // 50 → lento
+        return 10;                        // 2000 → rápido pero visible
+    };
+
+    const animateCounters = () => {
+        counters.forEach(counter => {
+
+            const label = counter.getAttribute("data-label");
+            if (label) {
+                counter.textContent = label;
+                return;
+            }
+
+            const target = +counter.getAttribute("data-target");
+            let current = 0;
+            const speed = getSpeed(target);
+
+            const update = () => {
+                current += speed;
+                if (current >= target) current = target;
+
+                counter.textContent = formatNumber(Math.floor(current), target);
+
+                if (current < target) {
+                    requestAnimationFrame(update);
+                }
+            };
+
+            update();
+        });
+    };
+
+    // Activar animación JUSTO cuando la sección entra en pantalla
+    const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !activated) {
+            activated = true;
+            animateCounters();
+        }
+    }, { threshold: 0.6 });
+
+    observer.observe(document.querySelector("#ms-stats-section"));
+});
+</script>
 
 </body>
 </html>

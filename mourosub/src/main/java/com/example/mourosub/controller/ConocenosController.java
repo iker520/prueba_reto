@@ -18,7 +18,9 @@ public class ConocenosController {
 
     @GetMapping
     public String conocenos(Model model) {
-        model.addAttribute("instructores", instructorService.findAllActivos());
+        var instructores = instructorService.findAllActivos();
+        model.addAttribute("instructores", instructores);
+        model.addAttribute("totalInstructores", instructores.size());
         model.addAttribute("pageTitle", "Conócenos");
         return "public/conocenos";
     }

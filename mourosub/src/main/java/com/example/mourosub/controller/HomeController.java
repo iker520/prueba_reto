@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("actividadesDestacadas", actividadService.findDestacadas());
+        model.addAttribute("actividadesCarrusel", actividadService.findAllActivas());
         model.addAttribute("ultimasNoticias", noticiaService.findUltimas3());
         model.addAttribute("pageTitle", "Inicio");
         return "public/index";

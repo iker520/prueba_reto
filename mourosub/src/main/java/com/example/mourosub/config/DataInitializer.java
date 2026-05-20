@@ -147,7 +147,7 @@ public class DataInitializer implements CommandLineRunner {
         Actividad a1 = new Actividad();
         a1.setNombre("Bautismo de Buceo");
         a1.setDescripcion("Tu primera inmersión guiada en aguas confinadas. La puerta de entrada al mundo submarino.");
-        a1.setPrecio(new Double("45.00"));
+        a1.setPrecio(Double.valueOf("45.00"));
         a1.setTipo("ACTIVIDAD");
         a1.setNivel("Sin experiencia");
         a1.setDuracion("3 horas");
@@ -161,7 +161,7 @@ public class DataInitializer implements CommandLineRunner {
         a2.setNombre("Curso Open Water Diver");
         a2.setDescripcion("La certificación internacional PADI más reconocida del mundo. Aprende a bucear de forma autónoma hasta 18 metros.");
         a2.setDescripcionHtml("<h2>¿Qué incluye el curso?</h2><p>El curso Open Water Diver es el punto de partida de toda aventura submarina. Comprende:</p><ul><li>5 sesiones teóricas con materiales PADI</li><li>5 inmersiones en piscina (aguas confinadas)</li><li>4 inmersiones en mar abierto</li></ul><p>Al finalizar obtendrás tu certificación internacional válida de por vida.</p>");
-        a2.setPrecio(new Double("320.00"));
+        a2.setPrecio(Double.valueOf("320.00"));
         a2.setTipo("CURSO");
         a2.setNivel("Sin experiencia");
         a2.setDuracion("4-5 días");
@@ -174,7 +174,7 @@ public class DataInitializer implements CommandLineRunner {
         Actividad a3 = new Actividad();
         a3.setNombre("Advanced Open Water Diver");
         a3.setDescripcion("Amplía tus horizontes: buceo profundo, navegación, pez-piloto... El siguiente paso lógico tras el Open Water.");
-        a3.setPrecio(new Double("280.00"));
+        a3.setPrecio(Double.valueOf("280.00"));
         a3.setTipo("CURSO");
         a3.setNivel("Open Water");
         a3.setDuracion("2-3 días");
@@ -186,7 +186,7 @@ public class DataInitializer implements CommandLineRunner {
         Actividad a4 = new Actividad();
         a4.setNombre("Inmersión en la Isla de Mouro");
         a4.setDescripcion("Una de las joyas del Cantábrico. Paredes verticales cubiertas de anémonas, bogavantes y meros de gran tamaño.");
-        a4.setPrecio(new Double("55.00"));
+        a4.setPrecio(Double.valueOf("55.00"));
         a4.setTipo("INMERSION");
         a4.setNivel("Open Water");
         a4.setDuracion("1 día (2 inmersiones)");
@@ -199,7 +199,7 @@ public class DataInitializer implements CommandLineRunner {
         Actividad a5 = new Actividad();
         a5.setNombre("Inmersión Nocturna");
         a5.setDescripcion("El mar de noche es un universo diferente. Pulpos cazando, estrellas de mar activas y la bioluminiscencia del plancton.");
-        a5.setPrecio(new Double("65.00"));
+        a5.setPrecio(Double.valueOf("65.00"));
         a5.setTipo("INMERSION");
         a5.setNivel("Advanced");
         a5.setDuracion("1 noche");
@@ -210,7 +210,7 @@ public class DataInitializer implements CommandLineRunner {
         Actividad a6 = new Actividad();
         a6.setNombre("Pack Verano: Open Water + 2 Inmersiones");
         a6.setDescripcion("Oferta especial de temporada: certifícate con Open Water e incluye 2 inmersiones guiadas en los mejores puntos del Cantábrico.");
-        a6.setPrecio(new Double("350.00"));
+        a6.setPrecio(Double.valueOf("350.00"));
         a6.setTipo("OFERTA");
         a6.setNivel("Sin experiencia");
         a6.setDuracion("1 semana");
