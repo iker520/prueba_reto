@@ -1549,3 +1549,165 @@ body {
   align-self: flex-start;
   font-size: 0.85rem;
 }
+/* ============================================================
+   CARRUSEL INFINITO DE SERVICIOS  (index.html)
+   ============================================================ */
+
+.ms-carousel-section {
+  background: var(--ms-background);
+}
+
+/* Contenedor exterior: define el viewport del carrusel */
+.ms-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  /* Espacio para los botones laterales */
+  padding: 0 0 1.5rem;
+}
+
+/* Track deslizante: flex row de tarjetas */
+.ms-carousel-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+  /* cursor eliminado: la animación es continua, no draggable */
+  padding: 0.5rem 2rem 0.5rem;
+}
+
+/* ---- Tarjeta individual ---- */
+.ms-carousel-card {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--ms-surface-white);
+  border: 1px solid var(--ms-outline-variant);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.ms-carousel-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 66, 117, 0.14);
+  transform: translateY(-4px);
+}
+
+/* Imagen */
+.ms-carousel-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ms-carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.ms-carousel-card:hover .ms-carousel-img { transform: scale(1.05); }
+
+/* Overlay con badge */
+.ms-carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,42,75,0.35) 0%, transparent 50%);
+}
+.ms-carousel-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+}
+
+/* Cuerpo */
+.ms-carousel-body {
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.ms-carousel-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ms-on-surface);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+.ms-carousel-desc {
+  font-size: 0.85rem;
+  color: var(--ms-on-surface-var);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+  /* Máximo 3 líneas y recorte elegante → SIN espacio vacío */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ms-carousel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ms-primary);
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+.ms-carousel-link:hover { gap: 0.5rem; color: var(--ms-primary-container); }
+
+/* ---- Botones de navegación ---- */
+.ms-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ms-outline-variant);
+  background: var(--ms-surface-white);
+  color: var(--ms-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 10;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.ms-carousel-btn:hover {
+  background: var(--ms-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,66,117,0.25);
+}
+.ms-carousel-btn--prev { left: 0.75rem; }
+.ms-carousel-btn--next { right: 0.75rem; }
+
+/* Degradado a los bordes para dar sensación de profundidad */
+.ms-carousel-wrapper::before,
+.ms-carousel-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 5;
+  pointer-events: none;
+}
+.ms-carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--ms-background), transparent);
+}
+.ms-carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--ms-background), transparent);
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ms-carousel-card { width: 270px; }
+  .ms-carousel-btn { display: none; }
+}
