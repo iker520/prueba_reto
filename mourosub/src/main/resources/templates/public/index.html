@@ -27,13 +27,13 @@
                     con MouroSub
                 </h1>
 
-                <p class="mt-3 mb-4 ms-animate ms-animate-delay-2">
+                <p class="mt-3 mb-4 ms-animate ms-animate-delay-2" style="color:rgba(255,255,255,0.95);font-size:1.125rem;line-height:1.7;text-shadow:0 1px 6px rgba(0,0,0,0.35);">
                     Escuela de buceo profesional en Santander. Desde bautismos hasta certificaciones
                     técnicas, sumérgete con seguridad y precisión en el Cantábrico.
                 </p>
 
                 <div class="d-flex flex-wrap gap-3 ms-animate ms-animate-delay-3">
-                    <a th:href="@{/servicios}" class="btn btn-ms-primary px-4 py-3 rounded">
+                    <a th:href="@{/servicios}" class="btn px-4 py-3 rounded" style="background:#fff;color:#1d5fa6;font-weight:700;font-size:0.875rem;letter-spacing:0.01em;transition:all 0.2s ease;box-shadow:0 4px 16px rgba(0,0,0,0.2);" onmouseover="this.style.background='#f0f6ff';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#fff';this.style.transform='translateY(0)'">
                         <i class="bi bi-compass me-2"></i>Empieza tu aventura
                     </a>
                     <a th:href="@{/servicios(tipo=CURSO)}" class="btn ms-hero-btn-secondary px-4 py-3 rounded">
@@ -309,59 +309,271 @@
 
 
 
-    <!-- ===== ÚLTIMAS NOTICIAS ===== -->
-    <section class="py-5 ms-content-wrapper">
-        <div class="d-flex justify-content-between align-items-end mb-4">
-            <div>
-                <h2 class="ms-news-header-title">
-                    Últimas Noticias
-                </h2>
-                <p class="ms-news-header-text">Actualidad, eventos y consejos de buceo.</p>
-            </div>
-            <a th:href="@{/noticias}" class="fw-semibold d-none d-md-block ms-news-all-link">
-                Ver todo el blog <i class="bi bi-arrow-right"></i>
-            </a>
-        </div>
+    <!-- ===== CONÓCENOS ===== -->
+    <section class="py-5 ms-conocenos-section">
+        <div class="ms-content-wrapper">
 
-        <div class="row g-4">
-            <div th:each="noticia : ${ultimasNoticias}" class="col-12 col-md-4">
-                <div class="ms-card ms-news-card h-100">
-                    <div class="news-img-wrapper">
-                        <img th:src="${noticia.imagenUrl != null ? noticia.imagenUrl : 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=60'}"
-                             th:alt="${noticia.titulo}"
-                             class="img-fluid"/>
+            <!-- Cabecera -->
+            <div class="d-flex justify-content-between align-items-center mb-4 ms-cn-reveal" style="--cn-delay:0ms">
+                <div>
+                    <h2 class="ms-news-header-title mb-1">Conócenos</h2>
+                    <p class="ms-news-header-text mb-0">Más de dos décadas llevando el buceo al siguiente nivel en el Cantábrico.</p>
+                </div>
+                <a th:href="@{/conocenos}" class="fw-semibold d-none d-md-flex align-items-center gap-1 ms-news-all-link flex-shrink-0">
+                    Saber más <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- ── FILA PRINCIPAL: texto + imagen ── -->
+            <div class="row g-4 align-items-stretch mb-4">
+
+                <!-- Texto -->
+                <div class="col-12 col-lg-6 ms-cn-reveal" style="--cn-delay:120ms">
+                    <div class="ms-cn-text-card">
+                        <p class="ms-cn-lead">
+                            MouroSub nació con la misión de compartir los secretos del mundo submarino bajo una
+                            premisa innegociable: <strong>la seguridad</strong>. Somos el referente en formación
+                            de buceo recreativo y técnico en el norte de España, con instalaciones propias en el
+                            Puerto Deportivo Marina del Cantábrico.
+                        </p>
+                        <p class="ms-cn-body mt-3">
+                            Nuestro catálogo abarca desde el primer Bautismo de Buceo hasta cursos de Buceo Técnico XR
+                            con mezclas Nitrox y Trimix. Formamos Instructores y Asistentes bajo las normas europeas
+                            UNE e ISO, y organizamos salidas medioambientales, talleres técnicos y charlas especializadas.
+                        </p>
+                        <div class="ms-cn-highlights mt-4">
+                            <div class="ms-cn-highlight-item">
+                                <i class="bi bi-patch-check-fill"></i>
+                                <span>Centro PADI 5 Estrellas</span>
+                            </div>
+                            <div class="ms-cn-highlight-item">
+                                <i class="bi bi-shield-fill-check"></i>
+                                <span>Normativa UNE &amp; ISO</span>
+                            </div>
+                            <div class="ms-cn-highlight-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Puerto Deportivo Marina del Cantábrico</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ms-card-body">
-                        <span class="news-cat" th:text="${noticia.categoria}">CATEGORÍA</span>
-                        <p class="text-muted mt-1 ms-news-date" th:text="${#temporals.format(noticia.fechaPublicacion, 'dd MMM, yyyy')}">Fecha</p>
-                        <h4 class="news-title mt-1" th:text="${noticia.titulo}">Título</h4>
-                        <a th:href="@{/noticias/{id}(id=${noticia.idNoticia})}"
-                           class="d-inline-flex align-items-center gap-1 mt-2 fw-semibold ms-news-link">
-                            Leer más <i class="bi bi-chevron-right"></i>
-                        </a>
+                </div>
+
+                <!-- Imagen instalaciones -->
+                <div class="col-12 col-lg-6 ms-cn-reveal" style="--cn-delay:240ms">
+                    <div class="ms-cn-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&q=75"
+                             alt="Instalaciones MouroSub"
+                             class="ms-cn-img"/>
+                        <div class="ms-cn-img-badge">
+                            <i class="bi bi-building me-1"></i>+200 m² de instalaciones
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Fallback -->
-            <div th:if="${#lists.isEmpty(ultimasNoticias)}" class="col-12">
-                <div class="text-center py-5 ms-fallback-text">
-                    <i class="bi bi-newspaper ms-empty-icon"></i>
-                    <p class="mt-3">Próximamente publicaremos noticias y artículos.</p>
+
+            <!-- ── STATS con contador ── -->
+            <div class="ms-cn-stats-row ms-cn-reveal" style="--cn-delay:360ms" id="msCnStats">
+
+                <div class="ms-cn-stat">
+                    <span class="ms-cn-stat-number ms-cn-counter" data-target="25" data-prefix="+" data-suffix="">25</span>
+                    <span class="ms-cn-stat-label">Años de experiencia</span>
                 </div>
+
+                <div class="ms-cn-stat-divider"></div>
+
+                <div class="ms-cn-stat">
+                    <span class="ms-cn-stat-number ms-cn-counter" data-target="5000" data-prefix="+" data-suffix="" data-thousands=".">5.000</span>
+                    <span class="ms-cn-stat-label">Certificaciones emitidas</span>
+                </div>
+
+                <div class="ms-cn-stat-divider"></div>
+
+                <div class="ms-cn-stat">
+                    <span class="ms-cn-stat-number ms-cn-counter" data-target="14" data-prefix="" data-suffix="">14</span>
+                    <span class="ms-cn-stat-label">Instructores titulados</span>
+                </div>
+
+                <div class="ms-cn-stat-divider"></div>
+
+                <div class="ms-cn-stat">
+                    <span class="ms-cn-stat-number ms-cn-counter" data-target="200" data-prefix="+" data-suffix=" m²">200</span>
+                    <span class="ms-cn-stat-label">De instalaciones</span>
+                </div>
+
             </div>
-        </div>
+
+        </div><!-- /.ms-content-wrapper -->
     </section>
 
+    <style>
+        /* ── Sección conócenos ── */
+        .ms-conocenos-section { background: #f4f7fb; }
+
+        /* ── Scroll-driven reveal ── */
+        .ms-cn-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease calc(var(--cn-delay, 0ms)),
+                        transform 0.6s ease calc(var(--cn-delay, 0ms));
+        }
+        .ms-cn-reveal.ms-cn-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Texto principal */
+        .ms-cn-text-card {
+            background: #fff;
+            border: 1px solid #dde4ef;
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 2px 16px rgba(29,95,166,.06);
+        }
+        .ms-cn-lead {
+            font-size: 1.05rem;
+            color: #1a2e4a;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .ms-cn-body {
+            font-size: .95rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Highlights */
+        .ms-cn-highlights { display: flex; flex-direction: column; gap: .6rem; }
+        .ms-cn-highlight-item {
+            display: flex; align-items: center; gap: .6rem;
+            font-size: .9rem; font-weight: 600; color: #1d5fa6;
+        }
+        .ms-cn-highlight-item i { font-size: 1rem; }
+
+        /* Imagen */
+        .ms-cn-img-wrap {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 100%;
+            min-height: 280px;
+            box-shadow: 0 12px 40px rgba(0,0,0,.14);
+        }
+        .ms-cn-img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .ms-cn-img-badge {
+            position: absolute; bottom: 1rem; left: 1rem;
+            background: rgba(255,255,255,.92);
+            backdrop-filter: blur(6px);
+            color: #1d5fa6; font-size: .8rem; font-weight: 700;
+            padding: .4rem .9rem; border-radius: 999px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+        }
+
+        /* Stats row */
+        .ms-cn-stats-row {
+            display: flex; align-items: center;
+            justify-content: space-between;
+            background: #fff; border: 1px solid #dde4ef;
+            border-radius: 1rem; padding: 2rem 1.5rem;
+            gap: 1rem; flex-wrap: wrap;
+            box-shadow: 0 2px 16px rgba(29,95,166,.07);
+        }
+        .ms-cn-stat {
+            display: flex; flex-direction: column;
+            align-items: center; text-align: center;
+            flex: 1 1 140px; gap: .3rem;
+        }
+        .ms-cn-stat-number {
+            font-size: 2rem; font-weight: 800;
+            color: #1d5fa6; line-height: 1;
+        }
+        .ms-cn-stat-label {
+            font-size: .72rem; font-weight: 600;
+            letter-spacing: .08em; text-transform: uppercase;
+            color: #6b7a90;
+        }
+        .ms-cn-stat-divider {
+            width: 1px; height: 3rem;
+            background: #dde4ef; flex-shrink: 0;
+        }
+
+        @media (max-width: 575px) {
+            .ms-cn-stat-divider { display: none; }
+            .ms-cn-stats-row { gap: 1.5rem; }
+            .ms-cn-stat { flex: 1 1 45%; }
+        }
+    </style>
+
+    <script>
+        (function () {
+            /* ── 1. Scroll-driven sequential reveal ── */
+            var revealEls = document.querySelectorAll('.ms-cn-reveal');
+            var revealObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('ms-cn-visible');
+                        revealObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealEls.forEach(function(el) { revealObs.observe(el); });
+
+            /* ── 2. Contador animado ── */
+            function formatNum(val, thousands, suffix) {
+                var s = Math.round(val).toString();
+                if (thousands) {
+                    s = s.replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+                }
+                return s + (suffix || '');
+            }
+
+            function runCounters() {
+                var counters = document.querySelectorAll('.ms-cn-counter');
+                counters.forEach(function(el) {
+                    var target   = parseInt(el.dataset.target, 10);
+                    var prefix   = el.dataset.prefix  || '';
+                    var suffix   = el.dataset.suffix  || '';
+                    var thousands= el.dataset.thousands|| '';
+                    var duration = 1600; // ms
+                    var start    = performance.now();
+
+                    function step(now) {
+                        var elapsed  = now - start;
+                        var progress = Math.min(elapsed / duration, 1);
+                        // ease-out cubic
+                        var ease = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = prefix + formatNum(ease * target, thousands, suffix);
+                        if (progress < 1) requestAnimationFrame(step);
+                    }
+                    requestAnimationFrame(step);
+                });
+            }
+
+            /* Lanza contadores cuando el bloque de stats entra en pantalla */
+            var statsBlock = document.getElementById('msCnStats');
+            var counted = false;
+            var statsObs = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting && !counted) {
+                    counted = true;
+                    runCounters();
+                    statsObs.disconnect();
+                }
+            }, { threshold: 0.4 });
+            if (statsBlock) statsObs.observe(statsBlock);
+        })();
+    </script>
+
     <!-- ===== CTA FINAL ===== -->
-    <section class="ms-cta-section">
+    <section class="ms-cta-section" id="msCta">
         <!-- Imagen de fondo con overlay -->
         <div class="ms-cta-bg"></div>
         <div class="ms-cta-overlay"></div>
 
-        <!-- Burbujas decorativas -->
-        <div class="ms-cta-bubble ms-cta-bubble-1"></div>
-        <div class="ms-cta-bubble ms-cta-bubble-2"></div>
-        <div class="ms-cta-bubble ms-cta-bubble-3"></div>
+        <!-- Canvas de bolitas -->
+        <canvas id="msCtaCanvas" class="ms-cta-canvas"></canvas>
 
         <div class="ms-cta-content">
             <!-- Chip superior -->
@@ -430,21 +642,19 @@
                     rgba(10, 30, 70, 0.88) 100%);
         }
 
-        /* Burbujas decorativas */
-        .ms-cta-bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,.06);
+        /* Canvas de partículas */
+        .ms-cta-canvas {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
+            z-index: 2;
+            display: block;
         }
-        .ms-cta-bubble-1 { width: 320px; height: 320px; top: -80px; left: -80px; }
-        .ms-cta-bubble-2 { width: 180px; height: 180px; bottom: -40px; right: 10%; }
-        .ms-cta-bubble-3 { width: 90px;  height: 90px;  top: 30%;    right: 5%;  background: rgba(255,255,255,.04); }
 
         /* Contenido */
         .ms-cta-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 680px;
             width: 100%;
         }
@@ -556,6 +766,162 @@
             .ms-cta-trust-dot { display: none; }
         }
     </style>
+
+    <script>
+        (function() {
+            function initBalls() {
+                var section = document.getElementById('msCta');
+                var canvas  = document.getElementById('msCtaCanvas');
+                if (!section || !canvas) return;
+
+                var ctx = canvas.getContext('2d');
+                var bubbles = [];
+                var mouseX = -9999, mouseY = -9999;
+
+                function setSize() {
+                    var r = section.getBoundingClientRect();
+                    canvas.width  = r.width  || section.offsetWidth;
+                    canvas.height = r.height || section.offsetHeight;
+                }
+                setSize();
+                window.addEventListener('resize', function() { setSize(); createBubbles(); });
+
+                function Bubble() {
+                    this.ox  = Math.random() * canvas.width;
+                    this.oy  = Math.random() * canvas.height;
+                    this.x   = this.ox;
+                    this.y   = this.oy;
+                    this.vx  = 0;
+                    this.vy  = 0;
+                    this.r   = 6 + Math.random() * 22;
+                    /* deriva ascendente natural de las burbujas */
+                    this.driftY  = -(0.08 + Math.random() * 0.18);
+                    this.driftX  = (Math.random() - 0.5) * 0.06;
+                    /* opacidad aleatoria para profundidad visual */
+                    this.opacity = 0.15 + Math.random() * 0.25;
+                }
+
+                Bubble.prototype.update = function() {
+                    /* Repulsión del ratón */
+                    var dx = this.x - mouseX;
+                    var dy = this.y - mouseY;
+                    var d  = Math.sqrt(dx*dx + dy*dy) || 1;
+                    if (d < 120) {
+                        var f = (120 - d) / 120 * 9;
+                        this.vx += (dx / d) * f;
+                        this.vy += (dy / d) * f;
+                    }
+
+                    /* Retorno a posición original */
+                    this.vx += (this.ox - this.x) * 0.04;
+                    this.vy += (this.oy - this.y) * 0.04;
+
+                    /* Deriva marina suave (burbujea hacia arriba) */
+                    this.vx += this.driftX;
+                    this.vy += this.driftY;
+
+                    /* Fricción */
+                    this.vx *= 0.87;
+                    this.vy *= 0.87;
+
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    /* Wrap vertical: si sube demasiado reaparece abajo */
+                    if (this.y + this.r < 0) {
+                        this.y  = canvas.height + this.r;
+                        this.oy = this.y;
+                        this.ox = Math.random() * canvas.width;
+                        this.x  = this.ox;
+                    }
+                };
+
+                Bubble.prototype.draw = function() {
+                    ctx.save();
+
+                    /* Burbuja principal: círculo con borde translúcido */
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(180,230,255,' + (this.opacity + 0.3) + ')';
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+
+                    /* Relleno interior muy sutil */
+                    var grad = ctx.createRadialGradient(
+                        this.x - this.r * 0.3, this.y - this.r * 0.35, this.r * 0.05,
+                        this.x, this.y, this.r
+                    );
+                    grad.addColorStop(0,   'rgba(220,245,255,' + (this.opacity + 0.2) + ')');
+                    grad.addColorStop(0.5, 'rgba(150,210,240,' + this.opacity + ')');
+                    grad.addColorStop(1,   'rgba(100,180,220,0)');
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+
+                    /* Reflejo de luz (pequeño arco blanco arriba-izquierda) */
+                    ctx.beginPath();
+                    ctx.arc(
+                        this.x - this.r * 0.28,
+                        this.y - this.r * 0.28,
+                        this.r * 0.22,
+                        0, Math.PI * 2
+                    );
+                    ctx.fillStyle = 'rgba(255,255,255,' + (this.opacity * 1.8) + ')';
+                    ctx.fill();
+
+                    ctx.restore();
+                };
+
+                function createBubbles() {
+                    bubbles = [];
+                    var count = Math.floor((canvas.width * canvas.height) / 9000);
+                    count = Math.max(25, Math.min(count, 70));
+                    for (var i = 0; i < count; i++) {
+                        var b = new Bubble();
+                        /* distribuir en alturas variadas desde el inicio */
+                        b.y  = Math.random() * canvas.height;
+                        b.oy = b.y;
+                        bubbles.push(b);
+                    }
+                }
+                createBubbles();
+
+                function frame() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (var i = 0; i < bubbles.length; i++) {
+                        bubbles[i].update();
+                        bubbles[i].draw();
+                    }
+                    requestAnimationFrame(frame);
+                }
+                frame();
+
+                section.addEventListener('mousemove', function(e) {
+                    var r = section.getBoundingClientRect();
+                    mouseX = e.clientX - r.left;
+                    mouseY = e.clientY - r.top;
+                });
+                section.addEventListener('mouseleave', function() {
+                    mouseX = -9999; mouseY = -9999;
+                });
+
+                /* Touch */
+                section.addEventListener('touchmove', function(e) {
+                    var r = section.getBoundingClientRect();
+                    mouseX = e.touches[0].clientX - r.left;
+                    mouseY = e.touches[0].clientY - r.top;
+                }, { passive: true });
+                section.addEventListener('touchend', function() {
+                    mouseX = -9999; mouseY = -9999;
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initBalls);
+            } else {
+                initBalls();
+            }
+        })();
+    </script>
 </main>
 
 <footer th:replace="~{layout/base :: footer}"></footer>

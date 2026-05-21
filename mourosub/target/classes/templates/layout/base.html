@@ -24,6 +24,10 @@
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://www.buscabuceo.com/data/u/1668/mouro-sub-845360.jpg"/>
+    <link rel="shortcut icon" href="https://www.buscabuceo.com/data/u/1668/mouro-sub-845360.jpg"/>
+
     <!-- MouroSub Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/mourosub.css}"/>
 </head>
@@ -33,43 +37,63 @@
      Uso: <nav th:replace="~{layout/base :: navbar(${pageTitle})}">
      ============================================================ -->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg ms-navbar fixed-top" id="mainNav">
-    <div class="container-ms w-100 d-flex align-items-center justify-content-between ms-content-wrapper">
+    <div class="ms-content-wrapper w-100 d-flex flex-wrap align-items-center justify-content-between">
 
         <!-- Brand -->
-        <a class="navbar-brand" th:href="@{/}">MouroSub</a>
+        <a class="navbar-brand ms-navbar-brand" th:href="@{/}">
+            <img src="https://www.mourosub.com/wp-content/uploads/2016/04/mourosub-escuela-de-buceo-santander.png"
+                 alt="MouroSub logo"
+                 class="ms-navbar-logo"/>
+        </a>
 
         <!-- Hamburger mobile -->
-        <button class="navbar-toggler border-0" type="button"
+        <button class="navbar-toggler ms-navbar-toggler border-0" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarMain"
                 aria-controls="navbarMain" aria-expanded="false" aria-label="Menú">
-            <span class="navbar-toggler-icon"></span>
+            <span class="ms-toggler-bar"></span>
+            <span class="ms-toggler-bar"></span>
+            <span class="ms-toggler-bar"></span>
         </button>
 
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarMain">
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 py-2 py-lg-0">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 py-3 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${currentUri == '/servicios'} ? 'active' : ''"
-                       th:href="@{/servicios}">Servicios</a>
+                    <a class="ms-nav-link" th:classappend="${currentUri == '/servicios'} ? 'active' : ''"
+                       th:href="@{/servicios}">
+                        <i class="bi bi-compass ms-nav-icon"></i>Servicios
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${currentUri == '/conocenos'} ? 'active' : ''"
-                       th:href="@{/conocenos}">Conócenos</a>
+                    <a class="ms-nav-link" th:classappend="${currentUri == '/conocenos'} ? 'active' : ''"
+                       th:href="@{/conocenos}">
+                        <i class="bi bi-people ms-nav-icon"></i>Conócenos
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${currentUri != null and currentUri.startsWith('/noticias')} ? 'active' : ''"
-                       th:href="@{/noticias}">Noticias</a>
+                    <a class="ms-nav-link" th:classappend="${currentUri != null and currentUri.startsWith('/noticias')} ? 'active' : ''"
+                       th:href="@{/noticias}">
+                        <i class="bi bi-newspaper ms-nav-icon"></i>Noticias
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${currentUri == '/contacto'} ? 'active' : ''"
-                       th:href="@{/contacto}">Contacto</a>
+                    <a class="ms-nav-link" th:classappend="${currentUri == '/contacto'} ? 'active' : ''"
+                       th:href="@{/contacto}">
+                        <i class="bi bi-envelope ms-nav-icon"></i>Contacto
+                    </a>
                 </li>
-                <li class="nav-item ms-lg-2">
+
+                <!-- Separador visual -->
+                <li class="ms-nav-divider d-none d-lg-block" aria-hidden="true"></li>
+
+                <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()"
-                       class="btn btn-ms-primary px-4 py-2 rounded"
-                       th:href="@{/login}">Login</a>
+                       class="ms-navbar-cta"
+                       th:href="@{/login}">
+                        <i class="bi bi-person-circle me-1"></i>Login
+                    </a>
                     <a sec:authorize="isAuthenticated()"
-                       class="btn btn-ms-primary px-4 py-2 rounded"
+                       class="ms-navbar-cta"
                        th:href="@{/admin}">
                         <i class="bi bi-speedometer2 me-1"></i>Admin
                     </a>
@@ -78,6 +102,18 @@
         </div>
     </div>
 </nav>
+
+<script>
+    /* Scroll effect: glassmorphism al bajar */
+    (function () {
+        var nav = document.getElementById('mainNav');
+        function onScroll() {
+            if (window.scrollY > 40) { nav.classList.add('ms-navbar--scrolled'); }
+            else                     { nav.classList.remove('ms-navbar--scrolled'); }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+</script>
 
 <!-- ============================================================
      FRAGMENTO: footer

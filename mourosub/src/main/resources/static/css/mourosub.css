@@ -51,46 +51,199 @@ body {
 }
 
 /* --- Navbar --- */
+/* --- Navbar --- */
 .ms-navbar {
-  background-color: var(--ms-surface-white) !important;
-  border-bottom: 1px solid var(--ms-outline-variant);
-  min-height: 80px;
-  padding-top: 0;
-  padding-bottom: 0;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid transparent;
+  min-height: 72px;
+  padding: 0;
+  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, min-height 0.35s ease;
 }
-.ms-navbar .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ms-primary) !important;
-  letter-spacing: -0.02em;
+
+/* Al hacer scroll: efecto glass */
+.ms-navbar--scrolled {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--ms-outline-variant) !important;
+  box-shadow: 0 4px 24px rgba(0, 66, 117, 0.08);
+  min-height: 62px;
 }
-.ms-navbar .nav-link {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--ms-secondary) !important;
-  transition: color 0.2s ease;
-  padding: 0.25rem 0;
+
+/* Logo */
+.ms-navbar-brand { display: flex; align-items: center; flex-shrink: 1; min-width: 0; }
+.ms-navbar-logo {
+  height: 40px;
+  width: auto;
+  max-width: 160px;   /* evita que el logo ancho desborde en móvil */
+  object-fit: contain;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.ms-navbar .nav-link:hover,
-.ms-navbar .nav-link.active {
-  color: var(--ms-primary) !important;
+.ms-navbar-brand:hover .ms-navbar-logo {
+  opacity: 0.85;
+  transform: scale(0.97);
 }
-.ms-navbar .nav-link.active {
-  font-weight: 700;
-  border-bottom: 2px solid var(--ms-primary);
+@media (min-width: 992px) {
+  .ms-navbar-logo { height: 46px; max-width: 220px; }
 }
-/* Menú desplegado en móvil: separador visual */
+
+/* Links */
+.ms-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--ms-on-surface-var);
+  text-decoration: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+  position: relative;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.ms-nav-link:hover {
+  color: var(--ms-primary);
+  background: rgba(0, 66, 117, 0.06);
+}
+.ms-nav-link.active {
+  color: var(--ms-primary);
+  font-weight: 600;
+  background: rgba(0, 66, 117, 0.08);
+}
+/* Dot indicator debajo del link activo (solo desktop) */
+.ms-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ms-primary);
+}
+
+/* Icono en los links */
+.ms-nav-icon {
+  font-size: 0.85rem;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+.ms-nav-link:hover .ms-nav-icon,
+.ms-nav-link.active .ms-nav-icon { opacity: 1; }
+
+/* Separador vertical entre links y CTA */
+.ms-nav-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--ms-outline-variant);
+  margin: 0 0.5rem;
+  align-self: center;
+}
+
+/* Botón CTA Login/Admin */
+.ms-navbar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--ms-primary) 0%, var(--ms-primary-container) 100%);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 66, 117, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.ms-navbar-cta:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px rgba(0, 66, 117, 0.35);
+  filter: brightness(1.08);
+}
+.ms-navbar-cta:active { transform: translateY(0); }
+
+/* Hamburger personalizado */
+.ms-navbar-toggler {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  background: transparent;
+  border: 1.5px solid var(--ms-outline-variant) !important;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.ms-navbar-toggler:hover {
+  border-color: var(--ms-primary) !important;
+  background: rgba(0, 66, 117, 0.05);
+}
+/* En desktop Bootstrap ya lo oculta con d-lg-none implícito del navbar-toggler */
+@media (min-width: 992px) {
+  .ms-navbar-toggler { display: none !important; }
+}
+.ms-toggler-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--ms-primary);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Mobile collapse */
 @media (max-width: 991.98px) {
-  .ms-navbar .navbar-collapse {
-    border-top: 1px solid var(--ms-outline-variant);
-    padding-top: 0.5rem;
-    padding-bottom: 0.75rem;
-    background-color: var(--ms-surface-white);
+  /* El nav principal no debe cortar el contenido */
+  .ms-navbar > .container-ms,
+  .ms-navbar > div {
+    flex-wrap: wrap;
   }
-  .ms-navbar .nav-link {
-    padding: 0.5rem 0;
+  /* La barra top (logo + toggler) ocupa una fila completa */
+  .ms-navbar .d-flex.align-items-center.justify-content-between {
+    flex-wrap: wrap;
+  }
+  /* El collapse se despliega en ancho completo debajo */
+  .ms-navbar .navbar-collapse {
+    flex-basis: 100%;
+    border-top: 1px solid var(--ms-outline-variant);
+    padding: 0.75rem 0 1rem;
+    background: rgba(255, 255, 255, 0.99);
+    backdrop-filter: blur(12px);
+  }
+  /* Links en columna */
+  .ms-navbar .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 0 !important;
+  }
+  .ms-nav-link {
+    display: flex;
+    width: 100%;
+    padding: 0.7rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.4rem;
+  }
+  .ms-nav-link.active::after { display: none; }
+  .ms-nav-link.active {
+    border-left: 3px solid var(--ms-primary);
+    padding-left: 0.85rem;
+    border-radius: 0 0.4rem 0.4rem 0;
+  }
+  .ms-nav-divider { display: none; }
+  .ms-navbar-cta {
+    margin-top: 0.75rem;
+    width: 100%;
+    justify-content: center;
+    border-radius: 0.5rem;
   }
 }
+
 
 /* --- Botones --- */
 .btn-ms-primary {
