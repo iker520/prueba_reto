@@ -1,9 +1,12 @@
+C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\AdminModelAdvice.java
+C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\CustomLoginSuccessHandler.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\DataInitializer.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\GlobalExceptionHandler.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\PasswordEncoderConfig.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\SecurityConfig.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\config\WebConfig.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\admin\AdminActividadController.java
+C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\admin\AdminCertificacionController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\admin\AdminContactoController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\admin\AdminDashboardController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\admin\AdminInstructorController.java
@@ -15,8 +18,10 @@ C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\HomeController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\LegalController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\LoginController.java
+C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\MiCuentaController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\NewsletterController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\NoticiasController.java
+C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\RegistroController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\controller\ServiciosController.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\model\Actividad.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\model\ActividadReserva.java
@@ -44,6 +49,7 @@ C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\repository\UbicacionRepository.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\repository\UsuarioRepository.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\service\ActividadService.java
+C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\service\CertificacionService.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\service\ContactoService.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\service\InstructorService.java
 C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\prueba_mourosub\mourosub\src\main\java\com\example\mourosub\service\NoticiaService.java

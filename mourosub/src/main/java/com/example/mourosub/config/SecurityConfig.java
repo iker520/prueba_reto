@@ -18,14 +18,17 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 public class SecurityConfig {
 
         @Bean
-        public DaoAuthenticationProvider authenticationProvider(UsuarioService usuarioService,BCryptPasswordEncoder passwordEncoder) {
+        public DaoAuthenticationProvider authenticationProvider(UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) {
                 DaoAuthenticationProvider provider = new DaoAuthenticationProvider(usuarioService);
                 provider.setPasswordEncoder(passwordEncoder);
                 return provider;
         }
 
         @Bean
-        public SecurityFilterChain filterChain(HttpSecurity http, UsuarioService usuarioService,BCryptPasswordEncoder passwordEncoder) throws Exception {
+        public SecurityFilterChain filterChain(HttpSecurity http,
+                                               UsuarioService usuarioService,
+                                               BCryptPasswordEncoder passwordEncoder,
+                                               CustomLoginSuccessHandler loginSuccessHandler) throws Exception {
 
                 CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
                 requestHandler.setCsrfRequestAttributeName(null);
@@ -39,7 +42,9 @@ public class SecurityConfig {
                                                 .requestMatchers(
                                                                 "/", "/servicios/**", "/conocenos",
                                                                 "/noticias/**", "/contacto", "/login",
+                                                                "/registro", "/registro/**",
                                                                 "/css/**", "/js/**", "/images/**",
+                                                                "/uploads/**",
                                                                 "/webjars/**", "/favicon.ico",
                                                                 "/error/**", "/403",
                                                                 "/condiciones-venta", "/devoluciones",
@@ -51,12 +56,12 @@ public class SecurityConfig {
                                 .formLogin(form -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/login")
-                                                .defaultSuccessUrl("/admin", true)
+                                                .successHandler(loginSuccessHandler)
                                                 .failureUrl("/login?error=true")
                                                 .permitAll())
                                 .logout(logout -> logout
                                                 .logoutUrl("/logout")
-                                                .logoutSuccessUrl("/?logout=true")
+                                                .logoutSuccessUrl("/login?logout=true")
                                                 .invalidateHttpSession(true)
                                                 .deleteCookies("JSESSIONID")
                                                 .permitAll())

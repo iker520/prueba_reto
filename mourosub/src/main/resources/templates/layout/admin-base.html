@@ -69,6 +69,22 @@
        class="nav-link">
       <i class="bi bi-people"></i> Usuarios
     </a>
+
+    <span class="ms-admin-section-label ms-admin-section-label-mt">Documentación</span>
+
+    <a th:href="@{/admin/certificaciones}"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/certificaciones') and !(currentUri.startsWith('/admin/certificaciones/mouro'))} ? 'active' : ''"
+       class="nav-link position-relative">
+      <i class="bi bi-patch-check"></i> Certs. Usuarios
+      <span th:if="${pendientesValidacion != null and pendientesValidacion > 0}"
+            class="ms-sidebar-badge" th:text="${pendientesValidacion}">0</span>
+    </a>
+
+    <a th:href="@{/admin/certificaciones/mouro}"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/certificaciones/mouro')} ? 'active' : ''"
+       class="nav-link">
+      <i class="bi bi-award"></i> Certs. MouroSub
+    </a>
   </div>
 
   <!-- Footer del sidebar -->
@@ -93,6 +109,14 @@
     <h5 class="mb-0 fw-semibold ms-topbar-title" th:text="${pageTitle}">Panel</h5>
   </div>
   <div class="d-flex align-items-center gap-3">
+
+    <!-- Campanita de alertas de validación -->
+    <a th:href="@{/admin/certificaciones}" class="ms-bell-btn" title="Documentos pendientes de validación">
+      <i class="bi bi-bell-fill"></i>
+      <span th:if="${pendientesValidacion != null and pendientesValidacion > 0}"
+            class="ms-bell-badge" th:text="${pendientesValidacion}">0</span>
+    </a>
+
     <span class="ms-topbar-user">
       <i class="bi bi-person-circle me-1"></i>
       <span sec:authentication="name">admin</span>

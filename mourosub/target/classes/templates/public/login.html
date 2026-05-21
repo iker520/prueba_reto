@@ -71,9 +71,13 @@
       </form>
 
       <hr class="ms-login-divider"/>
+      <div th:if="${registroExitoso}" class="alert alert-success d-flex align-items-center gap-2 mb-3" role="alert">
+        <i class="bi bi-check-circle-fill"></i>
+        <span th:text="${registroExitoso}"></span>
+      </div>
       <p class="text-center mb-0 ms-login-footer-text">
         ¿No tienes una cuenta?
-        <a th:href="@{/contacto}" class="ms-login-footer-link">Contáctanos</a>
+        <a th:href="@{/registro}" class="ms-login-footer-link">Regístrate aquí</a>
       </p>
     </div>
 

@@ -73,4 +73,26 @@ public class AdminUsuarioController {
         }
         return "redirect:/admin/usuarios";
     }
+
+    @PostMapping("/{dni}/aprobar-seguro")
+    public String aprobarSeguro(@PathVariable String dni, RedirectAttributes redirectAttributes) {
+        try {
+            usuarioService.aprobarSeguro(dni);
+            redirectAttributes.addFlashAttribute("success", "Seguro de accidentes aprobado.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al aprobar: " + e.getMessage());
+        }
+        return "redirect:/admin/usuarios";
+    }
+
+    @PostMapping("/{dni}/rechazar-seguro")
+    public String rechazarSeguro(@PathVariable String dni, RedirectAttributes redirectAttributes) {
+        try {
+            usuarioService.rechazarSeguro(dni);
+            redirectAttributes.addFlashAttribute("success", "Seguro de accidentes rechazado.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al rechazar: " + e.getMessage());
+        }
+        return "redirect:/admin/usuarios";
+    }
 }

@@ -77,4 +77,30 @@ public class UsuarioService implements UserDetailsService {
     public long count() {
         return usuarioRepository.count();
     }
+
+    /** Número de buceadores con seguro pendiente de validación (para campanita). */
+    public long countBuceadoresSeguroPendiente() {
+        return usuarioRepository.countByEsBuceadorTrueAndEstadoSeguro("PENDIENTE");
+    }
+
+    /** Lista de buceadores con seguro pendiente. */
+    public java.util.List<Usuario> findBuceadoresSeguroPendiente() {
+        return usuarioRepository.findByEsBuceadorTrueAndEstadoSeguro("PENDIENTE");
+    }
+
+    /** Aprueba el seguro de un buceador. */
+    public void aprobarSeguro(String dni) {
+        usuarioRepository.findById(dni).ifPresent(u -> {
+            u.setEstadoSeguro("APROBADO");
+            usuarioRepository.save(u);
+        });
+    }
+
+    /** Rechaza el seguro de un buceador. */
+    public void rechazarSeguro(String dni) {
+        usuarioRepository.findById(dni).ifPresent(u -> {
+            u.setEstadoSeguro("RECHAZADO");
+            usuarioRepository.save(u);
+        });
+    }
 }

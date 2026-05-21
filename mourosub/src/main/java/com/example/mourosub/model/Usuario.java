@@ -81,6 +81,20 @@ public class Usuario {
     @Column(name = "fecha_vto")
     private LocalDate fechaVto;
 
+    /**
+     * true si el usuario se ha identificado como buceador al registrarse.
+     * Controla si se le piden seguro y certificaciones.
+     */
+    @Column(name = "es_buceador")
+    private Boolean esBuceador = false;
+
+    /**
+     * Estado de validación del seguro aportado por el buceador.
+     * Valores posibles: null (sin seguro), PENDIENTE, APROBADO, RECHAZADO
+     */
+    @Column(name = "estado_seguro", length = 20)
+    private String estadoSeguro;
+
     // --- Campos para autenticación Spring Security ---
     @Column(name = "password", nullable = false, length = 255)
     private String password;

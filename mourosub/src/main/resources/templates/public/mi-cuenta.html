@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body class="page-body">
+<nav th:replace="~{layout/base :: navbar}"></nav>
+<main class="ms-content-wrapper py-5">
+
+  <!-- Header -->
+  <div class="ms-mi-cuenta-header mb-4">
+    <div class="d-flex align-items-center gap-3">
+      <div class="ms-mi-cuenta-avatar">
+        <i class="bi bi-person-circle"></i>
+      </div>
+      <div>
+        <h1 class="ms-mi-cuenta-title mb-0"
+            th:text="${usuario.nombre} + ' ' + ${usuario.apellido1}">Nombre Apellido</h1>
+        <span class="ms-mi-cuenta-email" th:text="${usuario.email}">email</span>
+        <span th:if="${usuario.esBuceador}" class="ms-buceador-badge ms-2">
+          <i class="bi bi-water me-1"></i>Buceador
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- ===== Columna izquierda: Datos personales ===== -->
+    <div class="col-lg-4">
+
+      <!-- Mis datos -->
+      <div class="ms-card p-4 mb-4">
+        <h2 class="ms-mi-cuenta-section-title mb-3">
+          <i class="bi bi-person-vcard me-2"></i>Mis datos
+        </h2>
+        <ul class="list-unstyled ms-datos-list">
+          <li><span class="ms-dato-label">DNI</span><span th:text="${usuario.dniUsuario}">—</span></li>
+          <li><span class="ms-dato-label">Teléfono</span><span th:text="${usuario.telefono ?: '—'}">—</span></li>
+          <li><span class="ms-dato-label">Teléfono SOS</span><span th:text="${usuario.tfnoSos ?: '—'}">—</span></li>
+          <li><span class="ms-dato-label">F. Nacimiento</span>
+            <span th:text="${usuario.fechaNac != null ? #temporals.format(usuario.fechaNac,'dd/MM/yyyy') : '—'}">—</span>
+          </li>
+          <li><span class="ms-dato-label">F. Registro</span>
+            <span th:text="${usuario.fechaRegistro != null ? #temporals.format(usuario.fechaRegistro,'dd/MM/yyyy') : '—'}">—</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Notificaciones -->
+      <div class="ms-card p-4 mb-4">
+        <h2 class="ms-mi-cuenta-section-title mb-3">
+          <i class="bi bi-bell me-2"></i>Notificaciones
+        </h2>
+        <div class="d-flex flex-column gap-2">
+          <div class="ms-notif-status" th:classappend="${usuario.notifEmails} ? 'active' : ''">
+            <i class="bi bi-envelope-fill me-2"></i>
+            Email
+            <span class="ms-notif-pill ms-2" th:text="${usuario.notifEmails} ? 'Activo' : 'Desactivado'">—</span>
+          </div>
+          <div class="ms-notif-status" th:classappend="${usuario.notifWhatsapp} ? 'active' : ''">
+            <i class="bi bi-whatsapp me-2"></i>
+            WhatsApp
+            <span class="ms-notif-pill ms-2" th:text="${usuario.notifWhatsapp} ? 'Activo' : 'Desactivado'">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seguro (solo si es buceador) -->
+      <div th:if="${usuario.esBuceador}" class="ms-card p-4">
+        <h2 class="ms-mi-cuenta-section-title mb-3">
+          <i class="bi bi-heart-pulse me-2"></i>Seguro de accidentes
+        </h2>
+        <div th:if="${usuario.seguroAccidentes}">
+          <ul class="list-unstyled ms-datos-list">
+            <li><span class="ms-dato-label">Compañía</span>
+              <span th:text="${usuario.companiaSeguros ?: '—'}">—</span></li>
+            <li><span class="ms-dato-label">Vencimiento</span>
+              <span th:text="${usuario.fechaVto != null ? #temporals.format(usuario.fechaVto,'dd/MM/yyyy') : '—'}">—</span></li>
+          </ul>
+          <!-- Estado del seguro -->
+          <div class="mt-2">
+            <span th:switch="${usuario.estadoSeguro}">
+              <span th:case="'PENDIENTE'" class="ms-estado-badge pendiente">
+                <i class="bi bi-hourglass-split me-1"></i>Pendiente de validación
+              </span>
+              <span th:case="'APROBADO'" class="ms-estado-badge aprobado">
+                <i class="bi bi-check-circle-fill me-1"></i>Seguro aprobado
+              </span>
+              <span th:case="'RECHAZADO'" class="ms-estado-badge rechazado">
+                <i class="bi bi-x-circle-fill me-1"></i>Seguro rechazado — contacta con MouroSub
+              </span>
+            </span>
+          </div>
+        </div>
+        <p th:unless="${usuario.seguroAccidentes}" class="ms-dato-label mb-0">
+          No has declarado seguro de accidentes.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ===== Columna derecha: Certificaciones ===== -->
+    <div class="col-lg-8">
+
+      <!-- Certificaciones propias -->
+      <div class="ms-card p-0 mb-4">
+        <div class="p-3 border-bottom d-flex justify-content-between align-items-center ms-admin-card-header">
+          <h2 class="mb-0 fw-semibold ms-mi-cuenta-section-title">
+            <i class="bi bi-patch-check me-2"></i>Mis certificaciones
+          </h2>
+        </div>
+        <div th:if="${#lists.isEmpty(certsPropia)}" class="p-4 text-center ms-empty-state">
+          <i class="bi bi-patch-check ms-empty-icon d-block mb-2"></i>
+          <p class="mb-0" th:if="${usuario.esBuceador}">No has aportado certificaciones todavía.</p>
+          <p class="mb-0" th:unless="${usuario.esBuceador}">Registrado como usuario no buceador.</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(certsPropia)}" class="table-responsive">
+          <table class="ms-table">
+            <thead><tr>
+              <th>Título</th><th>Entidad</th><th>Desde</th><th>Hasta</th><th>Estado</th>
+            </tr></thead>
+            <tbody>
+            <tr th:each="c : ${certsPropia}">
+              <td th:text="${c.titulo}">—</td>
+              <td th:text="${c.entidadCertificadora ?: '—'}">—</td>
+              <td th:text="${c.fechaInicio != null ? #temporals.format(c.fechaInicio,'dd/MM/yyyy') : '—'}">—</td>
+              <td th:text="${c.fechaFin != null ? #temporals.format(c.fechaFin,'dd/MM/yyyy') : '—'}">—</td>
+              <td>
+                <span th:if="${!c.revisada}" class="ms-estado-badge pendiente">
+                  <i class="bi bi-hourglass-split me-1"></i>Pendiente
+                </span>
+                <span th:if="${c.revisada and c.validada}" class="ms-estado-badge aprobado">
+                  <i class="bi bi-check-circle-fill me-1"></i>Validada
+                </span>
+                <span th:if="${c.revisada and !c.validada}" class="ms-estado-badge rechazado">
+                  <i class="bi bi-x-circle-fill me-1"></i>Rechazada
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Certificaciones MouroSub -->
+      <div class="ms-card p-0">
+        <div class="p-3 border-bottom ms-admin-card-header">
+          <h2 class="mb-0 fw-semibold ms-mi-cuenta-section-title">
+            <i class="bi bi-award me-2"></i>Certificaciones MouroSub
+          </h2>
+        </div>
+        <div th:if="${#lists.isEmpty(certsMouro)}" class="p-4 text-center ms-empty-state">
+          <i class="bi bi-award ms-empty-icon d-block mb-2"></i>
+          <p class="mb-0">Aún no tienes certificaciones expedidas por MouroSub.</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(certsMouro)}" class="table-responsive">
+          <table class="ms-table">
+            <thead><tr>
+              <th>Título</th><th>Entidad</th><th>Expedición</th><th>Vencimiento</th><th>Documento</th>
+            </tr></thead>
+            <tbody>
+            <tr th:each="c : ${certsMouro}">
+              <td th:text="${c.titulo}">—</td>
+              <td th:text="${c.entidadCertificadora ?: 'MouroSub'}">—</td>
+              <td th:text="${c.fechaInicio != null ? #temporals.format(c.fechaInicio,'dd/MM/yyyy') : '—'}">—</td>
+              <td th:text="${c.fechaFin != null ? #temporals.format(c.fechaFin,'dd/MM/yyyy') : 'Sin vencimiento'}">—</td>
+              <td>
+                <a th:if="${c.documentoUrl != null}" th:href="${c.documentoUrl}"
+                   target="_blank" class="btn btn-sm btn-ms-outline rounded">
+                  <i class="bi bi-file-earmark-pdf me-1"></i>Ver
+                </a>
+                <span th:unless="${c.documentoUrl != null}" class="text-muted">—</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+<footer th:replace="~{layout/base :: footer}"></footer>
+<div th:replace="~{layout/base :: scripts}"></div>
+</body>
+</html>

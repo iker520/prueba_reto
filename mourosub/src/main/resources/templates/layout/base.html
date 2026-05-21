@@ -86,17 +86,37 @@
                 <!-- Separador visual -->
                 <li class="ms-nav-divider d-none d-lg-block" aria-hidden="true"></li>
 
-                <li class="nav-item">
-                    <a sec:authorize="!isAuthenticated()"
-                       class="ms-navbar-cta"
-                       th:href="@{/login}">
+                <!-- No autenticado: Login + Registro -->
+                <li class="nav-item d-flex align-items-center gap-2" sec:authorize="!isAuthenticated()">
+                    <a class="ms-nav-link" th:href="@{/registro}">
+                        <i class="bi bi-person-plus ms-nav-icon"></i>Registro
+                    </a>
+                    <a class="ms-navbar-cta" th:href="@{/login}">
                         <i class="bi bi-person-circle me-1"></i>Login
                     </a>
-                    <a sec:authorize="isAuthenticated()"
-                       class="ms-navbar-cta"
-                       th:href="@{/admin}">
-                        <i class="bi bi-speedometer2 me-1"></i>Admin
+                </li>
+
+                <!-- Autenticado como ADMIN -->
+                <li class="nav-item d-flex align-items-center gap-2" sec:authorize="hasRole('ADMIN')">
+                    <a class="ms-navbar-cta" th:href="@{/admin}">
+                        <i class="bi bi-speedometer2 me-1"></i>Panel Admin
                     </a>
+                    <form th:action="@{/logout}" method="post" class="m-0">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button type="submit" class="ms-logout-btn">
+                            <i class="bi bi-box-arrow-right me-1"></i>Salir
+                        </button>
+                    </form>
+                </li>
+
+                <!-- Autenticado como USER (no ADMIN) -->
+                <li class="nav-item d-flex align-items-center gap-2" sec:authorize="hasRole('USER')">
+                    <form th:action="@{/logout}" method="post" class="m-0">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button type="submit" class="ms-logout-btn">
+                            <i class="bi bi-box-arrow-right me-1"></i>Cerrar sesión
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>
