@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#a1c9ff",
+                        "surface-tint": "#1261a3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-background": "#191c1e",
+                        "tertiary": "#3b4248",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "primary-container": "#005a9c",
+                        "secondary-fixed": "#d3e4fe",
+                        "secondary-container": "#d0e1fb",
+                        "on-tertiary-fixed": "#161c22",
+                        "background": "#f7f9fb",
+                        "primary": "#004275",
+                        "primary-fixed": "#d2e4ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#a1c9ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary-container": "#52595f",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#414750",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-container": "#c9cfd7",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-container": "#afd1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c7d2",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#dde3eb",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-fixed-variant": "#00487f",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "on-primary-fixed": "#001c37",
+                        "outline": "#727781",
+                        "surface-container": "#eceef0",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary": "#505f76",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7f9fb",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest border-b border-outline-variant docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<span class="font-headline-md text-headline-md font-bold text-primary">MouroSub</span>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Services</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">About Us</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">News</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-stack-lg py-2 rounded font-label-md active:scale-95 duration-100">Login</button>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="w-full bg-surface-container-low py-stack-lg border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col gap-stack-md">
+<h1 class="font-headline-xl text-headline-xl text-primary max-w-2xl">MouroSub: Excelencia y pasión por el gran azul</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Desde 1998, formamos a buceadores con los más altos estándares de seguridad y respeto por el ecosistema marino.</p>
+</div>
+</div>
+</section>
+<!-- Company History: Asymmetric Layout -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 flex flex-col gap-stack-md">
+<div class="inline-flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Nuestra Historia</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Más de dos décadas sumergiéndonos</h2>
+<div class="font-body-md text-body-md text-on-surface-variant flex flex-col gap-stack-md">
+<p>MouroSub nació de la visión de un grupo de biólogos marinos y buceadores profesionales que buscaban democratizar el acceso al mar de forma responsable. Lo que comenzó como un pequeño centro a pie de playa se ha convertido en la escuela de referencia en el Cantábrico.</p>
+<p>Nuestra misión no ha cambiado: proporcionar una educación técnica rigurosa mientras fomentamos el amor por la biodiversidad marina. Con más de 5,000 certificaciones emitidas, seguimos creyendo que cada inmersión es una oportunidad de aprendizaje única.</p>
+</div>
+</div>
+<div class="md:col-span-5 aspect-square bg-surface-container-high rounded border border-outline-variant overflow-hidden">
+<img alt="Historia de MouroSub" class="w-full h-full object-cover grayscale contrast-125" data-alt="A detailed black and white high-contrast photograph of a classic diving boat at sunrise, surrounded by calm ocean waters. The scene captures the professional, historical essence of the MouroSub diving school with subtle Diving Blue accents in the reflections. The lighting is soft and atmospheric, highlighting the technical details of the vessel in a minimalist, high-fidelity wireframe aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpdNdBxeSap0KWzsUiT3WBBA9f6-FbHplipN2C4ma1dZl0U8bdd8qLXJVxRxpdZMq9Euxr7sEB5GUv5b_tQvIKICzpCAVCwaKmqOpQuhtSnhFe5ZO-g3GBJ_7jVvgnbth-7K6qhrvUVfnSu3N-hFCuTpnxi0NMDxFQqBQ7AFRFdVnt15kpXCr_VKviNdE7CB_loqBBi-g_KlwmvYzOk6bvFal0vN8PfyLtKd7fTRX0AO95NmX80Of64l0Ytb_4huMIQoLapr1SDgLv"/>
+</div>
+</div>
+</section>
+<!-- Facilities Section: Bento Grid -->
+<section class="bg-surface-container-lowest py-stack-lg border-y border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Instalaciones de Vanguardia</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Equipamiento técnico y espacios diseñados para la comodidad del buceador.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Main Facility Card -->
+<div class="md:col-span-2 md:row-span-2 bg-white border border-outline-variant rounded p-stack-md flex flex-col gap-stack-md shadow-sm">
+<div class="aspect-video bg-surface-container rounded overflow-hidden">
+<img alt="Aula de formación" class="w-full h-full object-cover" data-alt="A bright, modern training classroom for divers featuring minimalist white desks and high-end technical equipment. The room is flooded with natural daylight, emphasizing a clean and professional academic environment. In the background, professional marine charts and diving gear are neatly displayed, maintaining a high-fidelity wireframe look with primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaZExcOM2t5UnydRy-jiE72Oq5Q8GPywGsRrFA13rsrUX2mqmz7Gs1oX3h2_FpqZDWsg55PUy5c-zWAUzQ9F_1bg5lK1HO7o_1Aco116aELltABHy0rJGuq0FOiTySyFGBSMNRohxRFB0PXe_PY34m3tAojN3D5JIPZbuoMBhb_S7knfPvzENGGIuCS810MBLAT2cSBUR_BfK6abwAs2cGZifgnqoYaBfL19_l8XEdP6Bg4OYfDaJlEyqFi8Fv53QPHGEaVHHD3sHk"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Aula de Formación Multimedia</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Espacio climatizado equipado con la última tecnología para sesiones teóricas dinámicas y seminarios avanzados.</p>
+</div>
+<!-- Tech Storage Card -->
+<div class="bg-white border border-outline-variant rounded p-stack-md flex flex-col gap-stack-sm shadow-sm">
+<div class="aspect-square bg-surface-container rounded overflow-hidden mb-2">
+<img alt="Zona de Equipos" class="w-full h-full object-cover" data-alt="A meticulously organized gear storage area in a professional diving school. Rows of high-quality regulators, BCDs, and wetsuits are arranged on minimalist steel racks. The lighting is clinical and bright, highlighting the cleanliness and safety standards of the facility within a professional, high-fidelity wireframe design context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbWUT6MBkrjPdk7NzlEnTQ4ziTV0HVjQ3P8orFOFZi56MWHgvLq0dp8XGTkrvF6GPnXRQd_bJtO9AUVRm7OCW0KULi78ePLJBo064LjzXh3g9EtoNYgyegG7Gllv6gO5_7DKcoZNY8spCZccv-aXomf-_yFMeQBwNOVF2qWgF2ta1L0zHbttObFcgnOrB4RIR8NmtooP6j2vNvRP6XD2iPjq5YAKj5ESpOUhgye4ggPWuXW8ozMf9tQ2KMf4nYM67j8TCeACVAHg_0"/>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Almacén Técnico</h4>
+<p class="font-caption text-caption text-on-surface-variant">Mantenimiento riguroso de todo el material SCUBAPRO.</p>
+</div>
+<!-- Pool Card -->
+<div class="bg-white border border-outline-variant rounded p-stack-md flex flex-col gap-stack-sm shadow-sm">
+<div class="aspect-square bg-surface-container rounded overflow-hidden mb-2">
+<img alt="Piscina de prácticas" class="w-full h-full object-cover" data-alt="An indoor training pool with crystal clear blue water, specifically designed for scuba diving practice sessions. The facility is minimalist with white tiles and professional diving markers. Soft, diffused lighting creates a serene and safe environment for beginners, reflecting a clean diving blue and gray palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1F3kpdzT1wU8Y4oOE5Xt6MBW6wewPIIhJRqpdph5FroOM17KfCHQV9pZmYOtkk8Oc-14WJHhKPgwA6kLlhdjHmj-IBQd5n9UnxNFVsfGhs_Jn-LC6HmwsZbwCxOFTtsNApQu6Ym8Upe_7zecxhjqczHax5nPCEQDCNShgGuk1iVaxe3a2fwYrPaUmQJLbQ1B3Iko07uX_mNV3vEJ_ZeeJZuqLso63WNvr1XtY_N_VzSqDadqBn75P_12fd6Yktz0sK_zPq0jfwRlb"/>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Piscina de Prácticas</h4>
+<p class="font-caption text-caption text-on-surface-variant">Inmersiones en aguas confinadas antes del mar abierto.</p>
+</div>
+<!-- Compressed Air Card -->
+<div class="md:col-span-2 bg-white border border-outline-variant rounded p-stack-md flex items-center gap-stack-md shadow-sm">
+<div class="w-1/3 aspect-video bg-surface-container rounded overflow-hidden shrink-0">
+<img alt="Estación de carga" class="w-full h-full object-cover" data-alt="A professional air compression station for scuba tanks, featuring industrial compressors and organized steel cylinders. The setting is clean, technical, and safe, with gauges and high-pressure hoses arranged in a minimalist, modern workshop layout. The color scheme is dominated by white, silver, and technical blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdT9UIUozjvQfPcvHaIQjMbVawSCVgGdsJz2pvKrawn5PLOHYvogjr4lEcCR_lv0B3Tjzf4P1YyxljLW7xGg8FnarHP5IQX6m6kMwg98TiPgUvPtqmLdvtbGZg-bISViAYxmn-Ht-YRPVi-kUIlydl5ta8I83phMLIdX0G47OthDk84ZK9WMr4aum8-f33rmQuNgzS5gOHGtHt0FNZr8Agy-49EYNOOd_4U7-1KxDf08Q0lHtgIgyIblkl9c6HM-02ZvkpyT_keeQp"/>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-md text-label-md text-on-surface">Estación de Aire y Nitrox</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Compresores Bauer de última generación con filtrado certificado.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Instructors Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Nuestros Instructores</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Liderazgo, experiencia y seguridad garantizada.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Instructor Card 1 -->
+<div class="bg-white border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-200 group">
+<div class="aspect-[3/4] bg-surface-container relative overflow-hidden">
+<img alt="Instructor Carlos" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A professional portrait of a senior male diving instructor wearing a branded black wetsuit. He has a confident, welcoming expression against a soft, out-of-focus ocean backdrop. The lighting is high-key and professional, suitable for a high-fidelity corporate profile. The overall aesthetic is clean and authoritative with a focus on trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClLrqBKPdKtUBW5VNDrZfQRZDvM-nzIb2z27295bnp2gw9EbH-uqGMpOWSYIRF_0mtMeXSijBCBmBy9RIGaBNOqj_7DQ9ttW8vYszhqbBRaiQmUCNtMi2puk1ttFvjXVtUVariXgbz2qxRtYspbWVN3ZTMdDdyoL0513osXjpjATQZhg5RxlH8WWnyA4DIrPSIxRx41V1pVsoAFfIdvvo1rUSqiYqBAv3i4Ag13zS9nf3zq69paNSaPE3fDUxqyyYea1Rpc5PH4MXK"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary px-3 py-1 rounded text-caption font-bold">PADI Course Director</div>
+</div>
+<div class="p-stack-md border-t border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface">Carlos Mendoza</h3>
+<p class="font-caption text-caption text-on-secondary-container mb-stack-sm">20+ años de experiencia</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Especialista en buceo técnico y cuevas. Fundador de MouroSub.</p>
+</div>
+</div>
+<!-- Instructor Card 2 -->
+<div class="bg-white border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-200 group">
+<div class="aspect-[3/4] bg-surface-container relative overflow-hidden">
+<img alt="Instructora Elena" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A professional portrait of a female diving instructor in her late 30s, smiling confidently. She is wearing a professional rash guard with the school's logo. The background is a bright, minimalist coastal scene with soft natural lighting. The visual style is crisp and modern, emphasizing expertise and approachable leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBThtBBZ9S2D135Bdu4m4n_4ZX-E2wW9zWIfxLNnuoDW0JMOxTnsf3OOO6oQ3e9YPu1_N7sVzp0nubVfLV0Kn1BvhWpMgsv1zoq3CDbyOe_tVS_VyCroQG6wkbBD6ys6CY4ZGb3_vbHgiYZfs2MyAsksN28sN747ls2vv6t5ciJ8va7QSyu7PJI9lfmtmJvawnMROmGByIiL3z0irdpvRGvNVuRx3RhVJJeZWBALPoI3LIjGjDPaPIHV-nYmqaKo2mYNn4A62jdkl_K"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary px-3 py-1 rounded text-caption font-bold">Master Scuba Diver Trainer</div>
+</div>
+<div class="p-stack-md border-t border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface">Elena Rivas</h3>
+<p class="font-caption text-caption text-on-secondary-container mb-stack-sm">Especialista en Biología</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Bióloga marina y experta en fotografía subacuática.</p>
+</div>
+</div>
+<!-- Instructor Card 3 -->
+<div class="bg-white border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-200 group">
+<div class="aspect-[3/4] bg-surface-container relative overflow-hidden">
+<img alt="Instructor Javier" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A close-up professional headshot of a younger male diving instructor, looking focused and capable. He is outdoors with soft daylight hitting his face, highlighting a professional and energetic personality. The background is a clean, minimalist white-sand beach. The overall design language is sophisticated and high-fidelity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2s0NKPBVsFnnbsFbdByr3Ei6SOxFK3NxS3CHi-H1A1orT1VgsuHuC0xCxmrQBp_e7vlxT2nmBeY_JaS1avtI_4Pfilo7BDVppPiozpuMRjo0ULiykoawJHj_o4jQgKcQDRr5pf3IiFV-Cbe6uJVb7pxysT-PfydTMZ8HsglYhigvD4FQKnC6WJ51ju6SzdEVueXfIuaKAHIPTS-ZVDjXgJ1dZV_-MwNYjGkmHWQe2rwKUaqUQF0KDuH15KWI0kfL49aHV-RLzRWyj"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary px-3 py-1 rounded text-caption font-bold">IDC Staff Instructor</div>
+</div>
+<div class="p-stack-md border-t border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface">Javier Ortiz</h3>
+<p class="font-caption text-caption text-on-secondary-container mb-stack-sm">Seguridad y Rescate</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Especializado en cursos de rescate y primeros auxilios EFR.</p>
+</div>
+</div>
+<!-- Instructor Card 4 -->
+<div class="bg-white border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-200 group">
+<div class="aspect-[3/4] bg-surface-container relative overflow-hidden">
+<img alt="Instructora Sofía" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A professional portrait of a female instructor with a cheerful and experienced demeanor. She is standing next to professional diving equipment in a well-lit facility. The composition is clean and modern, using the school's primary blue and neutral gray palette to create a high-fidelity professional image." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkxpIuNUKcvrC4PXZEkXPr_GXOK4NLHQwGQ5VF66_dULu1eT9OIFXNt8LXNA66NNENu1hkH_xddHaGfrNHfg2FdrEQTRrXWK0jv1dzFZ_WEZw5BJqvbMDOs6tOOvAZo2jrVYCbwxIsPCCwotIr4Gw1miQMt4cMeUrO7RaaDJJmR8vjDvtTitqk5umD4v2S89BlRlpaw1f0tp6pAC5qpApZLTdbHIIKxf_kZWmyxQQEL-wnHxQu1XwrY0-0F5ppCfHNQVTRvViNvLIv"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary px-3 py-1 rounded text-caption font-bold">Open Water Instructor</div>
+</div>
+<div class="p-stack-md border-t border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface">Sofía Blanco</h3>
+<p class="font-caption text-caption text-on-secondary-container mb-stack-sm">Buceo Recreativo</p>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Experta en iniciación para niños y grupos escolares.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic CTA -->
+<section class="bg-primary-container text-on-primary-container py-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
+<h2 class="font-headline-lg text-headline-lg mb-stack-md">¿Listo para comenzar tu aventura?</h2>
+<p class="font-body-lg text-body-lg mb-stack-lg max-w-2xl mx-auto opacity-90">Únete a nuestra próxima promoción y descubre un mundo nuevo bajo la superficie con los mejores profesionales.</p>
+<div class="flex flex-col sm:flex-row gap-stack-md justify-center">
+<button class="bg-primary text-on-primary px-stack-lg py-3 rounded font-label-md transition-transform hover:scale-105">Ver Cursos Disponibles</button>
+<button class="border border-on-primary-container text-on-primary-container px-stack-lg py-3 rounded font-label-md transition-transform hover:scale-105">Contactar Ahora</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md w-full px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="flex flex-col gap-stack-sm">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">MouroSub</span>
+<p class="font-caption text-caption text-on-secondary-fixed-variant">© 2024 MouroSub Diving School. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-stack-md">
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">FAQ</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Cookie Settings</a>
+</div>
+</div>
+</footer>
+</body></html>

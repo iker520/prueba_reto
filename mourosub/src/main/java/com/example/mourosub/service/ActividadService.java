@@ -69,7 +69,7 @@ public class ActividadService {
 
     /** Valores posibles para el desplegable de nivel */
     public static List<String> getNivelesDisponibles() {
-        return List.of("Sin experiencia", "Open Water", "Advanced", "Rescue Diver",
-                       "Divemaster", "Instructor", "Técnico");
+        return List.of("Sin experiencia", "Snorkel/FreeDive", "Bautismo", "Course OWD", "Open Water",
+                "Advanced Open Water", "Stress & Rescue", "Divemaster/DiveGuide");
     }
 }
