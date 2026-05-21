@@ -8,8 +8,14 @@ import java.util.List;
 
 @Repository
 public interface NoticiaRepository extends JpaRepository<Noticia, Long> {
+
     List<Noticia> findByPublicadaTrueOrderByFechaPublicacionDesc();
+
     List<Noticia> findByCategoriaAndPublicadaTrue(String categoria);
+
     List<Noticia> findTop3ByPublicadaTrueOrderByFechaPublicacionDesc();
+
     List<Noticia> findByTituloContainingIgnoreCaseAndPublicadaTrue(String titulo);
+
+    List<Noticia> findByHashtagsContainingIgnoreCaseAndPublicadaTrue(String hashtag);
 }

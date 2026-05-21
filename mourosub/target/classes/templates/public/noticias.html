@@ -159,12 +159,12 @@
                 <div class="ms-card p-4">
                     <h4 class="ms-sidebar-tags-title">Etiquetas Populares</h4>
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="ms-badge ms-badge-outline">#Cantábrico</span>
-                        <span class="ms-badge ms-badge-outline">#BuceoTécnico</span>
-                        <span class="ms-badge ms-badge-outline">#PADI</span>
-                        <span class="ms-badge ms-badge-outline">#Seguridad</span>
-                        <span class="ms-badge ms-badge-outline">#Ecología</span>
-                        <span class="ms-badge ms-badge-outline">#Formación</span>
+                        <a th:each="tag : ${hashtagsPopulares}"
+                           th:href="@{/noticias(hashtag=${tag})}"
+                           th:text="'#' + ${tag}"
+                           class="ms-badge ms-badge-outline text-decoration-none"></a>
+                        <p th:if="${#lists.isEmpty(hashtagsPopulares)}"
+                           class="ms-newsletter-fine mb-0">Aún no hay etiquetas.</p>
                     </div>
                 </div>
 

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -35,6 +35,10 @@ public class NoticiaService {
         return noticiaRepository.findByCategoriaAndPublicadaTrue(categoria);
     }
 
+    public List<Noticia> findByHashtag(String hashtag) {
+        return noticiaRepository.findByHashtagsContainingIgnoreCaseAndPublicadaTrue(hashtag);
+    }
+
     public Optional<Noticia> findById(Long id) {
         return noticiaRepository.findById(id);
     }
@@ -54,9 +58,25 @@ public class NoticiaService {
         return noticiaRepository.count();
     }
 
-    /** Categorías disponibles para el desplegable */
     public static List<String> getCategoriasDisponibles() {
-        return List.of("EXPEDICION", "FORMACION", "ECOSISTEMA",
-                       "TECNOLOGIA", "EVENTOS", "NOTICIAS");
+        return List.of("Expedicion", "Formacion", "Ecosistema",
+                "Tecnologia", "Eventos", "Noticias");
+    }
+
+    // Devuelve los hashtags más usados ordenados por frecuencia, cn el limite como maximo
+    public List<String> getHashtagsPopulares(int limite) {
+        return noticiaRepository.findByPublicadaTrueOrderByFechaPublicacionDesc()
+                .stream()
+                .map(Noticia::getHashtags)
+                .filter(h -> h != null && !h.isBlank())
+                .flatMap(h -> Arrays.stream(h.split(",")))
+                .map(String::trim)
+                .filter(h -> !h.isEmpty())
+                .collect(Collectors.groupingBy(h -> h, Collectors.counting()))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(limite)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 }

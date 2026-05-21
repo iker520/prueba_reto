@@ -29,13 +29,11 @@ public class Noticia {
     @Column(name = "cuerpo_html", columnDefinition = "LONGTEXT")
     private String cuerpoHtml;
 
-    /**
-     * Categoría como String: EXPEDICION, FORMACION, ECOSISTEMA, TECNOLOGIA, EVENTOS, NOTICIAS
-     */
     @Column(name = "categoria", length = 100)
     private String categoria;
 
-
+    @Column(name = "hashtags", length = 500)
+    private String hashtags;
 
     @Column(name = "fecha_publicacion")
     private LocalDate fechaPublicacion;
@@ -48,5 +46,10 @@ public class Noticia {
         if (fechaPublicacion == null) {
             fechaPublicacion = LocalDate.now();
         }
+    }
+
+    // Getter explícito para evitar problemas con Lombok
+    public String getHashtags() {
+        return hashtags;
     }
 }
