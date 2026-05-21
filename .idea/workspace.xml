@@ -4,11 +4,86 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9619cbc5-e0dc-40a4-bc67-13d87b440680" name="Changes" comment="index.html avanzando y mejorandolo, 3" />
+    <list default="true" id="9619cbc5-e0dc-40a4-bc67-13d87b440680" name="Changes" comment="index.html avanzando y mejorandolo, 3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/ConocenosController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/ConocenosController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/ContactoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/ContactoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/LegalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/LegalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/NewsletterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/NewsletterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminActividadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminActividadController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminContactoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminContactoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminDashboardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminUsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/controller/admin/AdminUsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/Actividad.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/Actividad.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/ActividadReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/ActividadReserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/Contacto.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/Contacto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/Newsletter.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/model/Newsletter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/repository/ActividadRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/repository/ActividadRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/repository/ContactoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/repository/ContactoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/repository/NewsletterRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/repository/NewsletterRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/service/ContactoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mourosub/target/classes/com/example/mourosub/service/ContactoService.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotChats">
+    <option name="panelChat">
+      <chat>
+        <option name="activeSessionId" value="8cdaa98e-87e9-4628-b450-d253387d9407" />
+        <option name="sessions">
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="23e60574-12e6-485c-8870-6763b5fd5b08" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="status" value="Completed" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="258143c4-9370-49a1-97ef-894db9262400" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="9179f8d8-38ca-4ab8-bb85-bd6047203ff4" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="8cdaa98e-87e9-4628-b450-d253387d9407" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+        </option>
+        <option name="type" value="PANEL" />
+      </chat>
+    </option>
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/mpna3/OneDrive/Desktop/MOURO_SUB/prueba_mourosub" value="3DtOhaCsGNSVDPXGrntAT9dyBWo" />
+    </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="agent-panel" value="Auto" />
+      <entry key="chat-panel" value="Auto" />
+    </selectedModels>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -30,13 +105,27 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/iker520/prueba_reto.git&quot;,
-    &quot;accountId&quot;: &quot;26cf93eb-6685-4dd3-8fc2-70cc16621ae5&quot;
+    &quot;accountId&quot;: &quot;7fe99aae-4631-4bc2-9efe-fcabd359ca4b&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="3DtOhaCsGNSVDPXGrntAT9dyBWo" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Ask" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="LOCAL" />
+      </template>
+    </option>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -50,10 +139,14 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jorge/IdeaProjects/retofinal/prueba_reto",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "last_opened_file_path": "C:/Users/mpna3/OneDrive/Desktop/MOURO_SUB/prueba_mourosub",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings",
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
@@ -61,13 +154,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jorge\IdeaProjects\retofinal\prueba_reto\mourosub\src\main\resources\static\assets" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -134,5 +220,13 @@
     <MESSAGE value="index.html avanzando y mejorandolo, 2" />
     <MESSAGE value="index.html avanzando y mejorandolo, 3" />
     <option name="LAST_COMMIT_MESSAGE" value="index.html avanzando y mejorandolo, 3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
