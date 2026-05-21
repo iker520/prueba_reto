@@ -6,15 +6,25 @@
 <nav th:replace="~{layout/base :: navbar}"></nav>
 
 <main>
-    <!-- ===== CABECERA ===== -->
-    <section class="ms-section-alt py-4 ms-section-border-bottom">
-        <div class="ms-content-wrapper">
-            <h1 class="ms-page-title">Noticias del Océano y Aventuras Bajo el Mar</h1>
-            <p class="mt-2 ms-page-subtitle">
+    <!-- ===== HERO ANIMADO ===== -->
+    <section class="cn-hero">
+        <div class="cn-hero-bubbles" aria-hidden="true">
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+        </div>
+        <div class="ms-content-wrapper" style="position:relative;z-index:1;">
+            <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Noticias</span></div>
+            <h1 class="cn-hero-title cn-reveal cn-delay-1">Noticias del Océano y Aventuras Bajo el Mar</h1>
+            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
                 Descubre expediciones recientes, fauna marina, consejos técnicos,
                 nuevos cursos y eventos relacionados con el submarinismo profesional.
             </p>
         </div>
+        <svg class="cn-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"/>
+        </svg>
     </section>
 
 
@@ -26,7 +36,7 @@
             <div class="col-12 col-lg-8">
 
                 <!-- Filtros de categoría -->
-                <div class="d-flex flex-wrap gap-2 mb-4">
+                <div class="d-flex flex-wrap gap-2 mb-4 cn-reveal">
                     <a th:href="@{/noticias}" class="btn btn-sm rounded-pill px-3"
                        th:classappend="${categoriaSeleccionada == ''} ? 'btn-ms-primary' : 'btn-ms-outline'">Todas</a>
                     <a th:each="cat : ${categorias}"
@@ -39,7 +49,7 @@
                 <!-- Artículo destacado (primero de la lista) -->
                 <div th:if="${not #lists.isEmpty(noticias)}">
                     <div th:with="featured=${noticias[0]}"
-                         class="ms-card ms-news-card mb-4 group">
+                         class="ms-card ms-news-card mb-4 group cn-reveal-left">
                         <div class="ms-featured-img-wrapper">
                             <img th:src="${featured.imagenUrl != null ? featured.imagenUrl : 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=900&q=70'}"
                                  th:alt="${featured.titulo}" class="img-fluid"/>
@@ -62,7 +72,7 @@
                     </div>
 
                     <!-- Grid resto de noticias -->
-                    <div class="row g-4" th:if="${#lists.size(noticias) > 1}">
+                    <div class="row g-4 cn-reveal-left cn-delay-1" th:if="${#lists.size(noticias) > 1}">
                         <div th:each="noticia, iterStat : ${noticias}"
                              th:if="${iterStat.index > 0}"
                              class="col-12 col-md-6">
@@ -95,7 +105,7 @@
             <aside class="col-12 col-lg-4">
 
                 <!-- Newsletter -->
-                <div class="ms-card p-4 mb-4 ms-newsletter-card">
+                <div class="ms-card p-4 mb-4 ms-newsletter-card cn-reveal-right">
 
                     <i class="bi bi-envelope-fill ms-newsletter-icon"></i>
 
@@ -142,7 +152,7 @@
                 </div> <!-- ← cierre ms-newsletter-card -->
 
                 <!-- Categorías -->
-                <div class="ms-card p-4 mb-4">
+                <div class="ms-card p-4 mb-4 cn-reveal-right cn-delay-1">
                     <h4 class="ms-sidebar-title">
                         Categorías
                     </h4>
@@ -156,7 +166,7 @@
                 </div>
 
                 <!-- Tags populares -->
-                <div class="ms-card p-4">
+                <div class="ms-card p-4 cn-reveal-right cn-delay-2">
                     <h4 class="ms-sidebar-tags-title">Etiquetas Populares</h4>
                     <div class="d-flex flex-wrap gap-2">
                         <a th:each="tag : ${hashtagsPopulares}"

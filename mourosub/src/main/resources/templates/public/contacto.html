@@ -4,17 +4,28 @@
 <body class="page-body">
 <nav th:replace="~{layout/base :: navbar}"></nav>
 <main>
-    <section class="py-4 text-center">
-        <div class="ms-content-wrapper">
-            <h1 class="ms-section-title-dark">Contacto</h1>
-            <p class="ms-page-subtitle mx-auto mt-3">
+    <!-- ===== HERO ANIMADO ===== -->
+    <section class="cn-hero">
+        <div class="cn-hero-bubbles" aria-hidden="true">
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+        </div>
+        <div class="ms-content-wrapper" style="position:relative;z-index:1;">
+            <div class="cn-tag cn-reveal"><i class="bi bi-telephone"></i><span>Contacto</span></div>
+            <h1 class="cn-hero-title cn-reveal cn-delay-1">Contacto</h1>
+            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
                 ¿Listo para sumergirte? Estamos aquí para responder tus preguntas sobre cursos, inmersiones y equipamiento.
             </p>
         </div>
+        <svg class="cn-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"/>
+        </svg>
     </section>
 
     <!-- Flash de éxito -->
-    <div th:if="${mensajeOk}" class="ms-content-wrapper">
+    <div th:if="${mensajeOk}" class="ms-content-wrapper cn-reveal">
         <div class="alert alert-success d-flex align-items-center gap-2">
             <i class="bi bi-check-circle-fill"></i>
             <span th:text="${mensajeOk}">Mensaje enviado.</span>
@@ -24,7 +35,7 @@
     <section class="ms-content-wrapper ms-grid-section">
         <div class="row g-4">
             <!-- Formulario -->
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-7 cn-reveal-left">
                 <div class="ms-card p-4">
                     <h2 class="ms-form-card-title">Envíanos un mensaje</h2>
                     <form th:action="@{/contacto}" method="post">
@@ -65,7 +76,7 @@
             </div>
 
             <!-- Info + Mapa -->
-            <div class="col-12 col-lg-5 d-flex flex-column gap-4">
+            <div class="col-12 col-lg-5 d-flex flex-column gap-4 cn-reveal-right cn-delay-1">
                 <div class="ms-card p-4">
                     <h3 class="ms-contact-info-title">Información de contacto</h3>
                     <div class="d-flex gap-3 mb-3">

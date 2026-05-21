@@ -8,56 +8,70 @@
   <nav th:replace="~{layout/base :: navbar}"></nav>
 
   <main>
-    <!-- ===== CABECERA ===== -->
-    <section class="ms-section-alt py-4 ms-section-border-bottom">
-      <div class="ms-content-wrapper">
-        <div th:switch="${tipoSeleccionado}">
-          <!-- TODOS -->
-          <th:block th:case="''">
-            <h1 class="ms-page-title">Servicios de Buceo Profesionales</h1>
-            <p class="mt-2 ms-page-subtitle">
-              Explora el mundo submarino con MouroSub. Formación certificada, inmersiones guiadas
-              y actividades especiales para todos los niveles.
-            </p>
-          </th:block>
-
-          <!-- CURSOS -->
-          <th:block th:case="'CURSO'">
-            <h1 class="ms-page-title">Cursos de Buceo PADI y SSI</h1>
-            <p class="mt-2 ms-page-subtitle">
-              Iníciate o avanza en tu formación como buceador con nuestros instructores certificados. Desde tu primer bautismo hasta nivel técnico.
-            </p>
-          </th:block>
-
-          <!-- INMERSIONES -->
-          <th:block th:case="'INMERSION'">
-            <h1 class="ms-page-title">Inmersiones Guiadas</h1>
-            <p class="mt-2 ms-page-subtitle">
-              Descubre los mejores puntos de buceo del Cantábrico con nuestros guías experimentados. Conoce nuestros spots y fondos marinos.
-            </p>
-          </th:block>
-
-          <!-- ACTIVIDADES -->
-          <th:block th:case="'ACTIVIDAD'">
-            <h1 class="ms-page-title">Bautismos y Actividades Especiales</h1>
-            <p class="mt-2 ms-page-subtitle">
-              Primeras experiencias bajo el agua, rutas de snorkel y mucho más para disfrutar del mar con toda seguridad.
-            </p>
-          </th:block>
-
-          <!-- OFERTAS -->
-          <th:block th:case="'OFERTA'">
-            <h1 class="ms-page-title">Ofertas y Packs</h1>
-            <p class="mt-2 ms-page-subtitle">
-              Aprovecha nuestras promociones exclusivas en formación, salidas guiadas y equipamiento de buceo de primeras marcas.
-            </p>
-          </th:block>
+    <!-- ===== HERO ANIMADO ===== -->
+    <section class="cn-hero">
+        <div class="cn-hero-bubbles" aria-hidden="true">
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
+            <div class="cn-bubble"></div><div class="cn-bubble"></div>
         </div>
-      </div>
+        <div class="ms-content-wrapper" style="position:relative;z-index:1;">
+            <div th:switch="${tipoSeleccionado}">
+              <!-- TODOS -->
+              <th:block th:case="''">
+                <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Servicios</span></div>
+                <h1 class="cn-hero-title cn-reveal cn-delay-1">Servicios de Buceo Profesionales</h1>
+                <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                  Explora el mundo submarino con MouroSub. Formación certificada, inmersiones guiadas
+                  y actividades especiales para todos los niveles.
+                </p>
+              </th:block>
+
+              <!-- CURSOS -->
+              <th:block th:case="'CURSO'">
+                <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Cursos</span></div>
+                <h1 class="cn-hero-title cn-reveal cn-delay-1">Cursos de Buceo PADI y SSI</h1>
+                <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                  Iníciate o avanza en tu formación como buceador con nuestros instructores certificados. Desde tu primer bautismo hasta nivel técnico.
+                </p>
+              </th:block>
+
+              <!-- INMERSIONES -->
+              <th:block th:case="'INMERSION'">
+                <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Inmersiones</span></div>
+                <h1 class="cn-hero-title cn-reveal cn-delay-1">Inmersiones Guiadas</h1>
+                <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                  Descubre los mejores puntos de buceo del Cantábrico con nuestros guías experimentados. Conoce nuestros spots y fondos marinos.
+                </p>
+              </th:block>
+
+              <!-- ACTIVIDADES -->
+              <th:block th:case="'ACTIVIDAD'">
+                <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Actividades</span></div>
+                <h1 class="cn-hero-title cn-reveal cn-delay-1">Bautismos y Actividades Especiales</h1>
+                <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                  Primeras experiencias bajo el agua, rutas de snorkel y mucho más para disfrutar del mar con toda seguridad.
+                </p>
+              </th:block>
+
+              <!-- OFERTAS -->
+              <th:block th:case="'OFERTA'">
+                <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Ofertas</span></div>
+                <h1 class="cn-hero-title cn-reveal cn-delay-1">Ofertas y Packs</h1>
+                <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                  Aprovecha nuestras promociones exclusivas en formación, salidas guiadas y equipamiento de buceo de primeras marcas.
+                </p>
+              </th:block>
+            </div>
+        </div>
+        <svg class="cn-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"/>
+        </svg>
     </section>
 
     <!-- ===== NAVEGACIÓN Y BÚSQUEDA ===== -->
-    <div class="ms-content-wrapper ms-sticky-tabs px-4">
+    <div class="ms-content-wrapper ms-sticky-tabs px-4 cn-reveal">
       <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
         <!-- Tabs -->
         <div class="d-flex flex-wrap gap-2">
@@ -130,7 +144,7 @@
     </div>
 
     <!-- ===== GRID DE ACTIVIDADES ===== -->
-    <section class="ms-content-wrapper ms-grid-section px-4">
+    <section class="ms-content-wrapper ms-grid-section px-4 cn-reveal cn-delay-1">
       <div th:if="${not #lists.isEmpty(actividades)}" class="row g-4">
         <div th:each="act, iterStat : ${actividades}"
           th:classappend="${iterStat.index == 0 and tipoSeleccionado == ''} ? 'col-12 col-md-8' : 'col-12 col-md-4'"
@@ -179,16 +193,16 @@
     </section>
 
     <!-- ===== CTA CONTACTO ===== -->
-    <section class="ms-section-alt py-5 ms-section-border-top">
-      <div class="text-center ms-content-wrapper-md">
-        <h2 class="ms-cta-title">¿No encuentras lo que buscas?</h2>
-        <p class="mt-2 ms-cta-text">
-          Contáctanos y diseñamos una experiencia personalizada para ti.
-        </p>
-        <a th:href="@{/contacto}" class="btn btn-ms-primary px-5 py-3 rounded mt-3">
-          Contactar ahora
-        </a>
-      </div>
+    <section class="ms-cta-section-bg">
+        <div class="text-center ms-content-wrapper-md ms-cta-section-color">
+            <h2 class="ms-cta-section-title cn-reveal">¿No encuentras lo que buscas?</h2>
+            <p class="mt-2 ms-cta-section-text cn-reveal cn-delay-1">
+                Contáctanos y diseñamos una experiencia personalizada para ti.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4 cn-reveal cn-delay-2">
+                <a th:href="@{/contacto}" class="btn btn-ms-primary px-4 py-3 rounded">Contactar ahora</a>
+            </div>
+        </div>
     </section>
   </main>
 

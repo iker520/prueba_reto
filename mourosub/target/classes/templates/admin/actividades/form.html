@@ -124,10 +124,7 @@
 </div>
 <div th:replace="~{layout/admin-base :: adminScripts}"></div>
 <script th:src="@{/js/admin-tiptap.js}"></script>
-<script>
-  // Exponer TipTap globalmente desde los módulos UMD
-  window.tiptap = { Editor: tiptap.Editor };
-  window.StarterKit = StarterKit;
-</script>
+
+<script src="/js/admin-tiptap-init.js"></script>
 </body>
 </html>

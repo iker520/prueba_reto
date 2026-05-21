@@ -103,18 +103,6 @@
     </div>
 </nav>
 
-<script>
-    /* Scroll effect: glassmorphism al bajar */
-    (function () {
-        var nav = document.getElementById('mainNav');
-        function onScroll() {
-            if (window.scrollY > 40) { nav.classList.add('ms-navbar--scrolled'); }
-            else                     { nav.classList.remove('ms-navbar--scrolled'); }
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-    })();
-</script>
-
 <!-- ============================================================
      FRAGMENTO: footer
      Uso: <footer th:replace="~{layout/base :: footer}">
@@ -220,6 +208,7 @@
      Uso: <div th:replace="~{layout/base :: scripts}">
      ============================================================ -->
 <div th:fragment="scripts">
+    <script src="/js/base.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
 
