@@ -165,7 +165,102 @@ public class AdminCertificacionController {
     }
 
     // -------------------------------------------------------
-    // Helper: guardar fichero en local
+    // Gestión de documentos de un usuario (seguro + certs)
+    // -------------------------------------------------------
+    @GetMapping("/usuario/{dni}")
+    public String verDocumentosUsuario(@PathVariable String dni, Model model) {
+        Usuario usuario = usuarioService.findById(dni)
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Usuario no encontrado: " + dni));
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("certsPropias", certificacionService.findPropiasByUsuario(dni));
+        model.addAttribute("certsMouro", certificacionService.findMouroSubByUsuario(dni));
+        model.addAttribute("pageTitle", "Documentos de " + usuario.getNombre());
+        return "admin/certificaciones/usuario-docs";
+    }
+
+    // Subir / reemplazar comprobante de seguro
+    @PostMapping("/usuario/{dni}/seguro/subir")
+    public String subirComprobanteSeguro(@PathVariable String dni,
+                                         @RequestParam MultipartFile fichero,
+                                         RedirectAttributes redirectAttrs) {
+        Usuario usuario = usuarioService.findById(dni)
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Usuario no encontrado: " + dni));
+        if (fichero == null || fichero.isEmpty()) {
+            redirectAttrs.addFlashAttribute("error", "No se seleccionó ningún fichero.");
+            return "redirect:/admin/certificaciones/usuario/" + dni;
+        }
+        try {
+            String url = guardarFicheroSeguro(fichero, dni);
+            usuario.setComprobantSeguroUrl(url);
+            usuarioService.save(usuario);
+            redirectAttrs.addFlashAttribute("success", "Comprobante de seguro guardado correctamente.");
+        } catch (IOException e) {
+            redirectAttrs.addFlashAttribute("error", "Error al guardar el fichero: " + e.getMessage());
+        }
+        return "redirect:/admin/certificaciones/usuario/" + dni;
+    }
+
+    // Eliminar comprobante de seguro
+    @PostMapping("/usuario/{dni}/seguro/eliminar")
+    public String eliminarComprobanteSeguro(@PathVariable String dni, RedirectAttributes redirectAttrs) {
+        usuarioService.findById(dni).ifPresent(u -> {
+            u.setComprobantSeguroUrl(null);
+            usuarioService.save(u);
+        });
+        redirectAttrs.addFlashAttribute("success", "Comprobante de seguro eliminado.");
+        return "redirect:/admin/certificaciones/usuario/" + dni;
+    }
+
+    // Eliminar una certificación de usuario
+    @PostMapping("/{id}/eliminar-cert")
+    public String eliminarCertUsuario(@PathVariable Long id,
+                                       @RequestParam String dniUsuario,
+                                       RedirectAttributes redirectAttrs) {
+        certificacionService.deleteById(id);
+        redirectAttrs.addFlashAttribute("success", "Certificación eliminada.");
+        return "redirect:/admin/certificaciones/usuario/" + dniUsuario;
+    }
+
+    // Reemplazar documento de una certificación de usuario
+    @PostMapping("/{id}/reemplazar-doc")
+    public String reemplazarDocCert(@PathVariable Long id,
+                                     @RequestParam String dniUsuario,
+                                     @RequestParam MultipartFile nuevoDco,
+                                     RedirectAttributes redirectAttrs) {
+        certificacionService.findById(id).ifPresent(cert -> {
+            if (nuevoDco != null && !nuevoDco.isEmpty()) {
+                try {
+                    String url = guardarFichero(nuevoDco, dniUsuario);
+                    cert.setDocumentoUrl(url);
+                    certificacionService.save(cert);
+                } catch (IOException e) {
+                    System.err.println("⚠️ Error reemplazando doc: " + e.getMessage());
+                }
+            }
+        });
+        redirectAttrs.addFlashAttribute("success", "Documento de certificación actualizado.");
+        return "redirect:/admin/certificaciones/usuario/" + dniUsuario;
+    }
+
+    // -------------------------------------------------------
+    // Helper: guardar comprobante de seguro
+    // -------------------------------------------------------
+    private String guardarFicheroSeguro(MultipartFile file, String dniUsuario) throws IOException {
+        Path directorio = Paths.get(uploadsPath, "seguros");
+        Files.createDirectories(directorio);
+        String extension = "";
+        String originalName = file.getOriginalFilename();
+        if (originalName != null && originalName.contains(".")) {
+            extension = originalName.substring(originalName.lastIndexOf('.'));
+        }
+        String nombreFichero = dniUsuario + "_seguro_" + UUID.randomUUID() + extension;
+        Path destino = directorio.resolve(nombreFichero);
+        Files.copy(file.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
+        return "/uploads/seguros/" + nombreFichero;
+    }
+
+    // -------------------------------------------------------
+    // Helper: guardar fichero en local (certificaciones)
     // -------------------------------------------------------
     private String guardarFichero(MultipartFile file, String dniUsuario) throws IOException {
         Path directorio = Paths.get(uploadsPath, "certificaciones");

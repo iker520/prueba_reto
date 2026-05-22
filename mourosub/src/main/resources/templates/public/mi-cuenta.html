@@ -107,6 +107,9 @@
           <h2 class="mb-0 fw-semibold ms-mi-cuenta-section-title">
             <i class="bi bi-patch-check me-2"></i>Mis certificaciones
           </h2>
+          <button th:if="${usuario.esBuceador}" type="button" class="btn btn-sm btn-ms-primary rounded" data-bs-toggle="modal" data-bs-target="#modalSubirCert">
+            <i class="bi bi-plus-lg me-1"></i>Añadir
+          </button>
         </div>
         <div th:if="${#lists.isEmpty(certsPropia)}" class="p-4 text-center ms-empty-state">
           <i class="bi bi-patch-check ms-empty-icon d-block mb-2"></i>
@@ -179,6 +182,54 @@
     </div>
   </div>
 </main>
+
+<!-- Modal Subir Certificación -->
+<div class="modal fade" id="modalSubirCert" tabindex="-1" aria-labelledby="modalSubirCertLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold" id="modalSubirCertLabel" style="color:var(--ms-primary);">
+          <i class="bi bi-cloud-arrow-up me-2"></i>Añadir Certificación
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form th:action="@{/mi-cuenta/certificacion/subir}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="modal-body">
+          <p class="text-muted small mb-4">Sube una copia de tu certificación. Quedará pendiente de validación por parte del equipo de MouroSub.</p>
+          
+          <div class="mb-3">
+            <label class="form-label fw-semibold ms-form-label">Título <span class="text-danger">*</span></label>
+            <input type="text" name="titulo" class="form-control ms-form-control" placeholder="Ej: Advanced Open Water" required maxlength="200"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold ms-form-label">Entidad Certificadora <span class="text-danger">*</span></label>
+            <input type="text" name="entidad" class="form-control ms-form-control" placeholder="Ej: PADI, SSI, FEDAS" required maxlength="150"/>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold ms-form-label">Fecha obtención <span class="text-danger">*</span></label>
+              <input type="date" name="fechaInicio" class="form-control ms-form-control" required/>
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold ms-form-label">Renovación <span class="text-muted small fw-normal">(Opcional)</span></label>
+              <input type="date" name="fechaFin" class="form-control ms-form-control"/>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold ms-form-label">Documento <span class="text-danger">*</span> <span class="text-muted small fw-normal">(PDF o Imagen)</span></label>
+            <input type="file" name="documento" class="form-control ms-form-control" accept=".pdf,.jpg,.jpeg,.png,.webp" required/>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-ms-primary px-4 rounded">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <footer th:replace="~{layout/base :: footer}"></footer>
 <div th:replace="~{layout/base :: scripts}"></div>
 </body>

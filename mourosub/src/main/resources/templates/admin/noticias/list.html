@@ -7,10 +7,16 @@
   <div th:replace="~{layout/admin-base :: adminTopbar('Gestión de Noticias')}"></div>
   <div class="p-4">
     <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
-    <div class="d-flex justify-content-end mb-4">
-      <a th:href="@{/admin/noticias/nueva}" class="btn btn-ms-primary px-4 py-2 rounded">
-        <i class="bi bi-plus-lg me-2"></i>Nueva Noticia
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <a th:href="@{/admin/newsletter/export-excel}"
+         class="btn btn-ms-outline px-4 py-2 rounded">
+        <i class="bi bi-file-earmark-excel me-2"></i>Descargar Excel Newsletter
       </a>
+      <div class="d-flex gap-2">
+        <a th:href="@{/admin/noticias/nueva}" class="btn btn-ms-primary px-4 py-2 rounded">
+          <i class="bi bi-plus-lg me-2"></i>Nueva Noticia
+        </a>
+      </div>
     </div>
     <div class="ms-card p-0">
       <div class="table-responsive">

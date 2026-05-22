@@ -62,6 +62,12 @@
 
                 <a th:href="@{/admin/usuarios/editar/{dni}(dni=${u.dniUsuario})}"
                    class="btn btn-sm btn-ms-outline px-2 rounded" title="Editar"><i class="bi bi-pencil"></i></a>
+                <!-- Documentos (solo buceadores) -->
+                <a th:if="${u.esBuceador}"
+                   th:href="@{/admin/certificaciones/usuario/{dni}(dni=${u.dniUsuario})}"
+                   class="btn btn-sm btn-ms-outline px-2 rounded" title="Gestionar documentos">
+                  <i class="bi bi-folder2-open"></i>
+                </a>
                 <form th:action="@{/admin/usuarios/eliminar/{dni}(dni=${u.dniUsuario})}" method="post"
                       onsubmit="return confirm('¿Eliminar este usuario?')">
                   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

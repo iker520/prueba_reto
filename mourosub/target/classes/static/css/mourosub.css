@@ -466,16 +466,27 @@ body {
 
 /* --- Admin Panel Sidebar --- */
 .ms-admin-sidebar {
-  min-height: 100vh;
   width: 260px;
+  height: 100vh;
   background-color: var(--ms-primary);
   color: var(--ms-on-primary);
   position: fixed;
   top: 0;
   left: 0;
-  overflow-y: auto;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+/* El área de navegación central hace scroll, el footer queda fijo */
+.ms-admin-sidebar > div.px-2 {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.25) transparent;
+}
+.ms-admin-sidebar > div.px-2::-webkit-scrollbar { width: 4px; }
+.ms-admin-sidebar > div.px-2::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 2px; }
 .ms-admin-sidebar .sidebar-brand {
   font-size: 1.3rem;
   font-weight: 700;
@@ -1385,10 +1396,11 @@ body {
   font-size: 0.9rem;
 }
 
-/* --- Admin sidebar: footer links --- */
+/* --- Admin sidebar: footer links (always pinned at bottom) --- */
 .ms-admin-sidebar-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1rem 1.25rem;
+  flex-shrink: 0;
 }
 .ms-admin-sidebar-link {
   font-size: 0.8rem;

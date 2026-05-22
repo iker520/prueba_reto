@@ -11,12 +11,15 @@
       <i class="bi bi-arrow-left me-1"></i>Volver
     </a>
     <div class="ms-card p-4">
-      <form th:action="@{/admin/usuarios/guardar}" method="post" th:object="${usuario}">
+      <form th:action="@{/admin/usuarios/guardar}" method="post"
+            th:object="${usuario}" enctype="multipart/form-data">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-        <!-- Sección: Datos Personales -->
+        <!-- ============================================================
+             SECCIÓN: Datos Personales
+             ============================================================ -->
         <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
-          Datos Personales
+          <i class="bi bi-person-vcard me-2"></i>Datos Personales
         </h6>
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-4">
@@ -37,18 +40,21 @@
             <input type="text" th:field="*{apellido2}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold ms-form-label">Fecha nacimiento</label>
+            <label class="form-label fw-semibold ms-form-label">Fecha de nacimiento</label>
             <input type="date" th:field="*{fechaNac}" class="form-control ms-form-control"/>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label fw-semibold ms-form-label">Teléfono SOS</label>
-            <input type="tel" th:field="*{tfnoSos}" class="form-control ms-form-control" placeholder="Contacto de emergencia"/>
+            <input type="tel" th:field="*{tfnoSos}" class="form-control ms-form-control"
+                   placeholder="Contacto de emergencia"/>
           </div>
         </div>
 
-        <!-- Sección: Contacto -->
+        <!-- ============================================================
+             SECCIÓN: Contacto y Dirección
+             ============================================================ -->
         <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
-          Contacto y Dirección
+          <i class="bi bi-geo-alt me-2"></i>Contacto y Dirección
         </h6>
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-6">
@@ -81,42 +87,24 @@
           </div>
         </div>
 
-        <!-- Sección: Datos de Buceo -->
+        <!-- ============================================================
+             SECCIÓN: Acceso (contraseña + rol)
+             ============================================================ -->
         <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
-          Perfil de Buceo
+          <i class="bi bi-shield-lock me-2"></i>Acceso y Seguridad
         </h6>
         <div class="row g-3 mb-4">
-          <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold ms-form-label">Nivel de buceo</label>
-            <select th:field="*{nivelBuceo}" class="form-select ms-form-control">
-              <option value="">— Sin nivel —</option>
-              <option th:each="n : ${niveles}" th:value="${n}" th:text="${n}">NIVEL</option>
-            </select>
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-semibold ms-form-label">
+              Contraseña
+              <span class="ms-form-hint" th:if="${!esNuevo}">(dejar vacío para no cambiar)</span>
+              <span class="text-danger" th:if="${esNuevo}">*</span>
+            </label>
+            <input type="password" name="rawPassword" class="form-control ms-form-control"
+                   placeholder="Contraseña..."
+                   th:required="${esNuevo}"/>
           </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold ms-form-label">Nº inmersiones</label>
-            <input type="number" th:field="*{numInmersiones}" class="form-control ms-form-control" min="0"/>
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold ms-form-label">Última inmersión</label>
-            <input type="date" th:field="*{fechaUltimaInmersion}" class="form-control ms-form-control"/>
-          </div>
-        </div>
-
-        <!-- Sección: Seguro -->
-        <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
-          Seguro y Cuenta
-        </h6>
-        <div class="row g-3 mb-4">
-          <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold ms-form-label">Compañía de seguros</label>
-            <input type="text" th:field="*{companiaSeguros}" class="form-control ms-form-control"/>
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label fw-semibold ms-form-label">Vencimiento seguro</label>
-            <input type="date" th:field="*{fechaVto}" class="form-control ms-form-control"/>
-          </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-6">
             <label class="form-label fw-semibold ms-form-label">Rol de acceso</label>
             <select th:field="*{rol}" class="form-select ms-form-control">
               <option th:each="r : ${roles}" th:value="${r}"
@@ -124,19 +112,7 @@
                       th:selected="${usuario.rol == r}">ROL</option>
             </select>
           </div>
-          <!-- Contraseña (solo en creación o cambio explícito) -->
-          <div class="col-12 col-md-6">
-            <label class="form-label fw-semibold ms-form-label">
-              Contraseña <span class="ms-form-hint">(dejar vacío para no cambiar)</span>
-            </label>
-            <input type="password" name="rawPassword" class="form-control ms-form-control"
-                   placeholder="Nueva contraseña..."/>
-          </div>
           <div class="col-12 d-flex gap-3 flex-wrap">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" th:field="*{seguroAccidentes}" id="seguroAcc"/>
-              <label class="form-check-label ms-check-label" for="seguroAcc">Seguro de accidentes</label>
-            </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{notifEmails}" id="notifEmails"/>
               <label class="form-check-label ms-check-label" for="notifEmails">Notificaciones email</label>
@@ -148,7 +124,154 @@
           </div>
         </div>
 
-        <div class="d-flex gap-3 pt-2">
+        <!-- ============================================================
+             SECCIÓN: Perfil de Buceo
+             ============================================================ -->
+        <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title">
+          <i class="bi bi-water me-2"></i>Perfil de Buceo
+        </h6>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" th:field="*{esBuceador}"
+                     id="esBuceador" onchange="toggleBuceadorAdmin(this)"/>
+              <label class="form-check-label ms-check-label fw-semibold" for="esBuceador">
+                <i class="bi bi-water text-primary me-1"></i>Es buceador / tiene experiencia en buceo
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel buceador (visible si esBuceador) -->
+        <div id="buceadorAdminPanel" class="ms-seguro-panel"
+             th:classappend="${usuario.esBuceador} ? 'show' : ''">
+
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Nivel de buceo</label>
+              <select th:field="*{nivelBuceo}" class="form-select ms-form-control">
+                <option value="">— Sin nivel —</option>
+                <option th:each="n : ${niveles}" th:value="${n}" th:text="${n}">NIVEL</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Nº inmersiones</label>
+              <input type="number" th:field="*{numInmersiones}" class="form-control ms-form-control" min="0"/>
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Última inmersión</label>
+              <input type="date" th:field="*{fechaUltimaInmersion}" class="form-control ms-form-control"/>
+            </div>
+          </div>
+
+          <!-- Sub-sección: Seguro -->
+          <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title" style="font-size:0.8rem;">
+            <i class="bi bi-heart-pulse me-2"></i>Seguro de Accidentes
+          </h6>
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" th:field="*{seguroAccidentes}"
+                       id="seguroAcc" onchange="toggleSeguroAdmin(this)"/>
+                <label class="form-check-label ms-check-label" for="seguroAcc">Dispone de seguro de accidentes</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="seguroAdminPanel" class="ms-seguro-panel"
+               th:classappend="${usuario.seguroAccidentes} ? 'show' : ''">
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-5">
+                <label class="form-label fw-semibold ms-form-label">Compañía de seguros</label>
+                <input type="text" th:field="*{companiaSeguros}" class="form-control ms-form-control"/>
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="form-label fw-semibold ms-form-label">Vencimiento seguro</label>
+                <input type="date" th:field="*{fechaVto}" class="form-control ms-form-control"/>
+              </div>
+              <div class="col-12 col-md-3">
+                <label class="form-label fw-semibold ms-form-label">Estado validación</label>
+                <select th:field="*{estadoSeguro}" class="form-select ms-form-control">
+                  <option value="">— Sin seguro —</option>
+                  <option value="PENDIENTE">Pendiente</option>
+                  <option value="APROBADO">Aprobado</option>
+                  <option value="RECHAZADO">Rechazado</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-sección: Certificación inicial (solo en creación) -->
+          <div th:if="${esNuevo}">
+            <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title" style="font-size:0.8rem;">
+              <i class="bi bi-patch-check me-2"></i>Certificación previa
+              <span class="ms-form-hint ms-badge-outline ms-badge ms-badge-tiptap" style="font-size:0.7rem;margin-left:0.5rem;">Opcional</span>
+            </h6>
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold ms-form-label">Título</label>
+                <input type="text" name="certTitulo" class="form-control ms-form-control"
+                       placeholder="Ej: Open Water Diver" maxlength="200"/>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold ms-form-label">Entidad certificadora</label>
+                <input type="text" name="certEntidad" class="form-control ms-form-control"
+                       placeholder="PADI, CMAS, FEDAS..." maxlength="150"/>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold ms-form-label">Fecha de obtención</label>
+                <input type="date" name="certFechaInicio" class="form-control ms-form-control"/>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold ms-form-label">Fecha de vencimiento
+                  <span class="ms-form-hint">(si aplica)</span></label>
+                <input type="date" name="certFechaFin" class="form-control ms-form-control"/>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold ms-form-label">
+                  Adjuntar documento <span class="ms-form-hint">(PDF o imagen, máx. 10 MB)</span>
+                </label>
+                <input type="file" name="certDocumento" class="form-control ms-form-control"
+                       accept=".pdf,.jpg,.jpeg,.png,.webp"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certificaciones existentes (solo en edición) -->
+          <div th:if="${!esNuevo and certsPropias != null and !#lists.isEmpty(certsPropias)}" class="mt-2">
+            <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title" style="font-size:0.8rem;">
+              <i class="bi bi-patch-check me-2"></i>Certificaciones aportadas
+            </h6>
+            <div class="table-responsive">
+              <table class="ms-table mb-3">
+                <thead><tr>
+                  <th>ID</th><th>Título</th><th>Entidad</th><th>Estado</th><th>Documento</th>
+                </tr></thead>
+                <tbody>
+                <tr th:each="c : ${certsPropias}">
+                  <td th:text="${c.numCertificacion}">—</td>
+                  <td th:text="${c.titulo}">—</td>
+                  <td th:text="${c.entidadCertificadora ?: '—'}">—</td>
+                  <td>
+                    <span th:if="${c.revisada and c.validada}" class="badge badge-confirmada rounded-pill">Aprobada</span>
+                    <span th:if="${c.revisada and !c.validada}" class="badge badge-cancelada rounded-pill">Rechazada</span>
+                    <span th:unless="${c.revisada}" class="badge bg-warning text-dark rounded-pill">Pendiente</span>
+                  </td>
+                  <td>
+                    <a th:if="${c.documentoUrl != null}" th:href="${c.documentoUrl}"
+                       target="_blank" class="btn btn-sm btn-ms-outline rounded">
+                      <i class="bi bi-file-earmark-pdf"></i> Ver
+                    </a>
+                    <span th:unless="${c.documentoUrl != null}" class="text-muted">—</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 pt-3">
           <button type="submit" class="btn btn-ms-primary px-5 py-2 rounded fw-semibold">
             <i class="bi bi-save me-2"></i><span th:text="${accion}">Guardar</span>
           </button>
@@ -159,5 +282,29 @@
   </div>
 </div>
 <div th:replace="~{layout/admin-base :: adminScripts}"></div>
+
+<script>
+  function toggleBuceadorAdmin(cb) {
+    const panel = document.getElementById('buceadorAdminPanel');
+    if (cb.checked) {
+      panel.classList.add('show');
+    } else {
+      panel.classList.remove('show');
+      document.getElementById('seguroAdminPanel')?.classList.remove('show');
+    }
+  }
+  function toggleSeguroAdmin(cb) {
+    const panel = document.getElementById('seguroAdminPanel');
+    if (cb.checked) { panel.classList.add('show'); }
+    else { panel.classList.remove('show'); }
+  }
+  // Init on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const cb = document.getElementById('esBuceador');
+    if (cb && cb.checked) document.getElementById('buceadorAdminPanel')?.classList.add('show');
+    const seg = document.getElementById('seguroAcc');
+    if (seg && seg.checked) document.getElementById('seguroAdminPanel')?.classList.add('show');
+  });
+</script>
 </body>
 </html>

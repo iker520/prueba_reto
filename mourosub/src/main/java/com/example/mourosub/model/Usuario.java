@@ -95,6 +95,12 @@ public class Usuario {
     @Column(name = "estado_seguro", length = 20)
     private String estadoSeguro;
 
+    /**
+     * Ruta del fichero del comprobante de seguro subido/gestionado por el admin.
+     */
+    @Column(name = "comprobant_seguro_url", length = 500)
+    private String comprobantSeguroUrl;
+
     // --- Campos para autenticación Spring Security ---
     @Column(name = "password", nullable = false, length = 255)
     private String password;

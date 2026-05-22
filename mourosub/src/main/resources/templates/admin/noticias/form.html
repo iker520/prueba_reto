@@ -41,6 +41,19 @@
             <textarea th:field="*{resumen}" class="form-control ms-form-control" rows="3"
                       placeholder="Breve descripción que aparece en el listado de noticias..."></textarea>
           </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold ms-form-label">
+              Hashtags <span class="ms-form-hint">(separados por coma, sin #)</span>
+            </label>
+            <div class="input-group">
+              <span class="input-group-text ms-input-addon" style="background:var(--ms-surface-low);border-color:var(--ms-outline-variant);">
+                <i class="bi bi-hash" style="color:var(--ms-primary);"></i>
+              </span>
+              <input type="text" th:field="*{hashtags}" class="form-control ms-form-control"
+                     placeholder="buceo, diving, mouro, galicia"/>
+            </div>
+            <div class="form-text">Ejemplo: <code>buceo, diving, galicia</code> — aparecerán como etiquetas en la noticia.</div>
+          </div>
           <!-- TipTap: Cuerpo HTML completo de la noticia -->
           <div class="col-12">
             <label class="form-label fw-semibold ms-form-label">

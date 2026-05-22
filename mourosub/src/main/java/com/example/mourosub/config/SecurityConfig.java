@@ -44,7 +44,7 @@ public class SecurityConfig {
                                                                 "/noticias/**", "/contacto", "/login",
                                                                 "/registro", "/registro/**",
                                                                 "/css/**", "/js/**", "/images/**",
-                                                                "/uploads/**",
+                                                                "/uploads/**", "/uploads/seguros/**",
                                                                 "/webjars/**", "/favicon.ico",
                                                                 "/error/**", "/403",
                                                                 "/condiciones-venta", "/devoluciones",
