@@ -28,8 +28,8 @@ public class NoticiasController {
 
         } else if (categoria != null && !categoria.isBlank()) {
             model.addAttribute("noticias",
-                    noticiaService.findByCategoria(categoria.toUpperCase()));
-            model.addAttribute("categoriaSeleccionada", categoria.toUpperCase());
+                    noticiaService.findByCategoria(categoria));
+            model.addAttribute("categoriaSeleccionada", categoria);
 
         } else {
             model.addAttribute("noticias",

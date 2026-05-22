@@ -231,7 +231,7 @@ public class DataInitializer implements CommandLineRunner {
         n1.setResumen("Nuestro equipo de biología marina ha finalizado una expedición de dos semanas catalogando la biodiversidad de los fondos cantábricos. Los resultados son sorprendentes.");
         n1.setCuerpoHtml("<p>Durante las últimas dos semanas, el equipo de MouroSub ha colaborado con investigadores de la Universidad de Cantabria en una expedición sin precedentes...</p><h2>Especies catalogadas</h2><p>Se han documentado más de 40 especies de peces y 120 especies de invertebrados en la zona de Cabo Mayor.</p><blockquote>\"Este nivel de biodiversidad nos recuerda la urgencia de proteger estos ecosistemas.\" — Laura González, bióloga marina</blockquote>");
         n1.setCategoria("EXPEDICION");
-        n1.setImagenUrl("https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=900&q=70");
+        n1.setImagenUrl("https://images.unsplash.com/photo-1565118531796-763e5082d113?w=900&q=70");
         n1.setFechaPublicacion(LocalDate.now().minusDays(5));
         n1.setPublicada(true);
         noticiaRepository.save(n1);

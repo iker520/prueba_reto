@@ -53,18 +53,18 @@ body {
 /* --- Navbar --- */
 /* --- Navbar --- */
 .ms-navbar {
-  background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid transparent;
+  background: #ffffff;
+  border-bottom: 1px solid var(--ms-outline-variant);
   min-height: 72px;
   padding: 0;
-  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, min-height 0.35s ease;
+  transition: box-shadow 0.35s ease, min-height 0.35s ease;
 }
 
-/* Al hacer scroll: efecto glass */
+/* Al hacer scroll: fondo sólido con sombra */
 .ms-navbar--scrolled {
-  background: rgba(255, 255, 255, 0.88) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #ffffff !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom-color: var(--ms-outline-variant) !important;
   box-shadow: 0 4px 24px rgba(0, 66, 117, 0.08);
   min-height: 62px;
@@ -951,10 +951,6 @@ body {
 .ms-instructor-bio {
   font-size: 0.875rem;
   color: var(--ms-on-surface-var);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 .ms-instructor-card-body {
   border-top: 1px solid var(--ms-outline-variant);
@@ -2182,13 +2178,17 @@ body {
     }
     .cn-instructor-img-wrap {
       position: relative;
-      height: 220px;
+      height: 280px;
       overflow: hidden;
       background: var(--ms-surface-high);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .cn-instructor-img-wrap img {
       width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center center;
       transition: transform .5s ease;
     }
     .cn-instructor-card:hover .cn-instructor-img-wrap img {
@@ -2228,10 +2228,6 @@ body {
       color: var(--ms-on-surface-var);
       line-height: 1.5;
       margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
 
     /* ---------- KPI CONTACT CARDS ---------- */
