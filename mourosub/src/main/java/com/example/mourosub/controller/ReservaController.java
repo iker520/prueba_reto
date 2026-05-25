@@ -40,6 +40,7 @@ public class ReservaController {
      * Añade una actividad al carrito de la sesión y redirige al carrito.
      */
     @GetMapping("/{idActividad}/add")
+    @SuppressWarnings("unchecked")
     public String añadirAlCarrito(@PathVariable Long idActividad, jakarta.servlet.http.HttpSession session) {
         List<Long> carrito = (List<Long>) session.getAttribute("carritoActividades");
         if (carrito == null) {
@@ -57,6 +58,7 @@ public class ReservaController {
      * Elimina una actividad del carrito.
      */
     @GetMapping("/{idActividad}/remove")
+    @SuppressWarnings("unchecked")
     public String quitarDelCarrito(@PathVariable Long idActividad, jakarta.servlet.http.HttpSession session) {
         List<Long> carrito = (List<Long>) session.getAttribute("carritoActividades");
         if (carrito != null) {
@@ -71,6 +73,7 @@ public class ReservaController {
      * Muestra las actividades actualmente en el carrito.
      */
     @GetMapping("/carrito")
+    @SuppressWarnings("unchecked")
     public String verCarrito(jakarta.servlet.http.HttpSession session,
                              @AuthenticationPrincipal UserDetails userDetails,
                              Model model) {
@@ -98,6 +101,7 @@ public class ReservaController {
      * Confirma la reserva con todas las actividades del carrito.
      */
     @PostMapping("/carrito")
+    @SuppressWarnings("unchecked")
     public String procesarReservaCarrito(@RequestParam(required = false) String notas,
                                          jakarta.servlet.http.HttpSession session,
                                          @AuthenticationPrincipal UserDetails userDetails,
