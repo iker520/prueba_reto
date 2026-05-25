@@ -81,14 +81,9 @@
                 <!-- Conjunto original -->
                 <div th:each="act : ${actividadesCarrusel}" class="ms-carousel-card" th:data-tipo="${act.tipo}">
                     <div class="ms-carousel-img-wrap">
-                        <img th:src="${act.imagenUrl != null ? act.imagenUrl :
-                                       (act.tipo == 'ACTIVIDAD' ? 'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75' :
-                                       (act.tipo == 'CURSO'     ? 'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75' :
-                                       (act.tipo == 'INMERSION' ? 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75' :
-                                                                   'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75')))}"
+                        <img th:src="${act.imagenUrl}"
                              th:alt="${act.nombre}"
-                             class="ms-carousel-img"
-                             onerror="this.onerror=null;var t=this.closest('.ms-carousel-card').dataset.tipo;this.src=t==='ACTIVIDAD'?'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75':t==='CURSO'?'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75':t==='INMERSION'?'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75':'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75';"/>
+                             class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay">
                             <span class="ms-badge ms-carousel-badge" th:text="${act.tipo}">TIPO</span>
                         </div>
@@ -103,14 +98,9 @@
                 <!-- Clon para el bucle infinito -->
                 <div th:each="act : ${actividadesCarrusel}" class="ms-carousel-card" aria-hidden="true" th:data-tipo="${act.tipo}">
                     <div class="ms-carousel-img-wrap">
-                        <img th:src="${act.imagenUrl != null ? act.imagenUrl :
-                                       (act.tipo == 'ACTIVIDAD' ? 'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75' :
-                                       (act.tipo == 'CURSO'     ? 'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75' :
-                                       (act.tipo == 'INMERSION' ? 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75' :
-                                                                   'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75')))}"
+                        <img th:src="${act.imagenUrl}"
                              th:alt="${act.nombre}"
-                             class="ms-carousel-img"
-                             onerror="this.onerror=null;var t=this.closest('.ms-carousel-card').dataset.tipo;this.src=t==='ACTIVIDAD'?'https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75':t==='CURSO'?'https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=600&q=75':t==='INMERSION'?'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75':'https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75';"/>
+                             class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay">
                             <span class="ms-badge ms-carousel-badge" th:text="${act.tipo}">TIPO</span>
                         </div>
@@ -137,7 +127,7 @@
             <div class="ms-carousel-track" id="carouselTrackFallback">
                 <div class="ms-carousel-card">
                     <div class="ms-carousel-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75" alt="Bautismo de Buceo" class="ms-carousel-img"/>
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=75" alt="Bautismo de Buceo" class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">ACTIVIDAD</span></div>
                     </div>
                     <div class="ms-carousel-body">
@@ -159,7 +149,7 @@
                 </div>
                 <div class="ms-carousel-card">
                     <div class="ms-carousel-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75" alt="Inmersión" class="ms-carousel-img"/>
+                        <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&q=75" alt="Inmersión" class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">INMERSIÓN</span></div>
                     </div>
                     <div class="ms-carousel-body">
@@ -170,7 +160,7 @@
                 </div>
                 <div class="ms-carousel-card">
                     <div class="ms-carousel-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75" alt="Advanced" class="ms-carousel-img"/>
+                        <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&q=75" alt="Advanced" class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">CURSO</span></div>
                     </div>
                     <div class="ms-carousel-body">
@@ -182,7 +172,7 @@
                 <!-- Clones fallback -->
                 <div class="ms-carousel-card" aria-hidden="true">
                     <div class="ms-carousel-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1579803833898-1dad7f7c0745?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=75" alt="" class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">ACTIVIDAD</span></div>
                     </div>
                     <div class="ms-carousel-body">
@@ -204,7 +194,7 @@
                 </div>
                 <div class="ms-carousel-card" aria-hidden="true">
                     <div class="ms-carousel-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&q=75" alt="" class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">INMERSIÓN</span></div>
                     </div>
                     <div class="ms-carousel-body">
@@ -215,7 +205,7 @@
                 </div>
                 <div class="ms-carousel-card" aria-hidden="true">
                     <div class="ms-carousel-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1682687220017-cdbe5024a5a7?w=600&q=75" alt="" class="ms-carousel-img"/>
+                        <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&q=75" alt="" class="ms-carousel-img"/>
                         <div class="ms-carousel-overlay"><span class="ms-badge ms-carousel-badge">CURSO</span></div>
                     </div>
                     <div class="ms-carousel-body">
@@ -355,7 +345,7 @@
                 <!-- Imagen instalaciones -->
                 <div class="col-12 col-lg-6 ms-cn-reveal" style="--cn-delay:240ms">
                     <div class="ms-cn-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&q=75"
+                        <img src="https://images.pexels.com/photos/73759/sea-ocean-water-light-73759.jpeg"
                              alt="Instalaciones MouroSub"
                              class="ms-cn-img"/>
                         <div class="ms-cn-img-badge">

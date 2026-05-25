@@ -744,7 +744,7 @@ body {
 
 /* --- Imagen de fondo en card (altura fija) --- */
 .ms-card-img-container {
-  height: 220px;
+  height: 280px;
   border-radius: 0.5rem 0.5rem 0 0;
   background-size: cover;
   background-position: center;
@@ -754,19 +754,21 @@ body {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
+  white-space: nowrap;
 }
 /* Tarjeta destacada (más grande en desktop) */
 @media (min-width: 768px) {
   .featured-card .ms-card-img-container {
-    height: 320px;
+    height: 420px;
   }
 }
 
 /* --- Placeholder sin imagen en card --- */
 .ms-card-img-placeholder {
-  height: 120px;
+  height: 280px;
   background: var(--ms-surface-high);
   border-radius: 0.5rem 0.5rem 0 0;
+  position: relative;
 }
 .ms-icon-placeholder {
   font-size: 2.5rem;
