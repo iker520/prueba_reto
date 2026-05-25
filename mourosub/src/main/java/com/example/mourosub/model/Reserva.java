@@ -30,6 +30,10 @@ public class Reserva {
     @Column(name = "total")
     private Double total;
 
+    /** Notas opcionales del usuario al reservar o del admin al gestionar */
+    @Column(name = "notas", columnDefinition = "TEXT")
+    private String notas;
+
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UsuarioReserva> usuarios;
 

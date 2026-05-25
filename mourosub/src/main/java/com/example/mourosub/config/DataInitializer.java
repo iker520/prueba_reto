@@ -150,7 +150,7 @@ public class DataInitializer implements CommandLineRunner {
         a1.setPrecio(Double.valueOf("45.00"));
         a1.setTipo("ACTIVIDAD");
         a1.setNivel("Sin experiencia");
-        a1.setDuracion("3 horas");
+        a1.setDuracion(180); // 3 horas
         a1.setPlazasMaximas(6);
         a1.setImagenUrl("https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=70");
         a1.setDestacada(true);
@@ -164,7 +164,7 @@ public class DataInitializer implements CommandLineRunner {
         a2.setPrecio(Double.valueOf("320.00"));
         a2.setTipo("CURSO");
         a2.setNivel("Sin experiencia");
-        a2.setDuracion("4-5 días");
+        a2.setDuracion(1440); // 4-5 días (asumimos 24h efectivas)
         a2.setPlazasMaximas(8);
         a2.setImagenUrl("https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800&q=70");
         a2.setDestacada(true);
@@ -177,7 +177,7 @@ public class DataInitializer implements CommandLineRunner {
         a3.setPrecio(Double.valueOf("280.00"));
         a3.setTipo("CURSO");
         a3.setNivel("Open Water");
-        a3.setDuracion("2-3 días");
+        a3.setDuracion(720); // 2-3 días (asumimos 12h efectivas)
         a3.setPlazasMaximas(6);
         a3.setImagenUrl("https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=800&q=70");
         a3.setActiva(true);
@@ -189,7 +189,7 @@ public class DataInitializer implements CommandLineRunner {
         a4.setPrecio(Double.valueOf("55.00"));
         a4.setTipo("INMERSION");
         a4.setNivel("Open Water");
-        a4.setDuracion("1 día (2 inmersiones)");
+        a4.setDuracion(300); // 1 día (2 inmersiones)
         a4.setPlazasMaximas(10);
         a4.setImagenUrl("https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=70");
         a4.setDestacada(true);
@@ -202,7 +202,7 @@ public class DataInitializer implements CommandLineRunner {
         a5.setPrecio(Double.valueOf("65.00"));
         a5.setTipo("INMERSION");
         a5.setNivel("Advanced");
-        a5.setDuracion("1 noche");
+        a5.setDuracion(180); // 1 noche
         a5.setPlazasMaximas(6);
         a5.setActiva(true);
         actividadRepository.save(a5);
@@ -213,7 +213,7 @@ public class DataInitializer implements CommandLineRunner {
         a6.setPrecio(Double.valueOf("350.00"));
         a6.setTipo("OFERTA");
         a6.setNivel("Sin experiencia");
-        a6.setDuracion("1 semana");
+        a6.setDuracion(2400); // 1 semana
         a6.setActiva(true);
         actividadRepository.save(a6);
 

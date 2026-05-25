@@ -37,4 +37,8 @@ public class UsuarioReserva {
 
     @Column(name = "cantidad")
     private Integer cantidad = 1;
+
+    /** Copia del campo esBuceador del usuario en el momento de hacer la reserva */
+    @Column(name = "es_buceador")
+    private Boolean esBuceador = false;
 }

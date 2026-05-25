@@ -45,8 +45,8 @@ public class Actividad {
     @Column(name = "nivel", length = 100)
     private String nivel;
 
-    @Column(name = "duracion", length = 100)
-    private String duracion;
+    @Column(name = "duracion_minutos")
+    private Integer duracion;
 
     @Column(name = "plazas_maximas")
     private Integer plazasMaximas;
@@ -85,6 +85,20 @@ public class Actividad {
     @PreUpdate
     public void normalizarCampos() {
         if (this.tipo != null) this.tipo = this.tipo.toLowerCase();
+    }
+
+    public String getDuracionFormateada() {
+        if (duracion == null) return "N/A";
+        if (duracion >= 1440) {
+            int dias = duracion / 1440;
+            return dias + (dias == 1 ? " día" : " días");
+        }
+        if (duracion >= 60) {
+            int horas = duracion / 60;
+            int min = duracion % 60;
+            return horas + " h" + (min > 0 ? " " + min + " min" : "");
+        }
+        return duracion + " min";
     }
 
 }

@@ -112,12 +112,51 @@
   </div>
   <div class="d-flex align-items-center gap-3">
 
-    <!-- Campanita de alertas de validación -->
-    <a th:href="@{/admin/certificaciones}" class="ms-bell-btn" title="Documentos pendientes de validación">
-      <i class="bi bi-bell-fill"></i>
-      <span th:if="${pendientesValidacion != null and pendientesValidacion > 0}"
-            class="ms-bell-badge" th:text="${pendientesValidacion}">0</span>
-    </a>
+    <!-- Campanita de alertas (Dropdown) -->
+    <div class="dropdown">
+      <a href="#" class="ms-bell-btn text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false" title="Notificaciones">
+        <i class="bi bi-bell-fill"></i>
+        <span th:if="${(pendientesValidacion + reservasPendientesNuevas) > 0}"
+              class="ms-bell-badge" th:text="${pendientesValidacion + reservasPendientesNuevas}">0</span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+        <li><h6 class="dropdown-header">Notificaciones pendientes</h6></li>
+        
+        <li th:if="${reservasPendientesNuevas > 0}">
+          <a class="dropdown-item d-flex align-items-center py-2" th:href="@{/admin/reservas(estado='PENDIENTE')}">
+            <i class="bi bi-calendar-event text-warning me-3 fs-5"></i>
+            <div>
+              <div class="fw-semibold"><span th:text="${reservasPendientesNuevas}"></span> reservas</div>
+              <div class="small text-muted">Pendientes de gestionar</div>
+            </div>
+          </a>
+        </li>
+        
+        <li th:if="${certsPendientes > 0}">
+          <a class="dropdown-item d-flex align-items-center py-2" th:href="@{/admin/certificaciones}">
+            <i class="bi bi-patch-check text-primary me-3 fs-5"></i>
+            <div>
+              <div class="fw-semibold"><span th:text="${certsPendientes}"></span> certificados</div>
+              <div class="small text-muted">Pendientes de validación</div>
+            </div>
+          </a>
+        </li>
+        
+        <li th:if="${segurosPendientes > 0}">
+          <a class="dropdown-item d-flex align-items-center py-2" th:href="@{/admin/usuarios}">
+            <i class="bi bi-shield-plus text-danger me-3 fs-5"></i>
+            <div>
+              <div class="fw-semibold"><span th:text="${segurosPendientes}"></span> seguros</div>
+              <div class="small text-muted">Pendientes de validación</div>
+            </div>
+          </a>
+        </li>
+        
+        <li th:if="${(pendientesValidacion + reservasPendientesNuevas) == 0}">
+          <span class="dropdown-item text-muted text-center py-3 small">No tienes notificaciones pendientes.</span>
+        </li>
+      </ul>
+    </div>
 
     <span class="ms-topbar-user">
       <i class="bi bi-person-circle me-1"></i>

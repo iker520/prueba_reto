@@ -173,7 +173,7 @@
                   <span th:if="${act.precio != null}" class="ms-price"
                     th:text="${#numbers.formatDecimal(act.precio, 1, 2) + '€'}">—</span>
                   <span th:if="${act.duracion != null}" class="d-block text-muted ms-duration"
-                    th:text="${act.duracion}"></span>
+                    th:text="${act.duracionFormateada}"></span>
                 </div>
                 <a th:href="@{/servicios/{id}(id=${act.idActividad})}"
                   class="btn btn-ms-primary px-3 py-2 rounded">Saber más</a>

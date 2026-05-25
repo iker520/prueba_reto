@@ -180,7 +180,105 @@
       </div>
 
     </div>
+    </div>
   </div>
+
+  <!-- ===== MIS RESERVAS ===== -->
+  <div id="mis-reservas" class="mt-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="ms-mi-cuenta-section-title mb-0">
+        <i class="bi bi-calendar-check me-2"></i>Mis Reservas
+      </h2>
+      <a th:href="@{/servicios}" class="btn btn-sm btn-ms-primary rounded px-3">
+        <i class="bi bi-plus-lg me-1"></i>Nueva reserva
+      </a>
+    </div>
+
+    <!-- Sin reservas -->
+    <div th:if="${#lists.isEmpty(misReservas)}" class="ms-card p-4 text-center ms-empty-state">
+      <i class="bi bi-calendar-x ms-empty-icon d-block mb-2"></i>
+      <p class="mb-2">Aún no tienes reservas.</p>
+      <a th:href="@{/servicios}" class="btn btn-ms-primary rounded px-4">Explorar servicios</a>
+    </div>
+
+    <!-- Lista de reservas -->
+    <div th:unless="${#lists.isEmpty(misReservas)}" class="d-flex flex-column gap-3">
+      <div th:each="r : ${misReservas}" class="ms-card p-4">
+        <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
+
+          <!-- Info reserva -->
+          <div>
+            <div class="fw-semibold mb-1">
+              Reserva <span th:text="'#' + ${r.idReserva}">—</span>
+              &nbsp;·&nbsp;
+              <span class="small ms-text-muted"
+                    th:text="${#temporals.format(r.fechaReserva,'dd/MM/yyyy HH:mm')}">—</span>
+            </div>
+
+            <!-- Actividades -->
+            <div th:each="ar : ${r.actividades}" class="mt-1">
+              <span th:if="${ar.actividad != null}" class="small fw-semibold"
+                    th:text="${ar.actividad.nombre}">—</span>
+              <span th:if="${ar.actividad != null}"
+                    class="ms-badge small ms-2" th:text="${ar.actividad.tipo}">—</span>
+
+              <!-- Fechas y lugar SOLO si la reserva está CONFIRMADA -->
+              <span th:if="${r.estado == 'CONFIRMADA' and ar.fechaInicio != null}"
+                    class="small ms-text-muted ms-2">
+                <i class="bi bi-calendar3 me-1"></i>
+                <span th:text="${#temporals.format(ar.fechaInicio,'dd/MM/yyyy HH:mm')}">—</span>
+                <span th:if="${ar.fechaFin != null}">
+                  → <span th:text="${#temporals.format(ar.fechaFin,'dd/MM/yyyy HH:mm')}">—</span>
+                </span>
+              </span>
+
+              <!-- Lugar (ubicaciones de la actividad) -->
+              <span th:if="${r.estado == 'CONFIRMADA' and ar.actividad != null and not #sets.isEmpty(ar.actividad.ubicaciones)}"
+                    class="small ms-text-muted ms-2">
+                <i class="bi bi-geo-alt me-1"></i>
+                <span th:each="ub,iter : ${ar.actividad.ubicaciones}">
+                  <span th:text="${ub.nombre}">—</span><span th:unless="${iter.last}">, </span>
+                </span>
+              </span>
+            </div>
+
+            <!-- Notas si las hay -->
+            <div th:if="${r.notas != null and !#strings.isEmpty(r.notas)}"
+                 class="small ms-text-muted mt-1">
+              <i class="bi bi-chat-left-text me-1"></i><span th:text="${r.notas}">—</span>
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="text-end flex-shrink-0">
+            <span class="badge rounded-pill px-3 py-2 fw-semibold fs-6"
+                  th:classappend="${r.estado == 'PENDIENTE'} ? 'badge-pendiente' :
+                                 (${r.estado == 'CONFIRMADA'} ? 'badge-confirmada' :
+                                 (${r.estado == 'CANCELADA'} ? 'badge-cancelada' : 'badge-realizada'))"
+                  th:text="${r.estado}">Estado</span>
+
+            <!-- Mensaje informativo según estado -->
+            <div class="small ms-text-muted mt-1">
+              <span th:if="${r.estado == 'PENDIENTE'}">
+                <i class="bi bi-hourglass-split me-1"></i>Pendiente de confirmación
+              </span>
+              <span th:if="${r.estado == 'CONFIRMADA'}">
+                <i class="bi bi-check-circle me-1 text-success"></i>¡Reserva confirmada!
+              </span>
+              <span th:if="${r.estado == 'CANCELADA'}">
+                <i class="bi bi-x-circle me-1 text-danger"></i>Cancelada
+              </span>
+              <span th:if="${r.estado == 'REALIZADA'}">
+                <i class="bi bi-award me-1"></i>Realizada
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <!-- Modal Subir Certificación -->

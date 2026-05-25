@@ -1,8 +1,10 @@
 package com.example.mourosub.controller;
 
 import com.example.mourosub.model.Certificacion;
+import com.example.mourosub.model.Reserva;
 import com.example.mourosub.model.Usuario;
 import com.example.mourosub.service.CertificacionService;
+import com.example.mourosub.service.ReservaService;
 import com.example.mourosub.service.UsuarioService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,14 +32,17 @@ public class MiCuentaController {
 
     private final UsuarioService usuarioService;
     private final CertificacionService certificacionService;
+    private final ReservaService reservaService;
 
     @Value("${app.uploads.path}")
     private String uploadsPath;
 
     public MiCuentaController(UsuarioService usuarioService,
-                              CertificacionService certificacionService) {
+                              CertificacionService certificacionService,
+                              ReservaService reservaService) {
         this.usuarioService = usuarioService;
         this.certificacionService = certificacionService;
+        this.reservaService = reservaService;
     }
 
     @GetMapping
@@ -56,9 +61,13 @@ public class MiCuentaController {
         // Certificaciones emitidas por MouroSub
         List<Certificacion> certsMouro = certificacionService.findMouroSubByUsuario(usuario.getDniUsuario());
 
+        // Reservas del usuario
+        List<Reserva> misReservas = reservaService.findByDniUsuario(usuario.getDniUsuario());
+
         model.addAttribute("usuario", usuario);
         model.addAttribute("certsPropia", certsPropia);
         model.addAttribute("certsMouro", certsMouro);
+        model.addAttribute("misReservas", misReservas);
         model.addAttribute("pageTitle", "Mi Cuenta");
         return "public/mi-cuenta";
     }

@@ -33,9 +33,6 @@ public class ActividadReserva {
     @Column(name = "precio")
     private Double precio;
 
-    @Column(name = "fecha_inicio")
-    private LocalDateTime fechaInicio;
-
-    @Column(name = "fecha_fin")
-    private LocalDateTime fechaFin;
+    @OneToMany(mappedBy = "actividadReserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private java.util.List<ActividadReservaUbicacion> programaciones = new java.util.ArrayList<>();
 }

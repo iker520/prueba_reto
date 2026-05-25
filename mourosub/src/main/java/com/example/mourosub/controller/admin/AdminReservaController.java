@@ -16,6 +16,9 @@ public class AdminReservaController {
         this.reservaService = reservaService;
     }
 
+    // ----------------------------------------------------------------
+    // Lista de reservas con filtro por estado
+    // ----------------------------------------------------------------
     @GetMapping
     public String list(@RequestParam(required = false) String estado, Model model) {
         if (estado != null && !estado.isBlank()) {
@@ -30,37 +33,113 @@ public class AdminReservaController {
         return "admin/reservas/list";
     }
 
+    // ----------------------------------------------------------------
+    // Detalle de una reserva
+    // ----------------------------------------------------------------
     @GetMapping("/{id}")
     public String detalle(@PathVariable Long id, Model model) {
         var reserva = reservaService.findById(id)
-            .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Reserva no encontrada"));
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Reserva no encontrada"));
         model.addAttribute("reserva", reserva);
-        model.addAttribute("estados", ReservaService.getEstadosDisponibles());
         model.addAttribute("pageTitle", "Detalle Reserva #" + id);
         return "admin/reservas/detalle";
     }
 
-    @PostMapping("/{id}/estado")
-    public String cambiarEstado(@PathVariable Long id,
-                                @RequestParam String estado,
-                                RedirectAttributes redirectAttributes) {
+    // ----------------------------------------------------------------
+    // Botones de cambio de estado (uno por estado, sin desplegable)
+    // ----------------------------------------------------------------
+    @PostMapping("/{id}/confirmar")
+    public String confirmar(@PathVariable Long id, RedirectAttributes ra) {
+        return cambiar(id, "CONFIRMADA", ra);
+    }
+
+    @PostMapping("/{id}/cancelar")
+    public String cancelar(@PathVariable Long id, RedirectAttributes ra) {
+        return cambiar(id, "CANCELADA", ra);
+    }
+
+    @PostMapping("/{id}/completar")
+    public String completar(@PathVariable Long id, RedirectAttributes ra) {
+        return cambiar(id, "COMPLETADA", ra);
+    }
+
+    @PostMapping("/{id}/pendiente")
+    public String pendiente(@PathVariable Long id, RedirectAttributes ra) {
+        return cambiar(id, "PENDIENTE", ra);
+    }
+
+    // ----------------------------------------------------------------
+    // POST /admin/reservas/{id}/realizar
+    // ----------------------------------------------------------------
+    @PostMapping("/{id}/realizar")
+    public String realizar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
-            reservaService.cambiarEstado(id, estado);
-            redirectAttributes.addFlashAttribute("success", "Estado actualizado a " + estado);
+            reservaService.cambiarEstado(id, "REALIZADA");
+            redirectAttributes.addFlashAttribute("success", "Reserva marcada como REALIZADA.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/admin/reservas/" + id;
     }
 
+    // ----------------------------------------------------------------
+    // Programar Actividad (Ubicación y Fechas)
+    // ----------------------------------------------------------------
+    @PostMapping("/{idReserva}/actividad/{idActividad}/programar")
+    public String programarActividad(@PathVariable Long idReserva,
+                                     @PathVariable Long idActividad,
+                                     @RequestParam Long idUbicacion,
+                                     @RequestParam String fechaInicio,
+                                     RedirectAttributes redirectAttributes) {
+        try {
+            reservaService.programarActividad(idReserva, idActividad, idUbicacion, java.time.LocalDateTime.parse(fechaInicio));
+            redirectAttributes.addFlashAttribute("success", "Actividad programada correctamente.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/admin/reservas/" + idReserva;
+    }
+
+    // ----------------------------------------------------------------
+    // Eliminar Programación
+    // ----------------------------------------------------------------
+    @PostMapping("/{idReserva}/programacion/{idProgramacion}/eliminar")
+    public String eliminarProgramacion(@PathVariable Long idReserva,
+                                       @PathVariable Long idProgramacion,
+                                       RedirectAttributes redirectAttributes) {
+        try {
+            reservaService.eliminarProgramacion(idProgramacion);
+            redirectAttributes.addFlashAttribute("success", "Programación eliminada.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/admin/reservas/" + idReserva;
+    }
+
+    // ----------------------------------------------------------------
+    // Eliminar
+    // ----------------------------------------------------------------
     @PostMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String eliminar(@PathVariable Long id, RedirectAttributes ra) {
         try {
             reservaService.deleteById(id);
-            redirectAttributes.addFlashAttribute("success", "Reserva eliminada.");
+            ra.addFlashAttribute("success", "Reserva eliminada.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "No se pudo eliminar: " + e.getMessage());
+            ra.addFlashAttribute("error", "No se pudo eliminar: " + e.getMessage());
         }
         return "redirect:/admin/reservas";
+    }
+
+    // ----------------------------------------------------------------
+    // Helper interno
+    // ----------------------------------------------------------------
+    private String cambiar(Long id, String estado, RedirectAttributes ra) {
+        try {
+            reservaService.cambiarEstado(id, estado);
+            ra.addFlashAttribute("success", "Estado cambiado a " + estado + ".");
+        } catch (Exception e) {
+            ra.addFlashAttribute("error", "Error: " + e.getMessage());
+        }
+        return "redirect:/admin/reservas/" + id;
     }
 }
