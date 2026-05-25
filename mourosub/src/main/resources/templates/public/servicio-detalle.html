@@ -6,48 +6,48 @@
 <nav th:replace="~{layout/base :: navbar}"></nav>
 
 <main>
-  <!-- ===== BREADCRUMB ===== -->
-  <div class="ms-content-wrapper pt-3">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb ms-breadcrumb">
-        <li class="breadcrumb-item"><a th:href="@{/}" class="ms-breadcrumb-link">Inicio</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/servicios}" class="ms-breadcrumb-link">Servicios</a></li>
-        <li class="breadcrumb-item active" th:text="${actividad.nombre}">Actividad</li>
-      </ol>
-    </nav>
-  </div>
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="ms-content-wrapper pt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb ms-breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}" class="ms-breadcrumb-link">Inicio</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/servicios}" class="ms-breadcrumb-link">Servicios</a></li>
+                <li class="breadcrumb-item active" th:text="${actividad.nombre}">Actividad</li>
+            </ol>
+        </nav>
+    </div>
 
-  <!-- ===== DETALLE ACTIVIDAD ===== -->
-  <section class="ms-content-wrapper ms-grid-section px-4">
-    <div class="row g-5">
-      <!-- Imagen principal -->
-      <div class="col-12 col-md-7">
-        <div th:if="${actividad.imagenUrl != null}">
-          <img th:src="${actividad.imagenUrl}" th:alt="${actividad.nombre}"
-               class="img-fluid rounded ms-detail-img"/>
-        </div>
-        <div th:unless="${actividad.imagenUrl != null}"
-             class="rounded d-flex align-items-center justify-content-center ms-detail-placeholder">
-          <i class="bi bi-water ms-detail-placeholder-icon"></i>
-        </div>
+    <!-- ===== DETALLE ACTIVIDAD ===== -->
+    <section class="ms-content-wrapper ms-grid-section px-4">
+        <div class="row g-5">
+            <!-- Imagen principal -->
+            <div class="col-12 col-md-7">
+                <div th:if="${actividad.imagenUrl != null}">
+                    <img th:src="${actividad.imagenUrl}" th:alt="${actividad.nombre}"
+                         class="img-fluid rounded ms-detail-img"/>
+                </div>
+                <div th:unless="${actividad.imagenUrl != null}"
+                     class="rounded d-flex align-items-center justify-content-center ms-detail-placeholder">
+                    <i class="bi bi-water ms-detail-placeholder-icon"></i>
+                </div>
 
-        <!-- Contenido HTML (TipTap) -->
-        <div th:if="${actividad.descripcionHtml != null and !#strings.isEmpty(actividad.descripcionHtml)}"
-             class="ms-rich-content mt-4 p-4 ms-card">
-          <div th:utext="${actividad.descripcionHtml}"></div>
-        </div>
-      </div>
+                <!-- Contenido HTML (TipTap) -->
+                <div th:if="${actividad.descripcionHtml != null and !#strings.isEmpty(actividad.descripcionHtml)}"
+                     class="ms-rich-content mt-4 p-4 ms-card">
+                    <div th:utext="${actividad.descripcionHtml}"></div>
+                </div>
+            </div>
 
-      <!-- Ficha técnica -->
-      <div class="col-12 col-md-5">
-        <div class="ms-card p-4">
-          <span class="ms-badge" th:text="${actividad.tipo}">TIPO</span>
-          <h1 class="mt-3 ms-detail-title"
-              th:text="${actividad.nombre}">Nombre</h1>
-          <p class="mt-2 ms-detail-desc"
-             th:text="${actividad.descripcion}">Descripción</p>
+            <!-- Ficha técnica -->
+            <div class="col-12 col-md-5">
+                <div class="ms-card p-4">
+                    <span class="ms-badge" th:text="${actividad.tipo}">TIPO</span>
+                    <h1 class="mt-3 ms-detail-title"
+                        th:text="${actividad.nombre}">Nombre</h1>
+                    <p class="mt-2 ms-detail-desc"
+                       th:text="${actividad.descripcion}">Descripción</p>
 
-          <hr class="ms-detail-divider"/>
+                    <hr class="ms-detail-divider"/>
 
           <!-- Detalles técnicos -->
           <table class="table table-borderless ms-detail-table">
@@ -62,7 +62,7 @@
                 <td class="ms-detail-td-label">
                   <i class="bi bi-clock me-2 ms-detail-icon"></i>Duración
                 </td>
-                <td class="fw-semibold" th:text="${actividad.duracionFormateada}">—</td>
+                <td class="fw-semibold" th:text="${actividad.duracion}">—</td>
               </tr>
               <tr th:if="${actividad.plazasMaximas != null}">
                 <td class="ms-detail-td-label">
@@ -81,9 +81,8 @@
           </table>
 
           <div class="d-grid gap-2 mt-3">
-            <a th:href="@{/reservar/{id}/add(id=${actividad.idActividad})}"
-               class="btn btn-ms-primary py-3 rounded fw-semibold">
-              <i class="bi bi-calendar-plus me-2"></i>Añadir a mi reserva
+            <a th:href="@{/contacto}" class="btn btn-ms-primary py-3 rounded fw-semibold">
+              <i class="bi bi-calendar-plus me-2"></i>Reservar plaza
             </a>
             <a th:href="@{/servicios}" class="btn btn-ms-outline py-2 rounded">
               <i class="bi bi-arrow-left me-2"></i>Volver a Servicios
