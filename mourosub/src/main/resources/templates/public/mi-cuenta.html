@@ -222,24 +222,20 @@
               <span th:if="${ar.actividad != null}"
                     class="ms-badge small ms-2" th:text="${ar.actividad.tipo}">—</span>
 
-              <!-- Fechas y lugar SOLO si la reserva está CONFIRMADA -->
-              <span th:if="${r.estado == 'CONFIRMADA' and ar.fechaInicio != null}"
-                    class="small ms-text-muted ms-2">
-                <i class="bi bi-calendar3 me-1"></i>
-                <span th:text="${#temporals.format(ar.fechaInicio,'dd/MM/yyyy HH:mm')}">—</span>
-                <span th:if="${ar.fechaFin != null}">
-                  → <span th:text="${#temporals.format(ar.fechaFin,'dd/MM/yyyy HH:mm')}">—</span>
-                </span>
-              </span>
-
-              <!-- Lugar (ubicaciones de la actividad) -->
-              <span th:if="${r.estado == 'CONFIRMADA' and ar.actividad != null and not #sets.isEmpty(ar.actividad.ubicaciones)}"
-                    class="small ms-text-muted ms-2">
-                <i class="bi bi-geo-alt me-1"></i>
-                <span th:each="ub,iter : ${ar.actividad.ubicaciones}">
-                  <span th:text="${ub.nombre}">—</span><span th:unless="${iter.last}">, </span>
-                </span>
-              </span>
+              <!-- Programaciones (Fechas y lugar) si existen -->
+              <div th:if="${not #lists.isEmpty(ar.programaciones)}" class="small ms-text-muted mt-1 ps-2">
+                <div th:each="prog : ${ar.programaciones}">
+                  <i class="bi bi-calendar3 text-primary me-1"></i>
+                  <span th:text="${#temporals.format(prog.fechaInicio,'dd/MM/yyyy HH:mm')}">Inicio</span>
+                  <span th:if="${prog.fechaFin != null}">
+                    → <span th:text="${#temporals.format(prog.fechaFin,'HH:mm')}">Fin</span>
+                  </span>
+                  <span class="ms-2">
+                    <i class="bi bi-geo-alt text-danger me-1"></i>
+                    <span th:text="${prog.ubicacion != null ? prog.ubicacion.nombre : 'Sin ubicación'}">Ubicación</span>
+                  </span>
+                </div>
+              </div>
             </div>
 
             <!-- Notas si las hay -->

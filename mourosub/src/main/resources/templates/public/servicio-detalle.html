@@ -62,7 +62,7 @@
                 <td class="ms-detail-td-label">
                   <i class="bi bi-clock me-2 ms-detail-icon"></i>Duración
                 </td>
-                <td class="fw-semibold" th:text="${actividad.duracion}">—</td>
+                <td class="fw-semibold" th:text="${actividad.duracionFormateada}">—</td>
               </tr>
               <tr th:if="${actividad.plazasMaximas != null}">
                 <td class="ms-detail-td-label">
@@ -81,8 +81,9 @@
           </table>
 
           <div class="d-grid gap-2 mt-3">
-            <a th:href="@{/contacto}" class="btn btn-ms-primary py-3 rounded fw-semibold">
-              <i class="bi bi-calendar-plus me-2"></i>Reservar plaza
+            <a th:href="@{/reservar/{id}/add(id=${actividad.idActividad})}"
+               class="btn btn-ms-primary py-3 rounded fw-semibold">
+              <i class="bi bi-calendar-plus me-2"></i>Añadir a mi reserva
             </a>
             <a th:href="@{/servicios}" class="btn btn-ms-outline py-2 rounded">
               <i class="bi bi-arrow-left me-2"></i>Volver a Servicios
