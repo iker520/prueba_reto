@@ -45,7 +45,7 @@
 
             <!-- Usuario -->
             <td>
-              <div th:each="ur : ${r.usuarios}" class="d-flex align-items-center gap-2">
+              <div th:each="ur : ${r.usuarios}" class="d-flex align-items-center gap-2 mb-1">
                 <span th:if="${ur.usuario != null}" th:text="${ur.usuario.nombre + ' ' + (ur.usuario.apellido1 ?: '')}">—</span>
                 <span th:if="${ur.usuario == null}" th:text="${ur.dniUsuario}" class="ms-text-muted small">—</span>
                 <!-- Badge buceador -->
@@ -54,6 +54,12 @@
                       style="background:rgba(0,136,204,0.2); color:#0088cc;">
                   <i class="bi bi-water"></i>
                 </span>
+                <!-- Acceso directo al perfil -->
+                <a th:if="${ur.usuario != null}"
+                   th:href="@{/admin/usuarios/editar/{dni}(dni=${ur.dniUsuario})}"
+                   class="btn btn-sm btn-ms-outline px-2 rounded" title="Ver perfil">
+                  <i class="bi bi-person"></i>
+                </a>
               </div>
             </td>
 
