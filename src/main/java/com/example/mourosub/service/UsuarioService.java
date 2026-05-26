@@ -50,6 +50,12 @@ public class UsuarioService implements UserDetailsService {
         if (usuario.getFechaRegistro() == null) {
             usuario.setFechaRegistro(LocalDate.now().atStartOfDay());
         }
+        // Si el password llega vacío (edición sin cambio de contraseña),
+        // recuperamos el hash actual de la BD para no sobreescribirlo con null
+        if (usuario.getPassword() == null || usuario.getPassword().isBlank()) {
+            usuarioRepository.findById(usuario.getDniUsuario())
+                    .ifPresent(existing -> usuario.setPassword(existing.getPassword()));
+        }
         return usuarioRepository.save(usuario);
     }
 

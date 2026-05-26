@@ -650,6 +650,7 @@ body {
 .badge-confirmada { background-color: #22c55e; color: white; }
 .badge-cancelada  { background-color: var(--ms-error); color: white; }
 .badge-completada { background-color: var(--ms-primary); color: white; }
+.badge-realizada  { background-color: #0e7490; color: white; }
 
 /* ================================================================
    CLASES UTILITARIAS — reemplazan estilos inline del HTML
