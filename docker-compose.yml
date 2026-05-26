@@ -5,10 +5,10 @@ services:
     container_name: mariadb-mourosub
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: root_password_seguro
-      MARIADB_DATABASE: mourosub
-      MARIADB_USER: grupo4
-      MARIADB_PASSWORD: grupo4
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USERNAME}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -27,9 +27,9 @@ services:
       - db
     environment:
       # Sobrescribimos las variables para que Java se conecte al contenedor 'db' por la red interna
-      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/mourosub
-      SPRING_DATASOURCE_USERNAME: grupo4
-      SPRING_DATASOURCE_PASSWORD: grupo4
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
       # NUEVO: Vinculamos la carpeta actual de tu servidor con la carpeta /app del contenedor
     volumes:
       - ./:/app
@@ -46,8 +46,8 @@ services:
       - "21:21"
       - "21000-21010:21000-21010"
     environment:
-      USERS: "grupo4|grupo4|/ftp/grupo4|1000"
-      ADDRESS: "192.168.35.167"
+      USERS: "${FTP_USER}|${FTP_PASSWORD}|/ftp/${FTP_USER}|1000"
+      ADDRESS: "${FTP_ADDRESS}"
       MIN_PORT: 21000
       MAX_PORT: 21010
     volumes:
