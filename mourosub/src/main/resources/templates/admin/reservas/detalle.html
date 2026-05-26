@@ -263,5 +263,13 @@
   </div>
 </div>
 <div th:replace="~{layout/admin-base :: adminScripts}"></div>
+<script>
+  // Bootstrap 5: mover modales al <body> para evitar bucles con contenedores overflow:auto
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.modal').forEach(function (modal) {
+      document.body.appendChild(modal);
+    });
+  });
+</script>
 </body>
 </html>
