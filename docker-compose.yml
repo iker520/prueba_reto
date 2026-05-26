@@ -1,0 +1,79 @@
+services:
+  # 1. Contenedor de Base de Datos
+  db:
+    image: mariadb:10.11
+    container_name: mariadb-mourosub
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root_password_seguro
+      MARIADB_DATABASE: mourosub
+      MARIADB_USER: grupo4
+      MARIADB_PASSWORD: grupo4
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - mourosub-net
+
+  # 2. Contenedor de la Aplicación Web (Spring Boot)
+  app:
+    build: . # Le dice a Docker que busque el archivo "Dockerfile" en esta misma carpeta
+    container_name: app-mourosub
+    restart: always
+    ports:
+      - "8080:8080" # El puerto por donde los usuarios verán la web
+    depends_on:
+      - db
+    environment:
+      # Sobrescribimos las variables para que Java se conecte al contenedor 'db' por la red interna
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/mourosub
+      SPRING_DATASOURCE_USERNAME: grupo4
+      SPRING_DATASOURCE_PASSWORD: grupo4
+      # NUEVO: Vinculamos la carpeta actual de tu servidor con la carpeta /app del contenedor
+    volumes:
+      - ./:/app
+    # Le damos permiso de ejecución al archivo mvnw por si acaso
+    command: sh -c "chmod +x ./mvnw && ./mvnw spring-boot:run"
+    networks:
+      - mourosub-net
+  # 3. Contenedor FTP
+  ftp:
+    image: delfer/alpine-ftp-server:latest
+    container_name: ftp-mourosub
+    restart: always
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    environment:
+      USERS: "grupo4|grupo4|/ftp/grupo4|1000"
+      ADDRESS: "192.168.35.167"
+      MIN_PORT: 21000
+      MAX_PORT: 21010
+    volumes:
+      - ftp_data:/ftp/grupo4
+    networks:
+      - mourosub-net
+  # 4. Contenedor proxy
+  proxy:
+    image: nginx:alpine
+    container_name: proxy-mourosub
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ftp_data:/var/www
+    depends_on:
+      - app
+    networks:
+      - mourosub-net
+volumes:
+  mariadb_data:
+  ftp_data:
+
+networks:
+  mourosub-net:
+    driver: bridge
