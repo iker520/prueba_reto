@@ -3,6 +3,7 @@ package com.example.mourosub.config;
 import com.example.mourosub.model.*;
 import com.example.mourosub.repository.*;
 import com.example.mourosub.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,10 @@ public class DataInitializer implements CommandLineRunner {
     private final NoticiaRepository noticiaRepository;
     private final UbicacionRepository ubicacionRepository;
 
+    /** Controla si se cargan datos de demo (ubicaciones, instructores, actividades, noticias). */
+    @Value("${app.seed.enabled:true}")
+    private boolean seedEnabled;
+
     public DataInitializer(UsuarioService usuarioService,
                            InstructorRepository instructorRepository,
                            ActividadRepository actividadRepository,
@@ -35,11 +40,15 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        initAdmin();
-        initUbicaciones();
-        initInstructores();
-        initActividades();
-        initNoticias();
+        initAdmin(); // siempre: la app no funciona sin admin
+        if (seedEnabled) {
+            initUbicaciones();
+            initInstructores();
+            initActividades();
+            initNoticias();
+        } else {
+            System.out.println("⏭️  Seed de datos demo desactivado (APP_SEED_ENABLED=false)");
+        }
     }
 
     // ---------------------------------------------------------------

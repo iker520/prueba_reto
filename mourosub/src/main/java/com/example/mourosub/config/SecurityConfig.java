@@ -49,7 +49,8 @@ public class SecurityConfig {
                                                                 "/error/**", "/403",
                                                                 "/condiciones-venta", "/devoluciones",
                                                                 "/aviso-legal", "/politica-privacidad",
-                                                                "/newsletter/**")
+                                                                "/newsletter/**",
+                                                                "/actuator/health")
                                                 .permitAll()
                                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())

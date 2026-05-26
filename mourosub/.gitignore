@@ -4,9 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### Variables de entorno (NUNCA subir al repositorio) ###
+### Variables de entorno y certificados SSL (NUNCA subir al repositorio) ###
 .env
 !.env.example
+certs/
 
 ### STS ###
 .apt_generated
