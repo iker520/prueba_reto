@@ -67,7 +67,7 @@ public class AdminNewsletterController {
             int rowIdx = 1;
             for (Newsletter s : suscriptores) {
                 Row row = sheet.createRow(rowIdx);
-                row.createCell(0).setCellValue(s.getId() != null ? s.getId() : 0L);
+                row.createCell(0).setCellValue(s.getIdNewsletter() != null ? s.getIdNewsletter() : 0L);
                 row.createCell(1).setCellValue(s.getEmail() != null ? s.getEmail() : "");
                 if (rowIdx % 2 == 0) {
                     row.getCell(0).setCellStyle(altStyle);
