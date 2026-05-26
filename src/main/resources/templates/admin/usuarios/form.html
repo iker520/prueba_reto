@@ -41,7 +41,8 @@
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label fw-semibold ms-form-label">Fecha de nacimiento</label>
-            <input type="date" th:field="*{fechaNac}" class="form-control ms-form-control"/>
+            <input type="date" th:field="*{fechaNac}" class="form-control ms-form-control"
+                   min="1900-01-01" max="2099-12-31"/>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label fw-semibold ms-form-label">Teléfono SOS</label>
@@ -160,7 +161,8 @@
             </div>
             <div class="col-12 col-md-4">
               <label class="form-label fw-semibold ms-form-label">Última inmersión</label>
-              <input type="date" th:field="*{fechaUltimaInmersion}" class="form-control ms-form-control"/>
+              <input type="date" th:field="*{fechaUltimaInmersion}" class="form-control ms-form-control"
+                     min="1900-01-01" max="2099-12-31"/>
             </div>
           </div>
 
@@ -187,53 +189,58 @@
               </div>
               <div class="col-12 col-md-4">
                 <label class="form-label fw-semibold ms-form-label">Vencimiento seguro</label>
-                <input type="date" th:field="*{fechaVto}" class="form-control ms-form-control"/>
+                <input type="date" id="fechaVtoAdmin" th:field="*{fechaVto}" class="form-control ms-form-control"
+                       max="2099-12-31"/>
               </div>
               <div class="col-12 col-md-3">
                 <label class="form-label fw-semibold ms-form-label">Estado validación</label>
                 <select th:field="*{estadoSeguro}" class="form-select ms-form-control">
                   <option value="">— Sin seguro —</option>
-                  <option value="PENDIENTE">Pendiente</option>
-                  <option value="APROBADO">Aprobado</option>
-                  <option value="RECHAZADO">Rechazado</option>
+                  <option value="PENDIENTE"
+                          th:selected="${usuario.estadoSeguro == null or usuario.estadoSeguro == 'PENDIENTE'}">Pendiente</option>
+                  <option value="APROBADO"
+                          th:selected="${usuario.estadoSeguro == 'APROBADO'}">Aprobado</option>
+                  <option value="RECHAZADO"
+                          th:selected="${usuario.estadoSeguro == 'RECHAZADO'}">Rechazado</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <!-- Sub-sección: Certificación inicial (solo en creación) -->
-          <div th:if="${esNuevo}">
-            <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title" style="font-size:0.8rem;">
-              <i class="bi bi-patch-check me-2"></i>Certificación previa
-              <span class="ms-form-hint ms-badge-outline ms-badge ms-badge-tiptap" style="font-size:0.7rem;margin-left:0.5rem;">Opcional</span>
-            </h6>
-            <div class="row g-3 mb-3">
-              <div class="col-12 col-md-6">
-                <label class="form-label fw-semibold ms-form-label">Título</label>
-                <input type="text" name="certTitulo" class="form-control ms-form-control"
-                       placeholder="Ej: Open Water Diver" maxlength="200"/>
-              </div>
-              <div class="col-12 col-md-6">
-                <label class="form-label fw-semibold ms-form-label">Entidad certificadora</label>
-                <input type="text" name="certEntidad" class="form-control ms-form-control"
-                       placeholder="PADI, CMAS, FEDAS..." maxlength="150"/>
-              </div>
-              <div class="col-12 col-md-6">
-                <label class="form-label fw-semibold ms-form-label">Fecha de obtención</label>
-                <input type="date" name="certFechaInicio" class="form-control ms-form-control"/>
-              </div>
-              <div class="col-12 col-md-6">
-                <label class="form-label fw-semibold ms-form-label">Fecha de vencimiento
-                  <span class="ms-form-hint">(si aplica)</span></label>
-                <input type="date" name="certFechaFin" class="form-control ms-form-control"/>
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-semibold ms-form-label">
-                  Adjuntar documento <span class="ms-form-hint">(PDF o imagen, máx. 10 MB)</span>
-                </label>
-                <input type="file" name="certDocumento" class="form-control ms-form-control"
-                       accept=".pdf,.jpg,.jpeg,.png,.webp"/>
-              </div>
+          <!-- Sub-sección: Añadir certificación (en creación y edición) -->
+          <h6 class="fw-bold mb-3 pb-2 ms-admin-form-section-title" style="font-size:0.8rem;">
+            <i class="bi bi-patch-check me-2"></i>
+            <span th:text="${esNuevo} ? 'Certificación previa' : 'Añadir certificación'">Certificación</span>
+            <span class="ms-form-hint ms-badge-outline ms-badge ms-badge-tiptap" style="font-size:0.7rem;margin-left:0.5rem;">Opcional</span>
+          </h6>
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Título</label>
+              <input type="text" name="certTitulo" class="form-control ms-form-control"
+                     placeholder="Ej: Open Water Diver" maxlength="200"/>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Entidad certificadora</label>
+              <input type="text" name="certEntidad" class="form-control ms-form-control"
+                     placeholder="PADI, CMAS, FEDAS..." maxlength="150"/>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Fecha de obtención</label>
+              <input type="date" name="certFechaInicio" class="form-control ms-form-control"
+                     min="1900-01-01" max="2099-12-31"/>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Fecha de vencimiento
+                <span class="ms-form-hint">(si aplica)</span></label>
+              <input type="date" id="certFechaFinAdmin" name="certFechaFin" class="form-control ms-form-control"
+                     max="2099-12-31"/>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold ms-form-label">
+                Adjuntar documento <span class="ms-form-hint">(PDF o imagen, máx. 10 MB)</span>
+              </label>
+              <input type="file" name="certDocumento" class="form-control ms-form-control"
+                     accept=".pdf,.jpg,.jpeg,.png,.webp"/>
             </div>
           </div>
 
@@ -298,12 +305,19 @@
     if (cb.checked) { panel.classList.add('show'); }
     else { panel.classList.remove('show'); }
   }
-  // Init on load
+  // Fecha mínima hoy para campos de vencimiento
   document.addEventListener('DOMContentLoaded', function() {
     const cb = document.getElementById('esBuceador');
     if (cb && cb.checked) document.getElementById('buceadorAdminPanel')?.classList.add('show');
     const seg = document.getElementById('seguroAcc');
     if (seg && seg.checked) document.getElementById('seguroAdminPanel')?.classList.add('show');
+
+    // Limitar fechas de vencimiento a partir de hoy
+    const today = new Date().toISOString().split('T')[0];
+    const vto = document.getElementById('fechaVtoAdmin');
+    if (vto && !vto.value) vto.min = today;
+    const certFin = document.getElementById('certFechaFinAdmin');
+    if (certFin) certFin.min = today;
   });
 </script>
 </body>

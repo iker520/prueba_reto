@@ -303,11 +303,13 @@
           <div class="row g-3 mb-3">
             <div class="col-6">
               <label class="form-label fw-semibold ms-form-label">Fecha obtención <span class="text-danger">*</span></label>
-              <input type="date" name="fechaInicio" class="form-control ms-form-control" required/>
+              <input type="date" name="fechaInicio" class="form-control ms-form-control"
+                     min="1900-01-01" max="2099-12-31" required/>
             </div>
             <div class="col-6">
               <label class="form-label fw-semibold ms-form-label">Renovación <span class="text-muted small fw-normal">(Opcional)</span></label>
-              <input type="date" name="fechaFin" class="form-control ms-form-control"/>
+              <input type="date" id="certFechaFinPublic" name="fechaFin" class="form-control ms-form-control"
+                     max="2099-12-31"/>
             </div>
           </div>
           <div class="mb-3">
@@ -326,5 +328,13 @@
 
 <footer th:replace="~{layout/base :: footer}"></footer>
 <div th:replace="~{layout/base :: scripts}"></div>
+<script>
+  // Limitar fecha de fin de cert a partir de hoy
+  document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    const certFin = document.getElementById('certFechaFinPublic');
+    if (certFin) certFin.min = today;
+  });
+</script>
 </body>
 </html>

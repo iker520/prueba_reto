@@ -120,6 +120,14 @@
                      class="btn btn-sm btn-ms-outline mt-2 px-3 rounded small">
                     <i class="bi bi-person me-1"></i>Ver perfil completo
                   </a>
+                  <!-- Botón cambiar usuario -->
+                  <button type="button"
+                          class="btn btn-sm btn-outline-warning mt-2 px-3 rounded small"
+                          data-bs-toggle="modal"
+                          th:data-bs-target="'#modalCambiarUsuario-' + ${ur.dniUsuario}"
+                          th:data-dni-actual="${ur.dniUsuario}">
+                    <i class="bi bi-person-arrow-right me-1"></i>Cambiar usuario
+                  </button>
                 </div>
                 <div th:unless="${ur.usuario != null}" class="ms-text-muted small">DNI: <span th:text="${ur.dniUsuario}">—</span></div>
               </div>
@@ -243,7 +251,8 @@
 
                       <div class="mb-3">
                         <label class="form-label fw-semibold ms-form-label">Fecha y Hora de Inicio <span class="text-danger">*</span></label>
-                        <input type="datetime-local" name="fechaInicio" class="form-control ms-form-control" required/>
+                        <input type="datetime-local" name="fechaInicio" class="form-control ms-form-control"
+                               max="2099-12-31T23:59" required/>
                       </div>
                     </div>
                     <div class="modal-footer border-top-0 pt-0">
@@ -263,6 +272,46 @@
   </div>
 </div>
 <div th:replace="~{layout/admin-base :: adminScripts}"></div>
+
+<!-- Modales de cambio de usuario (uno por participante) -->
+<div th:each="ur : ${reserva.usuarios}">
+  <div class="modal fade" th:id="'modalCambiarUsuario-' + ${ur.dniUsuario}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="modal-title fw-bold" style="color:var(--ms-primary);">
+            <i class="bi bi-person-arrow-right me-2"></i>Cambiar usuario de la reserva
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form th:action="@{/admin/reservas/{id}/cambiar-usuario(id=${reserva.idReserva})}" method="post">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <input type="hidden" name="dniActual" th:value="${ur.dniUsuario}"/>
+          <div class="modal-body">
+            <p class="text-muted small mb-3">
+              Usuario actual: <strong th:text="${ur.usuario != null ? ur.usuario.nombre + ' ' + (ur.usuario.apellido1 ?: '') : ur.dniUsuario}">—</strong>
+            </p>
+            <div class="mb-3">
+              <label class="form-label fw-semibold ms-form-label">Seleccionar nuevo usuario <span class="text-danger">*</span></label>
+              <select name="dniNuevo" class="form-select ms-form-control" required>
+                <option value="">— Selecciona un usuario —</option>
+                <option th:each="u : ${todosUsuarios}"
+                        th:value="${u.dniUsuario}"
+                        th:text="${u.nombre + ' ' + (u.apellido1 ?: '') + ' (' + u.email + ')'}"
+                        th:disabled="${u.dniUsuario == ur.dniUsuario}">Usuario</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-ms-primary px-4 rounded">Confirmar cambio</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // Bootstrap 5: mover modales al <body> para evitar bucles con contenedores overflow:auto
   document.addEventListener('DOMContentLoaded', function () {

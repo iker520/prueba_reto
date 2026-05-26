@@ -1,6 +1,7 @@
 package com.example.mourosub.controller.admin;
 
 import com.example.mourosub.service.ReservaService;
+import com.example.mourosub.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminReservaController {
 
     private final ReservaService reservaService;
+    private final UsuarioService usuarioService;
 
-    public AdminReservaController(ReservaService reservaService) {
+    public AdminReservaController(ReservaService reservaService,
+                                  UsuarioService usuarioService) {
         this.reservaService = reservaService;
+        this.usuarioService = usuarioService;
     }
 
     // ----------------------------------------------------------------
@@ -41,6 +45,7 @@ public class AdminReservaController {
         var reserva = reservaService.findById(id)
                 .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Reserva no encontrada"));
         model.addAttribute("reserva", reserva);
+        model.addAttribute("todosUsuarios", usuarioService.findAll());
         model.addAttribute("pageTitle", "Detalle Reserva #" + id);
         return "admin/reservas/detalle";
     }
@@ -112,6 +117,23 @@ public class AdminReservaController {
             redirectAttributes.addFlashAttribute("success", "Programación eliminada.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/admin/reservas/" + idReserva;
+    }
+
+    // ----------------------------------------------------------------
+    // Cambiar usuario de una reserva
+    // ----------------------------------------------------------------
+    @PostMapping("/{idReserva}/cambiar-usuario")
+    public String cambiarUsuario(@PathVariable Long idReserva,
+                                 @RequestParam String dniActual,
+                                 @RequestParam String dniNuevo,
+                                 RedirectAttributes redirectAttributes) {
+        try {
+            reservaService.cambiarUsuarioReserva(idReserva, dniActual, dniNuevo);
+            redirectAttributes.addFlashAttribute("success", "Usuario de la reserva actualizado correctamente.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al cambiar usuario: " + e.getMessage());
         }
         return "redirect:/admin/reservas/" + idReserva;
     }

@@ -70,7 +70,7 @@ public class AdminUsuarioController {
     public String guardar(
             @ModelAttribute Usuario usuario,
             @RequestParam(required = false) String rawPassword,
-            // Certificación inicial (solo en creación con esBuceador)
+            // Certificación inicial — disponible en creación y en edición
             @RequestParam(required = false) String certTitulo,
             @RequestParam(required = false) String certEntidad,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate certFechaInicio,
@@ -84,7 +84,7 @@ public class AdminUsuarioController {
                 usuarioService.save(usuario);
             }
 
-            // Si buceador y se aportó certificación inicial
+            // Si es buceador y se aportó certificación (creación Y edición)
             if (Boolean.TRUE.equals(usuario.getEsBuceador())
                     && certTitulo != null && !certTitulo.isBlank()) {
                 Certificacion cert = new Certificacion();

@@ -17,15 +17,18 @@ public class ReservaService {
     private final UsuarioReservaRepository usuarioReservaRepository;
     private final ActividadReservaRepository actividadReservaRepository;
     private final com.example.mourosub.repository.ActividadReservaUbicacionRepository aruRepository;
+    private final com.example.mourosub.repository.UsuarioRepository usuarioRepository;
 
     public ReservaService(ReservaRepository reservaRepository,
             UsuarioReservaRepository usuarioReservaRepository,
             ActividadReservaRepository actividadReservaRepository,
-            com.example.mourosub.repository.ActividadReservaUbicacionRepository aruRepository) {
+            com.example.mourosub.repository.ActividadReservaUbicacionRepository aruRepository,
+            com.example.mourosub.repository.UsuarioRepository usuarioRepository) {
         this.reservaRepository = reservaRepository;
         this.usuarioReservaRepository = usuarioReservaRepository;
         this.actividadReservaRepository = actividadReservaRepository;
         this.aruRepository = aruRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Reserva> findAll() {
@@ -144,5 +147,28 @@ public class ReservaService {
     @Transactional
     public void eliminarProgramacion(Long idProgramacion) {
         aruRepository.deleteById(idProgramacion);
+    }
+
+    /**
+     * Cambia el usuario de una reserva. Elimina la fila (idReserva, dniActual)
+     * en USUARIOS_RESERVAS e inserta una nueva con el nuevo usuario,
+     * copiando el campo esBuceador del perfil actual del nuevo usuario.
+     */
+    @Transactional
+    public void cambiarUsuarioReserva(Long idReserva, String dniActual, String dniNuevo) {
+        // Eliminar la fila del usuario actual
+        usuarioReservaRepository.deleteById(new com.example.mourosub.model.UsuarioReservaId(idReserva, dniActual));
+
+        // Obtener el nuevo usuario para copiar esBuceador
+        com.example.mourosub.model.Usuario nuevoUsuario = usuarioRepository.findById(dniNuevo)
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Usuario no encontrado: " + dniNuevo));
+
+        // Insertar nueva fila
+        UsuarioReserva nueva = new UsuarioReserva();
+        nueva.setIdReserva(idReserva);
+        nueva.setDniUsuario(dniNuevo);
+        nueva.setCantidad(1);
+        nueva.setEsBuceador(Boolean.TRUE.equals(nuevoUsuario.getEsBuceador()));
+        usuarioReservaRepository.save(nueva);
     }
 }

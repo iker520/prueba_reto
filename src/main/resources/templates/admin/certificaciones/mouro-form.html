@@ -43,11 +43,13 @@
         <div class="row g-3 mb-3">
           <div class="col-md-6">
             <label class="form-label fw-semibold" for="fechaInicio">Fecha de expedición</label>
-            <input type="date" id="fechaInicio" name="fechaInicio" class="form-control"/>
+            <input type="date" id="fechaInicio" name="fechaInicio" class="form-control"
+                   min="1900-01-01" max="2099-12-31"/>
           </div>
           <div class="col-md-6">
             <label class="form-label fw-semibold" for="fechaFin">Fecha de vencimiento <small class="text-muted">(opcional)</small></label>
-            <input type="date" id="fechaFin" name="fechaFin" class="form-control"/>
+            <input type="date" id="fechaFinMouro" name="fechaFin" class="form-control"
+                   max="2099-12-31"/>
           </div>
         </div>
 
@@ -73,5 +75,12 @@
   </div>
 </div>
 <div th:replace="~{layout/admin-base :: adminScripts}"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    const fin = document.getElementById('fechaFinMouro');
+    if (fin) fin.min = today;
+  });
+</script>
 </body>
 </html>
