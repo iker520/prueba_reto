@@ -1,0 +1,153 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/C:/Users/mpna3/.m2/wrapper/dists/apache-maven-3.9.9-bin/33b4b2b4/apache-maven-3.9.9/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/C:/Users/mpna3/.m2/wrapper/dists/apache-maven-3.9.9-bin/33b4b2b4/apache-maven-3.9.9/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.example:mourosub >------------------------
+[INFO] Building mourosub 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.0:run (default-cli) > test-compile @ mourosub >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ mourosub ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 59 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ mourosub ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ mourosub ---
+[INFO] skip non existing resourceDirectory C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\mourosub_v1\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mourosub ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.5.0:run (default-cli) < test-compile @ mourosub <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.0:run (default-cli) @ mourosub ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.0)
+
+2026-05-27T12:49:32.645+02:00  INFO 7092 --- [MouroSub] [           main] c.example.mourosub.MourousubApplication  : Starting MourousubApplication using Java 25 with PID 7092 (C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\mourosub_v1\target\classes started by mpna3 in C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\mourosub_v1)
+2026-05-27T12:49:32.648+02:00  INFO 7092 --- [MouroSub] [           main] c.example.mourosub.MourousubApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-05-27T12:49:34.064+02:00  INFO 7092 --- [MouroSub] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-27T12:49:34.259+02:00  INFO 7092 --- [MouroSub] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 177 ms. Found 13 JPA repository interfaces.
+2026-05-27T12:49:35.050+02:00  INFO 7092 --- [MouroSub] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-27T12:49:35.069+02:00  INFO 7092 --- [MouroSub] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-27T12:49:35.069+02:00  INFO 7092 --- [MouroSub] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-05-27T12:49:35.134+02:00  INFO 7092 --- [MouroSub] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-27T12:49:35.134+02:00  INFO 7092 --- [MouroSub] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2444 ms
+2026-05-27T12:49:35.436+02:00  INFO 7092 --- [MouroSub] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-27T12:49:35.504+02:00  INFO 7092 --- [MouroSub] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
+2026-05-27T12:49:35.541+02:00  INFO 7092 --- [MouroSub] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-27T12:49:35.845+02:00  INFO 7092 --- [MouroSub] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-27T12:49:35.881+02:00  INFO 7092 --- [MouroSub] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-27T12:49:36.004+02:00  INFO 7092 --- [MouroSub] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@350342e0
+2026-05-27T12:49:36.006+02:00  INFO 7092 --- [MouroSub] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-27T12:49:36.034+02:00  WARN 7092 --- [MouroSub] [           main] org.hibernate.dialect.Dialect            : HHH000511: The 8.0.30 version for [org.hibernate.dialect.MariaDBDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 10.4.0. Check the community dialects project for available legacy versions.
+2026-05-27T12:49:36.038+02:00  WARN 7092 --- [MouroSub] [           main] org.hibernate.orm.deprecation            : HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-27T12:49:36.054+02:00  INFO 7092 --- [MouroSub] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.30
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-27T12:49:37.361+02:00  INFO 7092 --- [MouroSub] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-27T12:49:37.451+02:00  INFO 7092 --- [MouroSub] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T12:49:37.888+02:00  INFO 7092 --- [MouroSub] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-27T12:49:38.833+02:00  WARN 7092 --- [MouroSub] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-27T12:49:39.402+02:00  INFO 7092 --- [MouroSub] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-05-27T12:49:39.468+02:00  WARN 7092 --- [MouroSub] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-05-27T12:49:40.011+02:00  WARN 7092 --- [MouroSub] [           main] o.m.jdbc.message.server.ErrorPacket      : Error: 3780-HY000: Referencing column 'id_actividad' and referenced column 'id_actividad' in foreign key constraint 'fk_ar_actividad' are incompatible.
+2026-05-27T12:49:40.011+02:00  WARN 7092 --- [MouroSub] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute SQL script statement #9 of file [C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\mourosub_v1\target\classes\schema.sql]: CREATE TABLE IF NOT EXISTS ACTIVIDADES_RESERVAS ( id_reserva BIGINT NOT NULL, id_actividad BIGINT NOT NULL, precio DOUBLE, PRIMARY KEY (id_reserva, id_actividad), CONSTRAINT fk_ar_reserva FOREIGN KEY (id_reserva) REFERENCES RESERVAS(id_reserva), CONSTRAINT fk_ar_actividad FOREIGN KEY (id_actividad) REFERENCES ACTIVIDADES(id_actividad) )
+2026-05-27T12:49:40.021+02:00  INFO 7092 --- [MouroSub] [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T12:49:40.021+02:00  INFO 7092 --- [MouroSub] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-27T12:49:40.029+02:00  INFO 7092 --- [MouroSub] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-27T12:49:40.031+02:00  INFO 7092 --- [MouroSub] [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-05-27T12:49:40.049+02:00  INFO 7092 --- [MouroSub] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-27T12:49:40.068+02:00 ERROR 7092 --- [MouroSub] [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute SQL script statement #9 of file [C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\mourosub_v1\target\classes\schema.sql]: CREATE TABLE IF NOT EXISTS ACTIVIDADES_RESERVAS ( id_reserva BIGINT NOT NULL, id_actividad BIGINT NOT NULL, precio DOUBLE, PRIMARY KEY (id_reserva, id_actividad), CONSTRAINT fk_ar_reserva FOREIGN KEY (id_reserva) REFERENCES RESERVAS(id_reserva), CONSTRAINT fk_ar_actividad FOREIGN KEY (id_actividad) REFERENCES ACTIVIDADES(id_actividad) )
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.7.jar:6.2.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.5.0.jar:3.5.0]
+	at com.example.mourosub.MourousubApplication.main(MourousubApplication.java:9) ~[classes/:na]
+Caused by: org.springframework.jdbc.datasource.init.ScriptStatementFailedException: Failed to execute SQL script statement #9 of file [C:\Users\mpna3\OneDrive\Desktop\MOURO_SUB\mourosub_v1\target\classes\schema.sql]: CREATE TABLE IF NOT EXISTS ACTIVIDADES_RESERVAS ( id_reserva BIGINT NOT NULL, id_actividad BIGINT NOT NULL, precio DOUBLE, PRIMARY KEY (id_reserva, id_actividad), CONSTRAINT fk_ar_reserva FOREIGN KEY (id_reserva) REFERENCES RESERVAS(id_reserva), CONSTRAINT fk_ar_actividad FOREIGN KEY (id_actividad) REFERENCES ACTIVIDADES(id_actividad) )
+	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:282) ~[spring-jdbc-6.2.7.jar:6.2.7]
+	at org.springframework.jdbc.datasource.init.ResourceDatabasePopulator.populate(ResourceDatabasePopulator.java:254) ~[spring-jdbc-6.2.7.jar:6.2.7]
+	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:54) ~[spring-jdbc-6.2.7.jar:6.2.7]
+	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:146) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:108) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applySchemaScripts(AbstractScriptDatabaseInitializer.java:98) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:76) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:66) ~[spring-boot-3.5.0.jar:3.5.0]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.7.jar:6.2.7]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.7.jar:6.2.7]
+	... 20 common frames omitted
+Caused by: java.sql.SQLException: (conn=151) Referencing column 'id_actividad' and referenced column 'id_actividad' in foreign key constraint 'fk_ar_actividad' are incompatible.
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:306) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:378) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:187) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:1364) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:1303) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:1222) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:1146) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.Statement.executeInternal(Statement.java:1003) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.Statement.execute(Statement.java:1132) ~[mariadb-java-client-3.5.3.jar:na]
+	at org.mariadb.jdbc.Statement.execute(Statement.java:471) ~[mariadb-java-client-3.5.3.jar:na]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.0.jar:na]
+	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:261) ~[spring-jdbc-6.2.7.jar:6.2.7]
+	... 30 common frames omitted
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.848 s
+[INFO] Finished at: 2026-05-27T12:49:40+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.0:run (default-cli) on project mourosub: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
