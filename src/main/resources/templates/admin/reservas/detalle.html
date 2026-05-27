@@ -263,15 +263,106 @@
                 </div>
               </div>
             </div>
+            <!-- INSTRUCTORES DE LA ACTIVIDAD -->
+            <div class="mt-3 pt-3 border-top border-secondary border-opacity-25">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="fw-semibold mb-0" style="color:var(--ms-primary);"><i class="bi bi-person-badge me-2"></i>Instructores asignados</h6>
+                <button type="button" class="btn btn-sm btn-ms-outline rounded"
+                        data-bs-toggle="modal"
+                        th:data-bs-target="'#modalAsignarInstructor-' + ${arStat.index}">
+                  <i class="bi bi-person-plus me-1"></i>Asignar
+                </button>
+              </div>
+              <div th:if="${not #lists.isEmpty(ar.instructores)}">
+                <div th:each="ir : ${ar.instructores}"
+                     class="d-flex justify-content-between align-items-center px-3 py-2 rounded-2 mb-1"
+                     style="background:rgba(0,0,0,0.06);">
+                  <div>
+                    <i class="bi bi-person-fill me-2" style="color:var(--ms-primary)"></i>
+                    <span class="fw-semibold" th:text="${ir.instructor != null ? ir.instructor.nombreCompleto : ir.dniInstructor}">Instructor</span>
+                    <span th:if="${ir.fechaInicio != null}" class="ms-text-muted small ms-3">
+                      <i class="bi bi-clock me-1"></i>
+                      <span th:text="${#temporals.format(ir.fechaInicio,'dd/MM/yy HH:mm')}">Inicio</span>
+                      <span th:if="${ir.fechaFin != null}"> → <span th:text="${#temporals.format(ir.fechaFin,'HH:mm')}">Fin</span></span>
+                    </span>
+                  </div>
+                  <form th:action="@{/admin/reservas/{idR}/actividad/{idA}/desasignar-instructor(idR=${reserva.idReserva}, idA=${ar.idActividad})}"
+                        method="post" class="m-0"
+                        onsubmit="return confirm('¿Desasignar a este instructor?')">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <input type="hidden" name="dniInstructor" th:value="${ir.dniInstructor}"/>
+                    <button type="submit" class="btn btn-sm btn-outline-danger border-0">
+                      <i class="bi bi-person-dash"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div th:if="${#lists.isEmpty(ar.instructores)}" class="text-muted small px-2 py-1">
+                <i class="bi bi-info-circle me-1"></i>Sin instructores asignados a esta actividad.
+              </div>
+            </div>
+
+            <!-- Modal: Asignar Instructor (uno por actividad) -->
+            <div class="modal fade" th:id="'modalAsignarInstructor-' + ${arStat.index}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                  <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" style="color:var(--ms-primary);">
+                      <i class="bi bi-person-plus me-2"></i>Asignar Instructor
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form th:action="@{/admin/reservas/{idR}/actividad/{idA}/asignar-instructor(idR=${reserva.idReserva}, idA=${ar.idActividad})}" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <div class="modal-body">
+                      <p class="text-muted small mb-3">
+                        Solo se muestran instructores <strong>libres</strong> (su última sesión terminó hace más de 1h antes del inicio propuesto).
+                      </p>
+
+                      <!-- Fecha de inicio -->
+                      <div class="mb-3">
+                        <label class="form-label fw-semibold ms-form-label">Fecha y hora de inicio <span class="text-danger">*</span></label>
+                        <input type="datetime-local" name="fechaInicio"
+                               class="form-control ms-form-control input-fecha-instructor"
+                               th:data-modal-index="${arStat.index}"
+                               th:value="${openModalIndex == arStat.index.toString() ? fechaInicioInstructor : ''}"
+                               max="2099-12-31T23:59" required/>
+                        <div class="form-text small text-muted mt-1">
+                          La fecha de fin se calculará automáticamente sumando la duración de esta actividad.
+                        </div>
+                      </div>
+                      
+                      <!-- Selector de instructor -->
+                      <div class="mb-2">
+                        <label class="form-label fw-semibold ms-form-label">Instructor disponible <span class="text-danger">*</span></label>
+                        <select name="dniInstructor" class="form-select ms-form-control" required>
+                          <option value="">— Selecciona un instructor —</option>
+                          <option th:each="inst : ${(openModalIndex == arStat.index.toString() ? instructoresDisponibles : todosInstructores)}"
+                                  th:value="${inst.dniInstructor}"
+                                  th:text="${inst.nombreCompleto + (inst.tituloPadi != null ? ' · ' + inst.tituloPadi : '')}"
+                                  th:classappend="${ar.instructores != null and ar.instructores.?[dniInstructor == inst.dniInstructor].size() > 0} ? 'text-muted' : ''">Instructor</option>
+                        </select>
+                        <div th:if="${openModalIndex == arStat.index.toString() and #lists.isEmpty(instructoresDisponibles)}" class="text-warning small mt-1">
+                          <i class="bi bi-exclamation-triangle me-1"></i>No hay instructores disponibles para este horario.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer border-top-0 pt-0">
+                      <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-ms-primary px-4 rounded"
+                              th:disabled="${openModalIndex == arStat.index.toString() and #lists.isEmpty(instructoresDisponibles)}">Asignar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
       </div>
 
-    </div>
-  </div>
-</div>
-<div th:replace="~{layout/admin-base :: adminScripts}"></div>
+
 
 <!-- Modales de cambio de usuario (uno por participante) -->
 <div th:each="ur : ${reserva.usuarios}">
@@ -313,10 +404,34 @@
 </div>
 
 <script>
-  // Bootstrap 5: mover modales al <body> para evitar bucles con contenedores overflow:auto
   document.addEventListener('DOMContentLoaded', function () {
+    // Mover todos los modales al <body> (evita problemas con overflow:auto)
     document.querySelectorAll('.modal').forEach(function (modal) {
       document.body.appendChild(modal);
+    });
+
+    // Si la URL tiene ?fechaInicioInstructor y ?openModalIndex, abrir el modal automáticamente
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('fechaInicioInstructor') && params.has('openModalIndex')) {
+      const modalIndex = params.get('openModalIndex');
+      const modal = document.getElementById('modalAsignarInstructor-' + modalIndex);
+      if (modal) {
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+      }
+    }
+
+    // Al cambiar la fecha de inicio en el modal, recargar con la fecha como param y el index del modal
+    document.querySelectorAll('.input-fecha-instructor').forEach(function (input) {
+      input.addEventListener('change', function () {
+        if (this.value) {
+          const index = this.getAttribute('data-modal-index');
+          const url = new URL(window.location.href);
+          url.searchParams.set('fechaInicioInstructor', this.value);
+          url.searchParams.set('openModalIndex', index);
+          window.location.href = url.toString();
+        }
+      });
     });
   });
 </script>

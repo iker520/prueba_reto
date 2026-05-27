@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -18,17 +19,23 @@ public class ReservaService {
     private final ActividadReservaRepository actividadReservaRepository;
     private final com.example.mourosub.repository.ActividadReservaUbicacionRepository aruRepository;
     private final com.example.mourosub.repository.UsuarioRepository usuarioRepository;
+    private final InstructorReservaRepository instructorReservaRepository;
+    private final InstructorRepository instructorRepository;
 
     public ReservaService(ReservaRepository reservaRepository,
             UsuarioReservaRepository usuarioReservaRepository,
             ActividadReservaRepository actividadReservaRepository,
             com.example.mourosub.repository.ActividadReservaUbicacionRepository aruRepository,
-            com.example.mourosub.repository.UsuarioRepository usuarioRepository) {
+            com.example.mourosub.repository.UsuarioRepository usuarioRepository,
+            InstructorReservaRepository instructorReservaRepository,
+            InstructorRepository instructorRepository) {
         this.reservaRepository = reservaRepository;
         this.usuarioReservaRepository = usuarioReservaRepository;
         this.actividadReservaRepository = actividadReservaRepository;
         this.aruRepository = aruRepository;
         this.usuarioRepository = usuarioRepository;
+        this.instructorReservaRepository = instructorReservaRepository;
+        this.instructorRepository = instructorRepository;
     }
 
     public List<Reserva> findAll() {
@@ -170,5 +177,68 @@ public class ReservaService {
         nueva.setCantidad(1);
         nueva.setEsBuceador(Boolean.TRUE.equals(nuevoUsuario.getEsBuceador()));
         usuarioReservaRepository.save(nueva);
+    }
+
+    // ----------------------------------------------------------------
+    // Gestión de Instructores en Reservas
+    // ----------------------------------------------------------------
+
+    /**
+     * Asigna un instructor a una actividad de una reserva.
+     * La fechaFin se calcula automáticamente: fechaInicio + duración
+     * de la actividad específica vinculada a la reserva.
+     * Si ya existe la asignación (misma PK), la actualiza.
+     */
+    @Transactional
+    public void asignarInstructor(Long idReserva, Long idActividad, String dniInstructor,
+                                  LocalDateTime fechaInicio) {
+        ActividadReserva ar = actividadReservaRepository.findById(new com.example.mourosub.model.ActividadReservaId(idReserva, idActividad))
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Actividad de reserva no encontrada"));
+
+        int totalMinutos = 0;
+        if (ar.getActividad() != null && ar.getActividad().getDuracion() != null) {
+            totalMinutos = ar.getActividad().getDuracion();
+        }
+        LocalDateTime fechaFin = totalMinutos > 0
+                ? fechaInicio.plusMinutes(totalMinutos)
+                : null;
+
+        InstructorReservaId pk = new InstructorReservaId(idReserva, idActividad, dniInstructor);
+        InstructorReserva ir = instructorReservaRepository.findById(pk)
+                .orElseGet(() -> {
+                    InstructorReserva n = new InstructorReserva();
+                    n.setIdReserva(idReserva);
+                    n.setIdActividad(idActividad);
+                    n.setDniInstructor(dniInstructor);
+                    return n;
+                });
+        ir.setFechaInicio(fechaInicio);
+        ir.setFechaFin(fechaFin);
+        instructorReservaRepository.save(ir);
+    }
+
+    /**
+     * Desasigna un instructor de una actividad de la reserva.
+     */
+    @Transactional
+    public void desasignarInstructor(Long idReserva, Long idActividad, String dniInstructor) {
+        instructorReservaRepository.deleteById(new InstructorReservaId(idReserva, idActividad, dniInstructor));
+    }
+
+    /**
+     * Devuelve instructores activos disponibles para una reserva dada una
+     * fechaInicio propuesta.
+     * Un instructor está disponible si NO tiene ninguna sesión en INSTRUCTORES_RESERVAS
+     * cuya fechaFin sea posterior a (fechaInicio - 1h), excluyendo la propia reserva.
+     */
+    public List<Instructor> getInstructoresDisponibles(LocalDateTime fechaInicioPropuesta) {
+        // El margen es: fechaInicio - 1h. Si alguna sesión del instructor termina
+        // después de ese instante, el instructor está ocupado.
+        LocalDateTime margen = fechaInicioPropuesta.minusHours(1);
+        Set<String> ocupados = new java.util.HashSet<>(
+                instructorReservaRepository.findDniInstructoresOcupados(margen));
+        return instructorRepository.findByActivoTrue().stream()
+                .filter(i -> !ocupados.contains(i.getDniInstructor()))
+                .toList();
     }
 }

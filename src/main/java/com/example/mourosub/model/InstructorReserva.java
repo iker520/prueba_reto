@@ -18,12 +18,19 @@ public class InstructorReserva {
     private Long idReserva;
 
     @Id
+    @Column(name = "id_actividad")
+    private Long idActividad;
+
+    @Id
     @Column(name = "dni_instructor", length = 20)
     private String dniInstructor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_reserva", insertable = false, updatable = false)
-    private Reserva reserva;
+    @JoinColumns({
+        @JoinColumn(name = "id_reserva", referencedColumnName = "id_reserva", insertable = false, updatable = false),
+        @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad", insertable = false, updatable = false)
+    })
+    private ActividadReserva actividadReserva;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dni_instructor", insertable = false, updatable = false)

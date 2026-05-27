@@ -33,4 +33,7 @@ public class ActividadReserva {
 
     @OneToMany(mappedBy = "actividadReserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private java.util.List<ActividadReservaUbicacion> programaciones = new java.util.ArrayList<>();
+
+    @OneToMany(mappedBy = "actividadReserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private java.util.List<InstructorReserva> instructores = new java.util.ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.example.mourosub.controller.admin;
 
+import com.example.mourosub.service.InstructorService;
 import com.example.mourosub.service.ReservaService;
 import com.example.mourosub.service.UsuarioService;
 import org.springframework.stereotype.Controller;
@@ -7,17 +8,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/admin/reservas")
 public class AdminReservaController {
 
     private final ReservaService reservaService;
     private final UsuarioService usuarioService;
+    private final InstructorService instructorService;
 
     public AdminReservaController(ReservaService reservaService,
-                                  UsuarioService usuarioService) {
+                                  UsuarioService usuarioService,
+                                  InstructorService instructorService) {
         this.reservaService = reservaService;
         this.usuarioService = usuarioService;
+        this.instructorService = instructorService;
     }
 
     // ----------------------------------------------------------------
@@ -41,11 +47,32 @@ public class AdminReservaController {
     // Detalle de una reserva
     // ----------------------------------------------------------------
     @GetMapping("/{id}")
-    public String detalle(@PathVariable Long id, Model model) {
+    public String detalle(@PathVariable Long id,
+                          @RequestParam(required = false) String fechaInicioInstructor,
+                          @RequestParam(required = false) String openModalIndex,
+                          Model model) {
         var reserva = reservaService.findById(id)
                 .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Reserva no encontrada"));
         model.addAttribute("reserva", reserva);
         model.addAttribute("todosUsuarios", usuarioService.findAll());
+        model.addAttribute("todosInstructores", instructorService.findAll());
+        model.addAttribute("openModalIndex", openModalIndex != null ? openModalIndex : "-1");
+
+        // Si el admin ha introducido una fecha propuesta, calcular disponibilidad
+        if (fechaInicioInstructor != null && !fechaInicioInstructor.isBlank()) {
+            try {
+                LocalDateTime fechaPropuesta = LocalDateTime.parse(fechaInicioInstructor);
+                model.addAttribute("instructoresDisponibles",
+                        reservaService.getInstructoresDisponibles(fechaPropuesta));
+                model.addAttribute("fechaInicioInstructor", fechaInicioInstructor);
+            } catch (Exception ignored) {
+                model.addAttribute("instructoresDisponibles", instructorService.findAll());
+            }
+        } else {
+            // Sin fecha propuesta → mostrar todos los instructores activos
+            model.addAttribute("instructoresDisponibles", instructorService.findAllActivos());
+        }
+
         model.addAttribute("pageTitle", "Detalle Reserva #" + id);
         return "admin/reservas/detalle";
     }
@@ -117,6 +144,39 @@ public class AdminReservaController {
             redirectAttributes.addFlashAttribute("success", "Programación eliminada.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/admin/reservas/" + idReserva;
+    }
+
+    // ----------------------------------------------------------------
+    // Asignar / Desasignar Instructor
+    // ----------------------------------------------------------------
+    @PostMapping("/{idReserva}/actividad/{idActividad}/asignar-instructor")
+    public String asignarInstructor(@PathVariable Long idReserva,
+                                    @PathVariable Long idActividad,
+                                    @RequestParam String dniInstructor,
+                                    @RequestParam String fechaInicio,
+                                    RedirectAttributes redirectAttributes) {
+        try {
+            LocalDateTime inicio = LocalDateTime.parse(fechaInicio);
+            reservaService.asignarInstructor(idReserva, idActividad, dniInstructor, inicio);
+            redirectAttributes.addFlashAttribute("success", "Instructor asignado correctamente.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al asignar instructor: " + e.getMessage());
+        }
+        return "redirect:/admin/reservas/" + idReserva;
+    }
+
+    @PostMapping("/{idReserva}/actividad/{idActividad}/desasignar-instructor")
+    public String desasignarInstructor(@PathVariable Long idReserva,
+                                       @PathVariable Long idActividad,
+                                       @RequestParam String dniInstructor,
+                                       RedirectAttributes redirectAttributes) {
+        try {
+            reservaService.desasignarInstructor(idReserva, idActividad, dniInstructor);
+            redirectAttributes.addFlashAttribute("success", "Instructor desasignado.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error: " + e.getMessage());
         }
         return "redirect:/admin/reservas/" + idReserva;
     }

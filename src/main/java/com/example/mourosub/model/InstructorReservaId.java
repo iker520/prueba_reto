@@ -11,5 +11,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class InstructorReservaId implements Serializable {
     private Long idReserva;
+    private Long idActividad;
     private String dniInstructor;
 }
