@@ -10,4 +10,6 @@ public interface ContactoRepository extends JpaRepository<Contacto, Long> {
     List<Contacto> findByEstadoOrderByFechaEnvioDesc(String estado);
 
     List<Contacto> findAllByOrderByFechaEnvioDesc();
+
+    long countByEstado(String estado);
 }

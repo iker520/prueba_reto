@@ -15,20 +15,17 @@ public class AdminDashboardController {
     private final NoticiaService noticiaService;
     private final ReservaService reservaService;
     private final UsuarioService usuarioService;
-    private final CertificacionService certificacionService;
 
     public AdminDashboardController(ActividadService actividadService,
                                     InstructorService instructorService,
                                     NoticiaService noticiaService,
                                     ReservaService reservaService,
-                                    UsuarioService usuarioService,
-                                    CertificacionService certificacionService) {
+                                    UsuarioService usuarioService) {
         this.actividadService = actividadService;
         this.instructorService = instructorService;
         this.noticiaService = noticiaService;
         this.reservaService = reservaService;
         this.usuarioService = usuarioService;
-        this.certificacionService = certificacionService;
     }
 
     @GetMapping({"", "/"})
@@ -38,17 +35,8 @@ public class AdminDashboardController {
         model.addAttribute("totalNoticias", noticiaService.count());
         model.addAttribute("totalReservas", reservaService.count());
         model.addAttribute("totalUsuarios", usuarioService.count());
-        model.addAttribute("reservasPendientes", reservaService.countByEstado("PENDIENTE"));
         model.addAttribute("reservasConfirmadas", reservaService.countByEstado("CONFIRMADA"));
         model.addAttribute("ultimasReservas", reservaService.findAll().stream().limit(5).toList());
-
-        // Pendientes de validación: certs de usuario + seguros de buceadores
-        long certsPendientes   = certificacionService.countPendientesRevision();
-        long segurosPendientes = usuarioService.countBuceadoresSeguroPendiente();
-        model.addAttribute("pendientesValidacion", certsPendientes + segurosPendientes);
-        model.addAttribute("certsPendientes", certsPendientes);
-        model.addAttribute("segurosPendientes", segurosPendientes);
-
         model.addAttribute("pageTitle", "Panel de Administración");
         return "admin/dashboard";
     }

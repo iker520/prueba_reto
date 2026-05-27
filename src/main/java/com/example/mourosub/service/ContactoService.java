@@ -43,6 +43,10 @@ public class ContactoService {
         contactoRepository.deleteById(id);
     }
 
+    public long countNuevas() {
+        return contactoRepository.countByEstado("NUEVA");
+    }
+
     public static List<String> getEstadosDisponibles() {
         return List.of("NUEVA", "LEIDA", "RESPONDIDA");
     }

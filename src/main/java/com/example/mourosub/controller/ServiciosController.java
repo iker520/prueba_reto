@@ -1,6 +1,5 @@
 package com.example.mourosub.controller;
 
-import com.example.mourosub.repository.UbicacionRepository;
 import com.example.mourosub.service.ActividadService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +15,9 @@ import java.util.List;
 public class ServiciosController {
 
     private final ActividadService actividadService;
-    private final UbicacionRepository ubicacionRepository;
 
-    public ServiciosController(ActividadService actividadService, UbicacionRepository ubicacionRepository) {
+    public ServiciosController(ActividadService actividadService) {
         this.actividadService = actividadService;
-        this.ubicacionRepository = ubicacionRepository;
     }
 
     @GetMapping
@@ -42,7 +39,7 @@ public class ServiciosController {
             
             // Lógica de subcategorías
             if ("CURSO".equals(tipoUpper)) {
-                subcategorias = List.of("Apnea", "Deportivos y Especialidad", "Formación Emergencia y Primeros Auxilios", "Técnicos RX y Profesionales");
+                subcategorias = List.of("Apnea", "Deportivos y Especialidad", "Formación Emergencia y Primeros Auxilios", "Técnico RX", "Profesionales");
                 if (sub != null && !sub.isBlank()) {
                     model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoUpper, sub));
                 } else {
@@ -56,10 +53,10 @@ public class ServiciosController {
                     model.addAttribute("actividades", actividadService.findByTipo(tipoUpper));
                 }
             } else if ("INMERSION".equals(tipoUpper)) {
-                var ubicaciones = ubicacionRepository.findUbicacionesByActividadTipo(tipoUpper);
-                model.addAttribute("ubicaciones", ubicaciones);
+                subcategorias = List.of("Isla de Mouro", "El Palacio", "Isla de Santa Marina",
+                        "Cabo Menor y Cabo Mayor", "Bajos y Cabezos", "Pecios");
                 if (sub != null && !sub.isBlank()) {
-                    model.addAttribute("actividades", actividadService.findByTipoAndUbicacion(tipoUpper, sub));
+                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoUpper, sub));
                 } else {
                     model.addAttribute("actividades", actividadService.findByTipo(tipoUpper));
                 }

@@ -46,6 +46,37 @@
             </select>
           </div>
 
+          <!-- Subtipo (visible y relevante según el tipo elegido) -->
+          <div class="col-12" id="subtipo-wrapper">
+            <label class="form-label fw-semibold ms-form-label">Subcategoría</label>
+            <select id="subtipoSelect" th:field="*{subtipo}" class="form-select ms-form-control">
+              <option value="">— Sin subcategoría —</option>
+              <!-- Opciones para CURSO -->
+              <optgroup label="Cursos" class="subtipo-grupo subtipo-CURSO" style="display:none">
+                <option value="Apnea">Apnea</option>
+                <option value="Deportivos y Especialidad">Deportivos y Especialidad</option>
+                <option value="Formación Emergencia y Primeros Auxilios">Formación Emergencia y Primeros Auxilios</option>
+                <option value="Técnico RX">Técnico RX</option>
+                <option value="Profesionales">Profesionales</option>
+              </optgroup>
+              <!-- Opciones para INMERSION -->
+              <optgroup label="Inmersiones" class="subtipo-grupo subtipo-INMERSION" style="display:none">
+                <option value="Isla de Mouro">Isla de Mouro</option>
+                <option value="El Palacio">El Palacio</option>
+                <option value="Isla de Santa Marina">Isla de Santa Marina</option>
+                <option value="Cabo Menor y Cabo Mayor">Cabo Menor y Cabo Mayor</option>
+                <option value="Bajos y Cabezos">Bajos y Cabezos</option>
+                <option value="Pecios">Pecios</option>
+              </optgroup>
+              <!-- Opciones para OFERTA -->
+              <optgroup label="Ofertas" class="subtipo-grupo subtipo-OFERTA" style="display:none">
+                <option value="Formación">Formación</option>
+                <option value="Actividades">Actividades</option>
+                <option value="Material">Material</option>
+              </optgroup>
+            </select>
+          </div>
+
           <!-- Precio + Duración + Plazas -->
           <div class="col-12 col-md-4">
             <label class="form-label fw-semibold ms-form-label">Precio (€)</label>
@@ -98,7 +129,35 @@
             </div>
           </div>
 
-          <!-- Checkboxes -->
+          <!-- Ubicaciones asociadas -->
+          <div class="col-12" th:if="${todasUbicaciones != null and !#lists.isEmpty(todasUbicaciones)}">
+            <label class="form-label fw-semibold ms-form-label">
+              <i class="bi bi-geo-alt me-1"></i>Ubicaciones asociadas
+            </label>
+            <div class="p-3 rounded d-flex flex-wrap gap-3"
+                 style="background:var(--ms-bg);border:1px solid var(--ms-border)">
+              <div th:each="ubi : ${todasUbicaciones}" class="form-check">
+                <input class="form-check-input" type="checkbox"
+                       name="ubicacionIds"
+                       th:value="${ubi.idUbicacion}"
+                       th:id="'ubi_' + ${ubi.idUbicacion}"
+                       th:checked="${actividad.ubicaciones != null and actividad.ubicaciones.contains(ubi)}"/>
+                <label class="form-check-label ms-check-label"
+                       th:for="'ubi_' + ${ubi.idUbicacion}"
+                       th:text="${ubi.nombre}">Ubicación</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12" th:unless="${todasUbicaciones != null and !#lists.isEmpty(todasUbicaciones)}">
+            <div class="alert alert-info py-2 small mb-0">
+              <i class="bi bi-info-circle me-1"></i>
+              No hay ubicaciones creadas.
+              <a th:href="@{/admin/ubicaciones/nueva}" class="alert-link">Crear una ubicación</a>
+            </div>
+          </div>
+
+          <!-- Checkboxes activa / destacada -->
           <div class="col-12 d-flex gap-4">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" th:field="*{activa}" id="activa"/>
@@ -126,5 +185,36 @@
 <script th:src="@{/js/admin-tiptap.js}"></script>
 
 <script src="/js/admin-tiptap-init.js"></script>
+<script>
+  (function () {
+    // Usar selectores por 'name' porque th:field sobreescribe el atributo 'id'
+    const tipoSel    = document.querySelector('select[name="tipo"]');
+    const subtipoSel = document.querySelector('select[name="subtipo"]');
+    if (!tipoSel || !subtipoSel) return;
+
+    function actualizarSubtipo() {
+      const tipoVal = tipoSel.value.toUpperCase();
+      document.querySelectorAll('.subtipo-grupo').forEach(og => {
+        og.style.display = 'none';
+        og.querySelectorAll('option').forEach(o => o.disabled = true);
+      });
+      if (tipoVal) {
+        const grupo = document.querySelector('.subtipo-' + tipoVal);
+        if (grupo) {
+          grupo.style.display = '';
+          grupo.querySelectorAll('option').forEach(o => o.disabled = false);
+        }
+      }
+    }
+
+    tipoSel.addEventListener('change', function () {
+      subtipoSel.value = '';
+      actualizarSubtipo();
+    });
+
+    // Al cargar la página (modo edición), mostrar el grupo correcto
+    actualizarSubtipo();
+  })();
+</script>
 </body>
 </html>

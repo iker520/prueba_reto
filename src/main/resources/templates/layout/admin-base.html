@@ -56,6 +56,12 @@
       <i class="bi bi-newspaper"></i> Noticias
     </a>
 
+    <a th:href="@{/admin/ubicaciones}"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/ubicaciones')} ? 'active' : ''"
+       class="nav-link">
+      <i class="bi bi-geo-alt"></i> Ubicaciones
+    </a>
+
 
 
     <span class="ms-admin-section-label ms-admin-section-label-mt">Personas</span>
@@ -87,6 +93,16 @@
        class="nav-link">
       <i class="bi bi-award"></i> Certs. MouroSub
     </a>
+
+    <span class="ms-admin-section-label ms-admin-section-label-mt">Comunicación</span>
+
+    <a th:href="@{/admin/contactos}"
+       th:classappend="${currentUri != null and currentUri.startsWith('/admin/contactos')} ? 'active' : ''"
+       class="nav-link position-relative">
+      <i class="bi bi-envelope"></i> Contactos
+      <span th:if="${contactosNuevos != null and contactosNuevos > 0}"
+            class="ms-sidebar-badge" th:text="${contactosNuevos}">0</span>
+    </a>
   </div>
 
   <!-- Footer del sidebar -->
@@ -116,8 +132,9 @@
     <div class="dropdown">
       <a href="#" class="ms-bell-btn text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false" title="Notificaciones">
         <i class="bi bi-bell-fill"></i>
-        <span th:if="${(pendientesValidacion + reservasPendientesNuevas) > 0}"
-              class="ms-bell-badge" th:text="${pendientesValidacion + reservasPendientesNuevas}">0</span>
+        <span th:if="${(pendientesValidacion + reservasPendientesNuevas + contactosNuevos) > 0}"
+              class="ms-bell-badge"
+              th:text="${pendientesValidacion + reservasPendientesNuevas + contactosNuevos}">0</span>
       </a>
       <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
         <li><h6 class="dropdown-header">Notificaciones pendientes</h6></li>
@@ -151,8 +168,18 @@
             </div>
           </a>
         </li>
-        
-        <li th:if="${(pendientesValidacion + reservasPendientesNuevas) == 0}">
+
+        <li th:if="${contactosNuevos > 0}">
+          <a class="dropdown-item d-flex align-items-center py-2" th:href="@{/admin/contactos(estado='NUEVA')}">
+            <i class="bi bi-envelope text-secondary me-3 fs-5"></i>
+            <div>
+              <div class="fw-semibold"><span th:text="${contactosNuevos}"></span> mensajes</div>
+              <div class="small text-muted">Sin leer en Contactos</div>
+            </div>
+          </a>
+        </li>
+
+        <li th:if="${(pendientesValidacion + reservasPendientesNuevas + contactosNuevos) == 0}">
           <span class="dropdown-item text-muted text-center py-3 small">No tienes notificaciones pendientes.</span>
         </li>
       </ul>

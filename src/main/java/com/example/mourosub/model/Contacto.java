@@ -36,7 +36,7 @@ public class Contacto {
      * Estado de la contacto: NUEVA, LEIDA, RESPONDIDA
      */
     @Column(name = "estado", length = 50)
-    private String estado = "Nueva";
+    private String estado = "NUEVA";
 
     @PrePersist
     public void prePersist() {

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{layout/admin-base :: adminHead(${pageTitle})}"></head>
+<body class="ms-admin-body">
+<nav th:replace="~{layout/admin-base :: adminSidebar}"></nav>
+<div class="ms-admin-content">
+  <div th:replace="~{layout/admin-base :: adminTopbar(${pageTitle})}"></div>
+  <div class="p-4 ms-admin-form-wrapper">
+    <div th:replace="~{layout/admin-base :: adminAlerts}"></div>
+
+    <a th:href="@{/admin/contactos}" class="btn btn-ms-outline btn-sm px-3 rounded mb-4">
+      <i class="bi bi-arrow-left me-1"></i>Volver a Contactos
+    </a>
+
+    <div class="ms-card p-4">
+      <!-- Cabecera del mensaje -->
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4 pb-4"
+           style="border-bottom:1px solid var(--ms-border)">
+        <div>
+          <h4 class="fw-bold mb-1" style="color:var(--ms-text)" th:text="${contacto.nombre}">Nombre</h4>
+          <div class="d-flex flex-wrap gap-3 text-muted small">
+            <span><i class="bi bi-envelope me-1"></i>
+              <a th:href="'mailto:' + ${contacto.email}" th:text="${contacto.email}" class="text-muted">email</a>
+            </span>
+            <span th:if="${contacto.interes != null}">
+              <i class="bi bi-tag me-1"></i>
+              <span th:text="${contacto.interes}">interés</span>
+            </span>
+            <span>
+              <i class="bi bi-clock me-1"></i>
+              <span th:text="${#temporals.format(contacto.fechaEnvio, 'dd/MM/yyyy HH:mm')}">fecha</span>
+            </span>
+          </div>
+        </div>
+        <!-- Estado actual -->
+        <span class="badge rounded-pill fs-6 px-3 py-2"
+              th:classappend="${contacto.estado == 'NUEVA'} ? 'bg-warning text-dark' :
+                              (${contacto.estado == 'LEIDA'} ? 'bg-info text-dark' : 'bg-success')"
+              th:text="${contacto.estado}">ESTADO</span>
+      </div>
+
+      <!-- Cuerpo del mensaje -->
+      <div class="mb-4">
+        <p class="fw-semibold ms-form-label mb-2">Mensaje</p>
+        <div class="p-3 rounded" style="background:var(--ms-bg);border:1px solid var(--ms-border);white-space:pre-wrap;line-height:1.7"
+             th:text="${contacto.mensaje}">Mensaje</div>
+      </div>
+
+      <!-- Cambiar estado -->
+      <div class="d-flex flex-wrap align-items-center gap-3 pt-3"
+           style="border-top:1px solid var(--ms-border)">
+        <span class="fw-semibold ms-form-label mb-0">Cambiar estado:</span>
+        <form th:each="est : ${estados}"
+              th:action="@{/admin/contactos/{id}/estado(id=${contacto.idContacto})}"
+              method="post" class="d-inline">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <input type="hidden" name="estado" th:value="${est}"/>
+          <input type="hidden" name="origen" value="detalle"/>
+          <button type="submit"
+                  class="btn btn-sm rounded-pill px-3"
+                  th:classappend="${contacto.estado == est} ? 'btn-ms-primary' : 'btn-ms-outline'"
+                  th:text="${est}"
+                  th:disabled="${contacto.estado == est}">ESTADO</button>
+        </form>
+
+        <div class="ms-auto">
+          <form th:action="@{/admin/contactos/eliminar/{id}(id=${contacto.idContacto})}"
+                method="post" class="d-inline"
+                onsubmit="return confirm('¿Eliminar este mensaje permanentemente?')">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-sm btn-outline-danger px-4">
+              <i class="bi bi-trash me-1"></i>Eliminar mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div th:replace="~{layout/admin-base :: adminScripts}"></div>
+</body>
+</html>

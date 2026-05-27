@@ -17,53 +17,162 @@
             <div class="cn-bubble"></div><div class="cn-bubble"></div>
         </div>
         <div class="ms-content-wrapper" style="position:relative;z-index:1;">
-            <div th:switch="${tipoSeleccionado}">
-                <!-- TODOS -->
-                <th:block th:case="''">
-                    <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Servicios</span></div>
-                    <h1 class="cn-hero-title cn-reveal cn-delay-1">Servicios de Buceo Profesionales</h1>
-                    <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
-                        Explora el mundo submarino con MouroSub. Formación certificada, inmersiones guiadas
-                        y actividades especiales para todos los niveles.
-                    </p>
+            <!-- ── NIVEL SUBCATEGORÍA (prioridad alta) ── -->
+                <th:block th:if="${subSeleccionada != null and subSeleccionada != ''}">
+                    <div th:switch="${subSeleccionada}">
+
+                        <!-- CURSOS -->
+                        <th:block th:case="'Apnea'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-lungs"></i><span>Cursos · Apnea</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Buceo sin Límites: Apnea</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Aprende a bucear sin equipo de respiración. Nuestros cursos de apnea te llevan desde los fundamentos
+                                de la respiración controlada hasta inmersiones en profundidad, con total seguridad y bajo la guía de expertos.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Deportivos y Especialidad'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-trophy"></i><span>Cursos · Especialidad</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Cursos Deportivos y de Especialidad</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Amplía tus horizontes bajo el agua. Cursos de especialidad diseñados para buceadores que quieren ir más allá
+                                del Open Water y explorar nuevas disciplinas con confianza.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Formación Emergencia y Primeros Auxilios'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-heart-pulse"></i><span>Cursos · Emergencias</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Primeros Auxilios y Rescate Subacuático</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Prepárate para actuar cuando más importa. Formación en rescate, primeros auxilios y gestión de emergencias
+                                subacuáticas para que puedas protegerte a ti mismo y a tus compañeros.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Técnico RX'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-gear-wide-connected"></i><span>Cursos · Técnico RX</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Buceo Técnico con Mezclas RX</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Supera los límites del buceo recreativo. Formación avanzada con gases especiales para explorar profundidades
+                                que la mayoría de buceadores nunca alcanza, con los más altos estándares de seguridad.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Profesionales'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-patch-check"></i><span>Cursos · Profesionales</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Fórmate como Profesional del Buceo</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Conviértete en la referencia bajo el agua. Desde Divemaster hasta Instructor PADI/SSI, te preparamos
+                                para liderar, guiar y enseñar en el apasionante mundo del buceo profesional.
+                            </p>
+                        </th:block>
+
+                        <!-- INMERSIONES -->
+                        <th:block th:case="'Isla de Mouro'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-geo-alt"></i><span>Inmersiones · Isla de Mouro</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Isla de Mouro</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                El icono del Cantábrico bajo la superficie. Explora los fondos rocosos que rodean la Isla de Mouro,
+                                hogar de colonias de cormoranes y una extraordinaria vida marina que te dejará sin palabras.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'El Palacio'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-geo-alt"></i><span>Inmersiones · El Palacio</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">El Palacio</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Un enclave singular frente a la costa santanderina. Paredes verticales, esponjas de colores y una
+                                biodiversidad sorprendente convierten El Palacio en uno de los puntos de buceo más espectaculares de la bahía.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Isla de Santa Marina'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-geo-alt"></i><span>Inmersiones · Isla de Santa Marina</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Isla de Santa Marina</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Aguas tranquilas y fondos variados para todos los niveles. La Isla de Santa Marina ofrece inmersiones
+                                accesibles con una riqueza de fauna que sorprende en cada visita.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Cabo Menor y Cabo Mayor'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-geo-alt"></i><span>Inmersiones · Cabos</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Cabo Menor y Cabo Mayor</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Los imponentes acantilados continúan bajo el agua. Las paredes verticales de Cabo Menor y Cabo Mayor
+                                albergan una vida marina excepcional en uno de los rincones más salvajes del Cantábrico.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Bajos y Cabezos'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-geo-alt"></i><span>Inmersiones · Bajos y Cabezos</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Bajos y Cabezos</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Montículos rocosos que emergen del fondo arenoso como oasis de vida. Los bajos y cabezos del Cantábrico
+                                concentran la fauna más diversa y son el escenario perfecto para inmersiones llenas de descubrimientos.
+                            </p>
+                        </th:block>
+
+                        <th:block th:case="'Pecios'">
+                            <div class="cn-tag cn-reveal"><i class="bi bi-geo-alt"></i><span>Inmersiones · Pecios</span></div>
+                            <h1 class="cn-hero-title cn-reveal cn-delay-1">Pecios: Historia Bajo el Mar</h1>
+                            <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                                Barcos que el tiempo convirtió en arrecifes artificiales. Los pecios de la bahía de Santander son
+                                ventanas a la historia donde la naturaleza ha reclamado su espacio con una belleza única e inquietante.
+                            </p>
+                        </th:block>
+
+                    </div>
                 </th:block>
 
-                <!-- CURSOS -->
-                <th:block th:case="'CURSO'">
-                    <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Cursos</span></div>
-                    <h1 class="cn-hero-title cn-reveal cn-delay-1">Cursos de Buceo PADI y SSI</h1>
-                    <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
-                        Iníciate o avanza en tu formación como buceador con nuestros instructores certificados. Desde tu primer bautismo hasta nivel técnico.
-                    </p>
-                </th:block>
+                <!-- ── NIVEL TIPO (cuando no hay subcategoría seleccionada) ── -->
+                <div th:if="${subSeleccionada == null or subSeleccionada == ''}" th:switch="${tipoSeleccionado}">
+                    <!-- TODOS -->
+                    <th:block th:case="''">
+                        <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Servicios</span></div>
+                        <h1 class="cn-hero-title cn-reveal cn-delay-1">Servicios de Buceo Profesionales</h1>
+                        <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                            Explora el mundo submarino con MouroSub. Formación certificada, inmersiones guiadas
+                            y actividades especiales para todos los niveles.
+                        </p>
+                    </th:block>
 
-                <!-- INMERSIONES -->
-                <th:block th:case="'INMERSION'">
-                    <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Inmersiones</span></div>
-                    <h1 class="cn-hero-title cn-reveal cn-delay-1">Inmersiones Guiadas</h1>
-                    <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
-                        Descubre los mejores puntos de buceo del Cantábrico con nuestros guías experimentados. Conoce nuestros spots y fondos marinos.
-                    </p>
-                </th:block>
+                    <!-- CURSOS -->
+                    <th:block th:case="'CURSO'">
+                        <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Cursos</span></div>
+                        <h1 class="cn-hero-title cn-reveal cn-delay-1">Cursos de Buceo PADI y SSI</h1>
+                        <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                            Iníciate o avanza en tu formación como buceador con nuestros instructores certificados. Desde tu primer bautismo hasta nivel técnico.
+                        </p>
+                    </th:block>
 
-                <!-- ACTIVIDADES -->
-                <th:block th:case="'ACTIVIDAD'">
-                    <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Actividades</span></div>
-                    <h1 class="cn-hero-title cn-reveal cn-delay-1">Bautismos y Actividades Especiales</h1>
-                    <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
-                        Primeras experiencias bajo el agua, rutas de snorkel y mucho más para disfrutar del mar con toda seguridad.
-                    </p>
-                </th:block>
+                    <!-- INMERSIONES -->
+                    <th:block th:case="'INMERSION'">
+                        <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Inmersiones</span></div>
+                        <h1 class="cn-hero-title cn-reveal cn-delay-1">Inmersiones Guiadas</h1>
+                        <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                            Descubre los mejores puntos de buceo del Cantábrico con nuestros guías experimentados. Conoce nuestros spots y fondos marinos.
+                        </p>
+                    </th:block>
 
-                <!-- OFERTAS -->
-                <th:block th:case="'OFERTA'">
-                    <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Ofertas</span></div>
-                    <h1 class="cn-hero-title cn-reveal cn-delay-1">Ofertas y Packs</h1>
-                    <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
-                        Aprovecha nuestras promociones exclusivas en formación, salidas guiadas y equipamiento de buceo de primeras marcas.
-                    </p>
-                </th:block>
-            </div>
+                    <!-- ACTIVIDADES -->
+                    <th:block th:case="'ACTIVIDAD'">
+                        <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Actividades</span></div>
+                        <h1 class="cn-hero-title cn-reveal cn-delay-1">Bautismos y Actividades Especiales</h1>
+                        <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                            Primeras experiencias bajo el agua, rutas de snorkel y mucho más para disfrutar del mar con toda seguridad.
+                        </p>
+                    </th:block>
+
+                    <!-- OFERTAS -->
+                    <th:block th:case="'OFERTA'">
+                        <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Ofertas</span></div>
+                        <h1 class="cn-hero-title cn-reveal cn-delay-1">Ofertas y Packs</h1>
+                        <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
+                            Aprovecha nuestras promociones exclusivas en formación, salidas guiadas y equipamiento de buceo de primeras marcas.
+                        </p>
+                    </th:block>
+                </div>
         </div>
         <svg class="cn-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
             <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"/>
