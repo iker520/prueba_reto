@@ -68,7 +68,7 @@
               <input type="date" class="form-control ms-form-control border-start-0"
                      id="fechaNac" name="fechaNac"
                      th:value="${fechaNac}"
-                     required/>
+                     min="1900-01-01" max="2099-12-31" required/>
             </div>
           </div>
         </div>
@@ -192,7 +192,9 @@
             <span class="input-group-text ms-input-addon"><i class="bi bi-lock ms-input-addon-icon"></i></span>
             <input type="password" class="form-control ms-form-control border-start-0"
                    id="password" name="password"
-                   placeholder="Mínimo 6 caracteres" minlength="6" required/>
+                   placeholder="Mínimo 8 caracteres, mayúscula, número, símbolo" minlength="8" 
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                   title="La contraseña debe tener al menos 8 caracteres, e incluir mayúsculas, minúsculas, números y símbolos especiales" required/>
           </div>
         </div>
 
@@ -205,7 +207,9 @@
             <span class="input-group-text ms-input-addon"><i class="bi bi-lock-fill ms-input-addon-icon"></i></span>
             <input type="password" class="form-control ms-form-control border-start-0"
                    id="passwordConfirmacion" name="passwordConfirmacion"
-                   placeholder="Repite tu contraseña" minlength="6" required
+                   placeholder="Repite tu contraseña" minlength="8" required
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                   title="La contraseña debe tener al menos 8 caracteres, e incluir mayúsculas, minúsculas, números y símbolos especiales"
                    autocomplete="off" onpaste="return false;"/>
           </div>
           <div id="pwMismatchHint" class="form-text text-danger d-none">
@@ -299,7 +303,8 @@
                 <div class="input-group">
                   <span class="input-group-text ms-input-addon"><i class="bi bi-calendar-check ms-input-addon-icon"></i></span>
                   <input type="date" class="form-control ms-form-control border-start-0"
-                         id="fechaVto" name="fechaVto" th:value="${fechaVto}"/>
+                         id="fechaVto" name="fechaVto" th:value="${fechaVto}"
+                         min="1900-01-01" max="2099-12-31"/>
                 </div>
               </div>
             </div>
@@ -332,12 +337,14 @@
             <div class="col-md-6">
               <label class="form-label fw-semibold ms-form-label" for="certFechaInicio">Fecha de obtención</label>
               <input type="date" class="form-control ms-form-control"
-                     id="certFechaInicio" name="certFechaInicio" th:value="${certFechaInicio}"/>
+                     id="certFechaInicio" name="certFechaInicio" th:value="${certFechaInicio}"
+                     min="1900-01-01" max="2099-12-31"/>
             </div>
             <div class="col-md-6">
               <label class="form-label fw-semibold ms-form-label" for="certFechaFin">Fecha de vencimiento <span class="ms-form-optional">(si aplica)</span></label>
               <input type="date" class="form-control ms-form-control"
-                     id="certFechaFin" name="certFechaFin" th:value="${certFechaFin}"/>
+                     id="certFechaFin" name="certFechaFin" th:value="${certFechaFin}"
+                     max="2099-12-31"/>
             </div>
             <div class="col-12">
               <label class="form-label fw-semibold ms-form-label" for="certDocumento">

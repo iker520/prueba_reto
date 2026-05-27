@@ -79,6 +79,9 @@ public class AdminUsuarioController {
             RedirectAttributes redirectAttributes) {
         try {
             if (rawPassword != null && !rawPassword.isBlank()) {
+                if (!rawPassword.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{8,}$")) {
+                    throw new IllegalArgumentException("La contraseña no cumple con los requisitos de seguridad.");
+                }
                 usuarioService.create(usuario, rawPassword);
             } else {
                 usuarioService.save(usuario);

@@ -81,6 +81,9 @@ public class RegistroController {
         if (!password.equals(passwordConfirmacion)) {
             model.addAttribute("errorPassword", "Las contraseñas no coinciden.");
             hasErrors = true;
+        } else if (!password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{8,}$")) {
+            model.addAttribute("errorPassword", "La contraseña no cumple con los requisitos de seguridad.");
+            hasErrors = true;
         }
         if (usuarioService.existsByEmail(email)) {
             model.addAttribute("errorEmailDuplicado", "Ya existe una cuenta con ese correo electrónico.");

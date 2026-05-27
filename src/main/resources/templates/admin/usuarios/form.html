@@ -102,7 +102,10 @@
               <span class="text-danger" th:if="${esNuevo}">*</span>
             </label>
             <input type="password" name="rawPassword" class="form-control ms-form-control"
-                   placeholder="Contraseña..."
+                   placeholder="Mín. 8 chars (Mayús, minús, num, símb)"
+                   minlength="8"
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                   title="La contraseña debe tener al menos 8 caracteres, e incluir mayúsculas, minúsculas, números y símbolos especiales"
                    th:required="${esNuevo}"/>
           </div>
           <div class="col-12 col-md-6">
