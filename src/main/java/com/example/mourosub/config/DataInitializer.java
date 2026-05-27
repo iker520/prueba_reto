@@ -21,6 +21,7 @@ public class DataInitializer implements CommandLineRunner {
     private final ActividadRepository actividadRepository;
     private final NoticiaRepository noticiaRepository;
     private final UbicacionRepository ubicacionRepository;
+    private final ContactoRepository contactoRepository;
 
     /** Controla si se cargan datos de demo (ubicaciones, instructores, actividades, noticias). */
     @Value("${app.seed.enabled:true}")
@@ -30,12 +31,14 @@ public class DataInitializer implements CommandLineRunner {
                            InstructorRepository instructorRepository,
                            ActividadRepository actividadRepository,
                            NoticiaRepository noticiaRepository,
-                           UbicacionRepository ubicacionRepository) {
+                           UbicacionRepository ubicacionRepository,
+                           ContactoRepository contactoRepository) {
         this.usuarioService      = usuarioService;
         this.instructorRepository = instructorRepository;
         this.actividadRepository  = actividadRepository;
         this.noticiaRepository    = noticiaRepository;
         this.ubicacionRepository  = ubicacionRepository;
+        this.contactoRepository   = contactoRepository;
     }
 
     @Override
@@ -46,6 +49,7 @@ public class DataInitializer implements CommandLineRunner {
             initInstructores();
             initActividades();
             initNoticias();
+            initContactos();
         } else {
             System.out.println("⏭️  Seed de datos demo desactivado (APP_SEED_ENABLED=false)");
         }
@@ -164,6 +168,7 @@ public class DataInitializer implements CommandLineRunner {
         a1.setImagenUrl("https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=70");
         a1.setDestacada(true);
         a1.setActiva(true);
+        a1.setUbicaciones(new java.util.HashSet<>(ubicacionRepository.findAll())); // Todas por defecto
         actividadRepository.save(a1);
 
         Actividad a2 = new Actividad();
@@ -178,6 +183,7 @@ public class DataInitializer implements CommandLineRunner {
         a2.setImagenUrl("https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800&q=70");
         a2.setDestacada(true);
         a2.setActiva(true);
+        a2.setUbicaciones(new java.util.HashSet<>(ubicacionRepository.findAll()));
         actividadRepository.save(a2);
 
         Actividad a3 = new Actividad();
@@ -190,6 +196,7 @@ public class DataInitializer implements CommandLineRunner {
         a3.setPlazasMaximas(6);
         a3.setImagenUrl("https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=800&q=70");
         a3.setActiva(true);
+        a3.setUbicaciones(new java.util.HashSet<>(ubicacionRepository.findAll()));
         actividadRepository.save(a3);
 
         Actividad a4 = new Actividad();
@@ -197,12 +204,14 @@ public class DataInitializer implements CommandLineRunner {
         a4.setDescripcion("Una de las joyas del Cantábrico. Paredes verticales cubiertas de anémonas, bogavantes y meros de gran tamaño.");
         a4.setPrecio(Double.valueOf("55.00"));
         a4.setTipo("INMERSION");
+        a4.setSubtipo("Isla de Mouro");
         a4.setNivel("Open Water");
         a4.setDuracion(300); // 1 día (2 inmersiones)
         a4.setPlazasMaximas(10);
         a4.setImagenUrl("https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=70");
         a4.setDestacada(true);
         a4.setActiva(true);
+        ubicacionRepository.findByNombre("Isla de Mouro").ifPresent(u -> a4.setUbicaciones(java.util.Set.of(u)));
         actividadRepository.save(a4);
 
         Actividad a5 = new Actividad();
@@ -210,10 +219,12 @@ public class DataInitializer implements CommandLineRunner {
         a5.setDescripcion("El mar de noche es un universo diferente. Pulpos cazando, estrellas de mar activas y la bioluminiscencia del plancton.");
         a5.setPrecio(Double.valueOf("65.00"));
         a5.setTipo("INMERSION");
+        a5.setSubtipo("El Palacio");
         a5.setNivel("Advanced");
         a5.setDuracion(180); // 1 noche
         a5.setPlazasMaximas(6);
         a5.setActiva(true);
+        ubicacionRepository.findByNombre("Punta del Dichoso").ifPresent(u -> a5.setUbicaciones(java.util.Set.of(u)));
         actividadRepository.save(a5);
 
         Actividad a6 = new Actividad();
@@ -224,6 +235,7 @@ public class DataInitializer implements CommandLineRunner {
         a6.setNivel("Sin experiencia");
         a6.setDuracion(2400); // 1 semana
         a6.setActiva(true);
+        a6.setUbicaciones(new java.util.HashSet<>(ubicacionRepository.findAll()));
         actividadRepository.save(a6);
 
         System.out.println("✅ Actividades inicializadas");
@@ -276,5 +288,32 @@ public class DataInitializer implements CommandLineRunner {
         noticiaRepository.save(n4);
 
         System.out.println("✅ Noticias inicializadas");
+    }
+
+    // ---------------------------------------------------------------
+    // Contactos
+    // ---------------------------------------------------------------
+    private void initContactos() {
+        if (contactoRepository.count() > 0) return;
+
+        Contacto c1 = new Contacto();
+        c1.setNombre("Marta Gómez");
+        c1.setEmail("marta.gomez@example.com");
+        c1.setInteres("Cursos (Open Water, Advanced...)");
+        c1.setMensaje("Hola, me gustaría saber si tienen disponibilidad para el curso Open Water en la primera semana de agosto. Somos dos personas.");
+        c1.setEstado("NUEVA");
+        c1.setFechaEnvio(java.time.LocalDateTime.now().minusHours(2));
+        contactoRepository.save(c1);
+
+        Contacto c2 = new Contacto();
+        c2.setNombre("Luis Torres");
+        c2.setEmail("luis.torres@example.com");
+        c2.setInteres("Inmersiones guiadas");
+        c2.setMensaje("Tengo el Advanced y estoy de vacaciones por Cantabria, ¿puedo apuntarme a alguna inmersión en Isla de Mouro este finde?");
+        c2.setEstado("LEIDA");
+        c2.setFechaEnvio(java.time.LocalDateTime.now().minusDays(1));
+        contactoRepository.save(c2);
+
+        System.out.println("✅ Contactos inicializados");
     }
 }
