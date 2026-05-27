@@ -94,6 +94,38 @@ public class ReservaService {
         return reserva;
     }
 
+    /**
+     * Actualiza las actividades de una reserva existente en estado PENDIENTE.
+     * Elimina las actividades actuales e inserta las nuevas.
+     */
+    @Transactional
+    public void actualizarActividadesReserva(Long idReserva, List<Actividad> nuevasActividades, String notas) {
+        Reserva reserva = reservaRepository.findById(idReserva)
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Reserva no encontrada"));
+        
+        if (!"PENDIENTE".equals(reserva.getEstado())) {
+            throw new IllegalStateException("Solo se pueden editar reservas en estado PENDIENTE.");
+        }
+
+        // Actualizar notas
+        reserva.setNotas(notas);
+        reservaRepository.save(reserva);
+
+        // Borrar actividades actuales (hibernate borrará en cascada programaciones e instructores si existieran)
+        // Como es PENDIENTE no deberían existir, pero lo hacemos por seguridad
+        actividadReservaRepository.deleteAll(reserva.getActividades());
+        reserva.getActividades().clear();
+
+        // Insertar nuevas actividades
+        for (Actividad actividad : nuevasActividades) {
+            ActividadReserva ar = new ActividadReserva();
+            ar.setIdReserva(reserva.getIdReserva());
+            ar.setIdActividad(actividad.getIdActividad());
+            ar.setPrecio(actividad.getPrecio());
+            actividadReservaRepository.save(ar);
+        }
+    }
+
     /** Reservas de un usuario concreto (para Mi Cuenta) */
     public List<Reserva> findByDniUsuario(String dni) {
         return reservaRepository.findByDniUsuario(dni);

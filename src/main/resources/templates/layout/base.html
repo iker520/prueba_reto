@@ -111,6 +111,9 @@
 
                     <!-- Autenticado como USER (no ADMIN) -->
                     <li class="nav-item d-flex align-items-center gap-2" sec:authorize="hasRole('USER')">
+                        <a class="ms-navbar-cta" th:href="@{/mi-cuenta}">
+                            <i class="bi bi-person-badge me-1"></i>Mi Cuenta
+                        </a>
                         <form th:action="@{/logout}" method="post" class="m-0">
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <button type="submit" class="ms-logout-btn">

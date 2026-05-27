@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Mover todos los modales al <body> (evita problemas con overflow:auto)
-  document.querySelectorAll('.modal').forEach(function (modal) {
-    document.body.appendChild(modal);
-  });
 
   // Si la URL tiene ?fechaInicioInstructor y ?openModalIndex, abrir el modal automáticamente
   const params = new URLSearchParams(window.location.search);

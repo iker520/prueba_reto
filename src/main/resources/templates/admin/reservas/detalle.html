@@ -218,51 +218,7 @@
               <i class="bi bi-exclamation-circle me-1"></i>Sin programación definida.
             </div>
 
-            <!-- Modal de programación — ID único con arStat.index para evitar colisiones -->
-            <div class="modal fade" th:id="'modalProgramar-' + ${arStat.index}" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow">
-                  <div class="modal-header border-bottom-0 pb-0">
-                    <h5 class="modal-title fw-bold" style="color:var(--ms-primary);">
-                      <i class="bi bi-calendar-check me-2"></i>Programar sesión
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form th:action="@{/admin/reservas/{idReserva}/actividad/{idActividad}/programar(idReserva=${reserva.idReserva}, idActividad=${ar.idActividad})}" method="post">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                    <div class="modal-body">
-                      <p class="text-muted small mb-4">
-                        Programa una sesión para <strong th:text="${ar.actividad.nombre}">Actividad</strong>.
-                        <span th:if="${ar.actividad.duracion != null}">Duración: <strong th:text="${ar.actividad.duracionFormateada}"></strong> (se calculará la fecha de fin automáticamente).</span>
-                      </p>
 
-                      <div class="mb-3">
-                        <label class="form-label fw-semibold ms-form-label">Ubicación <span class="text-danger">*</span></label>
-                        <select name="idUbicacion" class="form-select ms-form-control" required>
-                          <option value="">Selecciona ubicación...</option>
-                          <option th:each="ub : ${ar.actividad.ubicaciones}"
-                                  th:value="${ub.idUbicacion}"
-                                  th:text="${ub.nombre}">Ubicación</option>
-                        </select>
-                        <div th:if="${#sets.isEmpty(ar.actividad.ubicaciones)}" class="text-danger small mt-1">
-                          <i class="bi bi-exclamation-triangle me-1"></i>Esta actividad no tiene ubicaciones configuradas en el catálogo.
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <label class="form-label fw-semibold ms-form-label">Fecha y Hora de Inicio <span class="text-danger">*</span></label>
-                        <input type="datetime-local" name="fechaInicio" class="form-control ms-form-control"
-                               max="2099-12-31T23:59" required/>
-                      </div>
-                    </div>
-                    <div class="modal-footer border-top-0 pt-0">
-                      <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="submit" class="btn btn-ms-primary px-4 rounded" th:disabled="${#sets.isEmpty(ar.actividad.ubicaciones)}">Guardar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
             <!-- INSTRUCTORES DE LA ACTIVIDAD -->
             <div class="mt-3 pt-3 border-top border-secondary border-opacity-25">
               <div class="d-flex justify-content-between align-items-center mb-2">
@@ -302,60 +258,7 @@
               </div>
             </div>
 
-            <!-- Modal: Asignar Instructor (uno por actividad) -->
-            <div class="modal fade" th:id="'modalAsignarInstructor-' + ${arStat.index}" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow">
-                  <div class="modal-header border-bottom-0 pb-0">
-                    <h5 class="modal-title fw-bold" style="color:var(--ms-primary);">
-                      <i class="bi bi-person-plus me-2"></i>Asignar Instructor
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form th:action="@{/admin/reservas/{idR}/actividad/{idA}/asignar-instructor(idR=${reserva.idReserva}, idA=${ar.idActividad})}" method="post">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                    <div class="modal-body">
-                      <p class="text-muted small mb-3">
-                        Solo se muestran instructores <strong>libres</strong> (su última sesión terminó hace más de 1h antes del inicio propuesto).
-                      </p>
 
-                      <!-- Fecha de inicio -->
-                      <div class="mb-3">
-                        <label class="form-label fw-semibold ms-form-label">Fecha y hora de inicio <span class="text-danger">*</span></label>
-                        <input type="datetime-local" name="fechaInicio"
-                               class="form-control ms-form-control input-fecha-instructor"
-                               th:data-modal-index="${arStat.index}"
-                               th:value="${openModalIndex == arStat.index.toString() ? fechaInicioInstructor : ''}"
-                               max="2099-12-31T23:59" required/>
-                        <div class="form-text small text-muted mt-1">
-                          La fecha de fin se calculará automáticamente sumando la duración de esta actividad.
-                        </div>
-                      </div>
-                      
-                      <!-- Selector de instructor -->
-                      <div class="mb-2">
-                        <label class="form-label fw-semibold ms-form-label">Instructor disponible <span class="text-danger">*</span></label>
-                        <select name="dniInstructor" class="form-select ms-form-control" required>
-                          <option value="">— Selecciona un instructor —</option>
-                          <option th:each="inst : ${(openModalIndex == arStat.index.toString() ? instructoresDisponibles : todosInstructores)}"
-                                  th:value="${inst.dniInstructor}"
-                                  th:text="${inst.nombreCompleto + (inst.tituloPadi != null ? ' · ' + inst.tituloPadi : '')}"
-                                  th:classappend="${ar.instructores != null and ar.instructores.?[dniInstructor == inst.dniInstructor].size() > 0} ? 'text-muted' : ''">Instructor</option>
-                        </select>
-                        <div th:if="${openModalIndex == arStat.index.toString() and #lists.isEmpty(instructoresDisponibles)}" class="text-warning small mt-1">
-                          <i class="bi bi-exclamation-triangle me-1"></i>No hay instructores disponibles para este horario.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer border-top-0 pt-0">
-                      <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="submit" class="btn btn-ms-primary px-4 rounded"
-                              th:disabled="${openModalIndex == arStat.index.toString() and #lists.isEmpty(instructoresDisponibles)}">Asignar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>
@@ -402,8 +305,111 @@
         </form>
       </div>
     </div>
-  </div>
 </div>
+
+<!-- Modales de actividades (Programar sesión y Asignar Instructor) -->
+<th:block th:each="ar, arStat : ${reserva.actividades}">
+  
+  <!-- Modal de programación -->
+  <div class="modal fade" th:id="'modalProgramar-' + ${arStat.index}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="modal-title fw-bold" style="color:var(--ms-primary);">
+            <i class="bi bi-calendar-check me-2"></i>Programar sesión
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form th:action="@{/admin/reservas/{idReserva}/actividad/{idActividad}/programar(idReserva=${reserva.idReserva}, idActividad=${ar.idActividad})}" method="post">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <div class="modal-body">
+            <p class="text-muted small mb-4">
+              Programa una sesión para <strong th:text="${ar.actividad.nombre}">Actividad</strong>.
+              <span th:if="${ar.actividad.duracion != null}">Duración: <strong th:text="${ar.actividad.duracionFormateada}"></strong> (se calculará la fecha de fin automáticamente).</span>
+            </p>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold ms-form-label">Ubicación <span class="text-danger">*</span></label>
+              <select name="idUbicacion" class="form-select ms-form-control" required>
+                <option value="">Selecciona ubicación...</option>
+                <option th:each="ub : ${ar.actividad.ubicaciones}"
+                        th:value="${ub.idUbicacion}"
+                        th:text="${ub.nombre}">Ubicación</option>
+              </select>
+              <div th:if="${#sets.isEmpty(ar.actividad.ubicaciones)}" class="text-danger small mt-1">
+                <i class="bi bi-exclamation-triangle me-1"></i>Esta actividad no tiene ubicaciones configuradas en el catálogo.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold ms-form-label">Fecha y Hora de Inicio <span class="text-danger">*</span></label>
+              <input type="datetime-local" name="fechaInicio" class="form-control ms-form-control"
+                     max="2099-12-31T23:59" required/>
+            </div>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-ms-primary px-4 rounded" th:disabled="${#sets.isEmpty(ar.actividad.ubicaciones)}">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Asignar Instructor -->
+  <div class="modal fade" th:id="'modalAsignarInstructor-' + ${arStat.index}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="modal-title fw-bold" style="color:var(--ms-primary);">
+            <i class="bi bi-person-plus me-2"></i>Asignar Instructor
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form th:action="@{/admin/reservas/{idR}/actividad/{idA}/asignar-instructor(idR=${reserva.idReserva}, idA=${ar.idActividad})}" method="post">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <div class="modal-body">
+            <p class="text-muted small mb-3">
+              Solo se muestran instructores <strong>libres</strong> (su última sesión terminó hace más de 1h antes del inicio propuesto).
+            </p>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold ms-form-label">Fecha y hora de inicio <span class="text-danger">*</span></label>
+              <input type="datetime-local" name="fechaInicio"
+                     class="form-control ms-form-control input-fecha-instructor"
+                     th:data-modal-index="${arStat.index}"
+                     th:value="${openModalIndex == arStat.index.toString() ? fechaInicioInstructor : ''}"
+                     max="2099-12-31T23:59" required/>
+              <div class="form-text small text-muted mt-1">
+                La fecha de fin se calculará automáticamente sumando la duración de esta actividad.
+              </div>
+            </div>
+            
+            <div class="mb-2">
+              <label class="form-label fw-semibold ms-form-label">Instructor disponible <span class="text-danger">*</span></label>
+              <select name="dniInstructor" class="form-select ms-form-control" required>
+                <option value="">— Selecciona un instructor —</option>
+                <option th:each="inst : ${(openModalIndex == arStat.index.toString() ? instructoresDisponibles : todosInstructores)}"
+                        th:value="${inst.dniInstructor}"
+                        th:text="${inst.nombreCompleto + (inst.tituloPadi != null ? ' · ' + inst.tituloPadi : '')}"
+                        th:classappend="${ar.instructores != null and ar.instructores.![dniInstructor].contains(inst.dniInstructor)} ? 'text-muted' : ''">Instructor</option>
+              </select>
+              <div th:if="${openModalIndex == arStat.index.toString() and #lists.isEmpty(instructoresDisponibles)}" class="text-warning small mt-1">
+                <i class="bi bi-exclamation-triangle me-1"></i>No hay instructores disponibles para este horario.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-ms-primary px-4 rounded"
+                    th:disabled="${openModalIndex == arStat.index.toString() and #lists.isEmpty(instructoresDisponibles)}">Asignar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</th:block>
 
 <script src="/js/admin-reservas-detalle.js"></script>
 </body>

@@ -121,13 +121,20 @@ public class ReservaController {
                 actividadService.findById(id).ifPresent(actividades::add);
             }
 
-            reservaService.crearReserva(usuario, actividades, notas);
+            Long idReservaEdicion = (Long) session.getAttribute("reservaEnEdicion");
+            if (idReservaEdicion != null) {
+                reservaService.actualizarActividadesReserva(idReservaEdicion, actividades, notas);
+                session.removeAttribute("reservaEnEdicion");
+                redirectAttributes.addFlashAttribute("success",
+                        "Reserva #" + idReservaEdicion + " actualizada correctamente.");
+            } else {
+                reservaService.crearReserva(usuario, actividades, notas);
+                redirectAttributes.addFlashAttribute("success",
+                        "¡Solicitud de reserva enviada! El equipo de MouroSub se pondrá en contacto contigo para confirmar la programación.");
+            }
 
             // Vaciar carrito
             session.removeAttribute("carritoActividades");
-
-            redirectAttributes.addFlashAttribute("success",
-                    "¡Solicitud de reserva enviada! El equipo de MouroSub se pondrá en contacto contigo para confirmar la programación.");
 
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error",

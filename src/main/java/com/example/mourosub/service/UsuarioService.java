@@ -46,6 +46,10 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findById(dni);
     }
 
+    public Optional<Usuario> findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
     public Usuario save(Usuario usuario) {
         if (usuario.getFechaRegistro() == null) {
             usuario.setFechaRegistro(LocalDate.now().atStartOfDay());

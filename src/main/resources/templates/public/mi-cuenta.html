@@ -6,18 +6,44 @@
 <main class="ms-content-wrapper py-5">
 
   <!-- Header -->
+  <!-- Alertas flash -->
+  <div th:if="${success}" class="alert alert-success alert-dismissible fade show rounded mb-3" role="alert">
+    <i class="bi bi-check-circle me-2"></i><span th:text="${success}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  <div th:if="${errorPassword}" class="alert alert-danger alert-dismissible fade show rounded mb-3" role="alert" id="errorPasswordFlag">
+    <i class="bi bi-exclamation-circle me-2"></i><span th:text="${errorPassword}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
   <div class="ms-mi-cuenta-header mb-4">
-    <div class="d-flex align-items-center gap-3">
-      <div class="ms-mi-cuenta-avatar">
-        <i class="bi bi-person-circle"></i>
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="ms-mi-cuenta-avatar">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div>
+          <h1 class="ms-mi-cuenta-title mb-0"
+              th:text="${usuario.nombre} + ' ' + ${usuario.apellido1}">Nombre Apellido</h1>
+          <span class="ms-mi-cuenta-email" th:text="${usuario.email}">email</span>
+          <span th:if="${usuario.esBuceador}" class="ms-buceador-badge ms-2">
+            <i class="bi bi-water me-1"></i>Buceador
+          </span>
+        </div>
       </div>
-      <div>
-        <h1 class="ms-mi-cuenta-title mb-0"
-            th:text="${usuario.nombre} + ' ' + ${usuario.apellido1}">Nombre Apellido</h1>
-        <span class="ms-mi-cuenta-email" th:text="${usuario.email}">email</span>
-        <span th:if="${usuario.esBuceador}" class="ms-buceador-badge ms-2">
-          <i class="bi bi-water me-1"></i>Buceador
-        </span>
+      <div class="d-flex gap-2 flex-wrap">
+        <button type="button" class="btn btn-ms-primary btn-sm rounded px-3"
+                data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
+          <i class="bi bi-pencil me-1"></i>Editar perfil
+        </button>
+        <button type="button" class="btn btn-ms-primary btn-sm rounded px-3"
+                data-bs-toggle="modal" data-bs-target="#modalCambiarPassword">
+          <i class="bi bi-lock me-1"></i>Cambiar contraseña
+        </button>
+        <button type="button" class="btn btn-ms-primary btn-sm rounded px-3"
+                data-bs-toggle="modal" data-bs-target="#modalPerfilBuceador">
+          <i class="bi bi-water me-1"></i>
+          <span th:text="${usuario.esBuceador} ? 'Mi perfil buceador' : 'Activar perfil buceador'">Perfil buceador</span>
+        </button>
       </div>
     </div>
   </div>
@@ -213,6 +239,21 @@
               &nbsp;·&nbsp;
               <span class="small ms-text-muted"
                     th:text="${#temporals.format(r.fechaReserva,'dd/MM/yyyy HH:mm')}">—</span>
+              
+              <!-- Botones de gestión para reservas PENDIENTES -->
+              <div th:if="${r.estado == 'PENDIENTE'}" class="mt-2 d-flex gap-2">
+                <a th:href="@{/mi-cuenta/reserva/{id}/editar(id=${r.idReserva})}" 
+                   class="btn btn-sm btn-outline-primary rounded px-2 py-1" style="font-size:0.8rem;">
+                   <i class="bi bi-pencil-square me-1"></i>Editar servicios
+                </a>
+                <form th:action="@{/mi-cuenta/reserva/{id}/cancelar(id=${r.idReserva})}" method="post" class="m-0"
+                      onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?');">
+                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                  <button type="submit" class="btn btn-sm btn-outline-danger rounded px-2 py-1" style="font-size:0.8rem;">
+                    <i class="bi bi-x-circle me-1"></i>Cancelar reserva
+                  </button>
+                </form>
+              </div>
             </div>
 
             <!-- Actividades -->
@@ -320,6 +361,236 @@
         <div class="modal-footer border-top-0 pt-0">
           <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-ms-primary px-4 rounded">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Modal: Editar Perfil ===== -->
+<div class="modal fade" id="modalEditarPerfil" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold" style="color:var(--ms-primary);"><i class="bi bi-pencil me-2"></i>Editar mis datos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form th:action="@{/mi-cuenta/editar-perfil}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Nombre <span class="text-danger">*</span></label>
+              <input type="text" name="nombre" class="form-control ms-form-control" th:value="${usuario.nombre}" required maxlength="100"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Primer apellido</label>
+              <input type="text" name="apellido1" class="form-control ms-form-control" th:value="${usuario.apellido1}" maxlength="100"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Segundo apellido</label>
+              <input type="text" name="apellido2" class="form-control ms-form-control" th:value="${usuario.apellido2}" maxlength="100"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Fecha nacimiento</label>
+              <input type="date" name="fechaNac" class="form-control ms-form-control" th:value="${usuario.fechaNac}" min="1900-01-01" max="2099-12-31"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Teléfono</label>
+              <input type="tel" name="telefono" class="form-control ms-form-control" th:value="${usuario.telefono}" maxlength="20"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Teléfono SOS</label>
+              <input type="tel" name="tfnoSos" class="form-control ms-form-control" th:value="${usuario.tfnoSos}" maxlength="20"/>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold ms-form-label">Dirección</label>
+              <input type="text" name="direccion" class="form-control ms-form-control" th:value="${usuario.direccion}" maxlength="255"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Ciudad</label>
+              <input type="text" name="ciudad" class="form-control ms-form-control" th:value="${usuario.ciudad}" maxlength="100"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Provincia</label>
+              <input type="text" name="provincia" class="form-control ms-form-control" th:value="${usuario.provincia}" maxlength="100"/>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label fw-semibold ms-form-label">C.P.</label>
+              <input type="text" name="codigoPostal" class="form-control ms-form-control" th:value="${usuario.codigoPostal}" maxlength="10"/>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label fw-semibold ms-form-label">País</label>
+              <input type="text" name="pais" class="form-control ms-form-control" th:value="${usuario.pais}" maxlength="100"/>
+            </div>
+            <div class="col-12 d-flex gap-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="editNotifEmail" name="notifEmails" th:checked="${usuario.notifEmails}"/>
+                <label class="form-check-label ms-check-label" for="editNotifEmail">Notificaciones email</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="editNotifWa" name="notifWhatsapp" th:checked="${usuario.notifWhatsapp}"/>
+                <label class="form-check-label ms-check-label" for="editNotifWa">Notificaciones WhatsApp</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-ms-primary px-4 rounded"><i class="bi bi-save me-1"></i>Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Modal: Cambiar Contraseña ===== -->
+<div class="modal fade" id="modalCambiarPassword" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold" style="color:var(--ms-primary);"><i class="bi bi-lock me-2"></i>Cambiar contraseña</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form th:action="@{/mi-cuenta/cambiar-password}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label fw-semibold ms-form-label">Contraseña actual <span class="text-danger">*</span></label>
+            <input type="password" name="passwordActual" class="form-control ms-form-control" required autocomplete="current-password"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold ms-form-label">Nueva contraseña <span class="text-danger">*</span></label>
+            <input type="password" id="passwordNueva" name="passwordNueva" class="form-control ms-form-control"
+                   minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                   title="Mín. 8 caracteres con mayúsculas, minúsculas, número y símbolo" required autocomplete="new-password"/>
+            <div id="pwNuevaHint" class="form-text text-danger d-none">
+              <i class="bi bi-exclamation-circle me-1"></i>Debe tener mín. 8 caracteres, mayúscula, minúscula, número y símbolo.
+            </div>
+          </div>
+          <div class="mb-2">
+            <label class="form-label fw-semibold ms-form-label">Confirmar nueva contraseña <span class="text-danger">*</span></label>
+            <input type="password" id="passwordNuevaConf" name="passwordNuevaConfirmacion" class="form-control ms-form-control"
+                   minlength="8" required autocomplete="new-password" onpaste="return false;"/>
+            <div id="pwMatchHint" class="form-text text-danger d-none">
+              <i class="bi bi-exclamation-circle me-1"></i>Las contraseñas no coinciden.
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-ms-primary px-4 rounded"><i class="bi bi-shield-lock me-1"></i>Cambiar contraseña</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Modal: Perfil Buceador ===== -->
+<div class="modal fade" id="modalPerfilBuceador" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold" style="color:var(--ms-primary);"><i class="bi bi-water me-2"></i>Perfil de buceador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form th:action="@{/mi-cuenta/perfil-buceador}" method="post" enctype="multipart/form-data" id="formPerfilBuceador">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="modal-body">
+          <div id="errorBuceadorMsg" class="alert alert-danger d-none mb-3 py-2 small" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Por favor, marca la casilla "Soy buceador" si introduces datos de buceo o certificaciones.
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="modalEsBuceador" name="esBuceador"
+                   th:checked="${usuario.esBuceador}" value="true"/>
+            <label class="form-check-label fw-semibold ms-check-label" for="modalEsBuceador">
+              <i class="bi bi-water text-primary me-1"></i>Soy buceador / tengo experiencia en buceo
+            </label>
+          </div>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Nivel de buceo</label>
+              <select name="nivelBuceo" class="form-select ms-form-control">
+                <option value="">— Sin nivel —</option>
+                <option value="Bautismo" th:selected="${usuario.nivelBuceo == 'Bautismo'}">Bautismo</option>
+                <option value="OWD" th:selected="${usuario.nivelBuceo == 'OWD'}">Open Water Diver</option>
+                <option value="AOWD" th:selected="${usuario.nivelBuceo == 'AOWD'}">Advanced OWD</option>
+                <option value="Rescue" th:selected="${usuario.nivelBuceo == 'Rescue'}">Rescue Diver</option>
+                <option value="DiveMaster" th:selected="${usuario.nivelBuceo == 'DiveMaster'}">Divemaster</option>
+                <option value="Instructor" th:selected="${usuario.nivelBuceo == 'Instructor'}">Instructor</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Nº inmersiones</label>
+              <input type="number" name="numInmersiones" class="form-control ms-form-control" min="0"
+                     th:value="${usuario.numInmersiones ?: 0}"/>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold ms-form-label">Última inmersión</label>
+              <input type="date" name="fechaUltimaInmersion" class="form-control ms-form-control"
+                     th:value="${usuario.fechaUltimaInmersion}" min="1900-01-01" max="2099-12-31"/>
+            </div>
+          </div>
+          <hr class="my-3" style="border-color:var(--ms-border);"/>
+          <h6 class="fw-semibold mb-3" style="color:var(--ms-primary);"><i class="bi bi-heart-pulse me-2"></i>Seguro de accidentes</h6>
+          <div class="d-flex gap-4 mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="seguroAccidentes" id="modalSeguroSi"
+                     value="true" th:checked="${usuario.seguroAccidentes}"/>
+              <label class="form-check-label ms-check-label" for="modalSeguroSi">Sí, dispongo de seguro</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="seguroAccidentes" id="modalSeguroNo"
+                     value="false" th:checked="${!usuario.seguroAccidentes}"/>
+              <label class="form-check-label ms-check-label" for="modalSeguroNo">No</label>
+            </div>
+          </div>
+          <div id="modalSeguroPanel" class="ms-seguro-panel row g-3"
+               th:classappend="${usuario.seguroAccidentes} ? 'show' : ''">
+            <div class="col-md-7">
+              <label class="form-label fw-semibold ms-form-label">Compañía aseguradora</label>
+              <input type="text" name="companiaSeguros" class="form-control ms-form-control"
+                     th:value="${usuario.companiaSeguros}" maxlength="150"/>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label fw-semibold ms-form-label">Vencimiento</label>
+              <input type="date" name="fechaVto" class="form-control ms-form-control"
+                     th:value="${usuario.fechaVto}" min="1900-01-01" max="2099-12-31"/>
+            </div>
+            <div class="col-12">
+              <p class="small text-muted mb-0"><i class="bi bi-info-circle me-1"></i>Los datos del seguro quedarán pendientes de validación por el equipo de MouroSub.</p>
+            </div>
+          </div>
+          
+          <hr class="my-3" style="border-color:var(--ms-border);"/>
+          <h6 class="fw-semibold mb-3" style="color:var(--ms-primary);"><i class="bi bi-patch-check me-2"></i>Certificación de buceo <span class="text-muted small fw-normal">(Opcional)</span></h6>
+          <p class="small text-muted mb-3">Si tienes una nueva certificación, súbela aquí para validarla. Si no, déjalo en blanco.</p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Título</label>
+              <input type="text" name="certTitulo" class="form-control ms-form-control" placeholder="Ej: Open Water Diver" maxlength="200"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Entidad certificadora</label>
+              <input type="text" name="certEntidad" class="form-control ms-form-control" placeholder="Ej: PADI, SSI, FEDAS" maxlength="150"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Fecha obtención</label>
+              <input type="date" name="certFechaInicio" class="form-control ms-form-control" min="1900-01-01" max="2099-12-31"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold ms-form-label">Renovación <span class="text-muted small fw-normal">(Opcional)</span></label>
+              <input type="date" name="certFechaFin" class="form-control ms-form-control" max="2099-12-31"/>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold ms-form-label">Documento <span class="text-muted small fw-normal">(PDF o Imagen)</span></label>
+              <input type="file" name="certDocumento" class="form-control ms-form-control" accept=".pdf,.jpg,.jpeg,.png,.webp"/>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-ms-outline px-4 rounded" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-ms-primary px-4 rounded"><i class="bi bi-save me-1"></i>Guardar perfil</button>
         </div>
       </form>
     </div>

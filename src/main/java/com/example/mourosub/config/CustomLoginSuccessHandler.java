@@ -22,7 +22,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException {
 
-        String targetUrl = "/servicios"; // por defecto: usuario normal va a servicios
+        String targetUrl = "/mi-cuenta"; // por defecto: usuario normal va a su perfil
 
         for (GrantedAuthority authority : authentication.getAuthorities()) {
             if ("ROLE_ADMIN".equals(authority.getAuthority())) {
