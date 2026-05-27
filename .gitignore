@@ -39,3 +39,6 @@ build/
 
 ### Imágenes locales ###
 src/main/resources/static/img/
+
+### Logs ###
+startup.log
