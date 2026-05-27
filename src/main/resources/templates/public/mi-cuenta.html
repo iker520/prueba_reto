@@ -328,13 +328,6 @@
 
 <footer th:replace="~{layout/base :: footer}"></footer>
 <div th:replace="~{layout/base :: scripts}"></div>
-<script>
-  // Limitar fecha de fin de cert a partir de hoy
-  document.addEventListener('DOMContentLoaded', function() {
-    const today = new Date().toISOString().split('T')[0];
-    const certFin = document.getElementById('certFechaFinPublic');
-    if (certFin) certFin.min = today;
-  });
-</script>
+<script src="/js/mi-cuenta.js"></script>
 </body>
 </html>
