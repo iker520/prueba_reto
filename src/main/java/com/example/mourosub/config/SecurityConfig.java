@@ -43,7 +43,7 @@ public class SecurityConfig {
                                                                 "/", "/servicios/**", "/conocenos",
                                                                 "/noticias/**", "/contacto", "/login",
                                                                 "/registro", "/registro/**",
-                                                                "/css/**", "/js/**", "/images/**",
+                                                                "/css/**", "/js/**", "/img/**",
                                                                 "/uploads/**", "/uploads/seguros/**",
                                                                 "/webjars/**", "/favicon.ico",
                                                                 "/error/**", "/403",
