@@ -33,35 +33,36 @@ public class ServiciosController {
             model.addAttribute("tipoSeleccionado", "");
             model.addAttribute("searchQuery", q);
         } else if (tipo != null && !tipo.isBlank()) {
-            String tipoUpper = tipo.toUpperCase();
+            String tipoLower = tipo.toLowerCase();
+            String tipoUpper = tipo.toUpperCase(); // Para la vista (plantilla HTML)
             model.addAttribute("tipoSeleccionado", tipoUpper);
             model.addAttribute("searchQuery", "");
             
             // Lógica de subcategorías
-            if ("CURSO".equals(tipoUpper)) {
+            if ("curso".equals(tipoLower)) {
                 subcategorias = List.of("Apnea", "Deportivos y Especialidad", "Formación Emergencia y Primeros Auxilios", "Técnico RX", "Profesionales");
                 if (sub != null && !sub.isBlank()) {
-                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoUpper, sub));
+                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoLower, sub));
                 } else {
-                    model.addAttribute("actividades", actividadService.findByTipo(tipoUpper));
+                    model.addAttribute("actividades", actividadService.findByTipo(tipoLower));
                 }
-            } else if ("OFERTA".equals(tipoUpper)) {
+            } else if ("oferta".equals(tipoLower)) {
                 subcategorias = List.of("Formación", "Actividades", "Material");
                 if (sub != null && !sub.isBlank()) {
-                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoUpper, sub));
+                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoLower, sub));
                 } else {
-                    model.addAttribute("actividades", actividadService.findByTipo(tipoUpper));
+                    model.addAttribute("actividades", actividadService.findByTipo(tipoLower));
                 }
-            } else if ("INMERSION".equals(tipoUpper)) {
+            } else if ("inmersion".equals(tipoLower)) {
                 subcategorias = List.of("Isla de Mouro", "El Palacio", "Isla de Santa Marina",
                         "Cabo Menor y Cabo Mayor", "Bajos y Cabezos", "Pecios");
                 if (sub != null && !sub.isBlank()) {
-                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoUpper, sub));
+                    model.addAttribute("actividades", actividadService.findByTipoAndSubtipo(tipoLower, sub));
                 } else {
-                    model.addAttribute("actividades", actividadService.findByTipo(tipoUpper));
+                    model.addAttribute("actividades", actividadService.findByTipo(tipoLower));
                 }
             } else {
-                model.addAttribute("actividades", actividadService.findByTipo(tipoUpper));
+                model.addAttribute("actividades", actividadService.findByTipo(tipoLower));
             }
         } else {
             model.addAttribute("actividades", actividadService.findAllActivas());
@@ -72,9 +73,9 @@ public class ServiciosController {
         model.addAttribute("subSeleccionada", sub != null ? sub : "");
         model.addAttribute("subcategorias", subcategorias);
         
-        model.addAttribute("cursos",      actividadService.findByTipo("CURSO"));
-        model.addAttribute("inmersiones", actividadService.findByTipo("INMERSION"));
-        model.addAttribute("actividades2",actividadService.findByTipo("ACTIVIDAD"));
+        model.addAttribute("cursos",      actividadService.findByTipo("curso"));
+        model.addAttribute("inmersiones", actividadService.findByTipo("inmersion"));
+        model.addAttribute("actividades2",actividadService.findByTipo("actividad"));
         model.addAttribute("pageTitle", "Servicios");
         return "public/servicios";
     }

@@ -64,7 +64,7 @@ public class ActividadService {
 
     /** Valores posibles para el desplegable de tipo */
     public static List<String> getTiposDisponibles() {
-        return List.of("CURSO", "INMERSION", "ACTIVIDAD", "OFERTA");
+        return List.of("curso", "inmersion", "actividad", "oferta");
     }
 
     /** Valores posibles para el desplegable de nivel */

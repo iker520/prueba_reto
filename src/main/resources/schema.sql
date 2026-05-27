@@ -1,6 +1,6 @@
--- Archivo generado con la estructura y seed inicial de la BBDD
-USE pruebas_mourosub;
+-- Active: 1779902127323@@127.0.0.1@3306@pruebas_mourosub
 
+-- Archivo generado con la estructura y seed inicial de la BBDD
 CREATE TABLE IF NOT EXISTS usuarios (
     dni_usuario VARCHAR(20) PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -307,7 +307,7 @@ VALUES (
         'EXPEDICION',
         '<p>Durante las últimas dos semanas, el equipo de MouroSub ha colaborado con investigadores de la Universidad de Cantabria en una expedición sin precedentes...</p><h2>Especies catalogadas</h2><p>Se han documentado más de 40 especies de peces y 120 especies de invertebrados en la zona de Cabo Mayor.</p><blockquote>"Este nivel de biodiversidad nos recuerda la urgencia de proteger estos ecosistemas." — Laura González, bióloga marina</blockquote>',
         '2026-05-19',
-        'Expedición Biodiversidad Cantábrico',
+        'Expedición, Biodiversidad, Cantábrico',
         '/img/noticias/noticia1.jpeg',
         b'1',
         'Nuestro equipo de biología marina ha finalizado una expedición de dos semanas catalogando la biodiversidad de los fondos cantábricos. Los resultados son sorprendentes.',
@@ -318,7 +318,7 @@ VALUES (
         'FORMACION',
         '<p>El curso Rescue Diver es considerado el punto de inflexión en la formación de cualquier buceador serio. A partir de septiembre, MouroSub ofrecerá esta formación en formato intensivo de fin de semana.</p><h2>¿Qué aprenderás?</h2><ul><li>Auto-rescate y primeros auxilios</li><li>Gestión del pánico en el buceador</li><li>Rescate en superficie y bajo el agua</li><li>Coordinación con equipos de emergencia</li></ul>',
         '2026-05-12',
-        'RescueDiver Formación BuceoSeguro',
+        'RescueDiver, Formación, BuceoSeguro',
         '/img/noticias/noticia2.jpg',
         b'1',
         'MouroSub lanza el curso Rescue Diver, el más valorado por los buceadores experimentados. Aprende a prevenir y gestionar situaciones de emergencia.',
@@ -329,7 +329,7 @@ VALUES (
         'ECOSISTEMA',
         '<p>Como escuela comprometida con el ecosistema, MouroSub organiza cada año su jornada de limpieza submarina. Este año coincidirá con el Día Mundial del Mar.</p><p>Participar es gratuito para todos los alumnos certificados con nosotros. Los materiales de recogida y el aire estarán incluidos.</p>',
         '2026-05-04',
-        'MedioAmbiente LimpiezaSubmarina DíaMundialDelMar',
+        'MedioAmbiente, LimpiezaSubmarina, DíaMundialDelMar',
         '/img/noticias/noticia3.jpeg',
         b'1',
         'El próximo 21 de septiembre, Día Mundial del Mar, organizamos una jornada de limpieza submarina en la Bahía de Santander. Plazas limitadas.',
@@ -340,7 +340,7 @@ VALUES (
         'TECNOLOGIA',
         '<p>Sabemos que el recuerdo de una inmersión vale más que mil palabras. Por eso hemos renovado nuestro parque de cámaras de acción para que puedas llevarte un pedazo del Cantábrico a casa.</p>',
         '2026-04-24',
-        'FotografíaSubmarina GoPro Tecnología',
+        'FotografíaSubmarina, GoPro, Tecnología',
         '/img/noticias/noticia4.jpeg',
         b'1',
         'MouroSub incorpora al servicio de alquiler cámaras GoPro Hero 13 y housing para mirrorless hasta 60m de profundidad. Inmortaliza cada inmersión.',

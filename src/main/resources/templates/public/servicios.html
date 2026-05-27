@@ -128,7 +128,7 @@
                 <!-- ── NIVEL TIPO (cuando no hay subcategoría seleccionada) ── -->
                 <div th:if="${subSeleccionada == null or subSeleccionada == ''}" th:switch="${tipoSeleccionado}">
                     <!-- TODOS -->
-                    <th:block th:case="''">
+                    <th:block th:case="${''}">
                         <div class="cn-tag cn-reveal"><i class="bi bi-water"></i><span>Servicios</span></div>
                         <h1 class="cn-hero-title cn-reveal cn-delay-1">Servicios de Buceo Profesionales</h1>
                         <p class="cn-hero-subtitle mt-3 cn-reveal cn-delay-2">
@@ -255,7 +255,7 @@
     </div>
 
     <!-- ===== GRID DE ACTIVIDADES ===== -->
-    <section class="ms-content-wrapper ms-grid-section px-4 cn-reveal cn-delay-1">
+    <section class="ms-content-wrapper ms-grid-section px-4">
         <div th:if="${not #lists.isEmpty(actividades)}" class="row g-4">
             <div th:each="act, iterStat : ${actividades}"
                  th:classappend="${iterStat.index == 0 and tipoSeleccionado == ''} ? 'col-12 col-md-8' : 'col-12 col-md-4'"
