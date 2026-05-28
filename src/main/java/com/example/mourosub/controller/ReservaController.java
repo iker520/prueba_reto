@@ -28,8 +28,8 @@ public class ReservaController {
     private final UsuarioService usuarioService;
 
     public ReservaController(ActividadService actividadService,
-                             ReservaService reservaService,
-                             UsuarioService usuarioService) {
+            ReservaService reservaService,
+            UsuarioService usuarioService) {
         this.actividadService = actividadService;
         this.reservaService = reservaService;
         this.usuarioService = usuarioService;
@@ -41,7 +41,7 @@ public class ReservaController {
      */
     @GetMapping("/{idActividad}/add")
     @SuppressWarnings("unchecked")
-    public String añadirAlCarrito(@PathVariable Long idActividad, jakarta.servlet.http.HttpSession session) {
+    public String agregarAlCarrito(@PathVariable Long idActividad, jakarta.servlet.http.HttpSession session) {
         List<Long> carrito = (List<Long>) session.getAttribute("carritoActividades");
         if (carrito == null) {
             carrito = new ArrayList<>();
@@ -75,8 +75,8 @@ public class ReservaController {
     @GetMapping("/carrito")
     @SuppressWarnings("unchecked")
     public String verCarrito(jakarta.servlet.http.HttpSession session,
-                             @AuthenticationPrincipal UserDetails userDetails,
-                             Model model) {
+            @AuthenticationPrincipal UserDetails userDetails,
+            Model model) {
 
         List<Long> carrito = (List<Long>) session.getAttribute("carritoActividades");
         if (carrito == null) {
@@ -103,9 +103,9 @@ public class ReservaController {
     @PostMapping("/carrito")
     @SuppressWarnings("unchecked")
     public String procesarReservaCarrito(@RequestParam(required = false) String notas,
-                                         jakarta.servlet.http.HttpSession session,
-                                         @AuthenticationPrincipal UserDetails userDetails,
-                                         RedirectAttributes redirectAttributes) {
+            jakarta.servlet.http.HttpSession session,
+            @AuthenticationPrincipal UserDetails userDetails,
+            RedirectAttributes redirectAttributes) {
 
         try {
             List<Long> carrito = (List<Long>) session.getAttribute("carritoActividades");
