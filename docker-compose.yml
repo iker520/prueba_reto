@@ -51,7 +51,7 @@ services:
       MIN_PORT: 21000
       MAX_PORT: 21010
     volumes:
-      - ftp_data:/ftp/grupo4
+      - ftp_data:/ftp/${FTP_USER}
     networks:
       - mourosub-net
   # 4. Contenedor proxy
